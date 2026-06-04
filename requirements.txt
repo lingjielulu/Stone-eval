@@ -1,0 +1,8 @@
+openai>=1.0
+networkx>=3.0
+matplotlib>=3.7
+jieba>=0.42
+datasets>=2.14
+pyyaml>=6.0
+click>=8.0
+tqdm>=4.65
