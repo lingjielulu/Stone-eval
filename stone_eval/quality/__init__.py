@@ -1,4 +1,4 @@
-""""""Long story quality evaluation utilities."""
+"""Long story quality evaluation utilities."""
 
 from .critique import (
     CRITIQUE_CRITERIA,

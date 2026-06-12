@@ -10,11 +10,28 @@ venv/
 !.env.example
 
 # Evaluation outputs
-outputs/
+outputs/*
+!outputs/ARCHIVE.md
 
 # Data
 data/gold/*.json
 data/prompts/*.json
+data/**
+!data/
+!data/processed/
+!data/processed/ARCHIVE.md
+!data/processed/cfpg/
+!data/processed/cfpg/README.md
+
+# Local corpora and generated logs
+logs/
+红楼梦.txt
+红楼梦续作文本/
+
+# Local paper/source PDFs
+*.pdf
+*.epub
+*.docx
 
 # Jupyter
 .ipynb_checkpoints/

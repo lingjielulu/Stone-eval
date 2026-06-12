@@ -1,0 +1,12 @@
+name: stone-emotion
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - snownlp
+      - jieba
+      - openai>=1.0
+      - click>=8.0
+      - tqdm>=4.65

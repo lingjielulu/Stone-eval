@@ -10,6 +10,7 @@
 | 叙事质量评分 | `stone_eval.quality` | NovelCritique / LongStoryEval | [ACL 2025](https://arxiv.org/abs/2512.12839) |
 | 人物社交网络 | `stone_eval.social` | LLM Story Social Network | [NeurIPS 2025](https://arxiv.org/abs/2510.18932) |
 | 情感曲线分析 | `stone_eval.emotion` | 6 Emotional Arcs | [EPJ 2016](https://arxiv.org/abs/1606.07772) |
+| 伏笔-回收追踪 | `prompts/cfpg` / `scripts/*cfpg*` | CFPG / BookSum-style summaries | 本地复现 |
 
 ## 目录结构
 
@@ -30,6 +31,15 @@ data/
 outputs/               # 评测输出
 scripts/               # 批量运行脚本
 ```
+
+## CFPG 复现入口
+
+当前正在复现伏笔-回收链路：先为《红楼梦》前 80 回生成 BookSum-style 摘要，再构建摘要句时间线、伏笔层，并继续做 Foreshadow-Trigger-Payoff 抽取与验证。
+
+- 项目控制文档：`documentations/cfpg_reproduction_design.md`
+- CFPG 数据入口：`data/processed/cfpg/README.md`
+- Prompt 文件：`prompts/cfpg/honglou_prompts.md`
+- 摘要生成脚本：`scripts/summarize_honglou_booksum.py`
 
 ## 快速开始
 
@@ -61,6 +71,14 @@ bash scripts/run_critique.sh
 bash scripts/run_social.sh
 bash scripts/run_emotion.sh
 ```
+
+## 实验归档
+
+切换到新的论文复现前，上一阶段实验已标记在：
+
+- `documentations/experiments/2026-06-11_pre_constory_bench_archive.md`
+- `data/processed/ARCHIVE.md`
+- `outputs/ARCHIVE.md`
 
 ## 评价维度详解
 
