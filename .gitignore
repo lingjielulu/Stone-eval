@@ -22,6 +22,7 @@ data/**
 !data/processed/ARCHIVE.md
 !data/processed/cfpg/
 !data/processed/cfpg/README.md
+!data/processed/cfpg/original80_report.md
 
 # Local corpora and generated logs
 logs/
