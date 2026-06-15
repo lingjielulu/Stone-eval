@@ -21,8 +21,9 @@
 ## 当前状态
 
 - 已删除：前 6 回 smoke test 产物。
-- 已完成：前 80 回 BookSum-style 摘要层、摘要句时间线、宽口径伏笔层。
-- 待完成：分段/滑窗 F-P 候选抽取、Trigger 固化、F-T-P 验证层。
+- 已完成：前 80 回 BookSum-style 摘要层、摘要句时间线、宽口径伏笔层、分窗 F-P 候选抽取、Trigger 候选和 F-T-P 验证层。
+- 当前结果：38 个 F+Trigger 候选，30 个 verified F-T-P，8 个 rejected candidates。
+- 待完成：人工抽样审查、schema 清洗、续作伏笔兑现评价。
 
 ## Prompt 文件
 
@@ -74,15 +75,27 @@
 
 ### 4. 伏笔 + Trigger 候选层
 
-当前尚未正式抽取。现有占位文件为空：
-
 [foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl)
 
 [foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md)
 
+候选源文件：
+
+[candidates/honglou_candidates_20260611_deepseek_honglou_original80.jsonl](candidates/honglou_candidates_20260611_deepseek_honglou_original80.jsonl)
+
 ### 5. 已验证 Foreshadow-Trigger-Payoff 层
 
-尚未生成。需要先完成分段/滑窗候选抽取和验证。
+机器可读：
+
+[verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl)
+
+人类可读：
+
+[verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md)
+
+Rejected candidates：
+
+[verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl](verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl)
 
 ## 生成脚本
 

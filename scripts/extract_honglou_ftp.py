@@ -49,8 +49,15 @@ def chat_json(
     model: str,
     messages: list[dict[str, str]],
     max_retries: int = 3,
+    timeout: float | None = None,
+    max_tokens: int | None = None,
 ) -> dict[str, Any]:
     last_error: Exception | None = None
+    request_kwargs: dict[str, Any] = {}
+    if timeout is not None:
+        request_kwargs["timeout"] = timeout
+    if max_tokens is not None and max_tokens > 0:
+        request_kwargs["max_tokens"] = max_tokens
     for attempt in range(max_retries):
         try:
             try:
@@ -59,12 +66,14 @@ def chat_json(
                     messages=messages,
                     temperature=0,
                     response_format={"type": "json_object"},
+                    **request_kwargs,
                 )
             except Exception:
                 response = client.chat.completions.create(
                     model=model,
                     messages=messages,
                     temperature=0,
+                    **request_kwargs,
                 )
             return parse_json_object(response.choices[0].message.content or "{}")
         except Exception as exc:
@@ -106,6 +115,16 @@ def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
         "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows),
         encoding="utf-8",
     )
+
+
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def render_timeline(timeline: list[dict[str, Any]]) -> str:
@@ -158,11 +177,41 @@ def extraction_messages(
     )
 
 
+def timeline_windows(
+    timeline: list[dict[str, Any]],
+    window_size: int,
+    stride: int,
+) -> list[list[dict[str, Any]]]:
+    if not timeline:
+        return []
+    if window_size <= 0 or window_size >= len(timeline):
+        return [timeline]
+    stride = max(1, stride)
+    windows: list[list[dict[str, Any]]] = []
+    start = 0
+    while start < len(timeline):
+        end = min(start + window_size, len(timeline))
+        windows.append(timeline[start:end])
+        if end == len(timeline):
+            break
+        start += stride
+    return windows
+
+
+def items_for_window(
+    items: list[dict[str, Any]],
+    window: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    chapters = {row["chapter_index"] for row in window}
+    return [item for item in items if item["chapter_index"] in chapters]
+
+
 def normalize_candidates(
     payload: dict[str, Any],
     timeline: list[dict[str, Any]],
     summary_source: str,
     extraction_prompt_version: str,
+    extraction_window: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     by_index = {row["global_sentence_index"]: row for row in timeline}
     rows: list[dict[str, Any]] = []
@@ -195,9 +244,63 @@ def normalize_candidates(
                 "stage1_confidence": raw.get("stage1_confidence", 0.0),
                 "stage1_rationale": raw.get("stage1_rationale", ""),
                 "extraction_prompt_version": extraction_prompt_version,
+                "extraction_window": extraction_window or {},
             }
         )
     return rows
+
+
+def reassign_candidate_ids(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for index, candidate in enumerate(candidates, start=1):
+        row = dict(candidate)
+        row["candidate_id"] = f"honglou:original_80:candidate:{index:06d}"
+        rows.append(row)
+    return rows
+
+
+def dedupe_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    seen: set[tuple[int, int]] = set()
+    rows: list[dict[str, Any]] = []
+    for candidate in sorted(
+        candidates,
+        key=lambda row: (
+            row["foreshadow_sentence_index"],
+            row["payoff_sentence_index"],
+            -float(row.get("stage1_confidence") or 0.0),
+        ),
+    ):
+        key = (
+            int(candidate["foreshadow_sentence_index"]),
+            int(candidate["payoff_sentence_index"]),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        rows.append(candidate)
+    return reassign_candidate_ids(rows)
+
+
+def summarize_candidate_windows(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_window: dict[int, dict[str, Any]] = {}
+    for candidate in candidates:
+        window = candidate.get("extraction_window") or {}
+        window_index = window.get("window_index")
+        if not isinstance(window_index, int):
+            continue
+        row = by_window.setdefault(
+            window_index,
+            {
+                "window_index": window_index,
+                "window_count": window.get("window_count"),
+                "start_sentence_index": window.get("start_sentence_index"),
+                "end_sentence_index": window.get("end_sentence_index"),
+                "chapter_indices": window.get("chapter_indices", []),
+                "deduped_candidate_count": 0,
+            },
+        )
+        row["deduped_candidate_count"] += 1
+    return [by_window[key] for key in sorted(by_window)]
 
 
 def context_window(timeline: list[dict[str, Any]], center: int, radius: int = 2) -> list[dict[str, Any]]:
@@ -325,6 +428,66 @@ def render_review(triples: list[dict[str, Any]], rejected: list[dict[str, Any]],
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def dedupe_triples(triples: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    seen: set[tuple[int, int]] = set()
+    rows: list[dict[str, Any]] = []
+    for triple in triples:
+        key = (
+            int(triple["foreshadow"]["global_sentence_index"]),
+            int(triple["payoff"]["global_sentence_index"]),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        rows.append(triple)
+    return rows
+
+
+def candidate_id_from_triple(triple: dict[str, Any]) -> str:
+    return str(triple.get("id", "")).replace(":ftp:", ":candidate:")
+
+
+def has_valid_rejection(row: dict[str, Any]) -> bool:
+    return row.get("verdict", {}).get("accepted") is False
+
+
+def verify_candidate_with_valid_verdict(
+    client: OpenAI,
+    model: str,
+    candidate: dict[str, Any],
+    timeline: list[dict[str, Any]],
+    verification_prompt: PromptTemplate,
+    max_retries: int,
+    timeout: float,
+    max_output_tokens: int,
+) -> dict[str, Any]:
+    last_verdict: dict[str, Any] = {}
+    last_error: Exception | None = None
+    for _ in range(max_retries):
+        try:
+            verdict = chat_json(
+                client,
+                model,
+                verification_messages(candidate, timeline, verification_prompt),
+                max_retries=1,
+                timeout=timeout,
+                max_tokens=max_output_tokens,
+            )
+        except Exception as exc:
+            last_error = exc
+            time.sleep(1)
+            continue
+        last_verdict = verdict
+        if isinstance(verdict.get("accepted"), bool):
+            return verdict
+        last_error = ValueError(
+            "verifier did not return a valid boolean `accepted` field: "
+            f"{json.dumps(last_verdict, ensure_ascii=False)[:500]}"
+        )
+        time.sleep(1)
+    raise RuntimeError(f"verifier failed after retries: {last_error}") from last_error
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -337,6 +500,13 @@ def main() -> None:
     parser.add_argument("--api-key", default=None)
     parser.add_argument("--max-candidates", type=int, default=12)
     parser.add_argument("--max-retries", type=int, default=3)
+    parser.add_argument("--window-size", type=int, default=80)
+    parser.add_argument("--window-stride", type=int, default=40)
+    parser.add_argument("--max-windows", type=int, default=0)
+    parser.add_argument("--timeout", type=float, default=120.0)
+    parser.add_argument("--max-output-tokens", type=int, default=2048)
+    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--skip-verification", action="store_true")
     parser.add_argument("--prompt-file", type=Path, default=DEFAULT_PROMPT_FILE)
     args = parser.parse_args()
 
@@ -352,6 +522,7 @@ def main() -> None:
     kwargs: dict[str, Any] = {"api_key": api_key}
     if api_base:
         kwargs["base_url"] = api_base.rstrip("/")
+    kwargs["timeout"] = args.timeout
     client = OpenAI(**kwargs)
     prompt_templates = load_prompt_templates(args.prompt_file)
     extraction_prompt = prompt_templates[EXTRACTION_PROMPT_KEY]
@@ -371,6 +542,10 @@ def main() -> None:
     verified_path = Path(
         f"data/processed/cfpg/verified/honglou_ftp_triples_{args.run_id}.jsonl"
     )
+    verified_unique_path = Path(
+        "data/processed/cfpg/verified/"
+        f"honglou_ftp_triples_{args.run_id}.unique.jsonl"
+    )
     rejected_path = Path(
         "data/processed/cfpg/verified/"
         f"honglou_rejected_candidates_{args.run_id}.jsonl"
@@ -378,26 +553,78 @@ def main() -> None:
     review_path = Path(
         f"data/processed/cfpg/verified/honglou_ftp_triples_{args.run_id}.review.md"
     )
+    unique_review_path = Path(
+        "data/processed/cfpg/verified/"
+        f"honglou_ftp_triples_{args.run_id}.unique.review.md"
+    )
     output_dir = Path("outputs/cfpg") / args.run_id
     output_dir.mkdir(parents=True, exist_ok=True)
 
     write_jsonl(timeline_path, timeline)
     print(f"wrote {timeline_path}", flush=True)
 
-    print("extracting candidates", flush=True)
-    raw_candidates = chat_json(
-        client,
-        model,
-        extraction_messages(timeline, items, args.max_candidates, extraction_prompt),
-        max_retries=args.max_retries,
-    )
-    candidates = normalize_candidates(
-        raw_candidates,
-        timeline,
-        str(summary_path),
-        extraction_prompt.version,
-    )
-    write_jsonl(candidates_path, candidates)
+    window_reports: list[dict[str, Any]] = []
+    candidate_report_source = "model_extraction"
+    if candidates_path.exists() and not args.force:
+        candidates = read_jsonl(candidates_path)
+        window_reports = summarize_candidate_windows(candidates)
+        candidate_report_source = "existing_candidates"
+        print(f"using existing {candidates_path} ({len(candidates)} candidates)", flush=True)
+    else:
+        print("extracting candidates", flush=True)
+        all_candidates: list[dict[str, Any]] = []
+        windows = timeline_windows(timeline, args.window_size, args.window_stride)
+        if args.max_windows > 0:
+            windows = windows[: args.max_windows]
+        for window_index, window in enumerate(windows, start=1):
+            first = window[0]["global_sentence_index"]
+            last = window[-1]["global_sentence_index"]
+            print(
+                f"extracting window {window_index}/{len(windows)} "
+                f"S[{first}-{last}]",
+                flush=True,
+            )
+            raw_candidates = chat_json(
+                client,
+                model,
+                extraction_messages(
+                    window,
+                    items_for_window(items, window),
+                    args.max_candidates,
+                    extraction_prompt,
+                ),
+                max_retries=args.max_retries,
+                timeout=args.timeout,
+                max_tokens=args.max_output_tokens,
+            )
+            extraction_window = {
+                "window_index": window_index,
+                "window_count": len(windows),
+                "start_sentence_index": first,
+                "end_sentence_index": last,
+                "chapter_indices": sorted({row["chapter_index"] for row in window}),
+            }
+            rows = normalize_candidates(
+                raw_candidates,
+                timeline,
+                str(summary_path),
+                extraction_prompt.version,
+                extraction_window=extraction_window,
+            )
+            all_candidates.extend(rows)
+            candidates = dedupe_candidates(all_candidates)
+            write_jsonl(candidates_path, candidates)
+            window_reports.append(
+                {
+                    **extraction_window,
+                    "raw_candidate_count": len(raw_candidates.get("candidates", [])),
+                    "normalized_candidate_count": len(rows),
+                    "deduped_candidate_count_so_far": len(candidates),
+                    "raw": raw_candidates,
+                }
+            )
+        candidates = dedupe_candidates(all_candidates)
+        write_jsonl(candidates_path, candidates)
     (output_dir / "candidate_extraction_report.json").write_text(
         json.dumps(
             {
@@ -410,7 +637,10 @@ def main() -> None:
                 "summary": str(summary_path),
                 "timeline": str(timeline_path),
                 "candidate_count": len(candidates),
-                "raw": raw_candidates,
+                "window_size": args.window_size,
+                "window_stride": args.window_stride,
+                "report_source": candidate_report_source,
+                "windows": window_reports,
                 "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
             },
             ensure_ascii=False,
@@ -420,26 +650,58 @@ def main() -> None:
     )
     print(f"wrote {candidates_path}", flush=True)
 
-    verified: list[dict[str, Any]] = []
-    rejected: list[dict[str, Any]] = []
+    if args.skip_verification:
+        print("skipping verification", flush=True)
+        return
+
+    verified: list[dict[str, Any]] = [] if args.force else read_jsonl(verified_path)
+    existing_rejected = [] if args.force else read_jsonl(rejected_path)
+    rejected: list[dict[str, Any]] = [
+        row for row in existing_rejected if has_valid_rejection(row)
+    ]
+    undecided_existing_count = len(existing_rejected) - len(rejected)
+    completed = {candidate_id_from_triple(row) for row in verified}
+    completed.update(
+        row.get("candidate", {}).get("candidate_id", "")
+        for row in rejected
+        if row.get("candidate", {}).get("candidate_id")
+    )
+    skipped_existing_count = 0
     verdicts: list[dict[str, Any]] = []
     for candidate in candidates:
+        if candidate["candidate_id"] in completed:
+            print(f"skipping verified {candidate['candidate_id']}", flush=True)
+            skipped_existing_count += 1
+            continue
         print(f"verifying {candidate['candidate_id']}", flush=True)
-        verdict = chat_json(
+        verdict = verify_candidate_with_valid_verdict(
             client,
             model,
-            verification_messages(candidate, timeline, verification_prompt),
-            max_retries=args.max_retries,
+            candidate,
+            timeline,
+            verification_prompt,
+            args.max_retries,
+            args.timeout,
+            args.max_output_tokens,
         )
         verdicts.append({"candidate_id": candidate["candidate_id"], **verdict})
         if verdict.get("accepted"):
             verified.append(verified_triple(candidate, verdict, verification_prompt.version))
         else:
             rejected.append({"candidate": candidate, "verdict": verdict})
+        write_jsonl(verified_path, verified)
+        write_jsonl(rejected_path, rejected)
+        unique = dedupe_triples(verified)
+        write_jsonl(verified_unique_path, unique)
+        render_review(verified, rejected, review_path)
+        render_review(unique, rejected, unique_review_path)
 
     write_jsonl(verified_path, verified)
     write_jsonl(rejected_path, rejected)
+    unique = dedupe_triples(verified)
+    write_jsonl(verified_unique_path, unique)
     render_review(verified, rejected, review_path)
+    render_review(unique, rejected, unique_review_path)
     (output_dir / "verification_report.json").write_text(
         json.dumps(
             {
@@ -451,10 +713,16 @@ def main() -> None:
                 "prompt_version": verification_prompt.version,
                 "candidate_count": len(candidates),
                 "verified_count": len(verified),
+                "verified_unique_count": len(unique),
                 "rejected_count": len(rejected),
+                "processed_this_run": len(verdicts),
+                "skipped_existing_candidates": skipped_existing_count,
+                "undecided_existing_candidates_reprocessed": undecided_existing_count,
                 "verified": str(verified_path),
+                "verified_unique": str(verified_unique_path),
                 "rejected": str(rejected_path),
                 "review": str(review_path),
+                "unique_review": str(unique_review_path),
                 "verdicts": verdicts,
                 "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
             },
@@ -464,6 +732,7 @@ def main() -> None:
         encoding="utf-8",
     )
     print(f"wrote {verified_path}", flush=True)
+    print(f"wrote {verified_unique_path}", flush=True)
     print(f"wrote {rejected_path}", flush=True)
     print(f"wrote {review_path}", flush=True)
 

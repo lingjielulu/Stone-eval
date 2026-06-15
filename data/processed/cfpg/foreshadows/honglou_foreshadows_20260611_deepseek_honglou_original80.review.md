@@ -1,6 +1,6 @@
 # HongLou CFPG Foreshadows
 
-Total rows: 1019
+Total rows: 1057
 
 ## honglou:original_80:foreshadow:000001
 - Source: summary_unresolved_setup / unresolved
@@ -8492,3 +8492,345 @@ Total rows: 1019
 - Status: candidate
 - Text: 疗妒汤方
 - Evidence: 这叫做‘疗妒汤’：用极好的秋梨一个，二钱冰搪，一钱陈皮，水三碗，梨熟为度。
+
+## honglou:original_80:extracted_foreshadow:000001
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第001回 | S[1]
+- Type: poem
+- Status: candidate
+- Text: 醒来后遇癞头跛足道人，被告知女儿英莲有命无运，并留下四句预言诗。
+- Why: 直接引用第001回 notes 中的【癞头僧预言诗】：“惯养娇生笑你痴，菱花空对雪澌澌。好防佳节元宵后，便是烟消火灭时”；英莲元宵被拐及火灾已部分应验（索引004），而门子详述其被薛蟠霸占则进一步清偿了“菱花空对雪澌澌”的悬念。
+- Evidence: 醒来后遇癞头跛足道人，被告知女儿英莲有命无运，并留下四句预言诗。
+
+## honglou:original_80:extracted_foreshadow:000002
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第001回 | S[2]
+- Type: event
+- Status: candidate
+- Text: 穷儒贾雨村暂居葫芦庙，偶遇甄家丫鬟娇杏回顾，以为知己。
+- Why: 依据第001回 notes 中的 foreshadow：“娇杏几次回顾贾雨村，雨村遂以知己相待，二人的偶然对视埋下日后缘分。” 摘要索引002记录娇杏回顾，索引007记录雨村娶娇杏，形成完整的伏笔回收。
+- Evidence: 穷儒贾雨村暂居葫芦庙，偶遇甄家丫鬟娇杏回顾，以为知己。
+
+## honglou:original_80:extracted_foreshadow:000003
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第007回 | S[42]
+- Type: event
+- Status: candidate
+- Text: 次日凤姐携宝玉往宁府，会见尤氏与秦可卿，宝玉得见秦钟，二人彼此倾慕，约定入贾府家塾读书。
+- Why: 第7回notes明确标记foreshadow：'秦钟入塾之约，引出学堂场景和新人物。'第9回学堂闹事清偿了这一叙事债务，间隔足够且事件具体。
+- Evidence: 次日凤姐携宝玉往宁府，会见尤氏与秦可卿，宝玉得见秦钟，二人彼此倾慕，约定入贾府家塾读书。
+
+## honglou:original_80:extracted_foreshadow:000004
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第009回 | S[56]
+- Type: speech_act
+- Status: candidate
+- Text: 李贵喝止平息，宝玉执意撵走金荣，茗烟揭出金荣系璜大奶奶之侄。
+- Why: 第9回notes标记foreshadow：'茗烟揭露金荣为璜大奶奶之侄，为日后与东府纠纷埋下线索。'第10回金氏欲理论正是此线索的清偿，虽被病情打断，但仍构成叙事债务的履行。
+- Evidence: 李贵喝止平息，宝玉执意撵走金荣，茗烟揭出金荣系璜大奶奶之侄。
+
+## honglou:original_80:extracted_foreshadow:000005
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第010回 | S[62]
+- Type: speech_act
+- Status: candidate
+- Text: 张友士诊脉后断言非喜，乃水亏火旺、忧虑伤脾之症，开出益气养荣补脾和肝汤，并言若能过春分方可望痊愈。
+- Why: 第010回 notes中foreshadow: 张友士强调春分节点，暗示病情反复。第013回秦可卿死亡清偿此伏笔。
+- Evidence: 张友士诊脉后断言非喜，乃水亏火旺、忧虑伤脾之症，开出益气养荣补脾和肝汤，并言若能过春分方可望痊愈。
+
+## honglou:original_80:extracted_foreshadow:000006
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第011回 | S[69]
+- Type: speech_act
+- Status: candidate
+- Text: 凤姐回府后，平儿告知贾瑞曾来探访，凤姐与平儿共斥其无耻，决意等他来时施以手段。
+- Why: 第011回 notes中foreshadow: 凤姐暗誓要置贾瑞于死地。第012回设局致其死亡。
+- Evidence: 凤姐回府后，平儿告知贾瑞曾来探访，凤姐与平儿共斥其无耻，决意等他来时施以手段。
+
+## honglou:original_80:extracted_foreshadow:000007
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第012回 | S[75]
+- Type: event
+- Status: candidate
+- Text: 年末林如海病重，贾母命贾琏送黛玉回扬州。
+- Why: 第012回 notes中foreshadow: 林如海病重，黛玉不得不暂离贾府返回扬州，其孤女身份与未来依托产生悬念。后林如海病故，黛玉归来长住。
+- Evidence: 年末林如海病重，贾母命贾琏送黛玉回扬州。
+
+## honglou:original_80:extracted_foreshadow:000008
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第019回 | S[113]
+- Type: speech_act
+- Status: candidate
+- Text: 李嬷嬷来宝玉房中，不顾阻拦吃掉留给袭人的酥酪，并抱怨宝玉宠袭人忘奶母。
+- Why: 依据第19回notes foreshadow: 李嬷嬷因酥酪及往日恩怨，扬言‘明儿有了不是，我再来领’。第113句摘要为李嬷嬷吃酥酪并抱怨，隐含此宣言；第117句她再次出现并大闹，直接兑现了此威胁。两者间隔3句，非即时因果。
+- Evidence: 李嬷嬷来宝玉房中，不顾阻拦吃掉留给袭人的酥酪，并抱怨宝玉宠袭人忘奶母。
+
+## honglou:original_80:extracted_foreshadow:000009
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第019回 | S[114]
+- Type: speech_act
+- Status: candidate
+- Text: 晚间袭人假借赎身之论试探宝玉，乘机箴规三事：不许说化灰化烟等无情语、在老爷前假装喜读书、改掉毁僧谤道和吃胭脂的毛病，宝玉悉数应允。
+- Why: 依据第19回notes foreshadow: 袭人借赎身之论箴规宝玉三事，虽得口头应允，但其真改与否成疑。第114句概括了箴规内容，尤其包含‘改掉吃胭脂的毛病’；第123句摘要明确提到‘胭脂’，且冲突由胭脂引发，是箴规背约的直观体现。但未直接重申箴规，故置信度略低。
+- Evidence: 晚间袭人假借赎身之论试探宝玉，乘机箴规三事：不许说化灰化烟等无情语、在老爷前假装喜读书、改掉毁僧谤道和吃胭脂的毛病，宝玉悉数应允。
+
+## honglou:original_80:extracted_foreshadow:000010
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第025回 | S[152]
+- Type: symbol
+- Status: candidate
+- Text: 马道婆进府，先哄贾母为宝玉点大海灯供奉菩萨，后受赵姨娘贿请，铰纸人青面鬼作法魇害凤姐与宝玉。
+- Why: 马道婆作法在摘要152句，为后续中邪埋下直接伏笔；155句僧道持诵通灵玉解厄，清偿邪祟危机。间隔3个句子，触发条件明确，尽管阴谋未暴露但危机解除构成部分支付。
+- Evidence: 马道婆进府，先哄贾母为宝玉点大海灯供奉菩萨，后受赵姨娘贿请，铰纸人青面鬼作法魇害凤姐与宝玉。
+
+## honglou:original_80:extracted_foreshadow:000011
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第026回 | S[160]
+- Type: object
+- Status: candidate
+- Text: 贾芸入怡红院见宝玉，客套后离去，向坠儿打听小红，并用自己的手帕托坠儿转交小红，暗传情意。
+- Why: 第026回贾芸托坠儿转交手帕时明确为私情伏笔，第027回摘要中通过宝钗偷听证实手帕已传递成功且二人有私，符合F-P关系。间隔4个句子，有明确物件传递和可观察触发。
+- Evidence: 贾芸入怡红院见宝玉，客套后离去，向坠儿打听小红，并用自己的手帕托坠儿转交小红，暗传情意。
+
+## honglou:original_80:extracted_foreshadow:000012
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第029回 | S[180]
+- Type: object
+- Status: candidate
+- Text: 本回中张道士提亲对象未明、金麒麟出现与湘云关联、神前拈戏暗喻盛衰等细节，皆为后续埋下伏笔。
+- Why: 第29回notes明确将金麒麟列为foreshadow，回目“因麒麟伏白首双星”直指伏笔性质；180概括为后续埋下伏笔，191具体描述拾得场景及心动感受，构成清偿。
+- Evidence: 本回中张道士提亲对象未明、金麒麟出现与湘云关联、神前拈戏暗喻盛衰等细节，皆为后续埋下伏笔。
+
+## honglou:original_80:extracted_foreshadow:000013
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第030回 | S[183]
+- Type: event
+- Status: candidate
+- Text: 宝玉闲逛至王夫人房内，调笑金钏儿，被王夫人发觉打骂并撵出。
+- Why: 第30回摘要明确记载宝玉调笑金钏儿致其被撵（183），notes将其标记为unresolved；第32回摘要（200）记载金钏儿投井，完成叙事债务，回目亦点明“含耻辱情烈死金钏”。
+- Evidence: 宝玉闲逛至王夫人房内，调笑金钏儿，被王夫人发觉打骂并撵出。
+
+## honglou:original_80:extracted_foreshadow:000014
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第032回 | S[198]
+- Type: speech_act
+- Status: candidate
+- Text: 随后宝玉错将袭人当作黛玉吐露衷肠，袭人惊惧不安。
+- Why: 第32回notes将袭人听到表白后的惊惧列为foreshadow（担心难免不才之事），第34回摘要（209）记袭人向王夫人进言搬出，正是对此叙事债务的直接清偿。
+- Evidence: 随后宝玉错将袭人当作黛玉吐露衷肠，袭人惊惧不安。
+
+## honglou:original_80:extracted_foreshadow:000015
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第034回 | S[211]
+- Type: speech_act
+- Status: candidate
+- Text: 薛家因宝玉挨打疑系薛蟠挑唆，薛蟠受冤大闹，情急下说出宝钗因金锁配玉才偏护宝玉，宝钗羞愤哭泣。
+- Why: 第211回摘要记载薛蟠情急下说出宝钗因金锁配玉才偏护宝玉，引发宝钗羞愤。这公开化了金玉之说。第224回宝玉梦中喊骂拒金玉姻缘，恰好被宝钗听到，这清偿了之前公开说法的后续发展，明确了宝玉的真实态度，并对宝钗造成冲击。触发是宝玉梦话，可观察。
+- Evidence: 薛家因宝玉挨打疑系薛蟠挑唆，薛蟠受冤大闹，情急下说出宝钗因金锁配玉才偏护宝玉，宝钗羞愤哭泣。
+
+## honglou:original_80:extracted_foreshadow:000016
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第035回 | S[220]
+- Type: speech_act
+- Status: candidate
+- Text: 莺儿讲述配色花样，宝钗来建议以金线络宝玉之玉，袭人又得王夫人送菜，宝钗话带玄机。
+- Why: 第220回摘要中提及‘宝钗话带玄机’，结合notes中宝钗说‘明儿还有比这个更叫你不好意思的呢’，暗示王夫人将对袭人有特殊安排。第223回明确写出王夫人将袭人月例提至姨娘级别，暂不公开，直接清偿了这一暗示。触发条件是王夫人实际下达提升指令，是可观察的。
+- Evidence: 莺儿讲述配色花样，宝钗来建议以金线络宝玉之玉，袭人又得王夫人送菜，宝钗话带玄机。
+
+## honglou:original_80:extracted_foreshadow:000017
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第036回 | S[226]
+- Type: speech_act
+- Status: candidate
+- Text: 黛玉借薛姨妈生辰一事微含酸意试探宝玉，次日湘云被家人接回，含泪托宝玉常提醒贾母接她。
+- Why: 第226回摘要中湘云‘含泪托宝玉常提醒贾母接她’，这是一个明确的请求。第231回湘云被接来，可以视为该请求的清偿，虽然未明确说明是宝玉提醒的结果，但在叙事上形成希望与实现的对应。间隔超过2句，可观察触发是湘云实际到来。
+- Evidence: 黛玉借薛姨妈生辰一事微含酸意试探宝玉，次日湘云被家人接回，含泪托宝玉常提醒贾母接她。
+
+## honglou:original_80:extracted_foreshadow:000018
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第040回 | S[254]
+- Type: speech_act
+- Status: candidate
+- Text: 最后在缀锦阁下摆设筵席，鸳鸯主持牙牌令，贾母、薛姨妈、湘云、宝钗、黛玉、迎春等依次行令，黛玉无意中说出《牡丹亭》《西厢记》曲词，刘姥姥则以乡野俚语凑趣;正在热闹时,忽听外面乱嚷,留下悬念。
+- Why: 第40回黛玉在公开场合的言语行为（引用禁书曲词）被宝钗留意，形成一个未解决的叙事条件（黛玉可能会被宝钗责问）。第42回宝钗果然私下审问，直接清偿了此伏笔。notes中也标志此为foreshadow。
+- Evidence: 最后在缀锦阁下摆设筵席，鸳鸯主持牙牌令，贾母、薛姨妈、湘云、宝钗、黛玉、迎春等依次行令，黛玉无意中说出《牡丹亭》《西厢记》曲词，刘姥姥则以乡野俚语凑趣;正在热闹时,忽听外面乱嚷,留下悬念。
+
+## honglou:original_80:extracted_foreshadow:000019
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第043回 | S[273]
+- Type: event
+- Status: candidate
+- Text: 九月初二，两府热闹看戏，宝玉却一早素衣出门，只带焙茗到水仙庵后园井台焚香祭奠，焙茗代为祝祷，称祭者为“极聪明清雅的一位姐姐妹妹”。
+- Why: 摘要句273描述宝玉秘密祭奠，焙茗祝祷称祭者为‘极聪明清雅的一位姐姐妹妹’，但未指明是谁，形成悬念。摘要句282提到‘因金钏儿生日不乐’，结合上下文，这一天正是金钏儿生日，从而揭示早上的祭奠是为金钏儿。间隔超过2句，且不构成即时因果，符合伏笔-兑付定义。
+- Evidence: 九月初二，两府热闹看戏，宝玉却一早素衣出门，只带焙茗到水仙庵后园井台焚香祭奠，焙茗代为祝祷，称祭者为“极聪明清雅的一位姐姐妹妹”。
+
+## honglou:original_80:extracted_foreshadow:000020
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第043回 | S[275]
+- Type: event
+- Status: candidate
+- Text: 玉钏儿在穿堂垂泪，对宝玉不理，其故未明。
+- Why: 摘要句275描述玉钏儿反常垂泪且不理宝玉，原因不明，形成悬念。摘要句282点明当日是金钏儿生日，玉钏儿因姐姐祭日而悲伤的推断成立，清偿悬念。间隔超过2句，符合要求。
+- Evidence: 玉钏儿在穿堂垂泪，对宝玉不理，其故未明。
+
+## honglou:original_80:extracted_foreshadow:000021
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第049回 | S[306]
+- Type: identity
+- Status: candidate
+- Text: 贾母极喜宝琴，逼王夫人认作干女儿，留在身边安寝；
+- Why: 第306句贾母的行为异常，为求配意图埋下伏笔；第316句明确揭示宝琴已许人家，贾母只得作罢，清偿了第306句的叙事债务。
+- Evidence: 贾母极喜宝琴，逼王夫人认作干女儿，留在身边安寝；
+
+## honglou:original_80:extracted_foreshadow:000022
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第049回 | S[310]
+- Type: object
+- Status: candidate
+- Text: 次日大雪，宝玉栊翠庵赏红梅，湘云与宝玉索鹿肉烧烤，平儿、凤姐也加入，平儿镯子忽失，凤姐称三日内必得。
+- Why: 第310句引入镯子丢失与凤姐的预言，构成未解悬念；第326句通过平儿隐瞒坠儿偷窃的内情，完全解释了镯子失踪事件，满足伏笔-清偿结构。
+- Evidence: 次日大雪，宝玉栊翠庵赏红梅，湘云与宝玉索鹿肉烧烤，平儿、凤姐也加入，平儿镯子忽失，凤姐称三日内必得。
+
+## honglou:original_80:extracted_foreshadow:000023
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第050回 | S[315]
+- Type: speech_act
+- Status: candidate
+- Text: 大家猜过李纨姐妹的几个灯谜后，湘云制《点绛唇》谜底为耍猴儿，宝钗、宝玉、黛玉各出谜语，探春方欲念时宝琴插话，欲作十首怀古诗谜。
+- Why: 第315句宝琴的言语预告是一个明确的叙事承诺；第319句实现了该承诺，虽属顺理成章的叙事，但符合伏笔-清偿模式，可视为弱候选。
+- Evidence: 大家猜过李纨姐妹的几个灯谜后，湘云制《点绛唇》谜底为耍猴儿，宝钗、宝玉、黛玉各出谜语，探春方欲念时宝琴插话，欲作十首怀古诗谜。
+
+## honglou:original_80:extracted_foreshadow:000024
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第058回 | S[357]
+- Type: rule
+- Status: candidate
+- Text: 老太妃薨逝，贾母等诰命按爵守制入朝随祭，家中交由尤氏协理，并托薛姨妈入园照管；
+- Why: 依据第58回note明确指出‘贾母等离家送灵，家中下人无头绪，乘隙结党弄权’，摘要[357]具体设定了主人离家、权力交接的条件，构成管理真空的伏笔；[369]平儿透露近日各房已出八九件事，直接清偿了这一伏笔，间隔12句，符合至少间隔2句的要求。
+- Evidence: 老太妃薨逝，贾母等诰命按爵守制入朝随祭，家中交由尤氏协理，并托薛姨妈入园照管；
+
+## honglou:original_80:extracted_foreshadow:000025
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第059回 | S[369]
+- Type: event
+- Status: candidate
+- Text: 平儿到来，透露这几日各房已出了八九件事，众人诧异，下回分解。
+- Why: 第059回 notes 有 unresolved: '平儿说近日各房已出八九件事'，foreshadow: '平儿所说“没头绪”之事暗示风波将起'。369句平儿的话语预示后续事端，378句平儿处理具体事件作为回应。
+- Evidence: 平儿到来，透露这几日各房已出了八九件事，众人诧异，下回分解。
+
+## honglou:original_80:extracted_foreshadow:000026
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第060回 | S[373]
+- Type: object
+- Status: candidate
+- Text: 芳官为柳五儿讨要玫瑰露，宝玉慷慨赠予；
+- Why: 第060回 notes 明确记载 foreshadow: '玫瑰露与茯苓霜先后出现，且柳家行为被小幺儿质疑，可能引发查抄。' 伏笔句373引入玫瑰露这一关键物件，后续377柳五儿因此物被拿，形成清晰的伏笔-兑现。
+- Evidence: 芳官为柳五儿讨要玫瑰露，宝玉慷慨赠予；
+
+## honglou:original_80:extracted_foreshadow:000027
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第064回 | S[403]
+- Type: event
+- Status: candidate
+- Text: 贾琏逼张华退婚，置买外室，定初三迎娶。
+- Why: 第064回 notes 指出张华退婚心中不愿，第067回 foreshadow note 明确张华可能成为凤姐利用的棋子。摘要句403引入张华被逼退婚，425句凤姐唆使张华告状，清偿了这一伏笔。
+- Evidence: 贾琏逼张华退婚，置买外室，定初三迎娶。
+
+## honglou:original_80:extracted_foreshadow:000028
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第065回 | S[410]
+- Type: speech_act
+- Status: candidate
+- Text: 小厮兴儿来请贾琏，被二姐留下问话，兴儿详述荣府上下，尤其描述凤姐之歹毒，令二姐心生畏惧。
+- Why: 第065回 notes 中 foreshadow 明确指出兴儿对凤姐的刻画暗示尤二姐可能面临凶险。摘要句410兴儿详述凤姐歹毒，句424凤姐暗命善姐苛待二姐，构成伏笔与清偿。
+- Evidence: 小厮兴儿来请贾琏，被二姐留下问话，兴儿详述荣府上下，尤其描述凤姐之歹毒，令二姐心生畏惧。
+
+## honglou:original_80:extracted_foreshadow:000029
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第066回 | S[412]
+- Type: speech_act
+- Status: candidate
+- Text: 尤三姐发誓非柳湘莲不嫁，折簪为证，持斋礼佛静候。
+- Why: 第066回 notes 中 foreshadow 指出尤三姐折簪立誓后来自刎应验，誓言成为性格刚烈的预兆。摘要句412三姐折簪立誓，句416三姐自刎，清偿了伏笔。
+- Evidence: 尤三姐发誓非柳湘莲不嫁，折簪为证，持斋礼佛静候。
+
+## honglou:original_80:extracted_foreshadow:000030
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第067回 | S[422]
+- Type: event
+- Status: candidate
+- Text: 袭人去看凤姐，恰逢凤姐审问旺儿和兴儿，得知贾琏偷娶尤二姐的前后经过。
+- Why: 第067回 notes 记载‘张华此人被提及，其曾与尤二姐定亲...可能成为凤姐日后利用的棋子’，伏笔句[422]提及凤姐得知偷娶经过（含张华信息），payoff句[425]明确写凤姐探知张华并唆使其告状，间隔3句，符合约束。
+- Evidence: 袭人去看凤姐，恰逢凤姐审问旺儿和兴儿，得知贾琏偷娶尤二姐的前后经过。
+
+## honglou:original_80:extracted_foreshadow:000031
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第067回 | S[423]
+- Type: speech_act
+- Status: candidate
+- Text: 凤姐怒极，忽然计上心来，决定不等贾琏回来就自行处置。
+- Why: 第067回 notes 明确指出‘凤姐得知偷娶后眉头一皱，计上心来...计策内容成为强烈悬念’，伏笔句[423]直接对应此悬念；payoff句[433]尤二姐吞金自尽清偿了该计策的最终结局。
+- Evidence: 凤姐怒极，忽然计上心来，决定不等贾琏回来就自行处置。
+
+## honglou:original_80:extracted_foreshadow:000032
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第068回 | S[424]
+- Type: event
+- Status: candidate
+- Text: 凤姐趁贾琏外出，假意贤惠，亲迎尤二姐入大观园同居，暗命丫头善姐苛待二姐，自己表面殷勤。
+- Why: 第068回 notes 提到‘善姐刁难尤二姐的举动，预示二姐在府中将备受欺凌’，伏笔句[424]明确‘暗命丫头善姐苛待二姐’，payoff句[432]中‘受尽折磨得病’直接对应，间隔8句，符合约束。
+- Evidence: 凤姐趁贾琏外出，假意贤惠，亲迎尤二姐入大观园同居，暗命丫头善姐苛待二姐，自己表面殷勤。
+
+## honglou:original_80:extracted_foreshadow:000033
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第073回 | S[457]
+- Type: object
+- Status: candidate
+- Text: 邢夫人入园散心，恰遇傻大姐拾得绣春囊，大惊藏起并厉嘱傻大姐勿言。
+- Why: 根据073回notes foreshadow: '绣春囊的出现...暗示大观园已非绝对安全洁净之地' 和074回notes unresolved: '绣春囊经抄检证明为司棋与潘又安私传之物'。457句描述邢夫人拾得绣春囊，466句揭露司棋箱中有情书并提及香袋，完成伏笔兑现。
+- Evidence: 邢夫人入园散心，恰遇傻大姐拾得绣春囊，大惊藏起并厉嘱傻大姐勿言。
+
+## honglou:original_80:extracted_foreshadow:000034
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第073回 | S[460]
+- Type: speech_act
+- Status: candidate
+- Text: 探春、宝钗等来慰，探春出面斥责仆妇，并使眼色唤来平儿处置。
+- Why: 根据073回notes foreshadow: '探春出面管迎春金凤一事...说“物伤其类，唇亡齿寒”，显示危机感'。460句描述探春管迎春金凤事，464句探春直接预言'自家自杀自灭，才能一败涂地'，言语行为前后呼应。
+- Evidence: 探春、宝钗等来慰，探春出面斥责仆妇，并使眼色唤来平儿处置。
+
+## honglou:original_80:extracted_foreshadow:000035
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第077回 | S[482]
+- Type: speech_act
+- Status: candidate
+- Text: 宝玉疑心有人告密，深夜私探晴雯，晴雯病中诉冤，与之交换指甲和贴身袄儿。
+- Why: 根据077回notes foreshadow: '晴雯临终前互赠信物，含冤诉屈'。482句描述交换指甲和袄儿，并说'横竖不过三五日的光景'，488句小丫头告知晴雯已死，兑现伏笔。
+- Evidence: 宝玉疑心有人告密，深夜私探晴雯，晴雯病中诉冤，与之交换指甲和贴身袄儿。
+
+## honglou:original_80:extracted_foreshadow:000036
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第077回 | S[483]
+- Type: dream
+- Status: candidate
+- Text: 归来后宝玉梦见晴雯告别，惊醒预感不祥。
+- Why: 第077回notes明确标记‘foreshadow: 宝玉梦见晴雯告别，次日预感其已死’及‘poem/dream/object: 宝玉梦晴雯告别’；第078回开头摘要[488]直接交代‘宝玉从小丫头处得知晴雯病故’，清偿梦境预兆，间隔5句满足约束。
+- Evidence: 归来后宝玉梦见晴雯告别，惊醒预感不祥。
+
+## honglou:original_80:extracted_foreshadow:000037
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第078回 | S[488]
+- Type: speech_act
+- Status: candidate
+- Text: 宝玉从小丫头处得知晴雯病故，小丫头竟编出晴雯做了芙蓉花神的故事，宝玉去灵前祭奠却扑空，原来尸首已被焚化。
+- Why: 第078回notes有‘foreshadow: 晴雯被说成芙蓉花神，宝玉……笃信不疑’及‘poem/dream/object: 芙蓉花（芙蓉花神）’；摘要[488]记录小丫头编造花神故事，[491]宝玉撰《芙蓉女儿诔》恰以‘芙蓉女儿’为祭，中间经[489][490]两句间隔，构成言语伏笔的叙事清偿。
+- Evidence: 宝玉从小丫头处得知晴雯病故，小丫头竟编出晴雯做了芙蓉花神的故事，宝玉去灵前祭奠却扑空，原来尸首已被焚化。
+
+## honglou:original_80:extracted_foreshadow:000038
+- Source: candidate_extraction / candidate_foreshadow
+- Location: 第079回 | S[494]
+- Type: event
+- Status: candidate
+- Text: 贾赦将迎春许配孙绍祖，贾母不置可否，贾政劝谏无效，宝玉闻讯不乐，独往紫菱洲凭吊，吟诗伤怀。
+- Why: 第079回notes有‘unresolved: 迎春嫁与孙绍祖，贾政深恶……未知婚后光景’及‘foreshadow: 宝玉吟诗暗喻迎春出嫁后的孤寂’，摘要[494]明确许配；第080回[503]迎春哭诉恶行，证实‘中山狼’之婚，间隔9句，伏线清晰。
+- Evidence: 贾赦将迎春许配孙绍祖，贾母不置可否，贾政劝谏无效，宝玉闻讯不乐，独往紫菱洲凭吊，吟诗伤怀。

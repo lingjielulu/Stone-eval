@@ -2,15 +2,16 @@
 
 ## 概览
 
-本报告记录《红楼梦》前 80 回在 CFPG 复现链路中的摘要与伏笔候选实验。当前完成的是数据准备和宽口径伏笔发现阶段：已经生成 BookSum-style 章节摘要、摘要句时间线和伏笔候选层；尚未完成 Foreshadow-Trigger-Payoff 三元组验证。
+本报告记录《红楼梦》前 80 回在 CFPG 复现链路中的摘要、伏笔候选、Trigger 候选和 Foreshadow-Trigger-Payoff 验证实验。当前已经完成 BookSum-style 章节摘要、摘要句时间线、宽口径伏笔层、分窗候选抽取和 F-T-P 验证。
 
 当前结论：
 
 - 摘要覆盖第 1-80 回，无缺章。
 - 摘要句时间线共 504 句，平均每回 6.3 句。
-- 宽口径伏笔层共 1019 条。
-- 伏笔 + Trigger 候选层尚未正式生成；当前空文件是占位产物，不代表候选被筛选为 0。
-- 现有结果适合做人工审查、候选池构建和下一步 F-P/Trigger 抽取，但不能直接作为最终三元组数据集使用。
+- 宽口径伏笔层基础条目 1019 条；合并 candidate extraction 中实际用作 F 的句子后为 1057 条。
+- 分窗抽取产生 38 个 F-P candidates，并为每个候选生成 provisional Trigger。
+- 验证阶段得到 30 个 unique verified F-T-P triples，8 个 rejected candidates。
+- 现有结果可作为第一版细口径三元组数据，但仍需要人工抽样审查、schema 清洗和续作评价前的质量控制。
 
 ## 文献问题与方法
 
@@ -124,9 +125,10 @@ CFPG 的生成框架维护一个 Foreshadow Pool，里面保存待回收的 `(F,
    - 这一层追求召回，不追求最终精确。
 
 4. Trigger / verified F-T-P 层
-   - 当前尚未正式生成。
-   - 后续需要从摘要句时间线和伏笔层抽取 F-P 候选，再验证 Trigger 是否可观察、Payoff 是否真正回收 Foreshadow。
-   - Prompt 文件中已经定义了 `candidate_extraction` 和 `candidate_verification`，但对应脚本 `scripts/extract_honglou_ftp.py` 尚未在本轮 full80 结果上跑出 `candidates/` 与 `verified/` 数据。
+   - 使用 `candidate_extraction` prompt 以 40 个摘要句为窗口、30 句步长进行分窗抽取，每窗最多 3 个候选。
+   - 抽取阶段生成 38 个 F-P candidates，并附带 provisional Trigger。
+   - 使用 `candidate_verification` prompt 对每个候选做 setup/payoff/trigger/connection 验证。
+   - 验证阶段得到 30 个 unique verified F-T-P triples，8 个 rejected candidates。
 
 ## 结果文件
 
@@ -165,7 +167,20 @@ Prompt 文件：
 - 机器可读：[foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl)
 - 人类可读：[foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md)
 
-该层当前为 0 条，因为候选抽取与验证还没有正式运行；这两个文件只是 `render_cfpg_layers_review.py` 在缺少 `data/processed/cfpg/candidates/` 输入时生成的占位文件。细口径结果应来自 `scripts/extract_honglou_ftp.py` 生成的 `candidates/`、`verified/` 和 `rejected` 文件，目前尚不存在。
+候选源文件：
+
+- 机器可读：[candidates/honglou_candidates_20260611_deepseek_honglou_original80.jsonl](candidates/honglou_candidates_20260611_deepseek_honglou_original80.jsonl)
+
+已验证 F-T-P 层：
+
+- 机器可读：[verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl)
+- 人类可读：[verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md)
+- rejected candidates：[verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl](verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl)
+
+运行报告：
+
+- 抽取报告：[../../../outputs/cfpg/20260611_deepseek_honglou_original80/candidate_extraction_report.json](../../../outputs/cfpg/20260611_deepseek_honglou_original80/candidate_extraction_report.json)
+- 验证报告：[../../../outputs/cfpg/20260611_deepseek_honglou_original80/verification_report.json](../../../outputs/cfpg/20260611_deepseek_honglou_original80/verification_report.json)
 
 ## 数据量
 
@@ -202,31 +217,52 @@ Prompt 文件：
 | `summary_unresolved_setup` | 376 |
 | `summary_foreshadow_note` | 339 |
 | `summary_poem_dream_prophecy_object` | 304 |
-| 总计 | 1019 |
+| `candidate_extraction` | 38 |
+| 总计 | 1057 |
 
 | 状态 | 数量 |
 | --- | ---: |
-| `candidate` | 643 |
+| `candidate` | 681 |
 | `pending` | 366 |
 | `resolved_in_chapter` | 10 |
 
 | 类型 | 数量 |
 | --- | ---: |
-| `event` | 289 |
-| `speech_act` | 227 |
-| `object` | 186 |
-| `poem` | 173 |
-| `identity` | 33 |
+| `event` | 300 |
+| `speech_act` | 244 |
+| `object` | 191 |
+| `poem` | 174 |
+| `identity` | 34 |
 | `prophecy` | 26 |
-| `dream` | 23 |
-| `symbol` | 17 |
-| `rule` | 17 |
+| `dream` | 24 |
+| `symbol` | 18 |
+| `rule` | 18 |
 | 空类型 | 15 |
 | `name_symbol` | 7 |
 | `other` | 4 |
 | `status_quo` | 2 |
 
-每回伏笔条目平均 12.74 条，中位数 13 条；最少 5 条，最多 24 条。伏笔密度最高的章节包括第 5、50、63、22、1、51、37、18 回。
+摘要来源的基础宽口径伏笔为 1019 条；渲染后把 38 个 candidate extraction 中实际用作 F 的摘要句也并入伏笔层，因此当前伏笔层总计 1057 条。
+
+### 细口径候选与验证层
+
+| 指标 | 数量 |
+| --- | ---: |
+| F-P candidates | 38 |
+| F+Trigger rows | 38 |
+| verified F-T-P triples | 30 |
+| unique verified F-T-P triples | 30 |
+| rejected candidates | 8 |
+
+| verified 类型 | 数量 |
+| --- | ---: |
+| `speech_act` | 13 |
+| `event` | 9 |
+| `object` | 4 |
+| `poem` | 1 |
+| `symbol` | 1 |
+| `rule` | 1 |
+| `dream` | 1 |
 
 ## 示例
 
@@ -262,7 +298,7 @@ Prompt 文件：
 
 ### 示例 4：第 5 回判词与曲文
 
-第 5 回是伏笔密度最高的章节之一。当前宽口径伏笔层会把诗词、梦境、预言和物件条目纳入 `summary_poem_dream_prophecy_object`，因此判词和曲文已经作为伏笔载体保留在伏笔层中。但它们还没有进入细口径候选或 verified F-T-P，因为 candidate extraction、Trigger 生成和 Payoff 验证尚未执行。
+第 5 回是伏笔密度最高的章节之一。当前宽口径伏笔层会把诗词、梦境、预言和物件条目纳入 `summary_poem_dream_prophecy_object`，因此判词和曲文已经作为伏笔载体保留在伏笔层中。本轮细口径抽取采用每窗最多 3 个候选的保守设置，优先产生可在摘要句时间线中找到 payoff 的 F-P pair；因此第 5 回判词并不等于全部都会进入 verified F-T-P。后续若要专门处理判词，需要提高每窗候选数，或以第 5 回判词作为人工种子做 targeted extraction。
 
 ## 质量分析
 
@@ -272,15 +308,17 @@ Prompt 文件：
 
 宽口径伏笔层的召回较高，特别是对《红楼梦》中重要的诗词、梦境、判词、预言、物件、身份和婚姻承诺有较好覆盖。第 5 回等伏笔密集章节被识别为高密度章节，符合文本直觉。
 
+细口径 F-T-P 验证已经跑通：38 个 F-P candidates 中，30 个通过 verifier，8 个被拒绝。通过项以 speech_act、event 和 object 为主，说明当前 prompt 更擅长抽取有明确话语承诺、事件延续或物件回收的伏笔，而对主题性、象征性和超长程判词仍较保守。
+
 ### 局限
 
-1. 当前不是最终三元组
-   - 1019 条伏笔是候选层，不是 verified F-T-P。
-   - 其中包含主题性、重复性和过宽泛条目。
+1. 当前 verified triples 仍是第一版自动结果
+   - 30 个 verified F-T-P 尚未经过人工逐条审查。
+   - verifier 会过滤主题性伪关联，但也可能误收局部因果、误拒隐喻回收。
 
-2. Trigger 层尚未形成
-   - 现在还没有“何时应当兑现”的触发条件。
-   - 因此还不能用当前数据评价续作是否兑现伏笔。
+2. 召回受窗口和候选数限制
+   - 本轮使用 40 句窗口、30 句步长、每窗最多 3 个候选。
+   - 这能降低噪声和成本，但会漏掉超长距离伏笔，尤其是第 5 回判词、家族衰败、宝黛还泪等全书级线索。
 
 3. 类型 schema 需要清洗
    - 存在 15 条空类型。
@@ -296,19 +334,18 @@ Prompt 文件：
 
 ## 下一步
 
-1. 执行 candidate extraction
-   - 输入摘要句时间线和宽口径伏笔层。
-   - 输出 Foreshadow-Payoff 候选和 provisional Trigger。
+1. 人工抽样审查 verified triples
+   - 优先检查 accepted 30 条和 rejected 8 条。
+   - 重点看是否存在局部因果误收、主题性误收、Trigger 过宽或 Payoff 不具体。
 
-2. 执行 candidate verification
-   - 验证 Foreshadow、Trigger、Payoff 是否具体、可观察、可定位。
-   - 输出 verified F-T-P triples。
+2. 提高召回
+   - 对第 5 回判词、还泪神话、贾府衰败等全书级线索做 targeted extraction。
+   - 增大 `--max-candidates` 或使用更长窗口，比较新增候选质量。
 
-3. 做人工抽样审查
-   - 优先检查第 1、2、5、22、50、63 回。
-   - 重点检查判词、梦境、诗词、物件、身份错认、婚姻承诺和家族衰败线索。
-
-4. 清洗伏笔层
+3. 清洗伏笔层和类型 schema
    - 合并重复条目。
    - 补齐空类型。
    - 区分局部回收、跨章节回收和主题性伏笔。
+
+4. 进入续作评价
+   - 用 verified F-T-P pool 检查续作是否过早兑现、遗漏兑现、错误兑现或只做主题呼应。
