@@ -9,14 +9,24 @@
 - 摘要覆盖第 1-80 回，无缺章。
 - 摘要句时间线共 504 句，平均每回 6.3 句。
 - 宽口径伏笔层共 1019 条。
-- 伏笔 + Trigger 候选层目前为空，verified F-T-P 层尚未生成。
+- 伏笔 + Trigger 候选层尚未正式生成；当前空文件是占位产物，不代表候选被筛选为 0。
 - 现有结果适合做人工审查、候选池构建和下一步 F-P/Trigger 抽取，但不能直接作为最终三元组数据集使用。
 
 ## 文献问题与方法
 
 ### BookSum：长叙事摘要问题
 
-BookSum 论文定义的问题是 long-form narrative summarization，即长篇叙事文本摘要。作者指出，新闻、论文、专利等常见摘要数据集通常文本较短、结构固定、事实显式、布局偏差强，不能充分考察长篇叙事中的远距离因果关系、时间关系、并行情节和丰富话语结构。
+论文链接：[BookSum: A Collection of Datasets for Long-form Narrative Summarization](https://arxiv.org/abs/2105.08209)
+
+动机：现有摘要数据集多集中在新闻、论文、专利等文本上。这些文本通常篇幅较短、结构固定、事实显式、布局偏差强，模型可以依赖文章开头、段落结构或显式事实完成摘要。这样的数据不足以考察文学叙事中更难的能力：跨章节因果关系、非线性时间关系、并行情节、人物状态变化和高抽象度内容选择。
+
+问题定义：BookSum 定义的问题是 long-form narrative summarization，即长篇叙事文本摘要。目标是在小说、戏剧、故事等文学文本上，生成覆盖核心情节、人物和叙事结构的高抽象度摘要。
+
+主要贡献：
+
+- 提出并发布面向长篇文学叙事的多层级摘要数据集，补足新闻类短文本摘要数据无法覆盖的长程叙事场景。
+- 将 paragraph、chapter、book 三个粒度组织到同一数据框架中，使长叙事摘要可以按层级建模和评估。
+- 证明文学摘要具有更强抽象性、更少位置偏置和更长输入输出长度，对模型的长上下文理解、内容选择和生成能力提出更高要求。
 
 BookSum 的方法是构建一个文学领域的长叙事摘要数据集：
 
@@ -44,7 +54,18 @@ BookSum 的方法是构建一个文学领域的长叙事摘要数据集：
 
 ### CFPG：伏笔回收问题
 
-CFPG 论文定义的问题是 foreshadowing-payoff realization，即模型是否能兑现早先埋下的叙事承诺。作者认为，现有故事生成和评测常关注局部连贯、风格一致或角色一致，但缺少对“伏笔是否在合适时机被具体回收”的显式建模。LLM 可能写出局部流畅的故事，却忘记伏笔、过早兑现、错误兑现或只做主题呼应。
+论文链接：[Codified Foreshadowing-Payoff Text Generation](https://arxiv.org/abs/2601.07033)
+
+动机：LLM 已经能生成局部流畅、风格一致的故事，但长叙事质量不只取决于句子是否顺畅，还取决于早期设置是否在合适时机被兑现。现有故事生成和评测常关注局部连贯、角色一致或风格一致，却很少显式检查“叙事承诺是否被回收”。因此模型可能看起来连贯，却忘记伏笔、过早兑现、错误兑现，或只做主题呼应而没有具体 payoff。
+
+问题定义：CFPG 定义的问题是 foreshadowing-payoff realization，即模型是否能识别、追踪并兑现早先埋下的叙事承诺。关键不只是找到 Foreshadow 和 Payoff，还要判断何时应该兑现，因此论文引入 Trigger 作为时机门控。
+
+主要贡献：
+
+- 将长叙事一致性重新定义为 narrative commitment fulfillment，即早期叙事承诺是否被及时、具体、逻辑地兑现。
+- 提出 Foreshadow-Trigger-Payoff 表示，把伏笔回收从隐式语义关联转化为可追踪的结构化谓词。
+- 基于 BookSum 摘要构建 sentence-anchored foreshadow-payoff 数据，并通过多阶段验证减少主题性伪关联。
+- 在生成框架中引入 Foreshadow Pool 和 Trigger gate，使模型只在触发条件满足时激活 payoff，降低过早兑现和遗漏兑现。
 
 CFPG 的核心方法是把叙事承诺形式化为 Foreshadow-Trigger-Payoff 三元组：
 
@@ -87,7 +108,7 @@ CFPG 的生成框架维护一个 Foreshadow Pool，里面保存待回收的 `(F,
 1. 章节摘要层
    - 输入：前 80 回分回文本。
    - 模型：`deepseek-v4-pro`。
-   - Prompt 版本：`honglou_booksum_chapter_v2_full80`。
+   - Prompt 版本：[`honglou_booksum_chapter_v2_full80`](../../../prompts/cfpg/honglou_prompts.md)，对应 `booksum_chapter_summary` block。
    - 每回输出 summary、summary sentences、key events、character state changes、unresolved setups、foreshadow notes、poem/dream/prophecy/object items。
 
 2. 摘要句时间线层
@@ -105,6 +126,7 @@ CFPG 的生成框架维护一个 Foreshadow Pool，里面保存待回收的 `(F,
 4. Trigger / verified F-T-P 层
    - 当前尚未正式生成。
    - 后续需要从摘要句时间线和伏笔层抽取 F-P 候选，再验证 Trigger 是否可观察、Payoff 是否真正回收 Foreshadow。
+   - Prompt 文件中已经定义了 `candidate_extraction` 和 `candidate_verification`，但对应脚本 `scripts/extract_honglou_ftp.py` 尚未在本轮 full80 结果上跑出 `candidates/` 与 `verified/` 数据。
 
 ## 结果文件
 
@@ -143,7 +165,7 @@ Prompt 文件：
 - 机器可读：[foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl)
 - 人类可读：[foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md)
 
-该层当前为 0 条。
+该层当前为 0 条，因为候选抽取与验证还没有正式运行；这两个文件只是 `render_cfpg_layers_review.py` 在缺少 `data/processed/cfpg/candidates/` 输入时生成的占位文件。细口径结果应来自 `scripts/extract_honglou_ftp.py` 生成的 `candidates/`、`verified/` 和 `rejected` 文件，目前尚不存在。
 
 ## 数据量
 
@@ -240,7 +262,7 @@ Prompt 文件：
 
 ### 示例 4：第 5 回判词与曲文
 
-第 5 回是伏笔密度最高的章节之一。当前宽口径伏笔层会把诗词、梦境、预言和物件条目纳入 `summary_poem_dream_prophecy_object`，因此判词和曲文已经作为伏笔载体保留在伏笔层中。但它们还没有进入 verified F-T-P，因为 Trigger 和 Payoff 验证尚未执行。
+第 5 回是伏笔密度最高的章节之一。当前宽口径伏笔层会把诗词、梦境、预言和物件条目纳入 `summary_poem_dream_prophecy_object`，因此判词和曲文已经作为伏笔载体保留在伏笔层中。但它们还没有进入细口径候选或 verified F-T-P，因为 candidate extraction、Trigger 生成和 Payoff 验证尚未执行。
 
 ## 质量分析
 
@@ -271,12 +293,6 @@ Prompt 文件：
 5. 证据还不是严格 span 对齐
    - 当前 evidence quote 便于阅读，但未记录精确字符 span。
    - 若要做论文级数据集，需要补 source span 或句级对齐。
-
-## README 是否合并
-
-不建议把本报告合并进 README。
-
-README 的职责是导航：设计文档、prompt、结果文件和脚本入口。实验报告的职责是记录方法、统计、例子和分析。两者只需要在 README 中互相链接，不应合并成一个过长文档。
 
 ## 下一步
 
