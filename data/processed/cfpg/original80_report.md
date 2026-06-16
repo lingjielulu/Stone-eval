@@ -130,6 +130,153 @@ CFPG 的生成框架维护一个 Foreshadow Pool，里面保存待回收的 `(F,
    - 使用 `candidate_verification` prompt 对每个候选做 setup/payoff/trigger/connection 验证。
    - 验证阶段得到 30 个 unique verified F-T-P triples，8 个 rejected candidates。
 
+## 从宽到细的评价标准与过滤
+
+当前实验不是一次性直接生成最终三元组，而是按“高召回候选池 -> 可定位候选句对 -> verified F-T-P”的顺序逐层收紧。
+
+### 第 1 层：宽口径伏笔层
+
+目标：尽量保留可能有后续回收价值的叙事设置，追求召回，不作为最终三元组。
+
+进入标准：
+
+- 来自章节摘要中的 `unresolved_setups`：尚未解决的决定、冲突、承诺、风险、身份问题或关系张力。
+- 来自章节摘要中的 `foreshadow_notes`：摘要阶段显式标出的伏笔说明。
+- 来自章节摘要中的 `poem/dream/prophecy/object items`：诗词、梦境、预言、物件、象征和名号等可能承载后文意义的元素。
+
+这一层只判断“是否值得进入候选池”，不要求已经找到 payoff，也不要求 trigger 可观察。`candidate`、`pending`、`resolved_in_chapter` 是状态标签，不是最终通过/拒绝标签。
+
+### 第 2 层：F-P + Trigger 候选层
+
+目标：从宽口径候选池和摘要句时间线中找出可定位的 Foreshadow-Payoff 句对，并生成 provisional Trigger。
+
+进入标准：
+
+- Foreshadow 必须早于 Payoff，二者都要能定位到摘要句时间线中的 `global_sentence_index`。
+- Foreshadow 应当是具体的叙事承诺、异常、物件、预言、决定、规则或话语行为。
+- Payoff 必须提供新信息、揭示、后果或行动，能够回看解释 Foreshadow。
+- 二者不能只是同一主题、人物性格或氛围的重复。
+- Trigger 必须描述可观察的叙事条件，用来解释为什么此时进入 payoff，而不是简单复述 payoff 本身。
+
+执行口径：
+
+- 使用 40 条摘要句滑窗，步长 30 条摘要句。
+- 全书 504 条摘要句理论上形成 17 个窗口，其中 16 个窗口产生了保留候选。
+- 每个窗口最多保留 3 个候选。
+- 相同 Foreshadow-Payoff 句对会去重。
+
+### 第 3 层：verified F-T-P 层
+
+目标：判断候选是否真正形成可用于后续评价的 Foreshadow-Trigger-Payoff 三元组。
+
+通过标准：
+
+- `setup_validity`：Foreshadow 本身成立，且不是已经当场解决的普通事件。
+- `payoff_validity`：Payoff 是具体事件、揭示、解释或决定，不是泛泛主题呼应。
+- `temporal_separation`：Foreshadow 和 Payoff 之间存在非平凡时间间隔。
+- `foreshadow_justification`：读到 Payoff 后，回看 Foreshadow 能合理解释为伏笔。
+- `trigger_validity`：Trigger 是可观察叙事条件，且不等同于 Payoff 本身。
+- `connection_validity`：Foreshadow、Trigger、Payoff 之间存在叙事因果或承诺兑现关系。
+- `is_thematic_echo_only=false`：不是单纯主题、意象或人物性格重复。
+- `is_unsupported_by_evidence=false`：不能依赖摘要句证据之外的臆测。
+
+### 过滤结果统计
+
+| 阶段 | 输入 | 输出/保留 | 保留率 | 过滤率 | 过滤或备注 |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 摘要句时间线 | 80 回摘要 | 504 句 | - | - | 后续抽取的时间轴 |
+| 宽口径伏笔层 | 摘要结构化字段 | 1057 条 | - | - | 高召回候选池，不做最终过滤 |
+| F-P candidate extraction | 1057 条宽口径伏笔 + 504 条摘要句 | 38 个 F-P candidates | 3.60% | 96.40% | 17 个窗口中 16 个产生候选，每窗最多 3 个，重复句对去重 |
+| F+Trigger 渲染层 | 38 个 F-P candidates | 38 条 F+Trigger rows | 100.00% | 0.00% | 每个候选附带 provisional Trigger |
+| F-T-P verification | 38 个 candidates | 30 个 unique verified triples | 78.95% | 21.05% | 8 个 rejected candidates |
+
+从宽口径伏笔层到最终 verified F-T-P 的端到端保留率为 2.84%，过滤率为 97.16%。这个比例符合当前实验定位：宽口径层负责召回和人工审查入口，verified 层负责形成可用于后续续作评价的高精度三元组池。
+
+### 与原始论文对比
+
+原始 CFPG 论文报告的是最终数据集统计，而没有公开 Stage 1 原始候选总数，因此不能严格对比“初始候选 -> verified”的过滤率。可直接对比的是最终数据规模、类型分布、payoff 距离和质量控制口径。
+
+| 指标 | CFPG 论文 | 本实验 |
+| --- | ---: | ---: |
+| 文本来源 | BookSum 多书摘要 | 《红楼梦》前 80 回 AI 生成 BookSum-style 摘要 |
+| 覆盖书籍 | 148 本 | 1 部作品的前 80 回 |
+| 最终 validated / verified F-P 或 F-T-P | 629 条 | 30 条 |
+| 平均每书/每作品 verified 数 | 4.25 条/书 | 30 条/前 80 回 |
+| 平均 payoff 距离 | 20.9 句 | 8.6 句 |
+| payoff 距离中位数 | 13.0 句 | 9.0 句 |
+| payoff 距离 75 分位 | 29.0 句 | 11.8 句 |
+| payoff 距离 90 分位 | 45.0 句 | 14.1 句 |
+| 最大 payoff 距离 | 230 句 | 20 句 |
+| 平均 extraction confidence | 0.98 | 0.84 |
+| 人工质量检查 | 100 条样本，pair validity agreement 0.87 | 尚未人工复核 |
+
+类型分布对比：
+
+| 类型 | CFPG 论文 | 本实验 verified F-T-P |
+| --- | ---: | ---: |
+| `object` | 48.2% | 13.3% |
+| `event` | 35.3% | 30.0% |
+| `speech_act` | 9.7% | 43.3% |
+| `rule` | 5.1% | 3.3% |
+| `symbol` | 1.7% | 3.3% |
+| `dream` / `poem` | 未单列 | 各 3.3% |
+
+主要差异：
+
+1. 本实验更偏短距离回收
+   - 论文的平均距离 20.9 句、最大 230 句，强调长程依赖。
+   - 本实验平均距离 8.6 句、最大 20 句，说明当前滑窗与每窗最多 3 个候选的设置更容易抽到局部或中程回收。
+
+2. 本实验 `speech_act` 占比偏高
+   - 论文中 object/event 合计超过 80%，强调可观察物件和事件链。
+   - 本实验中 speech_act 为 43.3%，说明当前 prompt 更容易把誓言、警告、决定、计谋和人物话语识别为伏笔。
+
+3. 本实验缺少论文级人工验证
+   - 论文对 100 条样本做双人质量检查，pair validity agreement 为 0.87，setup/payoff/connection 也分别报告一致性。
+   - 本实验目前只有 LLM verifier 自动结果，下一步需要人工抽样复核 accepted 30 条和 rejected 8 条，才能评估 precision。
+
+4. 过滤比例不可完全同口径比较
+   - 本实验记录了宽口径 1057 条到最终 30 条的端到端保留率 2.84%。
+   - 论文只报告最终 629 条 validated pairs，没有给出 Stage 1 候选总数，因此无法计算论文的同口径端到端保留率。
+
+候选类型分布：
+
+| 类型 | F-P candidates | verified F-T-P |
+| --- | ---: | ---: |
+| `speech_act` | 17 | 13 |
+| `event` | 11 | 9 |
+| `object` | 5 | 4 |
+| `poem` | 1 | 1 |
+| `symbol` | 1 | 1 |
+| `rule` | 1 | 1 |
+| `dream` | 1 | 1 |
+| `identity` | 1 | 0 |
+
+Rejected candidates 的失败项如下。失败项可重叠，因此总数大于 8。
+
+| 失败项 | 数量 |
+| --- | ---: |
+| `trigger_validity=false` | 8 |
+| `setup_validity=false` | 1 |
+| `foreshadow_justification=false` | 1 |
+| `connection_validity=false` | 1 |
+| `is_thematic_echo_only=true` | 1 |
+| `is_unsupported_by_evidence=true` | 1 |
+
+本轮 rejected 的主要问题是 Trigger 不合格：很多候选的 Foreshadow 和 Payoff 本身有联系，但 provisional Trigger 复述了 Payoff，或把 Payoff 结果放进触发条件，不能作为“何时应该兑现”的独立门控条件。
+
+### 分层结果保存位置
+
+| 层级 | 机器可读 | 人类可读/报告 |
+| --- | --- | --- |
+| 摘要层 | [honglou_booksum/original_80_chapter_summaries.jsonl](honglou_booksum/original_80_chapter_summaries.jsonl) | [honglou_booksum/original_80_chapter_summaries.review.md](honglou_booksum/original_80_chapter_summaries.review.md) |
+| 摘要句时间线 | [summary_alignments/original_80_summary_sentence_timeline_20260611_deepseek_honglou_original80.jsonl](summary_alignments/original_80_summary_sentence_timeline_20260611_deepseek_honglou_original80.jsonl) | [layers/honglou_cfpg_layers_20260611_deepseek_honglou_original80.review.md](layers/honglou_cfpg_layers_20260611_deepseek_honglou_original80.review.md) |
+| 宽口径伏笔层 | [foreshadows/honglou_foreshadows_20260611_deepseek_honglou_original80.jsonl](foreshadows/honglou_foreshadows_20260611_deepseek_honglou_original80.jsonl) | [foreshadows/honglou_foreshadows_20260611_deepseek_honglou_original80.review.md](foreshadows/honglou_foreshadows_20260611_deepseek_honglou_original80.review.md) |
+| F-P candidates | [candidates/honglou_candidates_20260611_deepseek_honglou_original80.jsonl](candidates/honglou_candidates_20260611_deepseek_honglou_original80.jsonl) | [../../../outputs/cfpg/20260611_deepseek_honglou_original80/candidate_extraction_report.json](../../../outputs/cfpg/20260611_deepseek_honglou_original80/candidate_extraction_report.json) |
+| F+Trigger 候选层 | [foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.jsonl) | [foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md) |
+| verified F-T-P 层 | [verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl) | [verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md) |
+| rejected candidates | [verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl](verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl) | [../../../outputs/cfpg/20260611_deepseek_honglou_original80/verification_report.json](../../../outputs/cfpg/20260611_deepseek_honglou_original80/verification_report.json) |
+
 ## 结果文件
 
 入口 README：
