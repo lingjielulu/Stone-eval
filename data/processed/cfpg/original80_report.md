@@ -192,6 +192,17 @@ CFPG 的生成框架维护一个 Foreshadow Pool，里面保存待回收的 `(F,
 
 从宽口径伏笔层到最终 verified F-T-P 的端到端保留率为 2.84%，过滤率为 97.16%。这个比例符合当前实验定位：宽口径层负责召回和人工审查入口，verified 层负责形成可用于后续续作评价的高精度三元组池。
 
+人类可读跳转入口：
+
+| 收紧阶段 | 本轮结果 | 人类可读跳转 |
+| --- | ---: | --- |
+| 宽口径伏笔层 | 1057 条 | [伏笔层 review](foreshadows/honglou_foreshadows_20260611_deepseek_honglou_original80.review.md) |
+| F+Trigger 候选层 | 38 条 | [Trigger 候选 review](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md#L3) |
+| verified F-T-P 层 | 30 条 | [accepted triples review](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md#L3) |
+| rejected candidates | 8 条 | [rejected candidates review](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md#L275) |
+| 合格 Trigger 样例 | 1 条 | [foreshadow_trigger:000001](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md#L5) / [ftp:000001](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md#L5) |
+| 不合格 Trigger 样例 | 2 条 | [贾瑞 foreshadow_trigger:000006](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md#L64) / [金钏儿 foreshadow_trigger:000013](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md#L143) |
+
 ### 与原始论文对比
 
 原始 CFPG 论文报告的是最终数据集统计，而没有公开 Stage 1 原始候选总数，因此不能严格对比“初始候选 -> verified”的过滤率。可直接对比的是最终数据规模、类型分布、payoff 距离和质量控制口径。
@@ -264,6 +275,18 @@ Rejected candidates 的失败项如下。失败项可重叠，因此总数大于
 | `is_unsupported_by_evidence=true` | 1 |
 
 本轮 rejected 的主要问题是 Trigger 不合格：很多候选的 Foreshadow 和 Payoff 本身有联系，但 provisional Trigger 复述了 Payoff，或把 Payoff 结果放进触发条件，不能作为“何时应该兑现”的独立门控条件。
+
+accepted 和 rejected Trigger 的详细结果可以直接看以下文件：
+
+- accepted F-T-P：机器可读结果在 [verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.jsonl)，人工查看版在 [verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md](verified/honglou_ftp_triples_20260611_deepseek_honglou_original80.unique.review.md)。
+- accepted/rejected 混排的 Trigger 候选：人工查看版在 [foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md)，每条标题后标有 `[accepted]` 或 `[rejected]`。
+- rejected candidates：机器可读结果在 [verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl](verified/honglou_rejected_candidates_20260611_deepseek_honglou_original80.jsonl)，失败项汇总在 [../../../outputs/cfpg/20260611_deepseek_honglou_original80/verification_report.json](../../../outputs/cfpg/20260611_deepseek_honglou_original80/verification_report.json)。
+
+Trigger 合格与不合格的差别可以从以下样例看出：
+
+- 合格样例：[英莲预言诗](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md#L5) 的 F 是“有命无运”和四句预言，T 是门子在审理薛蟠案时揭示被卖婢女就是英莲，并讲明被拐、被卖、薛蟠夺人的经过，P 是案底被完整揭开。这个 Trigger 是独立可观察的揭示场景，解释了为什么此刻能兑现早前预言。
+- 不合格样例 1：[贾瑞案](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md#L64) 的 F 是凤姐决意施以手段，P 是贾瑞照“风月宝鉴”正面后精尽人亡；候选 T 写成“凤姐设相思局、贾瑞崩溃、最终照正面而亡”。这里 T 已经把 Payoff 结局写进去，只是在复述兑现结果。
+- 不合格样例 2：[金钏儿案](foreshadow_triggers/honglou_foreshadow_triggers_20260611_deepseek_honglou_original80.review.md#L143) 的 F 是金钏儿被王夫人打骂撵出，P 是金钏儿投井而死；候选 T 是“金钏儿投井的消息传到贾府，众人得知其死讯”。这个 T 是回收事件的报道，不是能提前判断“何时应兑现”的独立门控条件。
 
 ### 分层结果保存位置
 
