@@ -1,6 +1,6 @@
 # Chekhov Normalized Corpus Statistics
 
-Source: `data/chekhov/raw/chekhov_short_stories.txt`
+Source: `chekhov/chekhov_short_stories.txt`
 
 ## Summary
 

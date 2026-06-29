@@ -8,7 +8,8 @@ corpora and generated datasets.
 | Area | Status | Notes |
 |---|---|---|
 | `data/processed/cfpg/` | committed selectively | Curated Honglou CFPG artifacts listed in `.gitignore`. |
-| `data/chekhov/` | committed selectively | Scripts, docs, manifest, and stats are committed; raw copy and large JSONL/CSV outputs stay local. |
+| `chekhov/` | committed | Tracked Chekhov source text and downstream visual analysis. |
+| `data/chekhov/` | committed selectively | Scripts, docs, manifest, and stats are committed; large JSONL/CSV outputs stay local. |
 | `data/lexicons/ntusd/*_utf8.txt` | committed | UTF-8 lexicons used by `stone_eval.emotion.hedonometer`. |
 | `data/lexicons/ntusd/*_traditional.txt` | local only | Original non-UTF-8 lexicon files; they may appear as mojibake in UTF-8 terminals. |
 | `data/processed/chapters/` | local only | Expanded chapter text, regenerated from source corpora. |

@@ -48,6 +48,129 @@ RUN_IN_HEADING_PATTERNS = (
 WORD_RE = re.compile(r"[A-Za-z]+(?:['-][A-Za-z]+)*")
 ROMAN_RE = re.compile(r"^(?:[IVXLCDM]+)$")
 
+THEME_TERMS = {
+    "家庭": [
+        "mother",
+        "father",
+        "wife",
+        "husband",
+        "son",
+        "daughter",
+        "child",
+        "children",
+        "family",
+        "marriage",
+    ],
+    "自然/风景": [
+        "sky",
+        "sun",
+        "moon",
+        "field",
+        "forest",
+        "river",
+        "garden",
+        "snow",
+        "rain",
+        "wind",
+        "steppe",
+    ],
+    "宗教/信仰": [
+        "god",
+        "church",
+        "priest",
+        "christ",
+        "holy",
+        "sin",
+        "soul",
+        "prayer",
+        "icon",
+        "heaven",
+    ],
+    "艺术/创作": [
+        "book",
+        "write",
+        "writer",
+        "music",
+        "piano",
+        "theatre",
+        "actor",
+        "artist",
+        "story",
+        "poem",
+    ],
+    "爱情/浪漫": [
+        "love",
+        "kiss",
+        "beloved",
+        "beauty",
+        "beautiful",
+        "heart",
+        "jealous",
+        "romance",
+        "marry",
+        "lover",
+    ],
+    "疾病/医学": [
+        "doctor",
+        "hospital",
+        "ill",
+        "sick",
+        "fever",
+        "medicine",
+        "disease",
+        "patient",
+        "pain",
+        "ward",
+    ],
+    "贫困/阶级": [
+        "poor",
+        "poverty",
+        "money",
+        "rouble",
+        "kopeck",
+        "beggar",
+        "peasant",
+        "servant",
+        "merchant",
+        "landowner",
+    ],
+    "死亡": [
+        "death",
+        "dead",
+        "die",
+        "died",
+        "grave",
+        "coffin",
+        "funeral",
+        "murder",
+        "kill",
+        "corpse",
+    ],
+    "官僚/社会": [
+        "official",
+        "clerk",
+        "court",
+        "police",
+        "government",
+        "general",
+        "office",
+        "magistrate",
+        "rank",
+        "secretary",
+    ],
+    "饮酒": [
+        "vodka",
+        "wine",
+        "drunk",
+        "drink",
+        "beer",
+        "brandy",
+        "tavern",
+        "glass",
+        "bottle",
+    ],
+}
+
 
 @dataclass
 class Heading:
@@ -425,7 +548,201 @@ def markdown_table(rows: list[dict], columns: list[str]) -> str:
     return "\n".join(lines)
 
 
+def bar(value: float, max_value: float, width: int = 30) -> str:
+    if max_value <= 0 or value <= 0:
+        return ""
+    filled = max(1, round(value / max_value * width))
+    return "█" * min(width, filled)
+
+
+def theme_density(records: list[StoryRecord]) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for theme, terms in THEME_TERMS.items():
+        densities = []
+        for record in records:
+            tokens = [token.lower() for token in WORD_RE.findall(record.text)]
+            token_counts = Counter(tokens)
+            hits = sum(token_counts[term] for term in terms)
+            density = hits / record.word_count * 1000 if record.word_count else 0
+            densities.append(density)
+        rows.append(
+            {
+                "theme": theme,
+                "avg_density": f"{mean(densities):.2f}" if densities else "0.00",
+                "raw_density": mean(densities) if densities else 0,
+            }
+        )
+    rows.sort(key=lambda item: item["raw_density"], reverse=True)
+    max_density = rows[0]["raw_density"] if rows else 0
+    for row in rows:
+        row["relative"] = f"{round(row['raw_density'] / max_density * 100)}%" if max_density else "0%"
+        row["bar"] = bar(row["raw_density"], max_density)
+        row.pop("raw_density")
+    return rows
+
+
+def write_visual_analysis(path: Path, stats_data: dict, records_canonical: list[StoryRecord]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    story_count = stats_data["canonical_story_count"]
+    bucket_rows = []
+    max_bucket = max(row["story_count"] for row in stats_data["length_buckets_canonical"])
+    for row in stats_data["length_buckets_canonical"]:
+        count = row["story_count"]
+        bucket_rows.append(
+            {
+                "词数范围": row["bucket"],
+                "篇数": count,
+                "占比": f"{count / story_count * 100:.1f}%",
+                "可视化": bar(count, max_bucket),
+            }
+        )
+
+    theme_rows = [
+        {
+            "排名": idx,
+            "主题": row["theme"],
+            "平均密度": row["avg_density"],
+            "相对强度": row["relative"],
+            "可视化": row["bar"],
+        }
+        for idx, row in enumerate(theme_density(records_canonical), start=1)
+    ]
+
+    longest_rows = []
+    max_words = stats_data["longest_20"][0]["word_count"]
+    for idx, row in enumerate(stats_data["longest_20"], start=1):
+        longest_rows.append(
+            {
+                "排名": idx,
+                "英文标题": row["canonical_title"],
+                "词数": f"{row['word_count']:,}",
+                "story_id": row["story_id"],
+                "相对篇幅": bar(row["word_count"], max_words),
+            }
+        )
+
+    shortest_rows = [
+        {
+            "排名": idx,
+            "英文标题": row["canonical_title"],
+            "词数": f"{row['word_count']:,}",
+            "story_id": row["story_id"],
+        }
+        for idx, row in enumerate(stats_data["shortest_20"], start=1)
+    ]
+
+    duplicate_rows = [
+        {"标题": title, "检测段数": count}
+        for title, count in sorted(stats_data["duplicate_canonical_titles"].items())
+    ]
+    quality_rows = [
+        {"质量标记": flag, "计数": count}
+        for flag, count in sorted(stats_data["quality_flag_counts"].items())
+    ]
+
+    report = f"""# 安东·契诃夫短篇小说 — 清洗后可视化分析
+
+**来源**: Project Gutenberg eBook #57333
+**原始文本**: `chekhov/chekhov_short_stories.txt`
+**清洗脚本**: `data/chekhov/scripts/preprocess_chekhov.py`
+**统计产物**: `data/chekhov/processed/stats.json`
+
+---
+
+## 阅读导览
+
+这份报告已经切换到规范化清洗后的口径：从目录解析出 {stats_data["source_title_count_from_contents"]} 个标题，在正文中检测到 {stats_data["detected_story_segments_all"]} 个故事段，经过别名归一和重复标题选择后，形成 {story_count} 篇 canonical 故事。canonical 语料总词数为 {stats_data["total_words_canonical"]:,}，平均 {stats_data["mean_words_canonical"]:,} 词，中位数 {stats_data["median_words_canonical"]:,} 词。
+
+**关键观察**
+
+| 观察点 | 结论 |
+|---|---|
+| 清洗状态 | 已完成可复现预处理；边界修复、标题归一、重复标题选择都记录在 manifest 中。 |
+| 分析口径 | 当前报告使用 `stories_canonical`，即每个 canonical title 保留最长检测段。 |
+| 篇幅主体 | 1K-5K 词故事共 148 篇，占 {148 / story_count * 100:.1f}%，仍是主体。 |
+| 长尾作品 | 20K+ 共 6 篇，其中 `THE DUEL`、`THE STEPPE`、`MY LIFE` 形成最明显的长篇尾部。 |
+| 后续伏笔统计 | 这版清洗结果已经具备 story_id、标题、正文边界、词数、段落数和质量标记，可作为伏笔候选抽取的稳定输入。 |
+
+## 数据仪表盘
+
+| 指标 | 数值 |
+|---|---:|
+| 目录标题数 | {stats_data["source_title_count_from_contents"]} |
+| 正文检测故事段 | {stats_data["detected_story_segments_all"]} |
+| canonical 故事数 | {story_count} |
+| 未匹配目录标题 | {stats_data["unmatched_catalog_title_count"]} |
+| 重复 canonical 标题 | {stats_data["duplicate_canonical_title_count"]} |
+| canonical 总词数 | {stats_data["total_words_canonical"]:,} |
+| 平均词数 | {stats_data["mean_words_canonical"]:,} |
+| 中位词数 | {stats_data["median_words_canonical"]:,} |
+| 最短篇词数 | {stats_data["min_words_canonical"]:,} |
+| 最长篇词数 | {stats_data["max_words_canonical"]:,} |
+
+## 篇幅分布
+
+> 横向条按最大桶归一化。当前最大桶为 1K-2K，共 77 篇。
+
+{markdown_table(bucket_rows, ["词数范围", "篇数", "占比", "可视化"])}
+
+**篇幅结构速读**
+
+| 分层 | 覆盖范围 | 说明 |
+|---|---|---|
+| 微型短篇 | 500-1K | 共 11 篇，适合观察契诃夫的单场景讽刺和反讽收束。 |
+| 标准短篇 | 1K-5K | 共 148 篇，是后续伏笔/回收统计的主样本区间。 |
+| 中长篇 | 5K-20K | 共 36 篇，人物关系和多场景推进更明显。 |
+| 长篇/中篇 | 20K+ | 共 6 篇，应在伏笔统计中单独分层，避免篇幅优势影响频次。 |
+
+## 主题词密度
+
+> 这是基于清洗后 canonical 正文的轻量词表统计，单位为“每千词平均命中次数”。它适合做宏观导航，不等同于人工主题标注。
+
+{markdown_table(theme_rows, ["排名", "主题", "平均密度", "相对强度", "可视化"])}
+
+## 最长 20 篇
+
+> 相对篇幅按本组最长 `THE DUEL` 归一化。
+
+{markdown_table(longest_rows, ["排名", "英文标题", "词数", "story_id", "相对篇幅"])}
+
+## 最短 20 篇
+
+{markdown_table(shortest_rows, ["排名", "英文标题", "词数", "story_id"])}
+
+## 清洗质量记录
+
+| 项目 | 说明 |
+|---|---|
+| 标题归一 | `GOUSSIEV` 归一为 `GUSEV`。 |
+| 重复选择 | 同一 canonical title 出现多次时，默认保留词数最长的段作为 canonical。 |
+| 版面修复 | 对少数 run-in heading 做显式修复，例如 `MY LIFE`、`GOUSSIEV/GUSEV` 相关边界。 |
+| 未匹配目录项 | 多数来自非契诃夫附录、其他作者作品或正文无独立标题的目录项。 |
+
+{markdown_table(quality_rows, ["质量标记", "计数"]) if quality_rows else "无质量标记。"}
+
+## 重复 Canonical 标题
+
+{markdown_table(duplicate_rows, ["标题", "检测段数"]) if duplicate_rows else "无重复 canonical 标题。"}
+
+## 未匹配目录标题
+
+{", ".join(stats_data["unmatched_catalog_titles"]) if stats_data["unmatched_catalog_titles"] else "无。"}
+
+## 面向伏笔统计的下一步
+
+| 层级 | 建议字段 | 用途 |
+|---|---|---|
+| story | `story_id`, `canonical_title`, `word_count`, `quality_flags` | 控制篇幅和清洗质量对伏笔频次的影响。 |
+| location | paragraph index, token span, relative position | 判断 setup/payoff 距离和分布。 |
+| cue | entity, object, motif, warning, prophecy, odd detail | 抽取潜在伏笔候选。 |
+| payoff | later event, reversal, revelation, repetition | 验证候选是否真的被回收。 |
+| confidence | rule score, model score, reviewer decision | 区分自动候选和人工确认样本。 |
+"""
+    path.write_text(report, encoding="utf-8")
+
+
 def write_report(path: Path, stats_data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     bucket_rows = stats_data["length_buckets_canonical"]
     long_rows = stats_data["longest_20"]
     short_rows = stats_data["shortest_20"]
@@ -435,7 +752,7 @@ def write_report(path: Path, stats_data: dict) -> None:
     ]
     report = f"""# Chekhov Normalized Corpus Statistics
 
-Source: `data/chekhov/raw/chekhov_short_stories.txt`
+Source: `chekhov/chekhov_short_stories.txt`
 
 ## Summary
 
@@ -479,7 +796,7 @@ These titles appear in the parsed contents but were not emitted as standalone ca
 
 def write_manifest(path: Path, stats_data: dict) -> None:
     manifest = {
-        "source": "Project Gutenberg #57333, local file data/chekhov/raw/chekhov_short_stories.txt",
+        "source": "Project Gutenberg #57333, local file chekhov/chekhov_short_stories.txt",
         "preprocessing_script": "data/chekhov/scripts/preprocess_chekhov.py",
         "outputs": {
             "all_segments_jsonl": "data/chekhov/processed/stories_all.jsonl",
@@ -489,6 +806,7 @@ def write_manifest(path: Path, stats_data: dict) -> None:
             "title_index_csv": "data/chekhov/processed/title_index.csv",
             "stats_json": "data/chekhov/processed/stats.json",
             "stats_report": "data/chekhov/reports/chekhov_normalized_stats.md",
+            "visual_analysis": "chekhov/chekhov_analysis.md",
         },
         "policy": {
             "body_start": "last THE HORSE-STEALERS heading after contents/index",
@@ -528,6 +846,7 @@ def preprocess(raw_path: Path, output_dir: Path) -> dict:
     )
     write_manifest(output_dir / "manifest.json", stats_data)
     write_report(output_dir.parent / "reports" / "chekhov_normalized_stats.md", stats_data)
+    write_visual_analysis(Path("chekhov/chekhov_analysis.md"), stats_data, records_canonical)
     return stats_data
 
 
@@ -536,7 +855,7 @@ def main() -> None:
     parser.add_argument(
         "--raw",
         type=Path,
-        default=Path("data/chekhov/raw/chekhov_short_stories.txt"),
+        default=Path("chekhov/chekhov_short_stories.txt"),
     )
     parser.add_argument(
         "--output-dir",
