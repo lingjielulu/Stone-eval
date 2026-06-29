@@ -1,0 +1,304 @@
+{
+  "source": "Project Gutenberg #57333, local file data/chekhov/raw/chekhov_short_stories.txt",
+  "preprocessing_script": "data/chekhov/scripts/preprocess_chekhov.py",
+  "outputs": {
+    "all_segments_jsonl": "data/chekhov/processed/stories_all.jsonl",
+    "all_segments_csv": "data/chekhov/processed/stories_all.csv",
+    "canonical_jsonl": "data/chekhov/processed/stories_canonical.jsonl",
+    "canonical_csv": "data/chekhov/processed/stories_canonical.csv",
+    "title_index_csv": "data/chekhov/processed/title_index.csv",
+    "stats_json": "data/chekhov/processed/stats.json",
+    "stats_report": "data/chekhov/reports/chekhov_normalized_stats.md"
+  },
+  "policy": {
+    "body_start": "last THE HORSE-STEALERS heading after contents/index",
+    "title_source": "CONTENTS OF EACH BOOK section before IN ALPHABETICAL ORDER",
+    "split_boundary": "catalog title at line start, with support for roman numerals/subtitles",
+    "run_in_heading_repair": "sentence-final catalog titles glued to previous paragraph are separated before splitting",
+    "canonical_selection": "for duplicate canonical titles, keep the longest detected segment"
+  },
+  "statistics": {
+    "source_title_count_from_contents": 218,
+    "detected_story_segments_all": 213,
+    "canonical_story_count": 201,
+    "unmatched_catalog_title_count": 16,
+    "unmatched_catalog_titles": [
+      "THE QUEEN OF SPADES",
+      "THE CLOAK",
+      "THE DISTRICT DOCTOR",
+      "THE CHRISTMAS TREE AND THE WEDDING",
+      "GOD SEES THE TRUTH, BUT WAITS",
+      "HOW A MUZHIK FED TWO OFFICIALS",
+      "THE SHADES, A PHANTASY",
+      "THE SIGNAL",
+      "HIDE AND SEEK",
+      "DETHRONED",
+      "THE SERVANT",
+      "ONE AUTUMN NIGHT",
+      "HER LOVER",
+      "LAZARUS",
+      "THE REVOLUTIONIST",
+      "THE OUTRAGE--A TRUE STORY"
+    ],
+    "duplicate_canonical_title_count": 12,
+    "duplicate_canonical_titles": {
+      "OLD AGE": 2,
+      "ENEMIES": 2,
+      "TYPHUS": 2,
+      "VANKA": 2,
+      "EXPENSIVE LESSONS": 2,
+      "AFTER THE THEATRE": 2,
+      "IN EXILE": 2,
+      "THE BET": 2,
+      "GOOSEBERRIES": 2,
+      "GUSEV": 2,
+      "MY LIFE": 2,
+      "A GENTLEMAN FRIEND": 2
+    },
+    "quality_flag_counts": {
+      "duplicate_canonical_title": 12,
+      "known_layout_sensitive_title": 4,
+      "short_segment_under_500_words": 1,
+      "title_alias_normalized": 1
+    },
+    "total_words_canonical": 845027,
+    "mean_words_canonical": 4204.11,
+    "median_words_canonical": 2242,
+    "min_words_canonical": 645,
+    "max_words_canonical": 39871,
+    "length_buckets_canonical": [
+      {
+        "bucket": "<500",
+        "story_count": 0
+      },
+      {
+        "bucket": "500-1K",
+        "story_count": 11
+      },
+      {
+        "bucket": "1K-2K",
+        "story_count": 77
+      },
+      {
+        "bucket": "2K-5K",
+        "story_count": 71
+      },
+      {
+        "bucket": "5K-10K",
+        "story_count": 27
+      },
+      {
+        "bucket": "10K-20K",
+        "story_count": 9
+      },
+      {
+        "bucket": "20K+",
+        "story_count": 6
+      }
+    ],
+    "longest_20": [
+      {
+        "canonical_title": "THE DUEL",
+        "word_count": 39871,
+        "story_id": "chekhov_the_duel_01"
+      },
+      {
+        "canonical_title": "THE STEPPE",
+        "word_count": 38074,
+        "story_id": "chekhov_the_steppe_01"
+      },
+      {
+        "canonical_title": "MY LIFE",
+        "word_count": 37548,
+        "story_id": "chekhov_my_life_01"
+      },
+      {
+        "canonical_title": "A DREARY STORY",
+        "word_count": 23814,
+        "story_id": "chekhov_a_dreary_story_01"
+      },
+      {
+        "canonical_title": "A TEDIOUS STORY",
+        "word_count": 22284,
+        "story_id": "chekhov_a_tedious_story_01"
+      },
+      {
+        "canonical_title": "WARD NO. 6",
+        "word_count": 21449,
+        "story_id": "chekhov_ward_no_6_01"
+      },
+      {
+        "canonical_title": "THE WIFE",
+        "word_count": 17791,
+        "story_id": "chekhov_the_wife_01"
+      },
+      {
+        "canonical_title": "IN THE RAVINE",
+        "word_count": 16190,
+        "story_id": "chekhov_in_the_ravine_01"
+      },
+      {
+        "canonical_title": "A WOMAN'S KINGDOM",
+        "word_count": 16008,
+        "story_id": "chekhov_a_woman_s_kingdom_01"
+      },
+      {
+        "canonical_title": "LIGHTS",
+        "word_count": 15231,
+        "story_id": "chekhov_lights_01"
+      },
+      {
+        "canonical_title": "A LIVING CHATTEL",
+        "word_count": 13310,
+        "story_id": "chekhov_a_living_chattel_01"
+      },
+      {
+        "canonical_title": "PEASANTS",
+        "word_count": 12932,
+        "story_id": "chekhov_peasants_01"
+      },
+      {
+        "canonical_title": "THE PARTY",
+        "word_count": 12558,
+        "story_id": "chekhov_the_party_01"
+      },
+      {
+        "canonical_title": "THE MURDER",
+        "word_count": 12297,
+        "story_id": "chekhov_the_murder_01"
+      },
+      {
+        "canonical_title": "ARIADNE",
+        "word_count": 10457,
+        "story_id": "chekhov_ariadne_01"
+      },
+      {
+        "canonical_title": "THE GRASSHOPPER",
+        "word_count": 9747,
+        "story_id": "chekhov_the_grasshopper_01"
+      },
+      {
+        "canonical_title": "THE TEACHER OF LITERATURE",
+        "word_count": 8995,
+        "story_id": "chekhov_the_teacher_of_literature_01"
+      },
+      {
+        "canonical_title": "A NERVOUS BREAKDOWN",
+        "word_count": 8706,
+        "story_id": "chekhov_a_nervous_breakdown_01"
+      },
+      {
+        "canonical_title": "THE FIT",
+        "word_count": 8144,
+        "story_id": "chekhov_the_fit_01"
+      },
+      {
+        "canonical_title": "KASHTANKA",
+        "word_count": 7671,
+        "story_id": "chekhov_kashtanka_01"
+      }
+    ],
+    "shortest_20": [
+      {
+        "canonical_title": "A BLUNDER",
+        "word_count": 645,
+        "story_id": "chekhov_a_blunder_01"
+      },
+      {
+        "canonical_title": "A COUNTRY COTTAGE",
+        "word_count": 661,
+        "story_id": "chekhov_a_country_cottage_01"
+      },
+      {
+        "canonical_title": "JOY",
+        "word_count": 666,
+        "story_id": "chekhov_joy_01"
+      },
+      {
+        "canonical_title": "FAT AND THIN",
+        "word_count": 751,
+        "story_id": "chekhov_fat_and_thin_01"
+      },
+      {
+        "canonical_title": "THE ALBUM",
+        "word_count": 763,
+        "story_id": "chekhov_the_album_01"
+      },
+      {
+        "canonical_title": "AN ENIGMATIC NATURE",
+        "word_count": 804,
+        "story_id": "chekhov_an_enigmatic_nature_01"
+      },
+      {
+        "canonical_title": "THAT WRETCHED BOY",
+        "word_count": 822,
+        "story_id": "chekhov_that_wretched_boy_01"
+      },
+      {
+        "canonical_title": "IN THE GRAVEYARD",
+        "word_count": 883,
+        "story_id": "chekhov_in_the_graveyard_01"
+      },
+      {
+        "canonical_title": "AN INQUIRY",
+        "word_count": 886,
+        "story_id": "chekhov_an_inquiry_01"
+      },
+      {
+        "canonical_title": "A LIVING CALENDAR",
+        "word_count": 943,
+        "story_id": "chekhov_a_living_calendar_01"
+      },
+      {
+        "canonical_title": "THE DEATH OF A GOVERNMENT CLERK",
+        "word_count": 950,
+        "story_id": "chekhov_the_death_of_a_government_clerk_01"
+      },
+      {
+        "canonical_title": "IN AN HOTEL",
+        "word_count": 1006,
+        "story_id": "chekhov_in_an_hotel_01"
+      },
+      {
+        "canonical_title": "A CLASSICAL STUDENT",
+        "word_count": 1084,
+        "story_id": "chekhov_a_classical_student_01"
+      },
+      {
+        "canonical_title": "HUSH!",
+        "word_count": 1104,
+        "story_id": "chekhov_hush_01"
+      },
+      {
+        "canonical_title": "AFTER THE THEATRE",
+        "word_count": 1137,
+        "story_id": "chekhov_after_the_theatre_01"
+      },
+      {
+        "canonical_title": "GRISHA",
+        "word_count": 1197,
+        "story_id": "chekhov_grisha_01"
+      },
+      {
+        "canonical_title": "AT THE BARBER'S",
+        "word_count": 1224,
+        "story_id": "chekhov_at_the_barber_s_01"
+      },
+      {
+        "canonical_title": "OH! THE PUBLIC",
+        "word_count": 1225,
+        "story_id": "chekhov_oh_the_public_01"
+      },
+      {
+        "canonical_title": "THE ORATOR",
+        "word_count": 1252,
+        "story_id": "chekhov_the_orator_01"
+      },
+      {
+        "canonical_title": "A CHAMELEON",
+        "word_count": 1253,
+        "story_id": "chekhov_a_chameleon_01"
+      }
+    ]
+  }
+}
