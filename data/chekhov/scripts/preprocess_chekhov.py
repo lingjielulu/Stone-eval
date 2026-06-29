@@ -651,7 +651,7 @@ def write_visual_analysis(path: Path, stats_data: dict, records_canonical: list[
 
 ## 阅读导览
 
-这份报告已经切换到规范化清洗后的口径：从目录解析出 {stats_data["source_title_count_from_contents"]} 个标题，在正文中检测到 {stats_data["detected_story_segments_all"]} 个故事段，经过别名归一和重复标题选择后，形成 {story_count} 篇 canonical 故事。canonical 语料总词数为 {stats_data["total_words_canonical"]:,}，平均 {stats_data["mean_words_canonical"]:,} 词，中位数 {stats_data["median_words_canonical"]:,} 词。
+这份报告使用规范化清洗后的口径：从目录解析出 {stats_data["source_title_count_from_contents"]} 个标题，在正文中检测到 {stats_data["detected_story_segments_all"]} 个故事段，经过别名归一和重复标题选择后，形成 {story_count} 篇 canonical 故事。后续统计和分析默认使用这 {story_count} 篇。canonical 语料总词数为 {stats_data["total_words_canonical"]:,}，平均 {stats_data["mean_words_canonical"]:,} 词，中位数 {stats_data["median_words_canonical"]:,} 词。
 
 **关键观察**
 
@@ -667,6 +667,7 @@ def write_visual_analysis(path: Path, stats_data: dict, records_canonical: list[
 
 | 指标 | 数值 |
 |---|---:|
+| 最终清洗后分析篇数 | {story_count} |
 | 目录标题数 | {stats_data["source_title_count_from_contents"]} |
 | 正文检测故事段 | {stats_data["detected_story_segments_all"]} |
 | canonical 故事数 | {story_count} |
@@ -771,10 +772,15 @@ def write_report(path: Path, stats_data: dict) -> None:
 
 来源：`chekhov/chekhov_short_stories.txt`
 
+结论：清洗后用于统计和分析的小说数是 {stats_data["canonical_story_count"]} 篇 canonical 故事记录。`218` 是目录标题数，`213` 是正文检测到的故事段数。
+
+口径说明：同一 canonical 标题出现多次时保留词数最长的段；别名标题会归一；未匹配到正文边界的目录标题不进入 canonical 语料。
+
 ## 摘要
 
 | 指标 | 数值 |
 |---|---:|
+| 最终清洗后分析篇数 | {stats_data["canonical_story_count"]} |
 | 从目录解析出的标题数 | {stats_data["source_title_count_from_contents"]} |
 | 正文检测故事段 | {stats_data["detected_story_segments_all"]} |
 | canonical 故事记录 | {stats_data["canonical_story_count"]} |

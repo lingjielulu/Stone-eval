@@ -17,7 +17,6 @@
 | `processed/manifest.json` | 预处理策略、输出清单和审计摘要。 |
 | `reports/chekhov_normalized_stats.md` | 数据审计用的规范化语料统计报告。 |
 | `../../chekhov/chekhov_analysis.md` | 面向阅读和展示的下游可视化分析报告。 |
-| `reports/chekhov_analysis_legacy.md` | 本地保留的旧版分析报告，仅用于对照，不提交。 |
 | `docs/chekhov_preprocessing_and_foreshadowing_design.md` | 预处理设计说明和后续伏笔统计方案。 |
 
 ## 重新生成
@@ -37,10 +36,7 @@ python data/chekhov/scripts/preprocess_chekhov.py
 
 ## 报告分工
 
-这里看起来像有两份报告，是因为它们服务对象不同：
-
 | 报告 | 是否提交 | 用途 |
 |---|---|---|
 | `../../chekhov/chekhov_analysis.md` | 是 | 下游分析报告，给人阅读，展示清洗后的篇幅分布、主题词密度和后续伏笔统计入口。 |
 | `reports/chekhov_normalized_stats.md` | 是 | 清洗审计报告，给数据处理流程检查，集中记录切分数量、重复标题、未匹配标题和 Top 榜单。 |
-| `reports/chekhov_analysis_legacy.md` | 否 | ignored 的本地旧报告，仅用于对比迁移前口径。 |
