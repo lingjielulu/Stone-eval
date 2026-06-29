@@ -1,23 +1,21 @@
-# Data Directory
+# 数据目录
 
-This directory mixes small committed research artifacts with larger local
-corpora and generated datasets.
+这个目录混合保存少量已提交的研究产物，以及较大的本地语料和生成数据。
 
-## Commit Policy
+## 提交策略
 
-| Area | Status | Notes |
+| 区域 | 状态 | 说明 |
 |---|---|---|
-| `data/processed/cfpg/` | committed selectively | Curated Honglou CFPG artifacts listed in `.gitignore`. |
-| `chekhov/` | committed | Tracked Chekhov source text and downstream visual analysis. |
-| `data/chekhov/` | committed selectively | Scripts, docs, manifest, and stats are committed; large JSONL/CSV outputs stay local. |
-| `data/lexicons/ntusd/*_utf8.txt` | committed | UTF-8 lexicons used by `stone_eval.emotion.hedonometer`. |
-| `data/lexicons/ntusd/*_traditional.txt` | local only | Original non-UTF-8 lexicon files; they may appear as mojibake in UTF-8 terminals. |
-| `data/processed/chapters/` | local only | Expanded chapter text, regenerated from source corpora. |
-| `data/processed/constory/` | local only | Generated parquet inputs. |
-| `data/processed/longstoryeval/` | local only | Generated LongStoryEval JSON inputs. |
+| `data/processed/cfpg/` | 选择性提交 | `.gitignore` 中列出的红楼梦 CFPG 精选产物。 |
+| `chekhov/` | 已提交 | 契诃夫原始文本和下游可视化分析报告。 |
+| `data/chekhov/` | 选择性提交 | 提交脚本、文档、manifest 和统计；较大的 JSONL/CSV 产物保留在本地。 |
+| `data/lexicons/ntusd/*_utf8.txt` | 已提交 | `stone_eval.emotion.hedonometer` 使用的 UTF-8 词表。 |
+| `data/lexicons/ntusd/*_traditional.txt` | 仅本地 | 原始非 UTF-8 词表文件，在 UTF-8 终端中可能显示为乱码。 |
+| `data/processed/chapters/` | 仅本地 | 展开的章节文本，可由源语料重新生成。 |
+| `data/processed/constory/` | 仅本地 | 生成的 parquet 输入。 |
+| `data/processed/longstoryeval/` | 仅本地 | 生成的 LongStoryEval JSON 输入。 |
 
-## Notes
+## 备注
 
-The apparent garbled files are the NTUSD `*_traditional.txt` sources. The
-runtime path uses `positive_utf8.txt` and `negative_utf8.txt`, so the
-non-UTF-8 originals should not be required for normal runs.
+看起来像乱码的文件主要是 NTUSD 的 `*_traditional.txt` 源文件。运行时使用
+`positive_utf8.txt` 和 `negative_utf8.txt`，正常运行不依赖这些非 UTF-8 原始文件。

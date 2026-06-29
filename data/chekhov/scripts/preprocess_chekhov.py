@@ -743,53 +743,70 @@ def write_visual_analysis(path: Path, stats_data: dict, records_canonical: list[
 
 def write_report(path: Path, stats_data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    bucket_rows = stats_data["length_buckets_canonical"]
-    long_rows = stats_data["longest_20"]
-    short_rows = stats_data["shortest_20"]
+    bucket_rows = [
+        {"词数范围": row["bucket"], "故事数": row["story_count"]}
+        for row in stats_data["length_buckets_canonical"]
+    ]
+    long_rows = [
+        {
+            "canonical 标题": row["canonical_title"],
+            "词数": row["word_count"],
+            "story_id": row["story_id"],
+        }
+        for row in stats_data["longest_20"]
+    ]
+    short_rows = [
+        {
+            "canonical 标题": row["canonical_title"],
+            "词数": row["word_count"],
+            "story_id": row["story_id"],
+        }
+        for row in stats_data["shortest_20"]
+    ]
     duplicate_rows = [
-        {"canonical_title": title, "occurrences": count}
+        {"canonical 标题": title, "出现次数": count}
         for title, count in sorted(stats_data["duplicate_canonical_titles"].items())
     ]
-    report = f"""# Chekhov Normalized Corpus Statistics
+    report = f"""# 契诃夫规范化语料统计
 
-Source: `chekhov/chekhov_short_stories.txt`
+来源：`chekhov/chekhov_short_stories.txt`
 
-## Summary
+## 摘要
 
-| Metric | Value |
+| 指标 | 数值 |
 |---|---:|
-| Titles parsed from contents | {stats_data["source_title_count_from_contents"]} |
-| Detected body story segments | {stats_data["detected_story_segments_all"]} |
-| Canonical story records | {stats_data["canonical_story_count"]} |
-| Catalog titles not matched to body boundary | {stats_data["unmatched_catalog_title_count"]} |
-| Duplicate canonical titles | {stats_data["duplicate_canonical_title_count"]} |
-| Total words, canonical corpus | {stats_data["total_words_canonical"]:,} |
-| Mean words, canonical corpus | {stats_data["mean_words_canonical"]:,} |
-| Median words, canonical corpus | {stats_data["median_words_canonical"]:,} |
-| Min words | {stats_data["min_words_canonical"]:,} |
-| Max words | {stats_data["max_words_canonical"]:,} |
+| 从目录解析出的标题数 | {stats_data["source_title_count_from_contents"]} |
+| 正文检测故事段 | {stats_data["detected_story_segments_all"]} |
+| canonical 故事记录 | {stats_data["canonical_story_count"]} |
+| 未匹配到正文边界的目录标题 | {stats_data["unmatched_catalog_title_count"]} |
+| 重复 canonical 标题 | {stats_data["duplicate_canonical_title_count"]} |
+| canonical 语料总词数 | {stats_data["total_words_canonical"]:,} |
+| canonical 平均词数 | {stats_data["mean_words_canonical"]:,} |
+| canonical 中位词数 | {stats_data["median_words_canonical"]:,} |
+| 最短篇词数 | {stats_data["min_words_canonical"]:,} |
+| 最长篇词数 | {stats_data["max_words_canonical"]:,} |
 
-## Length Buckets
+## 篇幅分桶
 
-{markdown_table(bucket_rows, ["bucket", "story_count"])}
+{markdown_table(bucket_rows, ["词数范围", "故事数"])}
 
-## Longest 20
+## 最长 20 篇
 
-{markdown_table(long_rows, ["canonical_title", "word_count", "story_id"])}
+{markdown_table(long_rows, ["canonical 标题", "词数", "story_id"])}
 
-## Shortest 20
+## 最短 20 篇
 
-{markdown_table(short_rows, ["canonical_title", "word_count", "story_id"])}
+{markdown_table(short_rows, ["canonical 标题", "词数", "story_id"])}
 
-## Duplicate Canonical Titles
+## 重复 Canonical 标题
 
-{markdown_table(duplicate_rows, ["canonical_title", "occurrences"]) if duplicate_rows else "No duplicate canonical titles detected."}
+{markdown_table(duplicate_rows, ["canonical 标题", "出现次数"]) if duplicate_rows else "未检测到重复 canonical 标题。"}
 
-## Unmatched Catalog Titles
+## 未匹配目录标题
 
-These titles appear in the parsed contents but were not emitted as standalone canonical story records. Most are duplicate translation titles, alternate anthology labels, or entries whose body heading is absent in this Gutenberg compilation.
+以下标题出现在目录解析结果中，但没有作为独立 canonical 故事记录输出。它们多数是重复译本标题、选集中的其他作品标签，或正文中没有独立标题边界的条目。
 
-{", ".join(stats_data["unmatched_catalog_titles"]) if stats_data["unmatched_catalog_titles"] else "None."}
+{", ".join(stats_data["unmatched_catalog_titles"]) if stats_data["unmatched_catalog_titles"] else "无。"}
 """
     path.write_text(report, encoding="utf-8")
 

@@ -1,25 +1,25 @@
-# Chekhov Normalized Corpus Statistics
+# 契诃夫规范化语料统计
 
-Source: `chekhov/chekhov_short_stories.txt`
+来源：`chekhov/chekhov_short_stories.txt`
 
-## Summary
+## 摘要
 
-| Metric | Value |
+| 指标 | 数值 |
 |---|---:|
-| Titles parsed from contents | 218 |
-| Detected body story segments | 213 |
-| Canonical story records | 201 |
-| Catalog titles not matched to body boundary | 16 |
-| Duplicate canonical titles | 12 |
-| Total words, canonical corpus | 845,027 |
-| Mean words, canonical corpus | 4,204.11 |
-| Median words, canonical corpus | 2,242 |
-| Min words | 645 |
-| Max words | 39,871 |
+| 从目录解析出的标题数 | 218 |
+| 正文检测故事段 | 213 |
+| canonical 故事记录 | 201 |
+| 未匹配到正文边界的目录标题 | 16 |
+| 重复 canonical 标题 | 12 |
+| canonical 语料总词数 | 845,027 |
+| canonical 平均词数 | 4,204.11 |
+| canonical 中位词数 | 2,242 |
+| 最短篇词数 | 645 |
+| 最长篇词数 | 39,871 |
 
-## Length Buckets
+## 篇幅分桶
 
-| bucket | story_count |
+| 词数范围 | 故事数 |
 | --- | --- |
 | <500 | 0 |
 | 500-1K | 11 |
@@ -29,9 +29,9 @@ Source: `chekhov/chekhov_short_stories.txt`
 | 10K-20K | 9 |
 | 20K+ | 6 |
 
-## Longest 20
+## 最长 20 篇
 
-| canonical_title | word_count | story_id |
+| canonical 标题 | 词数 | story_id |
 | --- | --- | --- |
 | THE DUEL | 39871 | chekhov_the_duel_01 |
 | THE STEPPE | 38074 | chekhov_the_steppe_01 |
@@ -54,9 +54,9 @@ Source: `chekhov/chekhov_short_stories.txt`
 | THE FIT | 8144 | chekhov_the_fit_01 |
 | KASHTANKA | 7671 | chekhov_kashtanka_01 |
 
-## Shortest 20
+## 最短 20 篇
 
-| canonical_title | word_count | story_id |
+| canonical 标题 | 词数 | story_id |
 | --- | --- | --- |
 | A BLUNDER | 645 | chekhov_a_blunder_01 |
 | A COUNTRY COTTAGE | 661 | chekhov_a_country_cottage_01 |
@@ -79,9 +79,9 @@ Source: `chekhov/chekhov_short_stories.txt`
 | THE ORATOR | 1252 | chekhov_the_orator_01 |
 | A CHAMELEON | 1253 | chekhov_a_chameleon_01 |
 
-## Duplicate Canonical Titles
+## 重复 Canonical 标题
 
-| canonical_title | occurrences |
+| canonical 标题 | 出现次数 |
 | --- | --- |
 | A GENTLEMAN FRIEND | 2 |
 | AFTER THE THEATRE | 2 |
@@ -96,8 +96,8 @@ Source: `chekhov/chekhov_short_stories.txt`
 | TYPHUS | 2 |
 | VANKA | 2 |
 
-## Unmatched Catalog Titles
+## 未匹配目录标题
 
-These titles appear in the parsed contents but were not emitted as standalone canonical story records. Most are duplicate translation titles, alternate anthology labels, or entries whose body heading is absent in this Gutenberg compilation.
+以下标题出现在目录解析结果中，但没有作为独立 canonical 故事记录输出。它们多数是重复译本标题、选集中的其他作品标签，或正文中没有独立标题边界的条目。
 
 THE QUEEN OF SPADES, THE CLOAK, THE DISTRICT DOCTOR, THE CHRISTMAS TREE AND THE WEDDING, GOD SEES THE TRUTH, BUT WAITS, HOW A MUZHIK FED TWO OFFICIALS, THE SHADES, A PHANTASY, THE SIGNAL, HIDE AND SEEK, DETHRONED, THE SERVANT, ONE AUTUMN NIGHT, HER LOVER, LAZARUS, THE REVOLUTIONIST, THE OUTRAGE--A TRUE STORY
