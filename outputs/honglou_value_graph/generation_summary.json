@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-29T14:56:56.578097",
+  "title": "红楼梦",
+  "total_nodes": 61,
+  "scene_nodes": 30,
+  "transition_nodes": 29,
+  "ending_nodes": 2,
+  "npc_count": 27,
+  "item_count": 10,
+  "relationship_count": 8,
+  "region_count": 8,
+  "foreshadow_lines": 30,
+  "value_axes": [
+    "兴 vs 衰",
+    "爱 vs 怨",
+    "真 vs 假",
+    "聚 vs 散",
+    "自由 vs 束缚",
+    "情 vs 理",
+    "清 vs 浊",
+    "生 vs 死"
+  ],
+  "groups": [
+    "Prologue",
+    "Act1_Rise",
+    "Act2_Climax",
+    "Act3_Turn",
+    "Act4_Fall",
+    "Endings",
+    "ForeshadowLines"
+  ],
+  "validation_errors": []
+}

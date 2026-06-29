@@ -12,6 +12,9 @@ venv/
 # Evaluation outputs
 outputs/*
 !outputs/ARCHIVE.md
+!outputs/honglou_value_graph/
+!outputs/honglou_value_graph/honglou_structured_script.json
+!outputs/honglou_value_graph/generation_summary.json
 !outputs/cfpg/
 !outputs/cfpg/honglou_summary_original80/
 !outputs/cfpg/honglou_summary_original80/report.json
