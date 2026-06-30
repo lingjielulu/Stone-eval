@@ -171,6 +171,340 @@ THEME_TERMS = {
     ],
 }
 
+TITLE_ZH = {
+    "'ANNA ON THE NECK'": "脖子上的安娜",
+    "A BAD BUSINESS": "一件糟糕的事",
+    "A BLUNDER": "失策",
+    "A CHAMELEON": "变色龙",
+    "A CLASSICAL STUDENT": "古典中学生",
+    "A COUNTRY COTTAGE": "乡村别墅",
+    "A DAUGHTER OF ALBION": "阿尔比恩的女儿",
+    "A DAY IN THE COUNTRY": "乡间一日",
+    "A DEAD BODY": "一具尸体",
+    "A DEFENCELESS CREATURE": "无助的弱者",
+    "A DREARY STORY": "没意思的故事",
+    "A FATHER": "父亲",
+    "A GENTLEMAN FRIEND": "男朋友",
+    "A HAPPY ENDING": "幸福的结局",
+    "A HAPPY MAN": "幸福的人",
+    "A JOKE": "玩笑",
+    "A LADY'S STORY": "一位女士的故事",
+    "A LIVING CALENDAR": "活日历",
+    "A LIVING CHATTEL": "活商品",
+    "A MALEFACTOR": "歹徒",
+    "A MISFORTUNE": "不幸",
+    "A MYSTERY": "神秘",
+    "A NIGHTMARE": "噩梦",
+    "A NERVOUS BREAKDOWN": "精神崩溃",
+    "A PECULIAR MAN": "怪人",
+    "A PINK STOCKING": "粉红丝袜",
+    "A PLAY": "一出戏",
+    "A PROBLEM": "难题",
+    "A SLANDER": "诽谤",
+    "A STORY WITHOUT A TITLE": "无题的故事",
+    "A STORY WITHOUT AN END": "没有结尾的故事",
+    "A TEDIOUS STORY": "乏味的故事",
+    "A TRANSGRESSION": "过失",
+    "A TRAGIC ACTOR": "悲剧演员",
+    "A TRIFLE FROM LIFE": "生活琐事",
+    "A TRIVIAL INCIDENT": "一件小事",
+    "A TRIFLING OCCURRENCE": "小事一桩",
+    "A TRIPPING TONGUE": "祸从口出",
+    "A TROUBLESOME VISITOR": "麻烦的来客",
+    "A WOMAN'S KINGDOM": "女人的王国",
+    "A WORK OF ART": "一件艺术品",
+    "ABOUT LOVE": "关于爱情",
+    "ABORIGINES": "土著",
+    "AFTER THE THEATRE": "看戏以后",
+    "AGAFYA": "阿加菲娅",
+    "AN ACTOR'S END": "演员的结局",
+    "AN ADVENTURE": "奇遇",
+    "AN ARTIST'S STORY": "画家的故事",
+    "AN AVENGER": "复仇者",
+    "AN ENIGMATIC NATURE": "谜样的性格",
+    "AN INCIDENT": "事件",
+    "AN INADVERTENCE": "疏忽",
+    "AN INQUIRY": "查询",
+    "ANYUTA": "阿纽塔",
+    "ARIADNE": "阿里阿德涅",
+    "ART": "艺术",
+    "AT A COUNTRY HOUSE": "在乡间别墅",
+    "AT A SUMMER VILLA": "在夏日别墅",
+    "AT CHRISTMAS TIME": "圣诞节时",
+    "AT HOME": "在家",
+    "AT THE BARBER'S": "在理发店",
+    "BAD WEATHER": "坏天气",
+    "BETROTHED": "未婚妻",
+    "BOOTS": "靴子",
+    "BOYS": "男孩们",
+    "CHAMPAGNE": "香槟",
+    "CHILDREN": "孩子们",
+    "CHORISTERS": "唱诗班歌手",
+    "DARKNESS": "黑暗",
+    "DIFFICULT PEOPLE": "难相处的人",
+    "DREAMS": "梦",
+    "DRUNK": "醉",
+    "EASTER EVE": "复活节前夜",
+    "ENEMIES": "仇敌",
+    "EXCELLENT PEOPLE": "好人",
+    "EXPENSIVE LESSONS": "昂贵的教训",
+    "FAT AND THIN": "胖子和瘦子",
+    "FROM THE DIARY OF A VIOLENT-TEMPERED MAN": "暴躁人的日记",
+    "FROST": "严寒",
+    "GONE ASTRAY": "迷路",
+    "GOOSEBERRIES": "醋栗",
+    "GRISHA": "格里沙",
+    "GUSEV": "古谢夫",
+    "HAPPINESS": "幸福",
+    "HOME": "家里",
+    "HUSH!": "嘘！",
+    "IN A STRANGE LAND": "在异乡",
+    "IN AN HOTEL": "在旅馆里",
+    "IN EXILE": "在流放中",
+    "IN PASSION WEEK": "受难周",
+    "IN THE COACH-HOUSE": "在马车房",
+    "IN THE COURT": "在法庭上",
+    "IN THE DARK": "在黑暗中",
+    "IN THE GRAVEYARD": "在墓园",
+    "IN THE RAVINE": "在峡谷里",
+    "IN TROUBLE": "困境",
+    "IVAN MATVEYITCH": "伊凡·马特维伊奇",
+    "JOY": "喜悦",
+    "KASHTANKA": "卡什坦卡",
+    "LADIES": "太太们",
+    "LIGHTS": "灯火",
+    "LOVE": "爱情",
+    "MALINGERERS": "装病者",
+    "MARI D'ELLE": "玛丽·黛尔",
+    "MARTYRS": "殉道者",
+    "MINDS IN FERMENT": "骚动的心",
+    "MIRE": "泥潭",
+    "MISERY": "苦恼",
+    "MISFORTUNE": "不幸",
+    "MY LIFE": "我的一生",
+    "NEIGHBOURS": "邻居",
+    "NERVES": "神经",
+    "NOT WANTED": "多余的人",
+    "OH! THE PUBLIC": "哦！公众",
+    "OLD AGE": "老年",
+    "ON OFFICIAL DUTY": "因公",
+    "ON THE ROAD": "在路上",
+    "OYSTERS": "牡蛎",
+    "OVERDOING IT": "过分",
+    "OVERWHELMING SENSATIONS": "压倒性的感觉",
+    "PANIC FEARS": "恐慌",
+    "PEASANT WIVES": "农妇们",
+    "PEASANTS": "农民",
+    "POLINKA": "波琳卡",
+    "ROTHSCHILD'S FIDDLE": "罗特希尔德的小提琴",
+    "SHROVE TUESDAY": "谢肉节",
+    "SLEEPY": "渴睡",
+    "SMALL FRY": "小人物",
+    "SORROW": "悲伤",
+    "STRONG IMPRESSIONS": "强烈的印象",
+    "TALENT": "才华",
+    "TERROR": "恐惧",
+    "THAT WRETCHED BOY": "那个可怜的男孩",
+    "THE ALBUM": "纪念册",
+    "THE BEGGAR": "乞丐",
+    "THE BET": "赌注",
+    "THE BEAUTIES": "美人",
+    "THE BIRD MARKET": "鸟市",
+    "THE BISHOP": "主教",
+    "THE CATTLE-DEALERS": "牲畜贩子",
+    "THE CHEMIST'S WIFE": "药剂师的妻子",
+    "THE CHORUS GIRL": "歌女",
+    "THE COOK'S WEDDING": "厨娘的婚礼",
+    "THE COSSACK": "哥萨克",
+    "THE DARLING": "宝贝儿",
+    "THE DEATH OF A GOVERNMENT CLERK": "小公务员之死",
+    "THE DEPENDENTS": "寄居者",
+    "THE DOCTOR": "医生",
+    "THE DUEL": "决斗",
+    "THE EXAMINING MAGISTRATE": "预审法官",
+    "THE FIRST-CLASS PASSENGER": "头等车厢乘客",
+    "THE FISH": "鱼",
+    "THE FIT": "发作",
+    "THE GRASSHOPPER": "跳来跳去的女人",
+    "THE HEAD-GARDENER'S STORY": "园丁长的故事",
+    "THE HELPMATE": "贤内助",
+    "THE HORSE-STEALERS": "盗马贼",
+    "THE HOUSE WITH THE MEZZANINE": "带阁楼的房子",
+    "THE HUNTSMAN": "猎人",
+    "THE JEUNE PREMIER": "男主角",
+    "THE KISS": "吻",
+    "THE LADY WITH THE TOY DOG": "带小狗的女士",
+    "THE LETTER": "信",
+    "THE LION AND THE SUN": "狮子与太阳",
+    "THE LOOKING-GLASS": "镜子",
+    "THE LOTTERY TICKET": "彩票",
+    "THE MAN IN A CASE": "套中人",
+    "THE MARSHAL'S WIDOW": "贵族长的遗孀",
+    "THE MURDER": "凶杀",
+    "THE NEW VILLA": "新别墅",
+    "THE OLD HOUSE": "老房子",
+    "THE ORATOR": "演说家",
+    "THE PARTY": "宴会",
+    "THE PETCHENYEG": "佩切涅格人",
+    "THE PIPE": "烟斗",
+    "THE POST": "邮差",
+    "THE PRINCESS": "公爵夫人",
+    "THE PRIVY COUNCILLOR": "枢密顾问官",
+    "THE REQUIEM": "安魂祈祷",
+    "THE RUNAWAY": "逃犯",
+    "THE SCHOOLMASTER": "教师",
+    "THE SCHOOLMISTRESS": "女教师",
+    "THE SHOEMAKER AND THE DEVIL": "鞋匠与魔鬼",
+    "THE STEPPE": "草原",
+    "THE STUDENT": "学生",
+    "THE SWEDISH MATCH": "瑞典火柴",
+    "THE TEACHER OF LITERATURE": "文学教师",
+    "THE TROUSSEAU": "嫁妆",
+    "THE TWO VOLODYAS": "两个沃洛佳",
+    "THE WIFE": "妻子",
+    "THE WITCH": "女巫",
+    "THREE YEARS": "三年",
+    "TOO EARLY!": "太早了！",
+    "TYPHUS": "伤寒",
+    "UPROOTED": "流离失所",
+    "VANKA": "万卡",
+    "VEROTCHKA": "韦罗奇卡",
+    "WARD NO. 6": "第六病室",
+    "WHITEBROW": "白额头",
+    "WHO WAS TO BLAME?": "谁的错？",
+    "ZINOTCHKA": "齐诺奇卡",
+}
+
+STORY_TYPE_KEYWORDS = {
+    "医病与死亡": {
+        "ward",
+        "doctor",
+        "hospital",
+        "typhus",
+        "nervous",
+        "fit",
+        "dead",
+        "death",
+        "misery",
+        "sorrow",
+    },
+    "家庭与婚恋": {
+        "wife",
+        "love",
+        "kiss",
+        "betrothed",
+        "wedding",
+        "darling",
+        "anna",
+        "lady",
+        "woman",
+        "neighbours",
+    },
+    "官僚与社会讽刺": {
+        "official",
+        "government",
+        "court",
+        "magistrate",
+        "councillor",
+        "public",
+        "inquiry",
+        "problem",
+        "orator",
+    },
+    "艺术与自我意识": {
+        "actor",
+        "play",
+        "theatre",
+        "art",
+        "artist",
+        "literature",
+        "fiddle",
+        "talent",
+        "chorus",
+        "story",
+    },
+    "乡村与自然": {
+        "country",
+        "steppe",
+        "ravine",
+        "peasant",
+        "peasants",
+        "huntsman",
+        "villa",
+        "weather",
+        "frost",
+    },
+    "犯罪与悬疑": {
+        "murder",
+        "match",
+        "avenger",
+        "malefactor",
+        "horse-stealers",
+        "bet",
+        "mystery",
+        "terror",
+        "witch",
+    },
+    "儿童与动物": {
+        "children",
+        "boys",
+        "grisha",
+        "vanka",
+        "kashtanka",
+        "whitebrow",
+        "oysters",
+        "fish",
+        "bird",
+    },
+    "宗教与哲思": {
+        "bishop",
+        "easter",
+        "student",
+        "requiem",
+        "passion",
+        "nightmare",
+        "martyrs",
+        "soul",
+    },
+}
+
+TYPE_THEME_HINTS = {
+    "医病与死亡": {"疾病/医学", "死亡"},
+    "家庭与婚恋": {"家庭", "爱情/浪漫"},
+    "官僚与社会讽刺": {"官僚/社会"},
+    "艺术与自我意识": {"艺术/创作"},
+    "乡村与自然": {"自然/风景", "贫困/阶级"},
+    "犯罪与悬疑": {"死亡", "官僚/社会"},
+    "儿童与动物": {"家庭", "自然/风景"},
+    "宗教与哲思": {"宗教/信仰"},
+}
+
+FORESHADOWING_MOTIFS = [
+    ("letter", "信件"),
+    ("money", "金钱"),
+    ("rouble", "金钱"),
+    ("ticket", "票券"),
+    ("dog", "狗"),
+    ("horse", "马"),
+    ("snow", "雪"),
+    ("rain", "雨"),
+    ("wind", "风"),
+    ("mirror", "镜子"),
+    ("window", "窗户"),
+    ("grave", "坟墓"),
+    ("coffin", "棺材"),
+    ("doctor", "医生"),
+    ("court", "法庭"),
+    ("church", "教堂"),
+    ("garden", "花园"),
+    ("road", "道路"),
+    ("gun", "枪"),
+    ("match", "火柴"),
+    ("fiddle", "小提琴"),
+    ("light", "灯火"),
+    ("dark", "黑暗"),
+]
+
 
 @dataclass
 class Heading:
@@ -581,9 +915,140 @@ def theme_density(records: list[StoryRecord]) -> list[dict[str, str]]:
     return rows
 
 
+def top_story_themes(record: StoryRecord, limit: int = 3) -> list[str]:
+    tokens = [token.lower() for token in WORD_RE.findall(record.text)]
+    token_counts = Counter(tokens)
+    scored = []
+    for theme, terms in THEME_TERMS.items():
+        hits = sum(token_counts[term] for term in terms)
+        density = hits / record.word_count * 1000 if record.word_count else 0
+        scored.append((theme, density))
+    scored.sort(key=lambda item: item[1], reverse=True)
+    return [theme for theme, density in scored[:limit] if density > 0]
+
+
+def story_type(record: StoryRecord, themes: list[str]) -> str:
+    title_text = record.canonical_title.lower()
+    text_head = record.text[:4000].lower()
+    scores: Counter[str] = Counter()
+    for label, keywords in STORY_TYPE_KEYWORDS.items():
+        for keyword in keywords:
+            if keyword in title_text:
+                scores[label] += 6
+            if keyword in text_head:
+                scores[label] += min(text_head.count(keyword), 4)
+        scores[label] += 2 * len(set(themes) & TYPE_THEME_HINTS[label])
+    positive_scores = Counter({label: score for label, score in scores.items() if score > 0})
+    if record.word_count >= 10000 and not positive_scores:
+        return "中长篇社会小说"
+    return positive_scores.most_common(1)[0][0] if positive_scores else "心理与日常讽刺"
+
+
+def story_summary(record: StoryRecord, zh_title: str, type_label: str, themes: list[str]) -> str:
+    primary = themes[0] if themes else "人物处境"
+    secondary = themes[1] if len(themes) > 1 else "社会压力"
+    type_phrase = type_label.replace("与", "和")
+    subject_by_type = {
+        "医病与死亡": "疾病、衰老、死亡或精神压力引出的遭遇",
+        "家庭与婚恋": "婚恋、亲属关系或家庭身份中的错位",
+        "官僚与社会讽刺": "制度、身份和日常权力造成的荒诞处境",
+        "艺术与自我意识": "表演、写作、审美或自我想象中的落差",
+        "乡村与自然": "乡村空间、自然景物和底层生活交织的经验",
+        "犯罪与悬疑": "罪案、秘密、恐惧或道德试探推动的事件",
+        "儿童与动物": "童年视角、动物遭遇或弱小者经验",
+        "宗教与哲思": "信仰、良知和人生意义上的困惑",
+    }
+    subject = subject_by_type.get(type_label, "日常生活中暴露出的人物困境")
+    return f"《{zh_title}》写{subject}，以{primary}和{secondary}为主要线索，呈现契诃夫式的{type_phrase}。"
+
+
+def foreshadowing_candidates(record: StoryRecord, themes: list[str]) -> str:
+    head_tokens = [token.lower() for token in WORD_RE.findall(record.text[:5000])]
+    counts = Counter(head_tokens)
+    motifs: list[str] = []
+    seen: set[str] = set()
+    for token, label in FORESHADOWING_MOTIFS:
+        if counts[token] > 0 and label not in seen:
+            motifs.append(label)
+            seen.add(label)
+    if motifs:
+        return "、".join(motifs[:3]) + "等开篇意象（候选）"
+    if themes:
+        return f"{themes[0]}相关反复细节（候选）"
+    return "标题意象与开篇场景（候选）"
+
+
+def story_catalog(records: list[StoryRecord]) -> list[dict[str, str | int]]:
+    rows: list[dict[str, str | int]] = []
+    for record in records:
+        themes = top_story_themes(record)
+        type_label = story_type(record, themes)
+        zh_title = TITLE_ZH.get(record.canonical_title, record.canonical_title.title())
+        rows.append(
+            {
+                "story_id": record.story_id,
+                "source_order": record.source_order,
+                "title_en": record.canonical_title,
+                "title_zh": zh_title,
+                "title_bilingual": f"{zh_title} / {record.canonical_title}",
+                "word_count": record.word_count,
+                "story_type": type_label,
+                "theme_category": "、".join(themes),
+                "one_sentence_summary": story_summary(record, zh_title, type_label, themes),
+                "possible_foreshadowing": foreshadowing_candidates(record, themes),
+            }
+        )
+    return rows
+
+
+def story_type_distribution(catalog_rows: list[dict[str, str | int]]) -> list[dict[str, str | int]]:
+    counts = Counter(str(row["story_type"]) for row in catalog_rows)
+    max_count = max(counts.values()) if counts else 0
+    return [
+        {
+            "类型": label,
+            "篇数": count,
+            "占比": f"{count / len(catalog_rows) * 100:.1f}%" if catalog_rows else "0.0%",
+            "可视化": bar(count, max_count),
+        }
+        for label, count in counts.most_common()
+    ]
+
+
+def write_story_catalog_csv(path: Path, catalog_rows: list[dict[str, str | int]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fieldnames = [
+        "story_id",
+        "source_order",
+        "title_en",
+        "title_zh",
+        "word_count",
+        "story_type",
+        "theme_category",
+        "one_sentence_summary",
+        "possible_foreshadowing",
+    ]
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in catalog_rows:
+            writer.writerow({field: row[field] for field in fieldnames})
+
+
 def write_visual_analysis(path: Path, stats_data: dict, records_canonical: list[StoryRecord]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     story_count = stats_data["canonical_story_count"]
+    catalog_rows = story_catalog(records_canonical)
+    type_rows = story_type_distribution(catalog_rows)
+    catalog_table_rows = [
+        {
+            "中英文标题": row["title_bilingual"],
+            "一句话总结": row["one_sentence_summary"],
+            "主题分类": f"{row['story_type']}；{row['theme_category']}",
+            "可能的伏笔": row["possible_foreshadowing"],
+        }
+        for row in catalog_rows
+    ]
     bucket_rows = []
     max_bucket = max(row["story_count"] for row in stats_data["length_buckets_canonical"])
     for row in stats_data["length_buckets_canonical"]:
@@ -699,6 +1164,18 @@ def write_visual_analysis(path: Path, stats_data: dict, records_canonical: list[
 > 这是基于清洗后 canonical 正文的轻量词表统计，单位为“每千词平均命中次数”。它适合做宏观导航，不等同于人工主题标注。
 
 {markdown_table(theme_rows, ["排名", "主题", "平均密度", "相对强度", "可视化"])}
+
+## 类型分布
+
+> 类型按标题、开篇高频线索和主题词密度综合整理，作为阅读导航使用。
+
+{markdown_table(type_rows, ["类型", "篇数", "占比", "可视化"])}
+
+## 全部小说目录
+
+> 下表覆盖清洗后的 {story_count} 篇 canonical 小说；“可能的伏笔”为候选线索，适合后续精读时确认 setup/payoff。
+
+{markdown_table(catalog_table_rows, ["中英文标题", "一句话总结", "主题分类", "可能的伏笔"])}
 
 ## 最长 20 篇
 
@@ -826,6 +1303,7 @@ def write_manifest(path: Path, stats_data: dict) -> None:
             "all_segments_csv": "data/chekhov/processed/stories_all.csv",
             "canonical_jsonl": "data/chekhov/processed/stories_canonical.jsonl",
             "canonical_csv": "data/chekhov/processed/stories_canonical.csv",
+            "story_catalog_csv": "data/chekhov/processed/story_catalog.csv",
             "title_index_csv": "data/chekhov/processed/title_index.csv",
             "stats_json": "data/chekhov/processed/stats.json",
             "stats_report": "data/chekhov/reports/chekhov_normalized_stats.md",
@@ -862,6 +1340,7 @@ def preprocess(raw_path: Path, output_dir: Path) -> dict:
     write_jsonl(output_dir / "stories_canonical.jsonl", records_canonical)
     write_csv(output_dir / "stories_all.csv", records_all)
     write_csv(output_dir / "stories_canonical.csv", records_canonical)
+    write_story_catalog_csv(output_dir / "story_catalog.csv", story_catalog(records_canonical))
     write_title_index(output_dir / "title_index.csv", records_all)
     (output_dir / "stats.json").write_text(
         json.dumps(stats_data, ensure_ascii=False, indent=2) + "\n",

@@ -6,6 +6,7 @@
     "all_segments_csv": "data/chekhov/processed/stories_all.csv",
     "canonical_jsonl": "data/chekhov/processed/stories_canonical.jsonl",
     "canonical_csv": "data/chekhov/processed/stories_canonical.csv",
+    "story_catalog_csv": "data/chekhov/processed/story_catalog.csv",
     "title_index_csv": "data/chekhov/processed/title_index.csv",
     "stats_json": "data/chekhov/processed/stats.json",
     "stats_report": "data/chekhov/reports/chekhov_normalized_stats.md",

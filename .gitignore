@@ -35,6 +35,7 @@ data/**
 !data/chekhov/processed/
 !data/chekhov/processed/manifest.json
 !data/chekhov/processed/stats.json
+!data/chekhov/processed/story_catalog.csv
 !data/chekhov/reports/
 !data/chekhov/reports/chekhov_normalized_stats.md
 !data/chekhov/scripts/

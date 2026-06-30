@@ -12,6 +12,7 @@
 | `processed/stories_canonical.jsonl` | 每个 canonical 标题保留一条记录，默认用于统计。 |
 | `processed/stories_all.csv` | 所有故事段的元数据 CSV，不含正文。 |
 | `processed/stories_canonical.csv` | canonical 故事的元数据 CSV，不含正文。 |
+| `processed/story_catalog.csv` | 201 篇 canonical 小说的中英文标题、类型、主题、摘要和伏笔候选表。 |
 | `processed/title_index.csv` | 重复标题索引，以及每个 canonical 标题选中的记录。 |
 | `processed/stats.json` | 机器可读的语料统计。 |
 | `processed/manifest.json` | 预处理策略、输出清单和审计摘要。 |
