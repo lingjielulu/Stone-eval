@@ -1,0 +1,302 @@
+{
+  "story_id": "necklace",
+  "note": "Weak candidates only; human annotators should correct before gold use.",
+  "candidate_events": [
+    {
+      "paragraph_id": "P0006",
+      "candidate_summary": "She had a friend, a former schoolmate at the convent, who was rich, and whom she did not like to go to see any more because she felt so sad when she came home."
+    },
+    {
+      "paragraph_id": "P0008",
+      "candidate_summary": "“There,” said he, “there is something for you.”"
+    },
+    {
+      "paragraph_id": "P0014",
+      "candidate_summary": "She looked at him with an irritated glance and said impatiently:"
+    },
+    {
+      "paragraph_id": "P0027",
+      "candidate_summary": "He grew a little pale, because he was laying aside just that amount to buy a gun and treat himself to a little shooting next summer on the plain of Nanterre, with several friends who went to shoot larks there of a Sunday"
+    },
+    {
+      "paragraph_id": "P0028",
+      "candidate_summary": "But he said:"
+    },
+    {
+      "paragraph_id": "P0030",
+      "candidate_summary": "The day of the ball drew near and Madame Loisel seemed sad, uneasy, anxious. Her frock was ready, however. Her husband said to her one evening:"
+    },
+    {
+      "paragraph_id": "P0034",
+      "candidate_summary": "“You might wear natural flowers,” said her husband. “They're very stylish at this time of year. For ten francs you can get two or three magnificent roses.”"
+    },
+    {
+      "paragraph_id": "P0040",
+      "candidate_summary": "The next day she went to her friend and told her of her distress."
+    },
+    {
+      "paragraph_id": "P0041",
+      "candidate_summary": "Madame Forestier went to a wardrobe with a mirror, took out a large jewel box, brought it back, opened it and said to Madame Loisel:"
+    },
+    {
+      "paragraph_id": "P0043",
+      "candidate_summary": "She saw first some bracelets, then a pearl necklace, then a Venetian gold cross set with precious stones, of admirable workmanship. She tried on the ornaments before the mirror, hesitated and could not make up her mind t"
+    },
+    {
+      "paragraph_id": "P0046",
+      "candidate_summary": "Suddenly she discovered, in a black satin box, a superb diamond necklace, and her heart throbbed with an immoderate desire. Her hands trembled as she took it. She fastened it round her throat, outside her high-necked wai"
+    },
+    {
+      "paragraph_id": "P0047",
+      "candidate_summary": "Then she asked, hesitating, filled with anxious doubt:"
+    },
+    {
+      "paragraph_id": "P0051",
+      "candidate_summary": "The night of the ball arrived. Madame Loisel was a great success. She was prettier than any other woman present, elegant, graceful, smiling and wild with joy. All the men looked at her, asked her name, sought to be intro"
+    },
+    {
+      "paragraph_id": "P0057",
+      "candidate_summary": "They went toward the Seine in despair, shivering with cold. At last they found on the quay one of those ancient night cabs which, as though they were ashamed to show their shabbiness during the day, are never seen round "
+    },
+    {
+      "paragraph_id": "P0062",
+      "candidate_summary": "“I have—I have—I've lost Madame Forestier's necklace,” she cried."
+    },
+    {
+      "paragraph_id": "P0066",
+      "candidate_summary": "“You're sure you had it on when you left the ball?” he asked."
+    },
+    {
+      "paragraph_id": "P0068",
+      "candidate_summary": "“But if you had lost it in the street we should have heard it fall. It must be in the cab.”"
+    },
+    {
+      "paragraph_id": "P0073",
+      "candidate_summary": "“I shall go back on foot,” said he, “over the whole route, to see whether I can find it.”"
+    },
+    {
+      "paragraph_id": "P0074",
+      "candidate_summary": "He went out. She sat waiting on a chair in her ball dress, without strength to go to bed, overwhelmed, without any fire, without a thought."
+    },
+    {
+      "paragraph_id": "P0075",
+      "candidate_summary": "Her husband returned about seven o'clock. He had found nothing."
+    },
+    {
+      "paragraph_id": "P0076",
+      "candidate_summary": "He went to police headquarters, to the newspaper offices to offer a reward; he went to the cab companies—everywhere, in fact, whither he was urged by the least spark of hope."
+    },
+    {
+      "paragraph_id": "P0078",
+      "candidate_summary": "Loisel returned at night with a hollow, pale face. He had discovered nothing."
+    },
+    {
+      "paragraph_id": "P0079",
+      "candidate_summary": "“You must write to your friend,” said he, “that you have broken the clasp of her necklace and that you are having it mended. That will give us time to turn round.”"
+    },
+    {
+      "paragraph_id": "P0081",
+      "candidate_summary": "At the end of a week they had lost all hope. Loisel, who had aged five years, declared:"
+    },
+    {
+      "paragraph_id": "P0083",
+      "candidate_summary": "The next day they took the box that had contained it and went to the jeweler whose name was found within. He consulted his books."
+    },
+    {
+      "paragraph_id": "P0084",
+      "candidate_summary": "“It was not I, madame, who sold that necklace; I must simply have furnished the case.”"
+    },
+    {
+      "paragraph_id": "P0085",
+      "candidate_summary": "Then they went from jeweler to jeweler, searching for a necklace like the other, trying to recall it, both sick with chagrin and grief."
+    },
+    {
+      "paragraph_id": "P0086",
+      "candidate_summary": "They found, in a shop at the Palais Royal, a string of diamonds that seemed to them exactly like the one they had lost. It was worth forty thousand francs. They could have it for thirty-six."
+    },
+    {
+      "paragraph_id": "P0087",
+      "candidate_summary": "So they begged the jeweler not to sell it for three days yet. And they made a bargain that he should buy it back for thirty-four thousand francs, in case they should find the lost necklace before the end of February."
+    },
+    {
+      "paragraph_id": "P0089",
+      "candidate_summary": "He did borrow, asking a thousand francs of one, five hundred of another, five louis here, three louis there. He gave notes, took up ruinous obligations, dealt with usurers and all the race of lenders. He compromised all "
+    },
+    {
+      "paragraph_id": "P0090",
+      "candidate_summary": "When Madame Loisel took back the necklace Madame Forestier said to her with a chilly manner:"
+    },
+    {
+      "paragraph_id": "P0091",
+      "candidate_summary": "“You should have returned it sooner; I might have needed it.”"
+    },
+    {
+      "paragraph_id": "P0092",
+      "candidate_summary": "She did not open the case, as her friend had so much feared. If she had detected the substitution, what would she have thought, what would she have said? Would she not have taken Madame Loisel for a thief?"
+    },
+    {
+      "paragraph_id": "P0094",
+      "candidate_summary": "She came to know what heavy housework meant and the odious cares of the kitchen. She washed the dishes, using her dainty fingers and rosy nails on greasy pots and pans. She washed the soiled linen, the shirts and the dis"
+    },
+    {
+      "paragraph_id": "P0100",
+      "candidate_summary": "What would have happened if she had not lost that necklace? Who knows? who knows? How strange and changeful is life! How small a thing is needed to make or ruin us!"
+    },
+    {
+      "paragraph_id": "P0103",
+      "candidate_summary": "She went up."
+    },
+    {
+      "paragraph_id": "P0110",
+      "candidate_summary": "“Yes, I have had a pretty hard life, since I last saw you, and great poverty—and that because of you!”"
+    },
+    {
+      "paragraph_id": "P0114",
+      "candidate_summary": "“Well, I lost it.”"
+    },
+    {
+      "paragraph_id": "P0118",
+      "candidate_summary": "“You say that you bought a necklace of diamonds to replace mine?”"
+    }
+  ],
+  "candidate_foreshadowing": [
+    {
+      "paragraph_id": "P0004",
+      "candidate_signal": "When she sat down to dinner, before the round table covered with a tablecloth in use three days, opposite her husband, who uncovered the soup tureen and declared with a delighted air, “Ah, the good soup! I don't know any"
+    },
+    {
+      "paragraph_id": "P0041",
+      "candidate_signal": "Madame Forestier went to a wardrobe with a mirror, took out a large jewel box, brought it back, opened it and said to Madame Loisel:"
+    },
+    {
+      "paragraph_id": "P0043",
+      "candidate_signal": "She saw first some bracelets, then a pearl necklace, then a Venetian gold cross set with precious stones, of admirable workmanship. She tried on the ornaments before the mirror, hesitated and could not make up her mind t"
+    },
+    {
+      "paragraph_id": "P0046",
+      "candidate_signal": "Suddenly she discovered, in a black satin box, a superb diamond necklace, and her heart throbbed with an immoderate desire. Her hands trembled as she took it. She fastened it round her throat, outside her high-necked wai"
+    },
+    {
+      "paragraph_id": "P0055",
+      "candidate_signal": "Loisel held her back, saying: “Wait a bit. You will catch cold outside. I will call a cab.”"
+    },
+    {
+      "paragraph_id": "P0057",
+      "candidate_signal": "They went toward the Seine in despair, shivering with cold. At last they found on the quay one of those ancient night cabs which, as though they were ashamed to show their shabbiness during the day, are never seen round "
+    },
+    {
+      "paragraph_id": "P0059",
+      "candidate_signal": "She removed her wraps before the glass so as to see herself once more in all her glory. But suddenly she uttered a cry. She no longer had the necklace around her neck!"
+    },
+    {
+      "paragraph_id": "P0062",
+      "candidate_signal": "“I have—I have—I've lost Madame Forestier's necklace,” she cried."
+    },
+    {
+      "paragraph_id": "P0074",
+      "candidate_signal": "He went out. She sat waiting on a chair in her ball dress, without strength to go to bed, overwhelmed, without any fire, without a thought."
+    },
+    {
+      "paragraph_id": "P0079",
+      "candidate_signal": "“You must write to your friend,” said he, “that you have broken the clasp of her necklace and that you are having it mended. That will give us time to turn round.”"
+    },
+    {
+      "paragraph_id": "P0084",
+      "candidate_signal": "“It was not I, madame, who sold that necklace; I must simply have furnished the case.”"
+    },
+    {
+      "paragraph_id": "P0085",
+      "candidate_signal": "Then they went from jeweler to jeweler, searching for a necklace like the other, trying to recall it, both sick with chagrin and grief."
+    },
+    {
+      "paragraph_id": "P0087",
+      "candidate_signal": "So they begged the jeweler not to sell it for three days yet. And they made a bargain that he should buy it back for thirty-four thousand francs, in case they should find the lost necklace before the end of February."
+    },
+    {
+      "paragraph_id": "P0089",
+      "candidate_signal": "He did borrow, asking a thousand francs of one, five hundred of another, five louis here, three louis there. He gave notes, took up ruinous obligations, dealt with usurers and all the race of lenders. He compromised all "
+    },
+    {
+      "paragraph_id": "P0090",
+      "candidate_signal": "When Madame Loisel took back the necklace Madame Forestier said to her with a chilly manner:"
+    },
+    {
+      "paragraph_id": "P0099",
+      "candidate_signal": "Madame Loisel looked old now. She had become the woman of impoverished households—strong and hard and rough. With frowsy hair, skirts askew and red hands, she talked loud while washing the floor with great swishes of wat"
+    },
+    {
+      "paragraph_id": "P0100",
+      "candidate_signal": "What would have happened if she had not lost that necklace? Who knows? who knows? How strange and changeful is life! How small a thing is needed to make or ruin us!"
+    },
+    {
+      "paragraph_id": "P0112",
+      "candidate_signal": "“Do you remember that diamond necklace you lent me to wear at the ministerial ball?”"
+    },
+    {
+      "paragraph_id": "P0118",
+      "candidate_signal": "“You say that you bought a necklace of diamonds to replace mine?”"
+    },
+    {
+      "paragraph_id": "P0122",
+      "candidate_signal": "“Oh, my poor Mathilde! Why, my necklace was paste! It was worth at most only five hundred francs!”"
+    }
+  ],
+  "candidate_causal_hints": [
+    {
+      "paragraph_id": "P0001",
+      "candidate_evidence": "The girl was one of those pretty and charming young creatures who sometimes are born, as if by a slip of fate, into a family of clerks. She had no dowry, no expectations, no way of being known, understood, loved, married"
+    },
+    {
+      "paragraph_id": "P0002",
+      "candidate_evidence": "She dressed plainly because she could not dress well, but she was unhappy as if she had really fallen from a higher station; since with women there is neither caste nor rank, for beauty, grace and charm take the place of"
+    },
+    {
+      "paragraph_id": "P0005",
+      "candidate_evidence": "She had no gowns, no jewels, nothing. And she loved nothing but that. She felt made for that. She would have liked so much to please, to be envied, to be charming, to be sought after."
+    },
+    {
+      "paragraph_id": "P0006",
+      "candidate_evidence": "She had a friend, a former schoolmate at the convent, who was rich, and whom she did not like to go to see any more because she felt so sad when she came home."
+    },
+    {
+      "paragraph_id": "P0021",
+      "candidate_evidence": "“Nothing. Only I have no gown, and, therefore, I can't go to this ball. Give your card to some colleague whose wife is better equipped than I am.”"
+    },
+    {
+      "paragraph_id": "P0027",
+      "candidate_evidence": "He grew a little pale, because he was laying aside just that amount to buy a gun and treat himself to a little shooting next summer on the plain of Nanterre, with several friends who went to shoot larks there of a Sunday"
+    },
+    {
+      "paragraph_id": "P0052",
+      "candidate_evidence": "She danced with rapture, with passion, intoxicated by pleasure, forgetting all in the triumph of her beauty, in the glory of her success, in a sort of cloud of happiness comprised of all this homage, admiration, these aw"
+    },
+    {
+      "paragraph_id": "P0054",
+      "candidate_evidence": "He threw over her shoulders the wraps he had brought, the modest wraps of common life, the poverty of which contrasted with the elegance of the ball dress. She felt this and wished to escape so as not to be remarked by t"
+    },
+    {
+      "paragraph_id": "P0059",
+      "candidate_evidence": "She removed her wraps before the glass so as to see herself once more in all her glory. But suddenly she uttered a cry. She no longer had the necklace around her neck!"
+    },
+    {
+      "paragraph_id": "P0087",
+      "candidate_evidence": "So they begged the jeweler not to sell it for three days yet. And they made a bargain that he should buy it back for thirty-four thousand francs, in case they should find the lost necklace before the end of February."
+    },
+    {
+      "paragraph_id": "P0092",
+      "candidate_evidence": "She did not open the case, as her friend had so much feared. If she had detected the substitution, what would she have thought, what would she have said? Would she not have taken Madame Loisel for a thief?"
+    },
+    {
+      "paragraph_id": "P0099",
+      "candidate_evidence": "Madame Loisel looked old now. She had become the woman of impoverished households—strong and hard and rough. With frowsy hair, skirts askew and red hands, she talked loud while washing the floor with great swishes of wat"
+    },
+    {
+      "paragraph_id": "P0110",
+      "candidate_evidence": "“Yes, I have had a pretty hard life, since I last saw you, and great poverty—and that because of you!”"
+    },
+    {
+      "paragraph_id": "P0111",
+      "candidate_evidence": "“Of me! How so?”"
+    }
+  ]
+}

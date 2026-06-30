@@ -1,0 +1,203 @@
+metadata:
+  story_id: necklace
+  title: "The Diamond Necklace"
+  author: "Guy de Maupassant"
+  language: en
+  source_text_path: data/foreshadow_causality_benchmark/normalized_texts/necklace.txt
+  source_url: https://gutenberg.pglaf.org/3/0/9/3090/3090-0.txt
+  copyright_status: public_domain
+  genre: twist_realism
+  length_level: short
+  structure_type: [twist]
+annotation_guide:
+  focus:
+    - Mark Mathilde's class anxiety as a motivational cause, not merely background characterization.
+    - Track the necklace as an object clue whose value is assumed rather than verified.
+    - Mark the delayed revelation as both payoff and causal reinterpretation of ten years of hardship.
+  boundary_notes:
+    - Treat the replacement necklace and the borrowed necklace as separate objects.
+    - The final sentence is a payoff, but it should not erase the real economic consequences caused by the replacement.
+events:
+  - event_id: NE_E01
+    story_id: necklace
+    chapter_or_section: setup
+    text_span: P0001-P0006
+    summary: Mathilde Loisel feels trapped by modest circumstances and longs for luxury and admiration.
+    participants: [Mathilde Loisel]
+    location: Loisel home
+    time: before the ball invitation
+    event_type: internal_state
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: NE_E02
+    story_id: necklace
+    chapter_or_section: setup
+    text_span: P0007-P0029
+    summary: Loisel brings an invitation, and Mathilde demands a suitable gown before she will attend.
+    participants: [Mathilde Loisel, Monsieur Loisel]
+    location: Loisel home
+    time: before the ball
+    event_type: decision
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: NE_E03
+    story_id: necklace
+    chapter_or_section: setup
+    text_span: P0043-P0048
+    summary: Mathilde borrows what appears to be a superb diamond necklace from Madame Forestier.
+    participants: [Mathilde Loisel, Madame Forestier]
+    location: Madame Forestier's home
+    time: before the ball
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: NE_E04
+    story_id: necklace
+    chapter_or_section: crisis
+    text_span: P0059-P0062
+    summary: After the ball Mathilde discovers that the borrowed necklace is missing.
+    participants: [Mathilde Loisel, Monsieur Loisel]
+    location: Loisel home
+    time: after the ball
+    event_type: accident
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: NE_E05
+    story_id: necklace
+    chapter_or_section: crisis
+    text_span: P0079-P0089
+    summary: The Loisels conceal the loss, buy a costly replacement, and incur crushing debt.
+    participants: [Mathilde Loisel, Monsieur Loisel]
+    location: Paris jewelers and lenders
+    time: after the loss
+    event_type: deception
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: NE_E06
+    story_id: necklace
+    chapter_or_section: aftermath
+    text_span: P0091-P0100
+    summary: The Loisels spend ten years repaying the debt and fall into hard poverty.
+    participants: [Mathilde Loisel, Monsieur Loisel]
+    location: Paris
+    time: ten years
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: NE_E07
+    story_id: necklace
+    chapter_or_section: resolution
+    text_span: P0112-P0122
+    summary: Madame Forestier reveals that the original necklace was paste and worth very little.
+    participants: [Mathilde Loisel, Madame Forestier]
+    location: Champs Elysees
+    time: ten years later
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+causal_edges:
+  - edge_id: NE_C01
+    story_id: necklace
+    source_event_id: NE_E01
+    target_event_id: NE_E02
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0001-P0029
+    explanation: Mathilde's desire for higher-status appearance motivates her rejection of attending without a gown.
+  - edge_id: NE_C02
+    story_id: necklace
+    source_event_id: NE_E01
+    target_event_id: NE_E03
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0005-P0048
+    explanation: Her longing for jewels motivates the borrowing of the necklace.
+  - edge_id: NE_C03
+    story_id: necklace
+    source_event_id: NE_E04
+    target_event_id: NE_E05
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0059-P0089
+    explanation: Losing the necklace directly leads to the search, concealment, replacement purchase, and debt.
+  - edge_id: NE_C04
+    story_id: necklace
+    source_event_id: NE_E05
+    target_event_id: NE_E06
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0089-P0100
+    explanation: The replacement debt causes the decade of poverty and labor.
+  - edge_id: NE_C05
+    story_id: necklace
+    source_event_id: NE_E07
+    target_event_id: NE_E05
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0112-P0122
+    explanation: The final revelation shows that the replacement response was based on a mistaken value assumption.
+foreshadowing_units:
+  - foreshadowing_id: NE_F01
+    story_id: necklace
+    foreshadowing_text_span: P0043-P0048
+    foreshadowing_summary: Mathilde chooses the superb-looking necklace because of appearance, without verifying value.
+    foreshadowing_type: object
+    trigger_event_id: NE_E04
+    payoff_event_id: NE_E07
+    payoff_text_span: P0112-P0122
+    payoff_summary: The object is revealed to have been paste, making the sacrifice tragically disproportionate.
+    payoff_type: delayed_revelation
+    confidence: {value: high}
+    explanation: The necklace's assumed value is the hinge of the story's delayed twist.
+  - foreshadowing_id: NE_F02
+    story_id: necklace
+    foreshadowing_text_span: P0001-P0006
+    foreshadowing_summary: Mathilde's class anxiety and hunger for admiration prepare her risky choices.
+    foreshadowing_type: psychological
+    trigger_event_id: NE_E02
+    payoff_event_id: NE_E06
+    payoff_text_span: P0091-P0100
+    payoff_summary: Her pursuit of status leads to the loss of the beauty and comfort she prized.
+    payoff_type: ironic
+    confidence: {value: high}
+    explanation: The setup is motivational foreshadowing rather than a physical clue.
+  - foreshadowing_id: NE_F03
+    story_id: necklace
+    foreshadowing_text_span: P0079-P0089
+    foreshadowing_summary: The decision to hide the loss prevents immediate verification with Forestier.
+    foreshadowing_type: retrospective
+    trigger_event_id: NE_E05
+    payoff_event_id: NE_E07
+    payoff_text_span: P0112-P0122
+    payoff_summary: Had they confessed, the cheapness of the original might have been learned at once.
+    payoff_type: ironic
+    confidence: {value: medium}
+    explanation: This is clearest after the ending reinterprets concealment as the fatal procedural mistake.
+characters:
+  - character_id: NE_CH01
+    story_id: necklace
+    name: Mathilde Loisel
+    role: protagonist
+    stable_traits: [status-conscious, imaginative, dissatisfied]
+    current_motivation_by_event:
+      - event_id: NE_E03
+        motivation: Appear worthy of elite social admiration.
+        knowledge_state: Believes the necklace is genuinely valuable.
+        emotional_state: Ecstatic and anxious.
+        goal: Attend the ball without visible class inferiority.
+      - event_id: NE_E07
+        motivation: Claim moral closure after years of repayment.
+        knowledge_state: Learns the original necklace was paste.
+        emotional_state: Proud, then devastated by revelation.
+        goal: Explain the truth to Madame Forestier.
+  - character_id: NE_CH02
+    story_id: necklace
+    name: Monsieur Loisel
+    role: husband
+    stable_traits: [accommodating, practical, self-sacrificing]
+    current_motivation_by_event:
+      - event_id: NE_E05
+        motivation: Protect his household from shame and legal/social exposure.
+        knowledge_state: Assumes the borrowed necklace must be replaced.
+        emotional_state: Alarmed and resigned.
+        goal: Find money and return an indistinguishable necklace.

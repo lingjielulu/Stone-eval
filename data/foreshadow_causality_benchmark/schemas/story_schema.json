@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stone-eval.local/schemas/foreshadow-causality-story.json",
+  "title": "Foreshadowing and Causality Story Annotation",
+  "type": "object",
+  "required": ["metadata", "annotation_guide", "events", "causal_edges", "foreshadowing_units", "characters"],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["story_id", "title", "author", "language", "source_text_path", "source_url", "copyright_status", "genre", "length_level", "structure_type"],
+      "additionalProperties": true,
+      "properties": {
+        "story_id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "author": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "minLength": 2 },
+        "source_text_path": { "type": "string", "minLength": 1 },
+        "source_url": { "type": "string", "minLength": 1 },
+        "copyright_status": { "type": "string", "minLength": 1 },
+        "genre": { "type": "string", "minLength": 1 },
+        "length_level": { "enum": ["short", "novelette", "novella"] },
+        "structure_type": {
+          "type": "array",
+          "items": {
+            "enum": ["mystery", "twist", "revenge", "psychological", "naturalist", "symbolic", "social", "uncertain_truth"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "annotation_guide": {
+      "type": "object",
+      "required": ["focus", "boundary_notes"],
+      "additionalProperties": true,
+      "properties": {
+        "focus": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "boundary_notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/event" }
+    },
+    "causal_edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/causal_edge" }
+    },
+    "foreshadowing_units": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/foreshadowing_unit" }
+    },
+    "characters": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/character" }
+    }
+  },
+  "$defs": {
+    "certainty": {
+      "type": "object",
+      "required": ["value"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "enum": ["certain", "uncertain", "disputed", "hallucinated", "symbolic"] }
+      }
+    },
+    "reality": {
+      "type": "object",
+      "required": ["value"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "enum": ["real", "narrated", "imagined", "dream_or_hallucination", "disputed_testimony", "symbolic"] }
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": ["event_id", "story_id", "chapter_or_section", "text_span", "summary", "participants", "location", "time", "event_type", "certainty", "narrative_reality_level"],
+      "additionalProperties": true,
+      "properties": {
+        "event_id": { "type": "string", "minLength": 1 },
+        "story_id": { "type": "string", "minLength": 1 },
+        "chapter_or_section": { "type": "string" },
+        "text_span": { "type": "string" },
+        "summary": { "type": "string", "minLength": 1 },
+        "participants": { "type": "array", "items": { "type": "string" } },
+        "location": { "type": "string" },
+        "time": { "type": "string" },
+        "event_type": {
+          "enum": ["action", "dialogue", "discovery", "decision", "accident", "revelation", "death", "deception", "internal_state", "social_pressure"]
+        },
+        "certainty": { "$ref": "#/$defs/certainty" },
+        "narrative_reality_level": { "$ref": "#/$defs/reality" }
+      }
+    },
+    "causal_edge": {
+      "type": "object",
+      "required": ["edge_id", "story_id", "source_event_id", "target_event_id", "relation_type", "strength", "evidence_text_span", "explanation"],
+      "additionalProperties": true,
+      "properties": {
+        "edge_id": { "type": "string", "minLength": 1 },
+        "story_id": { "type": "string", "minLength": 1 },
+        "source_event_id": { "type": "string", "minLength": 1 },
+        "target_event_id": { "type": "string", "minLength": 1 },
+        "relation_type": {
+          "enum": ["causes", "enables", "motivates", "prevents", "reveals", "misleads_about", "symbolically_echoes", "contradicts"]
+        },
+        "strength": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": { "value": { "enum": ["strong", "medium", "weak"] } }
+        },
+        "evidence_text_span": { "type": "string" },
+        "explanation": { "type": "string", "minLength": 1 }
+      }
+    },
+    "foreshadowing_unit": {
+      "type": "object",
+      "required": ["foreshadowing_id", "story_id", "foreshadowing_text_span", "foreshadowing_summary", "foreshadowing_type", "trigger_event_id", "payoff_event_id", "payoff_text_span", "payoff_summary", "payoff_type", "confidence", "explanation"],
+      "additionalProperties": true,
+      "properties": {
+        "foreshadowing_id": { "type": "string", "minLength": 1 },
+        "story_id": { "type": "string", "minLength": 1 },
+        "foreshadowing_text_span": { "type": "string" },
+        "foreshadowing_summary": { "type": "string", "minLength": 1 },
+        "foreshadowing_type": {
+          "enum": ["object", "rule", "psychological", "spatial", "social", "symbolic", "red_herring", "retrospective"]
+        },
+        "trigger_event_id": { "type": "string", "minLength": 1 },
+        "payoff_event_id": { "type": "string", "minLength": 1 },
+        "payoff_text_span": { "type": "string" },
+        "payoff_summary": { "type": "string", "minLength": 1 },
+        "payoff_type": {
+          "enum": ["literal", "ironic", "symbolic", "negative", "misdirection", "delayed_revelation"]
+        },
+        "confidence": {
+          "type": "object",
+          "required": ["value"],
+          "additionalProperties": false,
+          "properties": { "value": { "enum": ["high", "medium", "low"] } }
+        },
+        "explanation": { "type": "string", "minLength": 1 }
+      }
+    },
+    "character": {
+      "type": "object",
+      "required": ["character_id", "story_id", "name", "role", "stable_traits", "current_motivation_by_event"],
+      "additionalProperties": true,
+      "properties": {
+        "character_id": { "type": "string", "minLength": 1 },
+        "story_id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "stable_traits": { "type": "array", "items": { "type": "string" } },
+        "current_motivation_by_event": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["event_id", "motivation", "knowledge_state", "emotional_state", "goal"],
+            "additionalProperties": false,
+            "properties": {
+              "event_id": { "type": "string", "minLength": 1 },
+              "motivation": { "type": "string" },
+              "knowledge_state": { "type": "string" },
+              "emotional_state": { "type": "string" },
+              "goal": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

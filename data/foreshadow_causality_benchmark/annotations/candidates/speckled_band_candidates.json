@@ -1,0 +1,670 @@
+{
+  "story_id": "speckled_band",
+  "note": "Weak candidates only; human annotators should correct before gold use.",
+  "candidate_events": [
+    {
+      "paragraph_id": "P0004",
+      "candidate_summary": "“Very sorry to knock you up, Watson,” said he, “but it’s the common lot this morning. Mrs. Hudson has been knocked up, she retorted upon me, and I on you.”"
+    },
+    {
+      "paragraph_id": "P0009",
+      "candidate_summary": "“Good-morning, madam,” said Holmes cheerily. “My name is Sherlock Holmes. This is my intimate friend and associate, Dr. Watson, before whom you can speak as freely as before myself. Ha! I am glad to see that Mrs. Hudson "
+    },
+    {
+      "paragraph_id": "P0010",
+      "candidate_summary": "“It is not cold which makes me shiver,” said the woman in a low voice, changing her seat as requested."
+    },
+    {
+      "paragraph_id": "P0013",
+      "candidate_summary": "“You must not fear,” said he soothingly, bending forward and patting her forearm. “We shall soon set matters right, I have no doubt. You have come in by train this morning, I see.”"
+    },
+    {
+      "paragraph_id": "P0017",
+      "candidate_summary": "“There is no mystery, my dear madam,” said he, smiling. “The left arm of your jacket is spattered with mud in no less than seven places. The marks are perfectly fresh. There is no vehicle save a dog-cart which throws up "
+    },
+    {
+      "paragraph_id": "P0018",
+      "candidate_summary": "“Whatever your reasons may be, you are perfectly correct,” said she. “I started from home before six, reached Leatherhead at twenty past, and came in by the first train to Waterloo. Sir, I can stand this strain no longer"
+    },
+    {
+      "paragraph_id": "P0020",
+      "candidate_summary": "“Farintosh,” said he. “Ah yes, I recall the case; it was concerned with an opal tiara. I think it was before your time, Watson. I can only say, madam, that I shall be happy to devote the same care to your case as I did t"
+    },
+    {
+      "paragraph_id": "P0021",
+      "candidate_summary": "“Alas!” replied our visitor, “the very horror of my situation lies in the fact that my fears are so vague, and my suspicions depend so entirely upon small points, which might seem trivial to another, that even he to whom"
+    },
+    {
+      "paragraph_id": "P0024",
+      "candidate_summary": "Holmes nodded his head. “The name is familiar to me,” said he."
+    },
+    {
+      "paragraph_id": "P0025",
+      "candidate_summary": "“The family was at one time among the richest in England, and the estates extended over the borders into Berkshire in the north, and Hampshire in the west. In the last century, however, four successive heirs were of a di"
+    },
+    {
+      "paragraph_id": "P0026",
+      "candidate_summary": "“When Dr. Roylott was in India he married my mother, Mrs. Stoner, the young widow of Major-General Stoner, of the Bengal Artillery. My sister Julia and I were twins, and we were only two years old at the time of my mothe"
+    },
+    {
+      "paragraph_id": "P0027",
+      "candidate_summary": "“But a terrible change came over our stepfather about this time. Instead of making friends and exchanging visits with our neighbours, who had at first been overjoyed to see a Roylott of Stoke Moran back in the old family"
+    },
+    {
+      "paragraph_id": "P0031",
+      "candidate_summary": "“She died just two years ago, and it is of her death that I wish to speak to you. You can understand that, living the life which I have described, we were little likely to see anyone of our own age and position. We had, "
+    },
+    {
+      "paragraph_id": "P0032",
+      "candidate_summary": "Sherlock Holmes had been leaning back in his chair with his eyes closed and his head sunk in a cushion, but he half opened his lids now and glanced across at his visitor."
+    },
+    {
+      "paragraph_id": "P0033",
+      "candidate_summary": "“Pray be precise as to details,” said he."
+    },
+    {
+      "paragraph_id": "P0034",
+      "candidate_summary": "“It is easy for me to be so, for every event of that dreadful time is seared into my memory. The manor-house is, as I have already said, very old, and only one wing is now inhabited. The bedrooms in this wing are on the "
+    },
+    {
+      "paragraph_id": "P0036",
+      "candidate_summary": "“The windows of the three rooms open out upon the lawn. That fatal night Dr. Roylott had gone to his room early, though we knew that he had not retired to rest, for my sister was troubled by the smell of the strong India"
+    },
+    {
+      "paragraph_id": "P0037",
+      "candidate_summary": "“‘Tell me, Helen,’ said she, ‘have you ever heard anyone whistle in the dead of the night?’"
+    },
+    {
+      "paragraph_id": "P0038",
+      "candidate_summary": "“‘Never,’ said I."
+    },
+    {
+      "paragraph_id": "P0041",
+      "candidate_summary": "“‘Because during the last few nights I have always, about three in the morning, heard a low, clear whistle. I am a light sleeper, and it has awakened me. I cannot tell where it came from—perhaps from the next room, perha"
+    },
+    {
+      "paragraph_id": "P0045",
+      "candidate_summary": "“‘Well, it is of no great consequence, at any rate.’ She smiled back at me, closed my door, and a few moments later I heard her key turn in the lock.”"
+    },
+    {
+      "paragraph_id": "P0046",
+      "candidate_summary": "“Indeed,” said Holmes. “Was it your custom always to lock yourselves in at night?”"
+    },
+    {
+      "paragraph_id": "P0051",
+      "candidate_summary": "“I could not sleep that night. A vague feeling of impending misfortune impressed me. My sister and I, you will recollect, were twins, and you know how subtle are the links which bind two souls which are so closely allied"
+    },
+    {
+      "paragraph_id": "P0052",
+      "candidate_summary": "“One moment,” said Holmes, “are you sure about this whistle and metallic sound? Could you swear to it?”"
+    },
+    {
+      "paragraph_id": "P0053",
+      "candidate_summary": "“That was what the county coroner asked me at the inquiry. It is my strong impression that I heard it, and yet, among the crash of the gale and the creaking of an old house, I may possibly have been deceived.”"
+    },
+    {
+      "paragraph_id": "P0055",
+      "candidate_summary": "“No, she was in her night-dress. In her right hand was found the charred stump of a match, and in her left a match-box.”"
+    },
+    {
+      "paragraph_id": "P0056",
+      "candidate_summary": "“Showing that she had struck a light and looked about her when the alarm took place. That is important. And what conclusions did the coroner come to?”"
+    },
+    {
+      "paragraph_id": "P0060",
+      "candidate_summary": "“What do you think that this unfortunate lady died of, then?”"
+    },
+    {
+      "paragraph_id": "P0061",
+      "candidate_summary": "“It is my belief that she died of pure fear and nervous shock, though what it was that frightened her I cannot imagine.”"
+    },
+    {
+      "paragraph_id": "P0067",
+      "candidate_summary": "“These are very deep waters,” said he; “pray go on with your narrative.”"
+    },
+    {
+      "paragraph_id": "P0068",
+      "candidate_summary": "“Two years have passed since then, and my life has been until lately lonelier than ever. A month ago, however, a dear friend, whom I have known for many years, has done me the honour to ask my hand in marriage. His name "
+    },
+    {
+      "paragraph_id": "P0069",
+      "candidate_summary": "“You have done wisely,” said my friend. “But have you told me all?”"
+    },
+    {
+      "paragraph_id": "P0074",
+      "candidate_summary": "“You have been cruelly used,” said Holmes."
+    },
+    {
+      "paragraph_id": "P0075",
+      "candidate_summary": "The lady coloured deeply and covered over her injured wrist. “He is a hard man,” she said, “and perhaps he hardly knows his own strength.”"
+    },
+    {
+      "paragraph_id": "P0077",
+      "candidate_summary": "“This is a very deep business,” he said at last. “There are a thousand details which I should desire to know before I decide upon our course of action. Yet we have not a moment to lose. If we were to come to Stoke Moran "
+    },
+    {
+      "paragraph_id": "P0085",
+      "candidate_summary": "“And what do you think of it all, Watson?” asked Sherlock Holmes, leaning back in his chair."
+    },
+    {
+      "paragraph_id": "P0091",
+      "candidate_summary": "“When you combine the ideas of whistles at night, the presence of a band of gipsies who are on intimate terms with this old doctor, the fact that we have every reason to believe that the doctor has an interest in prevent"
+    },
+    {
+      "paragraph_id": "P0097",
+      "candidate_summary": "“Which of you is Holmes?” asked this apparition."
+    },
+    {
+      "paragraph_id": "P0098",
+      "candidate_summary": "“My name, sir; but you have the advantage of me,” said my companion quietly."
+    },
+    {
+      "paragraph_id": "P0100",
+      "candidate_summary": "“Indeed, Doctor,” said Holmes blandly. “Pray take a seat.”"
+    },
+    {
+      "paragraph_id": "P0102",
+      "candidate_summary": "“It is a little cold for the time of the year,” said Holmes."
+    },
+    {
+      "paragraph_id": "P0104",
+      "candidate_summary": "“But I have heard that the crocuses promise well,” continued my companion imperturbably."
+    },
+    {
+      "paragraph_id": "P0105",
+      "candidate_summary": "“Ha! You put me off, do you?” said our new visitor, taking a step forward and shaking his hunting-crop. “I know you, you scoundrel! I have heard of you before. You are Holmes, the meddler.”"
+    },
+    {
+      "paragraph_id": "P0110",
+      "candidate_summary": "Holmes chuckled heartily. “Your conversation is most entertaining,” said he. “When you go out close the door, for there is a decided draught.”"
+    },
+    {
+      "paragraph_id": "P0113",
+      "candidate_summary": "“He seems a very amiable person,” said Holmes, laughing. “I am not quite so bulky, but if he had remained I might have shown him that my grip was not much more feeble than his own.” As he spoke he picked up the steel pok"
+    },
+    {
+      "paragraph_id": "P0115",
+      "candidate_summary": "It was nearly one o’clock when Sherlock Holmes returned from his excursion. He held in his hand a sheet of blue paper, scrawled over with notes and figures."
+    },
+    {
+      "paragraph_id": "P0116",
+      "candidate_summary": "“I have seen the will of the deceased wife,” said he. “To determine its exact meaning I have been obliged to work out the present prices of the investments with which it is concerned. The total income, which at the time "
+    },
+    {
+      "paragraph_id": "P0118",
+      "candidate_summary": "“Look there!” said he."
+    },
+    {
+      "paragraph_id": "P0120",
+      "candidate_summary": "“Stoke Moran?” said he."
+    },
+    {
+      "paragraph_id": "P0122",
+      "candidate_summary": "“There is some building going on there,” said Holmes; “that is where we are going.”"
+    },
+    {
+      "paragraph_id": "P0123",
+      "candidate_summary": "“There’s the village,” said the driver, pointing to a cluster of roofs some distance to the left; “but if you want to get to the house, you’ll find it shorter to get over this stile, and so by the footpath over the field"
+    },
+    {
+      "paragraph_id": "P0126",
+      "candidate_summary": "“I thought it as well,” said Holmes as we climbed the stile, “that this fellow should think we had come here as architects, or on some definite business. It may stop his gossip. Good-afternoon, Miss Stoner. You see that "
+    },
+    {
+      "paragraph_id": "P0128",
+      "candidate_summary": "“We have had the pleasure of making the Doctor’s acquaintance,” said Holmes, and in a few words he sketched out what had occurred. Miss Stoner turned white to the lips as she listened."
+    },
+    {
+      "paragraph_id": "P0141",
+      "candidate_summary": "Miss Stoner did so, and Holmes, after a careful examination through the open window, endeavoured in every way to force the shutter open, but without success. There was no slit through which a knife could be passed to rai"
+    },
+    {
+      "paragraph_id": "P0142",
+      "candidate_summary": "A small side door led into the whitewashed corridor from which the three bedrooms opened. Holmes refused to examine the third chamber, so we passed at once to the second, that in which Miss Stoner was now sleeping, and i"
+    },
+    {
+      "paragraph_id": "P0143",
+      "candidate_summary": "“Where does that bell communicate with?” he asked at last pointing to a thick bell-rope which hung down beside the bed, the tassel actually lying upon the pillow."
+    },
+    {
+      "paragraph_id": "P0147",
+      "candidate_summary": "“Your sister asked for it, I suppose?”"
+    },
+    {
+      "paragraph_id": "P0148",
+      "candidate_summary": "“No, I never heard of her using it. We used always to get what we wanted for ourselves.”"
+    },
+    {
+      "paragraph_id": "P0150",
+      "candidate_summary": "“Why, it’s a dummy,” said he."
+    },
+    {
+      "paragraph_id": "P0155",
+      "candidate_summary": "“That is also quite modern,” said the lady."
+    },
+    {
+      "paragraph_id": "P0160",
+      "candidate_summary": "“What’s in here?” he asked, tapping the safe."
+    },
+    {
+      "paragraph_id": "P0169",
+      "candidate_summary": "“Thank you. That is quite settled,” said he, rising and putting his lens in his pocket. “Hullo! Here is something interesting!”"
+    },
+    {
+      "paragraph_id": "P0175",
+      "candidate_summary": "“It is very essential, Miss Stoner,” said he, “that you should absolutely follow my advice in every respect.”"
+    },
+    {
+      "paragraph_id": "P0190",
+      "candidate_summary": "“I believe, Mr. Holmes, that you have already made up your mind,” said Miss Stoner, laying her hand upon my companion’s sleeve."
+    },
+    {
+      "paragraph_id": "P0194",
+      "candidate_summary": "“You can at least tell me whether my own thought is correct, and if she died from some sudden fright.”"
+    },
+    {
+      "paragraph_id": "P0195",
+      "candidate_summary": "“No, I do not think so. I think that there was probably some more tangible cause. And now, Miss Stoner, we must leave you for if Dr. Roylott returned and saw us our journey would be in vain. Good-bye, and be brave, for i"
+    },
+    {
+      "paragraph_id": "P0196",
+      "candidate_summary": "Sherlock Holmes and I had no difficulty in engaging a bedroom and sitting-room at the Crown Inn. They were on the upper floor, and from our window we could command a view of the avenue gate, and of the inhabited wing of "
+    },
+    {
+      "paragraph_id": "P0197",
+      "candidate_summary": "“Do you know, Watson,” said Holmes as we sat together in the gathering darkness, “I have really some scruples as to taking you to-night. There is a distinct element of danger.”"
+    },
+    {
+      "paragraph_id": "P0203",
+      "candidate_summary": "“No, but I fancy that I may have deduced a little more. I imagine that you saw all that I did.”"
+    },
+    {
+      "paragraph_id": "P0204",
+      "candidate_summary": "“I saw nothing remarkable save the bell-rope, and what purpose that could answer I confess is more than I can imagine.”"
+    },
+    {
+      "paragraph_id": "P0205",
+      "candidate_summary": "“You saw the ventilator, too?”"
+    },
+    {
+      "paragraph_id": "P0207",
+      "candidate_summary": "“I knew that we should find a ventilator before ever we came to Stoke Moran.”"
+    },
+    {
+      "paragraph_id": "P0209",
+      "candidate_summary": "“Oh, yes, I did. You remember in her statement she said that her sister could smell Dr. Roylott’s cigar. Now, of course that suggested at once that there must be a communication between the two rooms. It could only be a "
+    },
+    {
+      "paragraph_id": "P0221",
+      "candidate_summary": "“That is our signal,” said Holmes, springing to his feet; “it comes from the middle window.”"
+    },
+    {
+      "paragraph_id": "P0227",
+      "candidate_summary": "I had forgotten the strange pets which the Doctor affected. There was a cheetah, too; perhaps we might find it upon our shoulders at any moment. I confess that I felt easier in my mind when, after following Holmes’ examp"
+    },
+    {
+      "paragraph_id": "P0229",
+      "candidate_summary": "I nodded to show that I had heard."
+    },
+    {
+      "paragraph_id": "P0236",
+      "candidate_summary": "From outside came the occasional cry of a night-bird, and once at our very window a long drawn catlike whine, which told us that the cheetah was indeed at liberty. Far away we could hear the deep tones of the parish cloc"
+    },
+    {
+      "paragraph_id": "P0237",
+      "candidate_summary": "Suddenly there was the momentary gleam of a light up in the direction of the ventilator, which vanished immediately, but was succeeded by a strong smell of burning oil and heated metal. Someone in the next room had lit a"
+    },
+    {
+      "paragraph_id": "P0239",
+      "candidate_summary": "But I saw nothing. At the moment when Holmes struck the light I heard a low, clear whistle, but the sudden glare flashing into my weary eyes made it impossible for me to tell what it was at which my friend lashed so sava"
+    },
+    {
+      "paragraph_id": "P0242",
+      "candidate_summary": "With a grave face he lit the lamp and led the way down the corridor. Twice he struck at the chamber door without any reply from within. Then he turned the handle and entered, I at his heels, with the cocked pistol in my "
+    },
+    {
+      "paragraph_id": "P0246",
+      "candidate_summary": "“It is a swamp adder!” cried Holmes; “the deadliest snake in India. He has died within ten seconds of being bitten. Violence does, in truth, recoil upon the violent, and the schemer falls into the pit which he digs for a"
+    },
+    {
+      "paragraph_id": "P0248",
+      "candidate_summary": "Such are the true facts of the death of Dr. Grimesby Roylott, of Stoke Moran. It is not necessary that I should prolong a narrative which has already run to too great a length by telling how we broke the sad news to the "
+    },
+    {
+      "paragraph_id": "P0249",
+      "candidate_summary": "“I had,” said he, “come to an entirely erroneous conclusion which shows, my dear Watson, how dangerous it always is to reason from insufficient data. The presence of the gipsies, and the use of the word ‘band,’ which was"
+    },
+    {
+      "paragraph_id": "P0250",
+      "candidate_summary": "“I had come to these conclusions before ever I had entered his room. An inspection of his chair showed me that he had been in the habit of standing on it, which of course would be necessary in order that he should reach "
+    },
+    {
+      "paragraph_id": "P0252",
+      "candidate_summary": "“And also with the result of causing it to turn upon its master at the other side. Some of the blows of my cane came home and roused its snakish temper, so that it flew upon the first person it saw. In this way I am no d"
+    }
+  ],
+  "candidate_foreshadowing": [
+    {
+      "paragraph_id": "P0002",
+      "candidate_signal": "On glancing over my notes of the seventy odd cases in which I have during the last eight years studied the methods of my friend Sherlock Holmes, I find many tragic, some comic, a large number merely strange, but none com"
+    },
+    {
+      "paragraph_id": "P0005",
+      "candidate_signal": "“What is it, then—a fire?”"
+    },
+    {
+      "paragraph_id": "P0009",
+      "candidate_signal": "“Good-morning, madam,” said Holmes cheerily. “My name is Sherlock Holmes. This is my intimate friend and associate, Dr. Watson, before whom you can speak as freely as before myself. Ha! I am glad to see that Mrs. Hudson "
+    },
+    {
+      "paragraph_id": "P0010",
+      "candidate_signal": "“It is not cold which makes me shiver,” said the woman in a low voice, changing her seat as requested."
+    },
+    {
+      "paragraph_id": "P0012",
+      "candidate_signal": "“It is fear, Mr. Holmes. It is terror.” She raised her veil as she spoke, and we could see that she was indeed in a pitiable state of agitation, her face all drawn and grey, with restless frightened eyes, like those of s"
+    },
+    {
+      "paragraph_id": "P0029",
+      "candidate_signal": "“You can imagine from what I say that my poor sister Julia and I had no great pleasure in our lives. No servant would stay with us, and for a long time we did all the work of the house. She was but thirty at the time of "
+    },
+    {
+      "paragraph_id": "P0065",
+      "candidate_signal": "“Sometimes I have thought that it was merely the wild talk of delirium, sometimes that it may have referred to some band of people, perhaps to these very gipsies in the plantation. I do not know whether the spotted handk"
+    },
+    {
+      "paragraph_id": "P0076",
+      "candidate_signal": "There was a long silence, during which Holmes leaned his chin upon his hands and stared into the crackling fire."
+    },
+    {
+      "paragraph_id": "P0088",
+      "candidate_signal": "“Yet if the lady is correct in saying that the flooring and walls are sound, and that the door, window, and chimney are impassable, then her sister must have been undoubtedly alone when she met her mysterious end.”"
+    },
+    {
+      "paragraph_id": "P0089",
+      "candidate_signal": "“What becomes, then, of these nocturnal whistles, and what of the very peculiar words of the dying woman?”"
+    },
+    {
+      "paragraph_id": "P0096",
+      "candidate_signal": "The ejaculation had been drawn from my companion by the fact that our door had been suddenly dashed open, and that a huge man had framed himself in the aperture. His costume was a peculiar mixture of the professional and"
+    },
+    {
+      "paragraph_id": "P0102",
+      "candidate_signal": "“It is a little cold for the time of the year,” said Holmes."
+    },
+    {
+      "paragraph_id": "P0117",
+      "candidate_signal": "At Waterloo we were fortunate in catching a train for Leatherhead, where we hired a trap at the station inn and drove for four or five miles through the lovely Surrey lanes. It was a perfect day, with a bright sun and a "
+    },
+    {
+      "paragraph_id": "P0131",
+      "candidate_signal": "“He is so cunning that I never know when I am safe from him. What will he say when he returns?”"
+    },
+    {
+      "paragraph_id": "P0143",
+      "candidate_signal": "“Where does that bell communicate with?” he asked at last pointing to a thick bell-rope which hung down beside the bed, the tassel actually lying upon the pillow."
+    },
+    {
+      "paragraph_id": "P0149",
+      "candidate_signal": "“Indeed, it seemed unnecessary to put so nice a bell-pull there. You will excuse me for a few minutes while I satisfy myself as to this floor.” He threw himself down upon his face with his lens in his hand and crawled sw"
+    },
+    {
+      "paragraph_id": "P0152",
+      "candidate_signal": "“No, it is not even attached to a wire. This is very interesting. You can see now that it is fastened to a hook just above where the little opening for the ventilator is.”"
+    },
+    {
+      "paragraph_id": "P0154",
+      "candidate_signal": "“Very strange!” muttered Holmes, pulling at the rope. “There are one or two very singular points about this room. For example, what a fool a builder must be to open a ventilator into another room, when, with the same tro"
+    },
+    {
+      "paragraph_id": "P0156",
+      "candidate_signal": "“Done about the same time as the bell-rope?” remarked Holmes."
+    },
+    {
+      "paragraph_id": "P0159",
+      "candidate_signal": "Dr. Grimesby Roylott’s chamber was larger than that of his step-daughter, but was as plainly furnished. A camp-bed, a small wooden shelf full of books, mostly of a technical character, an armchair beside the bed, a plain"
+    },
+    {
+      "paragraph_id": "P0160",
+      "candidate_signal": "“What’s in here?” he asked, tapping the safe."
+    },
+    {
+      "paragraph_id": "P0165",
+      "candidate_signal": "“No. What a strange idea!”"
+    },
+    {
+      "paragraph_id": "P0166",
+      "candidate_signal": "“Well, look at this!” He took up a small saucer of milk which stood on the top of it."
+    },
+    {
+      "paragraph_id": "P0168",
+      "candidate_signal": "“Ah, yes, of course! Well, a cheetah is just a big cat, and yet a saucer of milk does not go very far in satisfying its wants, I daresay. There is one point which I should wish to determine.” He squatted down in front of"
+    },
+    {
+      "paragraph_id": "P0197",
+      "candidate_signal": "“Do you know, Watson,” said Holmes as we sat together in the gathering darkness, “I have really some scruples as to taking you to-night. There is a distinct element of danger.”"
+    },
+    {
+      "paragraph_id": "P0202",
+      "candidate_signal": "“You speak of danger. You have evidently seen more in these rooms than was visible to me.”"
+    },
+    {
+      "paragraph_id": "P0204",
+      "candidate_signal": "“I saw nothing remarkable save the bell-rope, and what purpose that could answer I confess is more than I can imagine.”"
+    },
+    {
+      "paragraph_id": "P0205",
+      "candidate_signal": "“You saw the ventilator, too?”"
+    },
+    {
+      "paragraph_id": "P0207",
+      "candidate_signal": "“I knew that we should find a ventilator before ever we came to Stoke Moran.”"
+    },
+    {
+      "paragraph_id": "P0209",
+      "candidate_signal": "“Oh, yes, I did. You remember in her statement she said that her sister could smell Dr. Roylott’s cigar. Now, of course that suggested at once that there must be a communication between the two rooms. It could only be a "
+    },
+    {
+      "paragraph_id": "P0211",
+      "candidate_signal": "“Well, there is at least a curious coincidence of dates. A ventilator is made, a cord is hung, and a lady who sleeps in the bed dies. Does not that strike you?”"
+    },
+    {
+      "paragraph_id": "P0213",
+      "candidate_signal": "“Did you observe anything very peculiar about that bed?”"
+    },
+    {
+      "paragraph_id": "P0217",
+      "candidate_signal": "“The lady could not move her bed. It must always be in the same relative position to the ventilator and to the rope—or so we may call it, since it was clearly never meant for a bell-pull.”"
+    },
+    {
+      "paragraph_id": "P0227",
+      "candidate_signal": "I had forgotten the strange pets which the Doctor affected. There was a cheetah, too; perhaps we might find it upon our shoulders at any moment. I confess that I felt easier in my mind when, after following Holmes’ examp"
+    },
+    {
+      "paragraph_id": "P0230",
+      "candidate_signal": "“We must sit without light. He would see it through the ventilator.”"
+    },
+    {
+      "paragraph_id": "P0237",
+      "candidate_signal": "Suddenly there was the momentary gleam of a light up in the direction of the ventilator, which vanished immediately, but was succeeded by a strong smell of burning oil and heated metal. Someone in the next room had lit a"
+    },
+    {
+      "paragraph_id": "P0239",
+      "candidate_signal": "But I saw nothing. At the moment when Holmes struck the light I heard a low, clear whistle, but the sudden glare flashing into my weary eyes made it impossible for me to tell what it was at which my friend lashed so sava"
+    },
+    {
+      "paragraph_id": "P0243",
+      "candidate_signal": "It was a singular sight which met our eyes. On the table stood a dark-lantern with the shutter half open, throwing a brilliant beam of light upon the iron safe, the door of which was ajar. Beside this table, on the woode"
+    },
+    {
+      "paragraph_id": "P0245",
+      "candidate_signal": "I took a step forward. In an instant his strange headgear began to move, and there reared itself from among his hair the squat diamond-shaped head and puffed neck of a loathsome serpent."
+    },
+    {
+      "paragraph_id": "P0246",
+      "candidate_signal": "“It is a swamp adder!” cried Holmes; “the deadliest snake in India. He has died within ten seconds of being bitten. Violence does, in truth, recoil upon the violent, and the schemer falls into the pit which he digs for a"
+    },
+    {
+      "paragraph_id": "P0247",
+      "candidate_signal": "As he spoke he drew the dog-whip swiftly from the dead man’s lap, and throwing the noose round the reptile’s neck he drew it from its horrid perch and, carrying it at arm’s length, threw it into the iron safe, which he c"
+    },
+    {
+      "paragraph_id": "P0249",
+      "candidate_signal": "“I had,” said he, “come to an entirely erroneous conclusion which shows, my dear Watson, how dangerous it always is to reason from insufficient data. The presence of the gipsies, and the use of the word ‘band,’ which was"
+    },
+    {
+      "paragraph_id": "P0250",
+      "candidate_signal": "“I had come to these conclusions before ever I had entered his room. An inspection of his chair showed me that he had been in the habit of standing on it, which of course would be necessary in order that he should reach "
+    },
+    {
+      "paragraph_id": "P0251",
+      "candidate_signal": "“With the result of driving it through the ventilator.”"
+    }
+  ],
+  "candidate_causal_hints": [
+    {
+      "paragraph_id": "P0021",
+      "candidate_evidence": "“Alas!” replied our visitor, “the very horror of my situation lies in the fact that my fears are so vague, and my suspicions depend so entirely upon small points, which might seem trivial to another, that even he to whom"
+    },
+    {
+      "paragraph_id": "P0034",
+      "candidate_evidence": "“It is easy for me to be so, for every event of that dreadful time is seared into my memory. The manor-house is, as I have already said, very old, and only one wing is now inhabited. The bedrooms in this wing are on the "
+    },
+    {
+      "paragraph_id": "P0035",
+      "candidate_evidence": "“Perfectly so.”"
+    },
+    {
+      "paragraph_id": "P0036",
+      "candidate_evidence": "“The windows of the three rooms open out upon the lawn. That fatal night Dr. Roylott had gone to his room early, though we knew that he had not retired to rest, for my sister was troubled by the smell of the strong India"
+    },
+    {
+      "paragraph_id": "P0041",
+      "candidate_evidence": "“‘Because during the last few nights I have always, about three in the morning, heard a low, clear whistle. I am a light sleeper, and it has awakened me. I cannot tell where it came from—perhaps from the next room, perha"
+    },
+    {
+      "paragraph_id": "P0050",
+      "candidate_evidence": "“Quite so. Pray proceed with your statement.”"
+    },
+    {
+      "paragraph_id": "P0051",
+      "candidate_evidence": "“I could not sleep that night. A vague feeling of impending misfortune impressed me. My sister and I, you will recollect, were twins, and you know how subtle are the links which bind two souls which are so closely allied"
+    },
+    {
+      "paragraph_id": "P0057",
+      "candidate_evidence": "“He investigated the case with great care, for Dr. Roylott’s conduct had long been notorious in the county, but he was unable to find any satisfactory cause of death. My evidence showed that the door had been fastened up"
+    },
+    {
+      "paragraph_id": "P0065",
+      "candidate_evidence": "“Sometimes I have thought that it was merely the wild talk of delirium, sometimes that it may have referred to some band of people, perhaps to these very gipsies in the plantation. I do not know whether the spotted handk"
+    },
+    {
+      "paragraph_id": "P0068",
+      "candidate_evidence": "“Two years have passed since then, and my life has been until lately lonelier than ever. A month ago, however, a dear friend, whom I have known for many years, has done me the honour to ask my hand in marriage. His name "
+    },
+    {
+      "paragraph_id": "P0082",
+      "candidate_evidence": "“I have one or two things which I would wish to do now that I am in town. But I shall return by the twelve o’clock train, so as to be there in time for your coming.”"
+    },
+    {
+      "paragraph_id": "P0095",
+      "candidate_evidence": "“And so do I. It is precisely for that reason that we are going to Stoke Moran this day. I want to see whether the objections are fatal, or if they may be explained away. But what in the name of the devil!”"
+    },
+    {
+      "paragraph_id": "P0096",
+      "candidate_evidence": "The ejaculation had been drawn from my companion by the fact that our door had been suddenly dashed open, and that a huge man had framed himself in the aperture. His costume was a peculiar mixture of the professional and"
+    },
+    {
+      "paragraph_id": "P0113",
+      "candidate_evidence": "“He seems a very amiable person,” said Holmes, laughing. “I am not quite so bulky, but if he had remained I might have shown him that my grip was not much more feeble than his own.” As he spoke he picked up the steel pok"
+    },
+    {
+      "paragraph_id": "P0116",
+      "candidate_evidence": "“I have seen the will of the deceased wife,” said he. “To determine its exact meaning I have been obliged to work out the present prices of the investments with which it is concerned. The total income, which at the time "
+    },
+    {
+      "paragraph_id": "P0123",
+      "candidate_evidence": "“There’s the village,” said the driver, pointing to a cluster of roofs some distance to the left; “but if you want to get to the house, you’ll find it shorter to get over this stile, and so by the footpath over the field"
+    },
+    {
+      "paragraph_id": "P0127",
+      "candidate_evidence": "Our client of the morning had hurried forward to meet us with a face which spoke her joy. “I have been waiting so eagerly for you,” she cried, shaking hands with us warmly. “All has turned out splendidly. Dr. Roylott has"
+    },
+    {
+      "paragraph_id": "P0130",
+      "candidate_evidence": "“So it appears.”"
+    },
+    {
+      "paragraph_id": "P0131",
+      "candidate_evidence": "“He is so cunning that I never know when I am safe from him. What will he say when he returns?”"
+    },
+    {
+      "paragraph_id": "P0132",
+      "candidate_evidence": "“He must guard himself, for he may find that there is someone more cunning than himself upon his track. You must lock yourself up from him to-night. If he is violent, we shall take you away to your aunt’s at Harrow. Now,"
+    },
+    {
+      "paragraph_id": "P0135",
+      "candidate_evidence": "“Exactly so. But I am now sleeping in the middle one.”"
+    },
+    {
+      "paragraph_id": "P0141",
+      "candidate_evidence": "Miss Stoner did so, and Holmes, after a careful examination through the open window, endeavoured in every way to force the shutter open, but without success. There was no slit through which a knife could be passed to rai"
+    },
+    {
+      "paragraph_id": "P0142",
+      "candidate_evidence": "A small side door led into the whitewashed corridor from which the three bedrooms opened. Holmes refused to examine the third chamber, so we passed at once to the second, that in which Miss Stoner was now sleeping, and i"
+    },
+    {
+      "paragraph_id": "P0149",
+      "candidate_evidence": "“Indeed, it seemed unnecessary to put so nice a bell-pull there. You will excuse me for a few minutes while I satisfy myself as to this floor.” He threw himself down upon his face with his lens in his hand and crawled sw"
+    },
+    {
+      "paragraph_id": "P0170",
+      "candidate_evidence": "The object which had caught his eye was a small dog lash hung on one corner of the bed. The lash, however, was curled upon itself and tied so as to make a loop of whipcord."
+    },
+    {
+      "paragraph_id": "P0173",
+      "candidate_evidence": "“That is not quite so common, is it? Ah, me! it’s a wicked world, and when a clever man turns his brains to crime it is the worst of all. I think that I have seen enough now, Miss Stoner, and with your permission we shal"
+    },
+    {
+      "paragraph_id": "P0174",
+      "candidate_evidence": "I had never seen my friend’s face so grim or his brow so dark as it was when we turned from the scene of this investigation. We had walked several times up and down the lawn, neither Miss Stoner nor myself liking to brea"
+    },
+    {
+      "paragraph_id": "P0176",
+      "candidate_evidence": "“I shall most certainly do so.”"
+    },
+    {
+      "paragraph_id": "P0181",
+      "candidate_evidence": "“Yes, it must be so. Let me explain. I believe that that is the village inn over there?”"
+    },
+    {
+      "paragraph_id": "P0195",
+      "candidate_evidence": "“No, I do not think so. I think that there was probably some more tangible cause. And now, Miss Stoner, we must leave you for if Dr. Roylott returned and saw us our journey would be in vain. Good-bye, and be brave, for i"
+    },
+    {
+      "paragraph_id": "P0206",
+      "candidate_evidence": "“Yes, but I do not think that it is such a very unusual thing to have a small opening between two rooms. It was so small that a rat could hardly pass through.”"
+    },
+    {
+      "paragraph_id": "P0217",
+      "candidate_evidence": "“The lady could not move her bed. It must always be in the same relative position to the ventilator and to the rope—or so we may call it, since it was clearly never meant for a bell-pull.”"
+    },
+    {
+      "paragraph_id": "P0227",
+      "candidate_evidence": "I had forgotten the strange pets which the Doctor affected. There was a cheetah, too; perhaps we might find it upon our shoulders at any moment. I confess that I felt easier in my mind when, after following Holmes’ examp"
+    },
+    {
+      "paragraph_id": "P0239",
+      "candidate_evidence": "But I saw nothing. At the moment when Holmes struck the light I heard a low, clear whistle, but the sudden glare flashing into my weary eyes made it impossible for me to tell what it was at which my friend lashed so sava"
+    },
+    {
+      "paragraph_id": "P0250",
+      "candidate_evidence": "“I had come to these conclusions before ever I had entered his room. An inspection of his chair showed me that he had been in the habit of standing on it, which of course would be necessary in order that he should reach "
+    },
+    {
+      "paragraph_id": "P0252",
+      "candidate_evidence": "“And also with the result of causing it to turn upon its master at the other side. Some of the blows of my cane came home and roused its snakish temper, so that it flew upon the first person it saw. In this way I am no d"
+    }
+  ]
+}

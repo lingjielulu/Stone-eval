@@ -44,6 +44,8 @@ data/**
 !data/lexicons/ntusd/
 !data/lexicons/ntusd/positive_utf8.txt
 !data/lexicons/ntusd/negative_utf8.txt
+!data/foreshadow_causality_benchmark/
+!data/foreshadow_causality_benchmark/**
 !data/processed/
 !data/processed/ARCHIVE.md
 !data/processed/cfpg/
