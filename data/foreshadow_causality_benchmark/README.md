@@ -24,13 +24,15 @@ data/foreshadow_causality_benchmark/
 
 ## 当前样本
 
-第一批已落地三篇 MVP 样例：
+第一批已落地五篇样例：
 
 | story_id | 作品 | 来源 | 当前状态 |
 | --- | --- | --- | --- |
 | `speckled_band` | The Adventure of the Speckled Band | Project Gutenberg #1661 | 原文、规范化文本、样例标注 |
 | `necklace` | The Diamond Necklace | Project Gutenberg mirror #3090 | 原文、规范化文本、样例标注 |
 | `to_build_a_fire` | To Build a Fire | Project Gutenberg mirror #2429 | 原文、规范化文本、样例标注 |
+| `medicine` | 藥 | Wikisource | 原文 API、规范化文本、样例标注 |
+| `cricket` | 促織 | Wikisource | 原文 API、规范化文本、样例标注 |
 
 所有当前来源均按公版文本处理。`metadata.source_url` 记录了具体下载入口。
 
@@ -100,4 +102,4 @@ python data/foreshadow_causality_benchmark/scripts/validate_dataset.py
 - 叙事现实/不确定性建模：后续接入多版本叙事文本时，保留 disputed 或 symbolic 层级。
 - 长篇续写准备：追踪未回收伏笔、仍在推进的因果链，并约束续写不破坏既有结构。
 
-当前三篇标注是 seed gold，不是穷尽全量标注。建议后续每篇至少经过两轮人工复核：第一轮检查事件粒度和因果边，第二轮检查伏笔/payoff 边界和误导线索。
+当前五篇标注是 seed gold，不是穷尽全量标注。建议后续每篇至少经过两轮人工复核：第一轮检查事件粒度和因果边，第二轮检查伏笔/payoff 边界和误导线索。

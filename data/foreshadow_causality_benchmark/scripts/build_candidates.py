@@ -24,6 +24,10 @@ FORESHADOW_MARKERS = re.compile(
 )
 CAUSAL_MARKERS = re.compile(r"\b(because|therefore|so that|so|as a result|in order to|for this reason)\b", re.IGNORECASE)
 
+ZH_EVENT_MARKERS = re.compile(r"(死|殺|買|賣|喫|吃|走|問|說|聞|見|得|失|投井|進|獻|醒|化|咳|治|葬|祭)")
+ZH_FORESHADOW_MARKERS = re.compile(r"(藥|饅頭|人血|花環|烏鴉|促織|蟋蟀|巫|畫|宮中|征|井|魂|斗|雞)")
+ZH_CAUSAL_MARKERS = re.compile(r"(因|遂|乃|故|以|使|致|為|由是|所以|于是|於是)")
+
 
 def iter_paragraphs(path: Path):
     for block in path.read_text(encoding="utf-8").split("\n\n"):
@@ -50,11 +54,11 @@ def main() -> None:
     foreshadowing = []
     causal_hints = []
     for para_id, text in iter_paragraphs(story_path):
-        if EVENT_MARKERS.search(text):
+        if EVENT_MARKERS.search(text) or ZH_EVENT_MARKERS.search(text):
             events.append({"paragraph_id": para_id, "candidate_summary": text[:220]})
-        if FORESHADOW_MARKERS.search(text):
+        if FORESHADOW_MARKERS.search(text) or ZH_FORESHADOW_MARKERS.search(text):
             foreshadowing.append({"paragraph_id": para_id, "candidate_signal": text[:220]})
-        if CAUSAL_MARKERS.search(text):
+        if CAUSAL_MARKERS.search(text) or ZH_CAUSAL_MARKERS.search(text):
             causal_hints.append({"paragraph_id": para_id, "candidate_evidence": text[:220]})
 
     output = {
