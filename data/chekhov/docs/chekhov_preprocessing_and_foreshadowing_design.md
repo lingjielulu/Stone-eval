@@ -2,7 +2,7 @@
 
 ## Goal
 
-Build a reproducible Chekhov short-story corpus from `chekhov/chekhov_short_stories.txt`, then use that corpus as the base for later foreshadowing extraction, payoff matching, and cross-story statistical summaries.
+Build a reproducible Chekhov short-story corpus from `data/chekhov/chekhov_short_stories.txt`, then use that corpus as the base for later foreshadowing extraction, payoff matching, and cross-story statistical summaries.
 
 The preprocessing stage must be deterministic and auditable. Foreshadowing analysis can later add model-assisted annotation, but it should consume stable story IDs, canonical titles, text spans, and corpus manifests generated here.
 

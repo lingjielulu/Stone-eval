@@ -1,5 +1,5 @@
 {
-  "source": "Project Gutenberg #57333, local file chekhov/chekhov_short_stories.txt",
+  "source": "Project Gutenberg #57333, local file data/chekhov/chekhov_short_stories.txt",
   "preprocessing_script": "data/chekhov/scripts/preprocess_chekhov.py",
   "outputs": {
     "all_segments_jsonl": "data/chekhov/processed/stories_all.jsonl",
@@ -10,7 +10,7 @@
     "title_index_csv": "data/chekhov/processed/title_index.csv",
     "stats_json": "data/chekhov/processed/stats.json",
     "stats_report": "data/chekhov/reports/chekhov_normalized_stats.md",
-    "visual_analysis": "chekhov/chekhov_analysis.md"
+    "visual_analysis": "data/chekhov/reports/chekhov_analysis.md"
   },
   "policy": {
     "body_start": "last THE HORSE-STEALERS heading after contents/index",

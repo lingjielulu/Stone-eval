@@ -1108,7 +1108,7 @@ def write_visual_analysis(path: Path, stats_data: dict, records_canonical: list[
     report = f"""# 安东·契诃夫短篇小说 — 清洗后可视化分析
 
 **来源**: Project Gutenberg eBook #57333
-**原始文本**: `chekhov/chekhov_short_stories.txt`
+**原始文本**: `data/chekhov/chekhov_short_stories.txt`
 **清洗脚本**: `data/chekhov/scripts/preprocess_chekhov.py`
 **统计产物**: `data/chekhov/processed/stats.json`
 
@@ -1247,7 +1247,7 @@ def write_report(path: Path, stats_data: dict) -> None:
     ]
     report = f"""# 契诃夫规范化语料统计
 
-来源：`chekhov/chekhov_short_stories.txt`
+来源：`data/chekhov/chekhov_short_stories.txt`
 
 结论：清洗后用于统计和分析的小说数是 {stats_data["canonical_story_count"]} 篇 canonical 故事记录。`218` 是目录标题数，`213` 是正文检测到的故事段数。
 
@@ -1296,7 +1296,7 @@ def write_report(path: Path, stats_data: dict) -> None:
 
 def write_manifest(path: Path, stats_data: dict) -> None:
     manifest = {
-        "source": "Project Gutenberg #57333, local file chekhov/chekhov_short_stories.txt",
+        "source": "Project Gutenberg #57333, local file data/chekhov/chekhov_short_stories.txt",
         "preprocessing_script": "data/chekhov/scripts/preprocess_chekhov.py",
         "outputs": {
             "all_segments_jsonl": "data/chekhov/processed/stories_all.jsonl",
@@ -1307,7 +1307,7 @@ def write_manifest(path: Path, stats_data: dict) -> None:
             "title_index_csv": "data/chekhov/processed/title_index.csv",
             "stats_json": "data/chekhov/processed/stats.json",
             "stats_report": "data/chekhov/reports/chekhov_normalized_stats.md",
-            "visual_analysis": "chekhov/chekhov_analysis.md",
+            "visual_analysis": "data/chekhov/reports/chekhov_analysis.md",
         },
         "policy": {
             "body_start": "last THE HORSE-STEALERS heading after contents/index",
@@ -1348,7 +1348,7 @@ def preprocess(raw_path: Path, output_dir: Path) -> dict:
     )
     write_manifest(output_dir / "manifest.json", stats_data)
     write_report(output_dir.parent / "reports" / "chekhov_normalized_stats.md", stats_data)
-    write_visual_analysis(Path("chekhov/chekhov_analysis.md"), stats_data, records_canonical)
+    write_visual_analysis(Path("data/chekhov/reports/chekhov_analysis.md"), stats_data, records_canonical)
     return stats_data
 
 
@@ -1357,7 +1357,7 @@ def main() -> None:
     parser.add_argument(
         "--raw",
         type=Path,
-        default=Path("chekhov/chekhov_short_stories.txt"),
+        default=Path("data/chekhov/chekhov_short_stories.txt"),
     )
     parser.add_argument(
         "--output-dir",

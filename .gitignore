@@ -29,6 +29,7 @@ data/**
 !data/
 !data/README.md
 !data/chekhov/
+!data/chekhov/chekhov_short_stories.txt
 !data/chekhov/README.md
 !data/chekhov/docs/
 !data/chekhov/docs/chekhov_preprocessing_and_foreshadowing_design.md
@@ -37,6 +38,7 @@ data/**
 !data/chekhov/processed/stats.json
 !data/chekhov/processed/story_catalog.csv
 !data/chekhov/reports/
+!data/chekhov/reports/chekhov_analysis.md
 !data/chekhov/reports/chekhov_normalized_stats.md
 !data/chekhov/scripts/
 !data/chekhov/scripts/preprocess_chekhov.py

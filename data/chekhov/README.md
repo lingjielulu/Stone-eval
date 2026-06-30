@@ -6,7 +6,7 @@
 
 | 路径 | 用途 |
 |---|---|
-| `../../chekhov/chekhov_short_stories.txt` | 已纳入版本控制的 Project Gutenberg #57333 原始文本。 |
+| `chekhov_short_stories.txt` | 已纳入版本控制的 Project Gutenberg #57333 原始文本。 |
 | `scripts/preprocess_chekhov.py` | 基于规则的文本清洗和故事切分脚本。 |
 | `processed/stories_all.jsonl` | 所有检测到的故事段，包括重复译本或重复标题。 |
 | `processed/stories_canonical.jsonl` | 每个 canonical 标题保留一条记录，默认用于统计。 |
@@ -17,7 +17,7 @@
 | `processed/stats.json` | 机器可读的语料统计。 |
 | `processed/manifest.json` | 预处理策略、输出清单和审计摘要。 |
 | `reports/chekhov_normalized_stats.md` | 数据审计用的规范化语料统计报告。 |
-| `../../chekhov/chekhov_analysis.md` | 面向阅读和展示的下游可视化分析报告。 |
+| `reports/chekhov_analysis.md` | 面向阅读和展示的下游可视化分析报告。 |
 | `docs/chekhov_preprocessing_and_foreshadowing_design.md` | 预处理设计说明和后续伏笔统计方案。 |
 
 ## 重新生成
@@ -39,5 +39,5 @@ python data/chekhov/scripts/preprocess_chekhov.py
 
 | 报告 | 是否提交 | 用途 |
 |---|---|---|
-| `../../chekhov/chekhov_analysis.md` | 是 | 下游分析报告，给人阅读，展示清洗后的篇幅分布、主题词密度和后续伏笔统计入口。 |
+| `reports/chekhov_analysis.md` | 是 | 下游分析报告，给人阅读，展示清洗后的篇幅分布、主题词密度和后续伏笔统计入口。 |
 | `reports/chekhov_normalized_stats.md` | 是 | 清洗审计报告，给数据处理流程检查，集中记录切分数量、重复标题、未匹配标题和 Top 榜单。 |

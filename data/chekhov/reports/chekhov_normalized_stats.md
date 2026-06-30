@@ -1,6 +1,6 @@
 # 契诃夫规范化语料统计
 
-来源：`chekhov/chekhov_short_stories.txt`
+来源：`data/chekhov/chekhov_short_stories.txt`
 
 结论：清洗后用于统计和分析的小说数是 201 篇 canonical 故事记录。`218` 是目录标题数，`213` 是正文检测到的故事段数。
 
