@@ -23,8 +23,6 @@ outputs/*
 !outputs/cfpg/20260611_deepseek_honglou_original80/verification_report.json
 
 # Data
-data/gold/*.json
-data/prompts/*.json
 data/**
 !data/
 !data/README.md
