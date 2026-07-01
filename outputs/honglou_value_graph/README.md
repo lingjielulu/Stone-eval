@@ -12,13 +12,15 @@
 outputs/honglou_value_graph/
 ├── README.md                              # 本文件
 ├── honglou_structured_script.json         # 主体输出：结构化脚本 JSON
+├── honglou_value_graph_visualization.html # D3 交互式可视化
 └── generation_summary.json               # 生成摘要统计
 
 stone_eval/
 └── honglou_schema.py                     # 适配后的 Pydantic schema
 
 scripts/
-└── build_honglou_value_graph.py          # 生成脚本
+├── build_honglou_value_graph.py          # 生成结构化脚本
+└── render_honglou_value_graph_html.py    # 生成 D3 可视化 HTML
 
 documentations/
 └── value_transformation_deconstruction.md # 设计文档
@@ -89,6 +91,9 @@ python scripts/build_honglou_value_graph.py --force --skip-llm
 
 # 完整重新生成（需要 API key）
 python scripts/build_honglou_value_graph.py --force
+
+# 重新生成 D3 交互式可视化
+python scripts/render_honglou_value_graph_html.py
 ```
 
 ## 数据来源

@@ -163,8 +163,8 @@ class EndingNode:   # 结局指向
 ```
 outputs/honglou_value_graph/
 ├── honglou_structured_script.json    # 完整结构脚本
-├── honglou_visualization.html        # 可视化
-└── honglou_value_graph_report.md     # 生成报告
+├── honglou_value_graph_visualization.html # D3 交互式可视化
+└── generation_summary.json           # 生成摘要统计
 ```
 
 ## 六、使用场景

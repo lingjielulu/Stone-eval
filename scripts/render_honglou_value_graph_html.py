@@ -77,6 +77,7 @@ svg#main-svg { width: 100%; height: 100%; }
     <div id="detail"><em>点击节点查看详情</em></div>
   </div>
 </div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
 const data = __DATA__;
 
@@ -163,15 +164,21 @@ const nodeG = document.createElementNS("http://www.w3.org/2000/svg", "g");
 g.appendChild(nodeG);
 
 // Simulation
+function edgeEndpointId(endpoint) {
+  return endpoint && typeof endpoint === "object" ? endpoint.id : endpoint;
+}
+
+const validGraphEdges = graphEdges.filter(e => nodeMap[edgeEndpointId(e.source)] && nodeMap[edgeEndpointId(e.target)]);
+
 const simulation = d3.forceSimulation(graphNodes)
-  .force("link", d3.forceLink(graphEdges).id(d => d.id).distance(180))
+  .force("link", d3.forceLink(validGraphEdges).id(d => d.id).distance(180))
   .force("charge", d3.forceManyBody().strength(-500))
   .force("center", d3.forceCenter(500, 400))
   .force("collide", d3.forceCollide(60))
   .force("y", d3.forceY(450).strength(0.03));
 
 const link = d3.select(edgeG).selectAll("path")
-  .data(graphEdges.filter(e => nodeMap[e.source] && nodeMap[e.target]))
+  .data(validGraphEdges)
   .join("path")
   .attr("class", d => d.type === "foreshadow" ? "ft-edge" : "")
   .attr("fill", "none")
@@ -299,7 +306,6 @@ window.addEventListener("resize", () => {
   simulation.alpha(0.1).restart();
 });
 </script>
-<script src="https://d3js.org/d3.v7.min.js"></script>
 </body>
 </html>"""
 
