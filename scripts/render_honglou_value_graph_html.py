@@ -30,7 +30,8 @@ body {
   background: #fafafa; overflow: hidden; width: 100vw; height: 100vh;
 }
 #app { display: flex; width: 100%; height: 100%; }
-#graph-panel { flex: 1; position: relative; }
+#graph-panel { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+#graph-canvas { flex: 1; min-height: 0; position: relative; }
 svg#main-svg { width: 100%; height: 100%; }
 #sidebar { width: 336px; min-width: 280px; border-left: 1px solid #ddd; overflow-y: auto; padding: 16px 14px; background: #fff; }
 #sidebar h2 { font-size: 17px; color: #263238; margin-bottom: 6px; }
@@ -50,6 +51,17 @@ svg#main-svg { width: 100%; height: 100%; }
 #controls button:hover { background: #f5f5f5; }
 #search { position: absolute; left: 12px; top: 12px; }
 #search input { padding: 4px 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; font-size: 12px; }
+#panel-resizer { height: 8px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; background: #eceff1; cursor: row-resize; flex: 0 0 auto; }
+#panel-resizer:hover { background: #cfd8dc; }
+#foreshadow-panel { height: 300px; min-height: 120px; max-height: 70vh; background: #fff; padding: 10px 14px; overflow: hidden; display: flex; flex-direction: column; }
+#foreshadow-panel h3 { font-size: 13px; color: #263238; margin-bottom: 6px; }
+#foreshadow-list { flex: 1; min-height: 0; overflow-y: auto; padding-right: 6px; }
+.foreshadow-item { padding: 7px 0; border-bottom: 1px solid #eee; font-size: 11px; line-height: 1.55; color: #37474f; }
+.foreshadow-item .meta { color: #78909c; font-family: Consolas, "SFMono-Regular", monospace; }
+.foreshadow-item .stage { margin-top: 2px; }
+.foreshadow-item .stage-label { display: inline-block; min-width: 48px; font-weight: 700; color: #546e7a; }
+.foreshadow-item .trigger .stage-label { color: #fb8c00; }
+.foreshadow-item .payoff .stage-label { color: #e91e63; }
 .edge-label { font-size: 9px; fill: #90a4ae; pointer-events: none; }
 .ft-edge { stroke-dasharray: 5,3; }
 .tooltip { position: absolute; pointer-events: none; padding: 6px 8px; background: rgba(33,33,33,.88); color: #fff; border-radius: 4px; font-size: 11px; max-width: 240px; line-height: 1.4; display: none; z-index: 10; }
@@ -58,15 +70,22 @@ svg#main-svg { width: 100%; height: 100%; }
 <body>
 <div id="app">
   <div id="graph-panel">
-    <svg id="main-svg"></svg>
-    <div id="search"><input type="text" placeholder="搜索场景…" id="search-input"></div>
-    <div id="controls">
-      <button onclick="zoomIn()">＋</button>
-      <button onclick="zoomOut()">－</button>
-      <button onclick="zoomReset()">重置</button>
+    <div id="graph-canvas">
+      <svg id="main-svg"></svg>
+      <div id="search"><input type="text" placeholder="搜索场景…" id="search-input"></div>
+      <div id="controls">
+        <button onclick="zoomIn()">＋</button>
+        <button onclick="zoomOut()">－</button>
+        <button onclick="zoomReset()">重置</button>
+      </div>
+      <div id="legend">__LEGEND__</div>
+      <div class="tooltip" id="tooltip"></div>
     </div>
-    <div id="legend">__LEGEND__</div>
-    <div class="tooltip" id="tooltip"></div>
+    <div id="panel-resizer" title="拖拽调整伏笔列表高度"></div>
+    <div id="foreshadow-panel">
+      <h3>伏笔 - Trigger - 回收列表（全部 30 条）</h3>
+      <div id="foreshadow-list"></div>
+    </div>
   </div>
   <div id="sidebar">
     <h2>红楼梦 · 价值转化图</h2>
@@ -195,8 +214,8 @@ for (const n of graphNodes) {
 
 // D3 setup
 const svg = document.getElementById("main-svg");
-const width = () => document.getElementById("graph-panel").clientWidth;
-const height = () => document.getElementById("graph-panel").clientHeight;
+const width = () => document.getElementById("graph-canvas").clientWidth;
+const height = () => document.getElementById("graph-canvas").clientHeight;
 svg.setAttribute("viewBox", `0 0 1200 900`);
 
 const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -364,6 +383,83 @@ document.getElementById("search-input").addEventListener("input", function() {
 window.addEventListener("resize", () => {
   simulation.alpha(0.1).restart();
 });
+
+function shortText(value, maxLength = 96) {
+  const text = String(value || "").trim();
+  return text.length > maxLength ? text.slice(0, maxLength - 1) + "…" : text;
+}
+
+function appendStage(parent, className, label, text) {
+  const line = document.createElement("div");
+  line.className = `stage ${className}`;
+  const stageLabel = document.createElement("span");
+  stageLabel.className = "stage-label";
+  stageLabel.textContent = label;
+  line.appendChild(stageLabel);
+  line.append(text);
+  parent.appendChild(line);
+}
+
+function renderForeshadowList() {
+  const list = document.getElementById("foreshadow-list");
+  const rows = data.foreshadow_lines || [];
+  for (const row of rows) {
+    const item = document.createElement("div");
+    item.className = "foreshadow-item";
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    const fChapter = row.foreshadow && row.foreshadow.chapter_index ? `第${row.foreshadow.chapter_index}回` : "伏笔";
+    const tChapter = row.trigger && row.trigger.chapter_index ? `第${row.trigger.chapter_index}回` : "Trigger";
+    const pChapter = row.payoff && row.payoff.chapter_index ? `第${row.payoff.chapter_index}回` : "回收";
+    const distance = row.distance_chapters !== undefined ? ` · 间隔${row.distance_chapters}回` : "";
+    meta.textContent = `${row.id} · ${fChapter} → ${tChapter} → ${pChapter}${distance}`;
+
+    const foreshadow = shortText(row.foreshadow && (row.foreshadow.description || row.foreshadow.text));
+    const trigger = shortText(row.trigger && row.trigger.description);
+    const payoff = shortText(row.payoff && (row.payoff.description || row.payoff.text));
+
+    item.appendChild(meta);
+    appendStage(item, "foreshadow", "伏笔", foreshadow);
+    appendStage(item, "trigger", "Trigger", trigger);
+    appendStage(item, "payoff", "回收", payoff);
+    list.appendChild(item);
+  }
+}
+
+function setupPanelResizer() {
+  const resizer = document.getElementById("panel-resizer");
+  const panel = document.getElementById("foreshadow-panel");
+  const graphPanel = document.getElementById("graph-panel");
+  let startY = 0;
+  let startHeight = 0;
+  let dragging = false;
+
+  resizer.addEventListener("mousedown", (event) => {
+    dragging = true;
+    startY = event.clientY;
+    startHeight = panel.getBoundingClientRect().height;
+    document.body.style.cursor = "row-resize";
+    document.body.style.userSelect = "none";
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    if (!dragging) return;
+    const available = graphPanel.getBoundingClientRect().height;
+    const nextHeight = Math.max(120, Math.min(available * 0.7, startHeight - (event.clientY - startY)));
+    panel.style.height = `${nextHeight}px`;
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
+  });
+}
+
+renderForeshadowList();
+setupPanelResizer();
 </script>
 </body>
 </html>"""
