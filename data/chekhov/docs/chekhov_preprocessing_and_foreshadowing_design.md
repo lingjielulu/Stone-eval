@@ -1,155 +1,155 @@
-# Chekhov Corpus Preprocessing and Foreshadowing Design
+# 契诃夫语料预处理与伏笔分析设计
 
-## Goal
+## 目标
 
-Build a reproducible Chekhov short-story corpus from `data/chekhov/chekhov_short_stories.txt`, then use that corpus as the base for later foreshadowing extraction, payoff matching, and cross-story statistical summaries.
+基于 `data/chekhov/chekhov_short_stories.txt` 构建一个可复现的契诃夫短篇小说语料库，并将该语料库作为后续伏笔提取、回收匹配和跨作品统计汇总的基础。
 
-The preprocessing stage must be deterministic and auditable. Foreshadowing analysis can later add model-assisted annotation, but it should consume stable story IDs, canonical titles, text spans, and corpus manifests generated here.
+预处理阶段必须是确定性的、可审计的。伏笔分析阶段之后可以加入模型辅助标注，但它应当消费这里生成的稳定故事 ID、规范标题、文本 span 和语料 manifest。
 
-## Source Characteristics
+## 来源特征
 
-The source is Project Gutenberg #57333, a compiled text rather than one file per story. It contains:
+源文本来自 Project Gutenberg #57333，是一个汇编文本，而不是每篇故事一个独立文件。它包含：
 
-| Region | Treatment |
+| 区域 | 处理方式 |
 |---|---|
-| Gutenberg metadata | Excluded from story corpus. |
-| `CONTENTS OF EACH BOOK` | Used as title catalog. |
-| `IN ALPHABETICAL ORDER` index | Excluded from story corpus. |
-| Story body region | Starts at the final `THE HORSE-STEALERS` heading after the indexes. |
-| Mixed anthology entries | Kept only if a body heading is detected; non-Chekhov catalog-only entries remain unmatched. |
+| Gutenberg 元数据 | 从故事语料中排除。 |
+| `CONTENTS OF EACH BOOK` | 用作标题目录。 |
+| `IN ALPHABETICAL ORDER` 索引 | 从故事语料中排除。 |
+| 故事正文区域 | 从索引之后最后一个 `THE HORSE-STEALERS` 标题开始。 |
+| 混合选集条目 | 只有检测到正文标题时才保留；仅出现在目录中的非契诃夫条目保持 unmatched。 |
 
-The source has repeated translations and layout defects. Examples include:
+源文本存在重复译本和排版缺陷。例如：
 
-| Defect | Handling |
+| 缺陷 | 处理方式 |
 |---|---|
-| Duplicate titles such as `THE BET`, `TYPHUS`, `ENEMIES` | Preserve all in `stories_all`; select longest segment for `stories_canonical`. |
-| Alias spelling `GOUSSIEV` vs `GUSEV` | Normalize canonical title to `GUSEV`; keep original title in each record. |
-| Run-in headings such as `... human language. MY LIFE` | Insert a story boundary before splitting. |
-| Headings and first body line on the same line such as `JOY IT was...` | Split into heading + body line when preceded by a blank line. |
-| Wrapped heading `THE LADY WITH THE TOY / DOG` | Repair before boundary detection. |
+| `THE BET`、`TYPHUS`、`ENEMIES` 等重复标题 | 全部保存在 `stories_all`；在 `stories_canonical` 中选择最长片段。 |
+| `GOUSSIEV` 与 `GUSEV` 的别名拼写 | 规范标题归一为 `GUSEV`；每条记录保留原始标题。 |
+| `... human language. MY LIFE` 这类正文粘连标题 | 在切分前插入故事边界。 |
+| `JOY IT was...` 这类标题和正文首行同处一行 | 当前面有空行时，拆成标题行和正文行。 |
+| `THE LADY WITH THE TOY / DOG` 这类换行标题 | 在边界检测前修复。 |
 
-## Current Pipeline
+## 当前流水线
 
-Script: `data/chekhov/scripts/preprocess_chekhov.py`
+脚本：`data/chekhov/scripts/preprocess_chekhov.py`
 
-1. Normalize newlines and strip trailing whitespace.
-2. Parse ordered title candidates from `CONTENTS OF EACH BOOK`.
-3. Locate story-body start at the final `THE HORSE-STEALERS` heading.
-4. Repair known and generic run-in heading defects.
-5. Detect story boundaries from catalog titles, with support for subtitles and roman numerals.
-6. Normalize story text:
-   - dehyphenate line-break splits such as `snow-\nstorm`;
-   - merge physical lines inside paragraphs;
-   - preserve paragraph breaks.
-7. Emit all detected segments and a canonical corpus.
-8. Generate statistics, duplicate-title index, and manifest.
+1. 归一化换行符并去除行尾空白。
+2. 从 `CONTENTS OF EACH BOOK` 中解析有序标题候选。
+3. 在最后一个 `THE HORSE-STEALERS` 标题处定位故事正文起点。
+4. 修复已知和通用的标题粘连缺陷。
+5. 根据目录标题检测故事边界，支持副标题和罗马数字章节。
+6. 归一化故事文本：
+   - 修复 `snow-\nstorm` 这类跨行断词；
+   - 合并段落内部的物理换行；
+   - 保留段落分隔。
+7. 输出全部检测片段和规范语料。
+8. 生成统计信息、重复标题索引和 manifest。
 
-## Output Schema
+## 输出 Schema
 
-Each JSONL record has:
+每条 JSONL 记录包含：
 
-| Field | Meaning |
+| 字段 | 含义 |
 |---|---|
-| `story_id` | Stable slug plus duplicate occurrence number. |
-| `source_order` | Order of detected segment in the body text. |
-| `occurrence` | Occurrence count for the canonical title. |
-| `title` | Matched source title. |
-| `canonical_title` | Normalized title used for grouping. |
-| `heading_line` | Original detected heading line after repairs. |
-| `source_start_line`, `source_end_line` | Line range in the repaired body-region coordinate system. |
-| `word_count`, `paragraph_count`, `chapter_count`, `char_count` | Basic length features. |
-| `sha256_12` | Short hash of normalized story text. |
-| `quality_flags` | Duplicate, alias, or layout-sensitive markers. |
-| `text` | Normalized story text. |
+| `story_id` | 稳定 slug 加重复出现序号。 |
+| `source_order` | 在正文中检测到的片段顺序。 |
+| `occurrence` | 该规范标题的出现次数。 |
+| `title` | 匹配到的源标题。 |
+| `canonical_title` | 用于分组的归一化标题。 |
+| `heading_line` | 修复后的原始检测标题行。 |
+| `source_start_line`, `source_end_line` | 修复后正文区域坐标系中的行号范围。 |
+| `word_count`, `paragraph_count`, `chapter_count`, `char_count` | 基础长度特征。 |
+| `sha256_12` | 规范化故事文本的短哈希。 |
+| `quality_flags` | 重复、别名或排版敏感标记。 |
+| `text` | 规范化后的故事文本。 |
 
-## Current Corpus Statistics
+## 当前语料统计
 
-Generated by the current script:
+由当前脚本生成：
 
-| Metric | Value |
+| 指标 | 数值 |
 |---|---:|
-| Parsed catalog titles | 218 |
-| Detected story segments | 213 |
-| Canonical story records | 201 |
-| Canonical total words | 845,027 |
-| Median words per story | 2,242 |
-| Duplicate canonical titles | 12 |
-| Unmatched catalog titles | 16 |
+| 已解析目录标题 | 218 |
+| 已检测故事片段 | 213 |
+| 规范故事记录 | 201 |
+| 规范语料总词数 | 845,027 |
+| 每篇故事词数中位数 | 2,242 |
+| 重复规范标题 | 12 |
+| 未匹配目录标题 | 16 |
 
-The 16 unmatched catalog titles are retained in `processed/manifest.json`; they are mostly non-Chekhov anthology entries listed in the source contents but not emitted as Chekhov story bodies by this splitter.
+这 16 个未匹配目录标题保留在 `processed/manifest.json` 中；它们大多是源目录列出的非契诃夫选集条目，但该切分器没有将其输出为契诃夫故事正文。
 
-## Foreshadowing Analysis Requirements
+## 伏笔分析需求
 
-The next stage should identify not only isolated foreshadowing candidates but also their later payoff or non-payoff status. A useful unit is a setup-payoff pair.
+下一阶段不仅要识别孤立的伏笔候选，还应识别它们后续是否被回收，以及如何回收。一个有用的基本单位是 setup-payoff pair（铺垫-回收对）。
 
-Proposed record schema:
+建议记录 schema：
 
-| Field | Meaning |
+| 字段 | 含义 |
 |---|---|
-| `foreshadow_id` | Stable ID: story ID plus local sequence number. |
-| `story_id`, `canonical_title` | Link to normalized corpus. |
-| `setup_text` | Short evidence quote or paraphrased span for the setup. |
-| `setup_location` | Paragraph index, sentence index, and optional character offsets. |
-| `payoff_text` | Evidence span for resolution; nullable for unresolved signals. |
-| `payoff_location` | Paragraph/sentence/offset location; nullable. |
-| `signal_type` | Object, prophecy, warning, repeated motif, ironic contrast, character secret, environmental omen, dialogue clue, structural parallel. |
-| `payoff_type` | Literal fulfillment, ironic inversion, delayed reveal, thematic echo, false lead, unresolved. |
-| `confidence` | 0-1 confidence or ordinal label. |
-| `explanation` | One concise rationale for why setup and payoff are linked. |
-| `characters` | Character names involved, if detectable. |
-| `motifs` | Repeated objects, phrases, places, illnesses, debts, letters, weather signs, or social cues. |
-| `evidence_policy` | Whether evidence was rule-based, model-assisted, or human-verified. |
+| `foreshadow_id` | 稳定 ID：故事 ID 加局部序号。 |
+| `story_id`, `canonical_title` | 关联到规范化语料。 |
+| `setup_text` | setup 的短证据引文或释义 span。 |
+| `setup_location` | 段落索引、句子索引，以及可选字符偏移。 |
+| `payoff_text` | 回收证据 span；未回收信号可为空。 |
+| `payoff_location` | 段落、句子、偏移位置；可为空。 |
+| `signal_type` | 物件、预言、警告、重复母题、反讽对照、人物秘密、环境征兆、对话线索、结构平行。 |
+| `payoff_type` | 字面应验、反讽倒置、延迟揭示、主题回响、误导线索、未回收。 |
+| `confidence` | 0-1 置信度或序数标签。 |
+| `explanation` | 一句简洁说明：为什么认为 setup 和 payoff 相关。 |
+| `characters` | 涉及的人物名；如果可检测。 |
+| `motifs` | 重复出现的物件、短语、地点、疾病、债务、信件、天气征兆或社会线索。 |
+| `evidence_policy` | 证据来源：规则生成、模型辅助或人工验证。 |
 
-## Foreshadowing Pipeline Proposal
+## 伏笔流水线建议
 
-1. **Sentence and paragraph indexing**
-   - Add a deterministic sentence splitter for English prose.
-   - Emit `processed/story_units.jsonl` with paragraph and sentence IDs.
+1. **句子与段落索引**
+   - 增加确定性的英文散文句子切分器。
+   - 输出 `processed/story_units.jsonl`，包含段落 ID 和句子 ID。
 
-2. **Candidate setup extraction**
-   - Rule-based first pass:
-     - salient objects introduced early;
-     - warnings, vows, predictions, dreams, letters, debts, illnesses, weapons, travel plans;
-     - repeated unusual phrases or images;
-     - first-third details that recur in the final third.
-   - Optional LLM pass:
-     - constrained JSON output;
-     - evidence spans must quote or point to existing sentence IDs;
-     - no free-floating interpretation without source anchors.
+2. **setup 候选提取**
+   - 规则优先的第一遍：
+     - 早期引入的显著物件；
+     - 警告、誓言、预言、梦、信件、债务、疾病、武器、旅行计划；
+     - 重复出现的异常短语或意象；
+     - 前三分之一出现、后三分之一复现的细节。
+   - 可选 LLM 步骤：
+     - 输出受约束的 JSON；
+     - 证据 span 必须引用或指向已有句子 ID；
+     - 不允许没有来源锚点的自由解释。
 
-3. **Payoff matching**
-   - Search later story units for lexical recurrence, entity recurrence, semantic recurrence, or reversal.
-   - Enforce chronology: payoff must occur after setup.
-   - Allow unresolved setups but mark them explicitly.
+3. **payoff 匹配**
+   - 在后续故事单元中搜索词汇复现、实体复现、语义复现或反转。
+   - 强制时间顺序：payoff 必须发生在 setup 之后。
+   - 允许未回收 setup，但必须显式标记。
 
-4. **Verification**
-   - Reject pairs where setup/payoff evidence is too generic.
-   - Require at least one concrete shared anchor: object, phrase, character, event, place, or motif.
-   - Store uncertain cases with lower confidence instead of discarding them silently.
+4. **验证**
+   - 拒绝 setup/payoff 证据过于泛化的配对。
+   - 至少要求一个具体共享锚点：物件、短语、人物、事件、地点或母题。
+   - 不静默丢弃不确定案例，而是以较低置信度保存。
 
-5. **Statistics and summaries**
-   - Per-story counts: setup count, resolved count, unresolved count, setup-payoff distance.
-   - By length bucket: foreshadow density per 1,000 words.
-   - By signal type: object clues vs dialogue warnings vs motif echoes.
-   - By payoff type: literal, ironic, thematic, false lead.
-   - Cross-story summaries: common Chekhov foreshadowing mechanisms.
+5. **统计与摘要**
+   - 按故事统计：setup 数、已回收数、未回收数、setup-payoff 距离。
+   - 按长度桶统计：每 1,000 词的伏笔密度。
+   - 按 signal type 统计：物件线索、对话警告、母题回响等。
+   - 按 payoff type 统计：字面、反讽、主题、误导。
+   - 跨故事汇总：契诃夫常见的伏笔机制。
 
-## Recommended Future Files
+## 建议后续文件
 
-| Path | Purpose |
+| 路径 | 用途 |
 |---|---|
-| `scripts/index_story_units.py` | Paragraph/sentence indexing for canonical corpus. |
-| `scripts/extract_foreshadowing.py` | Rule-based and optional model-assisted candidate extraction. |
-| `processed/story_units.jsonl` | Indexed sentences and paragraphs. |
-| `processed/foreshadow_candidates.jsonl` | Raw setup candidates. |
-| `processed/foreshadow_pairs.jsonl` | Setup-payoff pairs after matching. |
-| `reports/chekhov_foreshadowing_stats.md` | Human-readable foreshadowing summary. |
+| `scripts/index_story_units.py` | 为规范语料建立段落/句子索引。 |
+| `scripts/extract_foreshadowing.py` | 基于规则和可选模型辅助的候选提取。 |
+| `processed/story_units.jsonl` | 已索引的句子和段落。 |
+| `processed/foreshadow_candidates.jsonl` | 原始 setup 候选。 |
+| `processed/foreshadow_pairs.jsonl` | 匹配后的 setup-payoff 对。 |
+| `reports/chekhov_foreshadowing_stats.md` | 面向人工阅读的伏笔统计摘要。 |
 
-## Open Decisions
+## 待决策项
 
-| Decision | Default Recommendation |
+| 决策 | 默认建议 |
 |---|---|
-| Duplicate translations | Use `stories_canonical` for aggregate statistics; inspect `stories_all` for translation comparison. |
-| Evidence granularity | Sentence IDs first; add character offsets only when needed. |
-| LLM usage | Use only after deterministic candidate generation; require sentence-ID evidence. |
-| Human review | Review high-impact long stories first: `THE DUEL`, `THE STEPPE`, `MY LIFE`, `WARD NO. 6`, `IN THE RAVINE`. |
+| 重复译本 | 聚合统计使用 `stories_canonical`；翻译对比时检查 `stories_all`。 |
+| 证据粒度 | 先使用句子 ID；只有需要时再增加字符偏移。 |
+| LLM 使用方式 | 仅在确定性候选生成之后使用；必须要求句子 ID 证据。 |
+| 人工审核 | 优先审核影响较大的长篇：`THE DUEL`、`THE STEPPE`、`MY LIFE`、`WARD NO. 6`、`IN THE RAVINE`。 |

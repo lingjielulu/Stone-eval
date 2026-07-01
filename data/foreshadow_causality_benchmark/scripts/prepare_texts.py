@@ -69,6 +69,55 @@ STORIES = [
         title="促織",
         source_format="wikisource_revisions_wikitext",
     ),
+    StorySpec(
+        story_id="red_headed_league",
+        raw_file="gutenberg_1661_adventures_of_sherlock_holmes.txt",
+        start_pattern=r"^II\. THE RED-HEADED LEAGUE\s*$",
+        end_pattern=r"^III\. A CASE OF IDENTITY\s*$",
+        title="THE RED-HEADED LEAGUE",
+        min_line=1000,
+    ),
+    StorySpec(
+        story_id="gift_of_the_magi",
+        raw_file="gutenberg_7256_gift_of_the_magi.txt",
+        start_pattern=r"^The Gift of the Magi\s*$",
+        end_pattern=r"^\*\*\* END OF THE PROJECT GUTENBERG",
+        title="THE GIFT OF THE MAGI",
+    ),
+    StorySpec(
+        story_id="last_leaf",
+        raw_file="gutenberg_3707_trimmed_lamp.txt",
+        start_pattern=r"^THE LAST LEAF\.?\s*$",
+        end_pattern=r"^THE COUNT AND THE WEDDING GUEST\.?\s*$",
+        title="THE LAST LEAF",
+        min_line=5000,
+    ),
+    StorySpec(
+        story_id="tell_tale_heart",
+        raw_file="gutenberg_2148_poe_vol2.txt",
+        start_pattern=r"^THE TELL-TALE HEART\.?\s*$",
+        end_pattern=r"^BERENICE\.?\s*$",
+        title="THE TELL-TALE HEART",
+        min_line=5000,
+        ensure_title_heading=True,
+    ),
+    StorySpec(
+        story_id="cask_of_amontillado",
+        raw_file="gutenberg_2148_poe_vol2.txt",
+        start_pattern=r"^THE CASK OF AMONTILLADO\.?\s*$",
+        end_pattern=r"^THE IMP OF THE PERVERSE\.?\s*$",
+        title="THE CASK OF AMONTILLADO",
+        min_line=100,
+        ensure_title_heading=True,
+    ),
+    StorySpec(
+        story_id="rashomon",
+        raw_file="aozora_rashomon.txt",
+        start_pattern=r"^羅生門\s*$",
+        end_pattern=r"^底本：",
+        title="羅生門",
+        source_format="aozora_plain",
+    ),
 ]
 
 
@@ -95,7 +144,7 @@ def strip_html_to_text(markup: str) -> str:
 
 def read_source(path: Path, source_format: str) -> str:
     raw_text = read_text(path)
-    if source_format == "plain":
+    if source_format == "plain" or source_format == "aozora_plain":
         return raw_text
 
     data = json.loads(raw_text)
@@ -140,7 +189,8 @@ def normalize(text: str, title: str, ensure_title_heading: bool = False) -> str:
     for para in paragraphs:
         lines = [line.strip() for line in para.split("\n") if line.strip()]
         merged = " ".join(lines)
-        if merged.upper() == title.upper():
+        if (merged.upper().rstrip(".") == title.upper().rstrip(".")
+                or merged.upper() == title.upper()):
             cleaned.append(f"# {title.title()}")
         elif re.fullmatch(r"\d+", merged):
             continue

@@ -14,6 +14,8 @@
 data/foreshadow_causality_benchmark/
   raw_texts/             # 下载的公版原始文本或 API 返回
   normalized_texts/      # 切出单篇后的 UTF-8 段落编号文本
+  raw_texts_zh/          # 中文译文原始文本；来源授权状态在审计文件中逐条标注
+  normalized_texts_zh/   # 中文译文清洗结果；授权不明来源仅用于内部比对
   annotations/           # 人工校正后的 YAML 标注
   annotations/candidates/# 弱规则生成的候选事件/伏笔/因果提示
   schemas/               # JSON Schema
@@ -24,17 +26,39 @@ data/foreshadow_causality_benchmark/
 
 ## 当前样本
 
-第一批已落地五篇样例：
+核心 10 篇候选已全部落地。《摸彩》(The Lottery) 仍处版权保护，以 Phase 2 的《最后一片叶子》、《罗生门》补位：
 
-| story_id | 作品 | 来源 | 当前状态 |
-| --- | --- | --- | --- |
-| `speckled_band` | The Adventure of the Speckled Band | Project Gutenberg #1661 | 原文、规范化文本、样例标注 |
-| `necklace` | The Diamond Necklace | Project Gutenberg mirror #3090 | 原文、规范化文本、样例标注 |
-| `to_build_a_fire` | To Build a Fire | Project Gutenberg mirror #2429 | 原文、规范化文本、样例标注 |
-| `medicine` | 藥 | Wikisource | 原文 API、规范化文本、样例标注 |
-| `cricket` | 促織 | Wikisource | 原文 API、规范化文本、样例标注 |
+| story_id | 作品 | 语言 | 来源 | 当前状态 |
+| --- | --- | --- | --- | --- |
+| `speckled_band` | The Adventure of the Speckled Band | EN | Project Gutenberg #1661 | 原文、规范化文本、样例标注 |
+| `red_headed_league` | The Red-Headed League | EN | Project Gutenberg #1661 | 原文、规范化文本 |
+| `necklace` | The Diamond Necklace | EN | Project Gutenberg #3090 | 原文、规范化文本、样例标注 |
+| `gift_of_the_magi` | The Gift of the Magi | EN | Project Gutenberg #7256 | 原文、规范化文本 |
+| `last_leaf` | The Last Leaf | EN | Project Gutenberg #3707 | 原文、规范化文本 |
+| `tell_tale_heart` | The Tell-Tale Heart | EN | Project Gutenberg #2148 | 原文、规范化文本 |
+| `cask_of_amontillado` | The Cask of Amontillado | EN | Project Gutenberg #2148 | 原文、规范化文本 |
+| `to_build_a_fire` | To Build a Fire | EN | Project Gutenberg #2429 | 原文、规范化文本、样例标注 |
+| `medicine` | 藥 | ZH | Wikisource | 原文 API、规范化文本、样例标注 |
+| `cricket` | 促織 | ZH | Wikisource | 原文 API、规范化文本、样例标注 |
+| `rashomon` | 羅生門 | JA | 青空文庫 (aozora.gr.jp) | 原文、规范化文本 |
 
-所有当前来源均按公版文本处理。`metadata.source_url` 记录了具体下载入口。
+所有当前原文来源均按公版文本处理。`metadata.source_url` 记录了具体下载入口。
+
+8 篇非中文原文已补齐中文译文清洗文件，位于 `normalized_texts_zh/`。这些译文来自中文网站转载，译者和授权状态未逐篇确认；`docs/chinese_translation_audit.json` 记录了每个来源 URL、抽取格式和 `license_note`。在公开发布或引用译文正文前，需要替换为公版/授权译本或完成版权核验。
+
+当前中文译文来源概览：
+
+| story_id | 中文题名 | 中文来源状态 |
+| --- | --- | --- |
+| `speckled_band` | 斑点带子案 | 名著小说网转载；授权未确认 |
+| `red_headed_league` | 红发会 | 名著小说网转载；授权未确认 |
+| `necklace` | 项链 | 可阅文学网转载；授权未确认 |
+| `gift_of_the_magi` | 麦琪的礼物 | 可阅文学网转载；授权未确认 |
+| `last_leaf` | 最后一片叶子 | 中华典藏网转载；授权未确认 |
+| `tell_tale_heart` | 泄密的心 | chinesebooks.github.io 转载；授权未确认 |
+| `cask_of_amontillado` | 一桶白葡萄酒 | 搜狐文章转载；授权未确认 |
+| `to_build_a_fire` | 生火 | 简书译文；授权未确认 |
+
 
 ## 数据集设计
 

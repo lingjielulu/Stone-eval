@@ -1,0 +1,285 @@
+{
+  "policy": "Chinese translation sources are recorded with source-level license notes. Public-domain/open-license sources are preferred; web reposts without clear translator/license metadata are flagged for internal comparison only.",
+  "stories": [
+    {
+      "story_id": "speckled_band",
+      "zh_title": "斑点带子案",
+      "original_title": "The Adventure of the Speckled Band",
+      "author": "Arthur Conan Doyle",
+      "original_language": "en",
+      "configured_sources": [
+        {
+          "source_id": "mingzhuxiaoshuo_7100",
+          "url": "https://www.mingzhuxiaoshuo.com/waiguo/79/7100.Html",
+          "source_format": "mingzhuxiaoshuo_content_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": "Avoid jingdianbook mirror because several characters are rendered as images."
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "斑點帶子案",
+          "matches": []
+        },
+        {
+          "term": "斑点带子案",
+          "matches": []
+        },
+        {
+          "term": "帶斑點的帶子",
+          "matches": []
+        },
+        {
+          "term": "带斑点的带子",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    },
+    {
+      "story_id": "red_headed_league",
+      "zh_title": "红发会",
+      "original_title": "The Red-Headed League",
+      "author": "Arthur Conan Doyle",
+      "original_language": "en",
+      "configured_sources": [
+        {
+          "source_id": "mingzhuxiaoshuo_7094",
+          "url": "https://www.mingzhuxiaoshuo.com/waiguo/79/7094.Html",
+          "source_format": "mingzhuxiaoshuo_content_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": ""
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "紅髮會",
+          "matches": []
+        },
+        {
+          "term": "红发会",
+          "matches": []
+        },
+        {
+          "term": "紅髮俱樂部",
+          "matches": []
+        },
+        {
+          "term": "红发案",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    },
+    {
+      "story_id": "necklace",
+      "zh_title": "项链",
+      "original_title": "The Diamond Necklace",
+      "author": "Guy de Maupassant",
+      "original_language": "fr",
+      "configured_sources": [
+        {
+          "source_id": "kepub_41498",
+          "url": "https://www.kepub.net/book/41498",
+          "source_format": "kepub_reader_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": ""
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "項鏈 莫泊桑",
+          "matches": []
+        },
+        {
+          "term": "项链 莫泊桑",
+          "matches": []
+        },
+        {
+          "term": "首飾 莫泊桑",
+          "matches": []
+        },
+        {
+          "term": "La Parure 中文",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    },
+    {
+      "story_id": "gift_of_the_magi",
+      "zh_title": "麦琪的礼物",
+      "original_title": "The Gift of the Magi",
+      "author": "O. Henry",
+      "original_language": "en",
+      "configured_sources": [
+        {
+          "source_id": "kepub_40005",
+          "url": "https://www.kepub.net/book/40005",
+          "source_format": "kepub_reader_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": ""
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "麥琪的禮物",
+          "matches": []
+        },
+        {
+          "term": "麦琪的礼物",
+          "matches": []
+        },
+        {
+          "term": "聖賢的禮物",
+          "matches": []
+        },
+        {
+          "term": "贤者的礼物",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    },
+    {
+      "story_id": "last_leaf",
+      "zh_title": "最后一片叶子",
+      "original_title": "The Last Leaf",
+      "author": "O. Henry",
+      "original_language": "en",
+      "configured_sources": [
+        {
+          "source_id": "diancangwang_bb22af752244",
+          "url": "https://www.diancangwang.cn/waiguomingzhu/e0fe524f6df0/bb22af752244.html",
+          "source_format": "diancang_pageview_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": ""
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "最後一片葉子",
+          "matches": []
+        },
+        {
+          "term": "最后一片叶子",
+          "matches": []
+        },
+        {
+          "term": "最後一片常春藤葉",
+          "matches": []
+        },
+        {
+          "term": "最后一片常春藤叶",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    },
+    {
+      "story_id": "tell_tale_heart",
+      "zh_title": "泄密的心",
+      "original_title": "The Tell-Tale Heart",
+      "author": "Edgar Allan Poe",
+      "original_language": "en",
+      "configured_sources": [
+        {
+          "source_id": "chinesebooks_212791",
+          "url": "https://chinesebooks.github.io/xiandai/jingdianxiaoxiaoshuo/212791.html",
+          "source_format": "chinesebooks_article_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": ""
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "洩密的心",
+          "matches": []
+        },
+        {
+          "term": "泄密的心",
+          "matches": []
+        },
+        {
+          "term": "告密的心",
+          "matches": []
+        },
+        {
+          "term": "泄密心",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    },
+    {
+      "story_id": "cask_of_amontillado",
+      "zh_title": "一桶白葡萄酒",
+      "original_title": "The Cask of Amontillado",
+      "author": "Edgar Allan Poe",
+      "original_language": "en",
+      "configured_sources": [
+        {
+          "source_id": "sohu_238138336",
+          "url": "https://www.sohu.com/a/238138336_304015",
+          "source_format": "sohu_article_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": ""
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "一桶白葡萄酒",
+          "matches": []
+        },
+        {
+          "term": "一桶阿蒙蒂亚度酒",
+          "matches": []
+        },
+        {
+          "term": "阿蒙蒂亚度酒桶",
+          "matches": []
+        },
+        {
+          "term": "The Cask of Amontillado 中文",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    },
+    {
+      "story_id": "to_build_a_fire",
+      "zh_title": "生火",
+      "original_title": "To Build a Fire",
+      "author": "Jack London",
+      "original_language": "en",
+      "configured_sources": [
+        {
+          "source_id": "jianshu_ba38e428bcd7",
+          "url": "https://www.jianshu.com/p/ba38e428bcd7",
+          "source_format": "jianshu_next_data_html",
+          "license_note": "web_repost; translator/license not stated; use for internal comparison only",
+          "source_note": ""
+        }
+      ],
+      "wikisource_search": [
+        {
+          "term": "生火 杰克伦敦",
+          "matches": []
+        },
+        {
+          "term": "生火 傑克倫敦",
+          "matches": []
+        },
+        {
+          "term": "起火 杰克伦敦",
+          "matches": []
+        },
+        {
+          "term": "To Build a Fire 中文",
+          "matches": []
+        }
+      ],
+      "status": "downloadable_web_translation"
+    }
+  ]
+}
