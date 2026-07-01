@@ -73,10 +73,16 @@ const data = {"title": "红楼梦", "story_type": "tragedy", "genre_tags": ["tra
 const groupColors = {"Prologue": {"fill": "#e8eaf6", "stroke": "#3949ab", "label": "序幕"}, "Act1_Rise": {"fill": "#e3f2fd", "stroke": "#1e88e5", "label": "兴起"}, "Act2_Climax": {"fill": "#fff3e0", "stroke": "#fb8c00", "label": "鼎盛"}, "Act3_Turn": {"fill": "#fce4ec", "stroke": "#e53935", "label": "转折"}, "Act4_Fall": {"fill": "#f3e5f5", "stroke": "#8e24aa", "label": "衰败"}, "Endings": {"fill": "#e8f5e9", "stroke": "#2e7d32", "label": "结局"}, "ForeshadowLines": {"fill": "#efebe9", "stroke": "#6d4c41", "label": "伏笔"}};
 
 const nodeTypes = {
-  "scene_node": { shape: "rect", r: 0, w: 150, h: 48, cls: "scene" },
+  "scene_node": { shape: "rect", r: 0, w: 150, h: 52, cls: "scene" },
   "transition_node": { shape: "circle", r: 6, w: 0, h: 0, cls: "trans" },
   "ending_node": { shape: "circle", r: 28, w: 0, h: 0, cls: "ending" },
 };
+
+function chapterLabel(d) {
+  if (!d.chapter_range) return "";
+  const raw = String(d.chapter_range);
+  return raw.includes("回") ? `第${raw}` : `第${raw}回`;
+}
 
 function nodeColor(d) {
   if (d.type === "ending_node") return groupColors["Endings"] || {fill:"#e8f5e9", stroke:"#2e7d32"};
@@ -88,6 +94,11 @@ function nodeColor(d) {
 const graphNodes = [];
 const graphEdges = [];
 const nodeMap = {};
+
+function chapterStart(value) {
+  const match = String(value || "").match(/\d+/);
+  return match ? Number(match[0]) : Number.MAX_SAFE_INTEGER;
+}
 
 for (const n of data.nodes) {
   const t = nodeTypes[n.type] || nodeTypes["scene_node"];
@@ -108,14 +119,55 @@ for (const n of data.nodes) {
     foreshadow_refs: n.foreshadow_refs || [],
     payoff_refs: n.payoff_refs || [],
     shape: t.shape, r: t.r, w: t.w, h: t.h, cls: t.cls,
+    sourceIndex: graphNodes.length,
+    startChapter: chapterStart(n.chapter_range),
   };
   graphNodes.push(gn);
   nodeMap[n.id] = gn;
-  if (n.type === "transition_node" && n.makes_available) {
-    for (const target of n.makes_available) {
-      graphEdges.push({ source: n.id, target: target, type: "linear" });
-    }
-  }
+}
+
+const sceneNodes = graphNodes.filter(n => n.type === "scene_node");
+const transitionNodes = graphNodes.filter(n => n.type === "transition_node");
+const endingNodes = graphNodes.filter(n => n.type === "ending_node");
+const chronologicalScenes = sceneNodes
+  .slice()
+  .sort((a, b) => (a.startChapter - b.startChapter) || (a.sourceIndex - b.sourceIndex));
+
+const layout = { left: 110, top: 90, col: 190, row: 135, columns: 6 };
+function timelinePosition(index) {
+  return {
+    x: layout.left + (index % layout.columns) * layout.col,
+    y: layout.top + Math.floor(index / layout.columns) * layout.row,
+  };
+}
+
+chronologicalScenes.forEach((node, index) => {
+  const p = timelinePosition(index);
+  node.timeIndex = index;
+  node.x = node.fx = p.x;
+  node.y = node.fy = p.y;
+});
+
+transitionNodes.forEach((node, index) => {
+  const source = chronologicalScenes[index];
+  const target = chronologicalScenes[index + 1];
+  if (!source || !target) return;
+  node.timeIndex = index + 0.5;
+  node.x = node.fx = (source.fx + target.fx) / 2;
+  node.y = node.fy = (source.fy + target.fy) / 2;
+  graphEdges.push({ source: source.id, target: node.id, type: "linear" });
+  graphEdges.push({ source: node.id, target: target.id, type: "linear" });
+});
+
+const endingY = layout.top + Math.ceil(chronologicalScenes.length / layout.columns) * layout.row + 20;
+endingNodes.forEach((node, index) => {
+  node.timeIndex = chronologicalScenes.length + index;
+  node.x = node.fx = layout.left + (layout.columns / 2 - 0.5 + index) * layout.col;
+  node.y = node.fy = endingY;
+});
+for (const ending of endingNodes) {
+  const lastScene = chronologicalScenes[chronologicalScenes.length - 1];
+  if (lastScene) graphEdges.push({ source: lastScene.id, target: ending.id, type: "ending" });
 }
 
 // Foreshadow/payoff edges
@@ -160,21 +212,20 @@ function edgeEndpointId(endpoint) {
 const validGraphEdges = graphEdges.filter(e => nodeMap[edgeEndpointId(e.source)] && nodeMap[edgeEndpointId(e.target)]);
 
 const simulation = d3.forceSimulation(graphNodes)
-  .force("link", d3.forceLink(validGraphEdges).id(d => d.id).distance(180))
-  .force("charge", d3.forceManyBody().strength(-500))
-  .force("center", d3.forceCenter(500, 400))
-  .force("collide", d3.forceCollide(60))
-  .force("y", d3.forceY(450).strength(0.03));
+  .force("link", d3.forceLink(validGraphEdges).id(d => d.id).distance(d => d.type === "foreshadow" ? 220 : 80).strength(0.05))
+  .force("charge", d3.forceManyBody().strength(-40))
+  .force("collide", d3.forceCollide(45))
+  .alpha(0.01);
 
 const link = d3.select(edgeG).selectAll("path")
   .data(validGraphEdges)
   .join("path")
   .attr("class", d => d.type === "foreshadow" ? "ft-edge" : "")
   .attr("fill", "none")
-  .attr("stroke", d => d.type === "foreshadow" ? "#e91e63" : "#bdbdbd")
-  .attr("stroke-width", d => d.type === "foreshadow" ? 2.5 : 1.8)
-  .attr("opacity", d => d.type === "foreshadow" ? 0.7 : 0.5)
-  .attr("marker-end", d => d.type === "linear" ? "url(#arrow)" : null);
+  .attr("stroke", d => d.type === "foreshadow" ? "#e91e63" : d.type === "ending" ? "#66a06f" : "#bdbdbd")
+  .attr("stroke-width", d => d.type === "foreshadow" ? 2.5 : d.type === "ending" ? 2 : 1.8)
+  .attr("opacity", d => d.type === "foreshadow" ? 0.7 : d.type === "ending" ? 0.6 : 0.55)
+  .attr("marker-end", d => d.type === "linear" || d.type === "ending" ? "url(#arrow)" : null);
 
 const nodeSel = d3.select(nodeG).selectAll("g")
   .data(graphNodes)
@@ -183,7 +234,7 @@ const nodeSel = d3.select(nodeG).selectAll("g")
   .call(d3.drag()
     .on("start", (event, d) => { if (!event.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
     .on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
-    .on("end", (event, d) => { if (!event.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }))
+    .on("end", (event, d) => { if (!event.active) simulation.alphaTarget(0); d.fx = d.x; d.fy = d.y; }))
   .on("click", (event, d) => showDetail(d))
   .on("mouseenter", (event, d) => { showTooltip(event, d); })
   .on("mouseleave", () => { document.getElementById("tooltip").style.display = "none"; });
@@ -197,9 +248,14 @@ nodeSel.filter(d => d.shape === "rect").append("rect")
   .attr("stroke-width", 2.2);
 
 nodeSel.filter(d => d.shape === "rect").append("text")
-  .attr("text-anchor", "middle").attr("dy", "0.35em")
+  .attr("text-anchor", "middle").attr("dy", "-0.25em")
   .attr("fill", "#263238").attr("font-size", "11px").attr("font-weight", "600")
   .text(d => d.label.length > 14 ? d.label.substring(0, 13) + "…" : d.label);
+
+nodeSel.filter(d => d.type === "scene_node").append("text")
+  .attr("text-anchor", "middle").attr("dy", "1.2em")
+  .attr("fill", "#607d8b").attr("font-size", "9px")
+  .text(d => chapterLabel(d));
 
 nodeSel.filter(d => d.shape === "circle" && d.type === "transition_node").append("circle")
   .attr("r", d => d.r)
@@ -219,9 +275,12 @@ nodeSel.filter(d => d.type === "ending_node").append("text")
 
 simulation.on("tick", () => {
   link.attr("d", d => {
+    if (d.type === "linear" || d.type === "ending") {
+      return `M ${d.source.x} ${d.source.y} L ${d.target.x} ${d.target.y}`;
+    }
     const dx = d.target.x - d.source.x;
     const dy = d.target.y - d.source.y;
-    const dr = Math.sqrt(dx * dx + dy * dy) * (d.type === "foreshadow" ? 2.5 : 1.2);
+    const dr = Math.sqrt(dx * dx + dy * dy) * 2.5;
     return `M ${d.source.x} ${d.source.y} A ${dr} ${dr} 0 0 1 ${d.target.x} ${d.target.y}`;
   });
   nodeSel.attr("transform", d => `translate(${d.x}, ${d.y})`);
