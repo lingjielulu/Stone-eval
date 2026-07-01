@@ -1,0 +1,58 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0046-P0048",
+      "payoff_span": "P0122",
+      "foreshadow_summary": "Mathilde finds a superb diamond necklace in a black satin box at Madame Forestier's, her heart throbs with immoderate desire, and she puts it on in ecstasy.",
+      "payoff_summary": "Madame Forestier reveals that the original necklace was paste and worth only five hundred francs.",
+      "proposed_trigger": {
+        "description": "Mathilde loses the necklace after the ball and is forced to replace it with a genuine diamond necklace at great cost.",
+        "observable_conditions": [
+          "Mathilde discovers the necklace is missing (P0059)",
+          "They find a replacement necklace for 36,000 francs and buy it (P0086-P0089)."
+        ]
+      },
+      "relation_description": "The necklace's assumed value is unchallenged when borrowed, creating a hidden truth that is only exposed at the end, rendering the decade of sacrifice unnecessary.",
+      "foreshadow_type": "object",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "This is the central twist of the story, fitting the object-foreshadow pattern perfectly."
+    },
+    {
+      "foreshadow_span": "P0001-P0005",
+      "payoff_span": "P0099",
+      "foreshadow_summary": "Mathilde is deeply unhappy with her modest circumstances, constantly dreaming of luxury and elegance, and feeling she was born for a higher station.",
+      "payoff_summary": "After ten years of poverty, Mathilde has become a strong, rough woman with frowsy hair and red hands, who only occasionally remembers the ball where she was beautiful.",
+      "proposed_trigger": {
+        "description": "The loss of the necklace forces the Loisels into a decade of harsh toil to repay the replacement debt.",
+        "observable_conditions": [
+          "Mathilde loses the necklace (P0059)",
+          "They borrow huge sums and buy a replacement (P0088-P0089)",
+          "They move to a garret and perform manual labor (P0093-P0097)."
+        ]
+      },
+      "relation_description": "Her early psychological dissatisfaction with her social status ironically leads to a life of even greater hardship, a physical transformation that embodies the very poverty she once despised.",
+      "foreshadow_type": "psychological",
+      "payoff_type": "ironic",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "Although this is a character trait rather than a concrete object, it functions as a motivational foreshadow that is paid off with the decay of her beauty and status."
+    },
+    {
+      "foreshadow_span": "P0041-P0050",
+      "payoff_span": "P0122",
+      "foreshadow_summary": "Madame Forestier generously and casually lends Mathilde any jewel she wants, including the diamond necklace, without hesitation.",
+      "payoff_summary": "Madame Forestier reveals the necklace was paste, suggesting she was never worried about the loan because of its low value.",
+      "proposed_trigger": {
+        "description": "Madame Forestier reacts indifferently when the necklace is returned, not even inspecting it.",
+        "observable_conditions": [
+          "Madame Forestier says 'You should have returned it sooner' but does not open the case (P0091-P0092)."
+        ]
+      },
+      "relation_description": "Her nonchalant lending and later failure to check the returned item retroactively hint at the necklace's worthlessness.",
+      "foreshadow_type": "retrospective",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "low",
+      "stage1_rationale": "This is a subtle behavioral clue that only becomes meaningful after the twist reveal; less central than the necklace object itself."
+    }
+  ]
+}

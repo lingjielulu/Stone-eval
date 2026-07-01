@@ -1,0 +1,61 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0035-P0039",
+      "payoff_span": "P0209-P0210",
+      "foreshadow_summary": "Mr. Wilson's assistant, Vincent Spaulding, works for half wages and has a peculiar habit of taking photographs and frequently disappearing into the cellar to develop them.",
+      "payoff_summary": "Holmes reveals that Spaulding is actually the criminal John Clay, who took the job to tunnel from the cellar into the neighboring bank vault.",
+      "proposed_trigger": {
+        "description": "Holmes observes the assistant's worn and stained trouser knees and then taps the pavement to determine the cellar's direction.",
+        "observable_conditions": [
+          "Holmes notes the state of the assistant's trouser knees (P0146)",
+          "Holmes taps the pavement with his stick (P0149)",
+          "Holmes concludes the cellar does not extend in front (P0210)"
+        ]
+      },
+      "relation_description": "The assistant's low wages and obsession with the cellar serve as early clues to the tunneling scheme, which Holmes gradually pieces together through observation of the assistant's clothing and the cellar's location.",
+      "foreshadow_type": "psychological",
+      "payoff_type": "literal",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The assistant's low wages and photography obsession are explicitly highlighted multiple times before the resolution, and Holmes directly references these clues in his final explanation, confirming a clear delayed setup and payoff."
+    },
+    {
+      "foreshadow_span": "P0078-P0082",
+      "payoff_span": "P0207",
+      "foreshadow_summary": "The Red-headed League's conditions require the holder to stay in the office from 10 am to 2 pm without exception, or else forfeit the position.",
+      "payoff_summary": "Holmes explains that the league was a ruse to get Wilson out of his shop for several hours each day, allowing the criminals to tunnel undisturbed.",
+      "proposed_trigger": {
+        "description": "Holmes hears Wilson's story and begins to see the importance of the time commitment, leading him to investigate the assistant and the premises.",
+        "observable_conditions": [
+          "Holmes asks Wilson detailed questions about the assistant (P0112-P0120)",
+          "Holmes shows excitement upon hearing the assistant's physical description (P0122-P0124)",
+          "Holmes states the case may have graver issues (P0108)"
+        ]
+      },
+      "relation_description": "The seemingly arbitrary rule that Wilson must remain in the office is later revealed as the core mechanism of the plot to keep him away from his business, which Holmes deduces and confirms through investigation.",
+      "foreshadow_type": "rule",
+      "payoff_type": "literal",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The rule is explicitly stated and then enforced throughout the narrative; Holmes later explains its true purpose, making it a clear delayed setup."
+    },
+    {
+      "foreshadow_span": "P0121-P0124",
+      "payoff_span": "P0169-P0170",
+      "foreshadow_summary": "Wilson describes Spaulding as small, stout-built, quick, clean-shaven, with an acid scar on his forehead. Holmes excitedly asks if his ears are pierced, noting that he had thought as much.",
+      "payoff_summary": "It is revealed that the assistant is the notorious criminal John Clay, a young man of noble descent and exceptional cunning, confirming Holmes's earlier recognition.",
+      "proposed_trigger": {
+        "description": "Holmes recognizes the physical description of the assistant as matching the criminal John Clay, prompting his inquiry about the pierced ears.",
+        "observable_conditions": [
+          "Holmes sits up in excitement upon hearing the description (P0122)",
+          "Holmes asks about pierced ears (P0124)",
+          "Holmes sinks back in deep thought after confirmation (P0126)"
+        ]
+      },
+      "relation_description": "The assistant's distinctive physical traits and Holmes's pointed reaction foreshadow the revelation of his true identity as a master criminal.",
+      "foreshadow_type": "retrospective",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "Holmes's visible excitement and specific question about earrings clearly signal that he has identified the assistant from a known criminal, and the later explicit naming of John Clay confirms this early suspicion."
+    }
+  ]
+}

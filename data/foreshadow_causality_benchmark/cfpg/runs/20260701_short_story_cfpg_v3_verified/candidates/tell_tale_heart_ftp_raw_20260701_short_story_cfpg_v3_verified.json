@@ -1,0 +1,61 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0001",
+      "payoff_span": "P0017-P0018",
+      "foreshadow_summary": "The narrator claims his disease has sharpened his senses, especially his hearing, allowing him to hear all things in heaven, earth, and hell.",
+      "payoff_summary": "The narrator hears a heartbeat-like sound that grows louder, believes the police officers also hear it, and finally confesses to the murder, screaming about the beating of the old man's heart.",
+      "proposed_trigger": {
+        "description": "The police officers accept the narrator's invitation to sit and rest in the old man's chamber, directly above the concealed corpse. The narrator begins to feel unwell, hears a ringing in his ears, which becomes more distinct and transforms into the sound of a beating heart.",
+        "observable_conditions": [
+          "Police officers enter and sit in the chamber (P0015)",
+          "Narrator feels pale, has a headache, and imagines a ringing in his ears (P0016)",
+          "The ringing becomes more distinct and is recognized as the low, dull, quick sound of a heartbeat (P0017)"
+        ]
+      },
+      "relation_description": "The narrator's early claim of acute hearing is the foundation for his later auditory hallucination of the heartbeat, which directly leads to his confession.",
+      "foreshadow_type": "psychological",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The acute hearing is prominently introduced in the opening paragraph and explicitly paid off in the climax when the narrator hears the imagined heartbeat, forming a clear delayed setup and payoff with non-trivial narrative distance."
+    },
+    {
+      "foreshadow_span": "P0010",
+      "payoff_span": "P0017",
+      "foreshadow_summary": "When the narrator first hears the old man's heartbeat before the murder, he describes it as 'a low, dull, quick sound, such as a watch makes when enveloped in cotton.'",
+      "payoff_summary": "During the police visit, the narrator hears the same sound again, described with the exact same phrase: 'a low, dull, quick sound—much such a sound as a watch makes when enveloped in cotton.'",
+      "proposed_trigger": {
+        "description": "The police officers' prolonged presence in the chamber, combined with the narrator's growing anxiety and guilt, triggers the auditory hallucination of the heartbeat.",
+        "observable_conditions": [
+          "Police officers sit and chat casually while the narrator becomes increasingly agitated (P0016)",
+          "The narrator starts to hear a ringing in his ears that persists and gains definiteness (P0016)",
+          "The sound is identified as the same heartbeat-like noise from the murder night (P0017)"
+        ]
+      },
+      "relation_description": "The distinctive description of the heartbeat before the murder is precisely echoed later, reinforcing the narrator's psychological breakdown and linking the real event to his guilt-induced hallucination.",
+      "foreshadow_type": "psychological",
+      "payoff_type": "literal",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The exact repetition of the distinctive simile across paragraphs creates a strong textual echo, marking a clear foreshadow-payoff relationship with a non-trivial interval."
+    },
+    {
+      "foreshadow_span": "P0002",
+      "payoff_span": "P0011",
+      "foreshadow_summary": "The narrator reveals that his sole motive for murder is the old man's 'vulture eye'—a pale blue eye with a film over it—which makes his blood run cold and which he wishes to rid himself of forever.",
+      "payoff_summary": "After killing the old man by dragging him to the floor and pulling the bed over him, the narrator examines the corpse, confirms the heart has stopped, and states with satisfaction, 'His eye would trouble me no more.'",
+      "proposed_trigger": {
+        "description": "On the eighth night, when the narrator opens the lantern a tiny bit, the thin ray of light falls directly on the vulture eye, which is wide open. This sight enrages the narrator and directly triggers the murder.",
+        "observable_conditions": [
+          "The narrator opens the lantern just enough to let out a single dim ray (P0008)",
+          "The ray falls upon the vulture eye, which is open (P0009)",
+          "The narrator grows furious at the sight and leaps into the room to kill the old man (P0011)"
+        ]
+      },
+      "relation_description": "The eye, introduced early as the primary motivation, becomes the direct trigger for the murder when it is seen open, and its threat is permanently eliminated through the killing.",
+      "foreshadow_type": "object",
+      "payoff_type": "literal",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "The eye as a motive and its resolution are clearly linked, but the payoff is relatively direct and less delayed compared to other candidates. Nonetheless, it forms a recognizable setup and payoff structure with a moderate interval."
+    }
+  ]
+}

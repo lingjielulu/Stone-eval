@@ -1,0 +1,64 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0018-P0024",
+      "payoff_span": "P0055",
+      "foreshadow_summary": "Johnsy fixates on the ivy leaves outside her window, counting them down and believing her life will end when the last leaf falls.",
+      "payoff_summary": "After Behrman's death, it is revealed that he painted a convincing last leaf on the wall during the storm, which stayed, giving Johnsy the will to live.",
+      "proposed_trigger": {
+        "description": "Behrman, after hearing Johnsy's fantasy and seeing the nearly bare vine during the storm, secretly paints a leaf on the wall overnight.",
+        "observable_conditions": [
+          "Behrman and Sue peer out the window fearfully at the ivy vine (P0036)",
+          "Cold rain and snow are falling (P0036)",
+          "The next morning one leaf remains (P0040)",
+          "Lantern, ladder, brushes, and palette are found (P0055)"
+        ]
+      },
+      "relation_description": "The leaf that Johnsy counts down is not a real leaf but Behrman's painting, making his earlier talk of a masterpiece ironic and tragic.",
+      "foreshadow_type": "object",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The ivy leaf is a central object introduced early with mysterious properties (why does it seem to control her fate?), and the payoff explains its true nature, satisfying a significant narrative debt."
+    },
+    {
+      "foreshadow_span": "P0030",
+      "payoff_span": "P0055",
+      "foreshadow_summary": "Behrman is portrayed as a failed artist who has talked for years about painting a masterpiece but never started, with a blank canvas in his room.",
+      "payoff_summary": "The painted last leaf is called Behrman's masterpiece, finally created in a selfless act that ends his life.",
+      "proposed_trigger": {
+        "description": "Behrman learns of Johnsy's conviction about the last leaf and decides to act, painting the leaf during the stormy night.",
+        "observable_conditions": [
+          "Sue tells Behrman about Johnsy's fancy (P0031)",
+          "Behrman's emotional reaction and agreement to pose (P0032-P0035)",
+          "Stormy night (P0036)",
+          "Discovery of painting materials (P0055)"
+        ]
+      },
+      "relation_description": "The early emphasis on Behrman's unrealized masterpiece is fulfilled by his final, sacrificial painting, transforming a running joke into a tragic heroism.",
+      "foreshadow_type": "symbolic",
+      "payoff_type": "ironic",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "While the masterpiece motif is clearly set up, its connection to the leaf might be seen as a thematic echo rather than a direct cause-effect; however, it is a strong delayed setup-payoff pair."
+    },
+    {
+      "foreshadow_span": "P0005,P0018",
+      "payoff_span": "P0055",
+      "foreshadow_summary": "The view from Johnsy's window is a bare yard and the blank side of a brick house, with an old ivy vine climbing half way up, mostly bare due to autumn.",
+      "payoff_summary": "The painted last leaf is on the brick wall, taking advantage of the blank wall as a canvas, and its realistic attachment to the vine branch explains why Johnsy never suspected it was painted.",
+      "proposed_trigger": {
+        "description": "Behrman uses the blank brick wall as his canvas on the stormy night to paint the leaf.",
+        "observable_conditions": [
+          "The wall is described as blank (P0018)",
+          "The storm provides cover (P0036)",
+          "The leaf is seen clinging high up (P0040)",
+          "Ladder and lantern found (P0055)"
+        ]
+      },
+      "relation_description": "The spatial description of the window and wall sets the stage for Behrman to execute his painting, making the payoff spatially plausible.",
+      "foreshadow_type": "spatial",
+      "payoff_type": "literal",
+      "stage1_confidence": "low",
+      "stage1_rationale": "While the blank wall is a necessary condition, it is a very subtle setup and could be considered merely descriptive rather than a deliberate foreshadowing element. However, for a high-recall step, it qualifies."
+    }
+  ]
+}

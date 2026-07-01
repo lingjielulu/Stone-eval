@@ -1,0 +1,60 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0001-P0002",
+      "payoff_span": "P0009",
+      "foreshadow_summary": "皇帝喜好斗促织，地方官员为媚上层层压榨，百姓因一只促织而倾家荡产。",
+      "payoff_summary": "异史氏评论天子偶然的喜好通过制度传导，使民命悬于天子一跬步，揭示制度因果。",
+      "proposed_trigger": {
+        "description": "成名因献上神异促织而获得赏赐，免役入庠，家道暴富，命运从绝境到极盛的转折使制度压迫与恩赐的荒谬关系完全显现。",
+        "observable_conditions": [
+          "宰试虫后乃赏成（P0008）",
+          "抚军大悦，以金笼进上（P0008）",
+          "宰嘱学使，俾入邑庠（P0008）",
+          "抚军厚赉成，成名裘马过世家（P0008）"
+        ]
+      },
+      "relation_description": "开篇铺设的社会规则与结尾的主题评论构成首尾呼应，成名一家的祸福转化将制度压迫的残酷和荒谬具象化。",
+      "foreshadow_type": "social",
+      "payoff_type": "symbolic",
+      "stage1_confidence": "high",
+      "stage1_rationale": "文本明确以社会压迫开篇，以反思性评论收束，间隔长、结构清晰，是典型的首尾呼应式伏笔回收。"
+    },
+    {
+      "foreshadow_span": "P0004-P0005",
+      "payoff_span": "P0008",
+      "foreshadow_summary": "儿子失手弄死促织后投井，被救起后气息奄奄、神气痴木，仿佛失去魂魄。",
+      "payoff_summary": "一年后儿子精神恢复，自述曾灵魂化为促织，轻捷善斗，现在才苏醒。",
+      "proposed_trigger": {
+        "description": "小促织在与‘蟹壳青’斗虫和与鸡的对抗中表现出超乎寻常的机智与勇力，暗示其并非凡物，为儿子的揭示奠定了条件。",
+        "observable_conditions": [
+          "小虫斗蟹壳青时，起初蠢若木鸡，后暴怒直奔取胜（P0006）",
+          "鸡来啄时，虫跃起集于鸡冠，力叮不释（P0007）"
+        ]
+      },
+      "relation_description": "儿子濒死复生后的失魂状态，与小蟋蟀的非凡表现，共同指向灵魂转移的奇幻事实，最终由儿子自述揭示化身真相。",
+      "foreshadow_type": "psychological",
+      "payoff_type": "literal",
+      "stage1_confidence": "high",
+      "stage1_rationale": "故事核心奇幻转折，有明确的铺垫（失魂）、强化（异虫）和最终揭示，构成典型的延迟揭示结构。"
+    },
+    {
+      "foreshadow_span": "P0003",
+      "payoff_span": "P0008",
+      "foreshadow_summary": "成名多年科考不中（‘操童子业，久不售’），为人迂讷，被强行报充里正。",
+      "payoff_summary": "成名因献虫有功，被县宰荐入学，免役入庠，最终科场得志且家财万贯。",
+      "proposed_trigger": {
+        "description": "成名献出神异促织后，县宰和抚军大悦，嘱学使让他进入县学，扭转了其科举前途。",
+        "observable_conditions": [
+          "宰试虫后赏成，献抚军（P0008）",
+          "宰嘱学使，俾入邑庠（P0008）"
+        ]
+      },
+      "relation_description": "前文科举无望与后文因促织意外得功名形成强烈反差，讽刺了在荒谬制度下个人命运的荒诞转折。",
+      "foreshadow_type": "social",
+      "payoff_type": "ironic",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "成名科举命运的伏笔在结尾以讽刺性反转回收，间隔较长，是叙事中具有张力的暗线，但不如前两者作为全文主结构明显。"
+    }
+  ]
+}

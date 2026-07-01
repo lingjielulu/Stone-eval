@@ -1,0 +1,58 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0012-P0014",
+      "payoff_span": "P0054-P0057",
+      "foreshadow_summary": "華老栓用洋錢買到一個蘸著鮮血的饅頭，視之為能帶給小栓新生命的藥。",
+      "payoff_summary": "清明時節，華大媽在小栓墳前祭奠，揭示小栓已死，人血饅頭未能治好他的癆病。",
+      "proposed_trigger": {
+        "description": "茶館裡康大叔吹噓人血饅頭「包好」時，小栓在裏屋合夥咳嗽，顯示饅頭並未見效。",
+        "observable_conditions": [
+          "康大叔聲稱「包好」(P0036)",
+          "小栓的咳嗽聲響起 (P0037)"
+        ]
+      },
+      "relation_description": "人物對人血饅頭療效的信念在結尾被墳塋場景否定，構成迷信的象徵性回收。",
+      "foreshadow_type": "symbolic",
+      "payoff_type": "negative",
+      "stage1_confidence": "high",
+      "stage1_rationale": "從購買饅頭到死亡結果，中間有明確的無效跡象（持續咳嗽）和最終悲劇，間隔長，回收完整。"
+    },
+    {
+      "foreshadow_span": "P0038-P0047",
+      "payoff_span": "P0060-P0062",
+      "foreshadow_summary": "茶客們把夏瑜視為不要命的瘋子，對其革命行動充滿誤解與鄙夷。",
+      "payoff_summary": "夏瑜墳上出現紅白花環，夏四奶奶哭訴兒子被冤枉，暗示有人理解夏瑜，為被誤解的革命者留下象徵性悼念。",
+      "proposed_trigger": {
+        "description": "夏四奶奶與華大媽發現夏瑜墳頂有一圈紅白的花。",
+        "observable_conditions": [
+          "花環出現在夏瑜墳上 (P0060)",
+          "夏四奶奶看見花並大聲說兒子被冤枉 (P0062)"
+        ]
+      },
+      "relation_description": "社會對夏瑜的誤解在結尾被花環的意象打開，回收了革命者孤獨但不被完全遺忘的線索。",
+      "foreshadow_type": "social",
+      "payoff_type": "symbolic",
+      "stage1_confidence": "high",
+      "stage1_rationale": "茶客對話與墳場花環形成強烈反差，花環作為象徵性回收，非相鄰段落，符合延遲揭示。"
+    },
+    {
+      "foreshadow_span": "P0006-P0011",
+      "payoff_span": "P0038-P0041",
+      "foreshadow_summary": "老栓在丁字街口看到清兵與古怪的人群，氣氛陰森，暗示此處為行刑地點。",
+      "payoff_summary": "茶館談話揭示早晨處決的是革命者夏瑜，說明之前老栓所見的正是夏瑜被殺的場景。",
+      "proposed_trigger": {
+        "description": "康大叔來到茶館，高聲談論早晨處決的犯人是夏家的孩子，並細說夏瑜在獄中的行為。",
+        "observable_conditions": [
+          "康大叔進茶館嚷道「就是運氣了你」(P0031)",
+          "康大叔說「聽說今天結果的一個犯人，便是夏家的孩子」(P0038)"
+        ]
+      },
+      "relation_description": "早期對刑場環境的描寫在後文通過康大叔的對話得到解釋，揭示老栓買的饅頭蘸的是革命者的血。",
+      "foreshadow_type": "spatial",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "從環境鋪墊到人物身份揭露，間隔多個段落，且非即時因果，構成有效的延遲揭示結構。"
+    }
+  ]
+}

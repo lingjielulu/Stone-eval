@@ -1,0 +1,60 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0021",
+      "payoff_span": "P0039",
+      "foreshadow_summary": "The old-timer on Sulphur Creek laid down the law that no man must travel alone in the Klondike after fifty below zero. The man recalls this advice and smiles, thinking the old-timers were womanish.",
+      "payoff_summary": "As the man freezes to death, he mumbles to the old-timer, 'You were right, old hoss; you were right.'",
+      "proposed_trigger": {
+        "description": "After his second fire fails and his hands become useless, he realizes he cannot survive alone in the extreme cold, fulfilling the condition warned against.",
+        "observable_conditions": [
+          "The man's second fire goes out.",
+          "He is unable to use his hands to restart it.",
+          "He is alone and far from camp with no possibility of help."
+        ]
+      },
+      "relation_description": "The old-timer's warning about traveling alone in extreme cold is initially dismissed, but the man's solitary death proves the rule correct.",
+      "foreshadow_type": "rule",
+      "payoff_type": "literal",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The rule is explicitly stated early and directly fulfilled by the man's death, with a clear trigger in the fire failure."
+    },
+    {
+      "foreshadow_span": "P0011-P0012",
+      "payoff_span": "P0017",
+      "foreshadow_summary": "The man knows about hidden springs under the snow that form traps with water pockets, and he observes the danger of getting wet feet, which would force him to build a fire.",
+      "payoff_summary": "At a place with no visible signs, the man breaks through a hidden spring and wets himself to the knees, which necessitates building a fire to dry his gear.",
+      "proposed_trigger": {
+        "description": "The man encounters an unmarked soft spot on the snow that gives way under his weight, despite his previous caution.",
+        "observable_conditions": [
+          "He steps on an apparently solid snowy surface.",
+          "The surface breaks, revealing a hidden pool of water."
+        ]
+      },
+      "relation_description": "The foreshadowed danger of hidden springs is realized when the man unexpectedly plunges into one, directly leading to the critical need for a fire.",
+      "foreshadow_type": "spatial",
+      "payoff_type": "literal",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "The spatial trap is described and then encountered, but the interval is relatively short (about five paragraphs), though it is not immediate cause-effect since other events intervene."
+    },
+    {
+      "foreshadow_span": "P0003",
+      "payoff_span": "P0040",
+      "foreshadow_summary": "The man, a newcomer, is without imagination and fails to grasp the deadly significance of the extreme cold, viewing it merely as a physical discomfort.",
+      "payoff_summary": "The man succumbs to the cold and dies, having never fully comprehended the danger until it was too late.",
+      "proposed_trigger": {
+        "description": "As his body freezes and he can no longer maintain a fire or keep moving, the man's lack of foresight becomes fatal.",
+        "observable_conditions": [
+          "His hands are frozen and unusable.",
+          "He can no longer build a fire.",
+          "His body temperature drops uncontrollably."
+        ]
+      },
+      "relation_description": "The man's early psychological trait of lacking imagination directly contributes to his inability to foresee and prevent the fatal outcome.",
+      "foreshadow_type": "psychological",
+      "payoff_type": "symbolic",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "The psychological flaw is established at the very start and underpins all his decisions, with the payoff being his death. The connection is thematic rather than a single specific event, but it is a clear delayed payoff."
+    }
+  ]
+}

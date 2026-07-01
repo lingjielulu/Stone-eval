@@ -1,0 +1,55 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0065",
+      "payoff_span": "P0075",
+      "foreshadow_summary": "Montresor produces a trowel from under his cloak as a sign of being a mason, which Fortunato dismisses as a jest.",
+      "payoff_summary": "Montresor uses the same trowel to wall up the entrance of the niche, entombing Fortunato alive.",
+      "proposed_trigger": {
+        "description": "Montresor starts using the trowel for masonry",
+        "observable_conditions": [
+          "P0074: 'With these materials and with the aid of my trowel, I began vigorously to wall up the entrance of the niche.'"
+        ]
+      },
+      "relation_description": "The trowel, initially presented as a joke, becomes the instrument of murder.",
+      "foreshadow_type": "object",
+      "payoff_type": "ironic",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The trowel appears in a seemingly playful context and is later repurposed with deadly intent, spanning a significant narrative gap."
+    },
+    {
+      "foreshadow_span": "P0001",
+      "payoff_span": "P0082-P0084",
+      "foreshadow_summary": "The narrator declares that revenge must be accomplished without risk to himself and the victim must know who is avenging him.",
+      "payoff_summary": "Fortunato, realizing his fate, cries out 'For the love of God, Montresor!' acknowledging Montresor as his murderer, while Montresor goes unpunished.",
+      "proposed_trigger": {
+        "description": "Fortunato calls out Montresor's name",
+        "observable_conditions": [
+          "P0082: 'For the love of God, Montresor!'"
+        ]
+      },
+      "relation_description": "The specific rules of revenge set at the very beginning are fulfilled when the victim identifies his killer at the climax.",
+      "foreshadow_type": "rule",
+      "payoff_type": "literal",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The opening philosophical statement directly maps to the climactic recognition, demonstrating delayed fulfillment across the entire narrative."
+    },
+    {
+      "foreshadow_span": "P0005-P0013",
+      "payoff_span": "P0073-P0074",
+      "foreshadow_summary": "Montresor lures Fortunato with the promise of a pipe of Amontillado, exploiting his wine expertise.",
+      "payoff_summary": "After chaining Fortunato, Montresor ironically echoes 'The Amontillado' and begins walling him in, revealing the lie; there is no wine.",
+      "proposed_trigger": {
+        "description": "Montresor stops pretending about the Amontillado and starts masonry",
+        "observable_conditions": [
+          "P0074: 'As I said these words I busied myself among the pile of bones... I soon uncovered a quantity of building stone and mortar.'"
+        ]
+      },
+      "relation_description": "The false promise of wine leads to a fatal trap, and the payoff is the unmasking of the lure.",
+      "foreshadow_type": "object",
+      "payoff_type": "ironic",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The central deception is set up early and paid off when the truth is revealed through action rather than explanation, creating dramatic irony."
+    }
+  ]
+}

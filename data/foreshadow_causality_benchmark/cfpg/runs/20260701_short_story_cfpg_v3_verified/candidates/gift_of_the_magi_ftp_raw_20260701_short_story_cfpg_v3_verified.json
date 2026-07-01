@@ -1,0 +1,55 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0010",
+      "payoff_span": "P0039-P0045",
+      "foreshadow_summary": "The couple's two prized possessions are introduced: Jim's gold watch (family heirloom) and Della's beautiful long hair.",
+      "payoff_summary": "Della buys a platinum chain for Jim's watch, but Jim has sold the watch to buy tortoise-shell combs for Della's hair; both gifts are rendered useless.",
+      "proposed_trigger": {
+        "description": "Della sells her hair to Madame Sofronie for twenty dollars.",
+        "observable_conditions": [
+          "P0018: Della says 'Give it to me quick' after accepting the offer."
+        ]
+      },
+      "relation_description": "The early establishment of the two treasures sets up the ironic double sacrifice: Della sells her hair to buy a chain for the watch, while Jim sells the watch to buy combs for the hair, making both gifts pointless.",
+      "foreshadow_type": "object",
+      "payoff_type": "ironic",
+      "stage1_confidence": "high",
+      "stage1_rationale": "Clear delayed setup: prized objects introduced in P0010 are directly involved in the climactic ironic reversal in P0039-P0045. Non-trivial gap with a clear actionable trigger."
+    },
+    {
+      "foreshadow_span": "P0035",
+      "payoff_span": "P0046",
+      "foreshadow_summary": "Narrator makes a cryptic remark: 'The magi brought valuable gifts, but that was not among them. This dark assertion will be illuminated later on.'",
+      "payoff_summary": "The narrator reveals the moral: the young couple are the wisest gift-givers, like the magi, because they gave the greatest treasures of their house out of love.",
+      "proposed_trigger": {
+        "description": "Both gifts are revealed to be useless, prompting the narrator's commentary.",
+        "observable_conditions": [
+          "P0045: Jim says 'I sold the watch to get the money to buy your combs.'"
+        ]
+      },
+      "relation_description": "The narrator's early vague statement about the magi promises a later explanation, which is delivered in the final paragraph as a thematic payoff that reframes the story's events.",
+      "foreshadow_type": "symbolic",
+      "payoff_type": "symbolic",
+      "stage1_confidence": "high",
+      "stage1_rationale": "Explicit narrative foreshadowing ('This dark assertion will be illuminated later on') with a clear retrospective payoff in the closing moral. Non-trivial gap and distinct trigger."
+    },
+    {
+      "foreshadow_span": "P0025",
+      "payoff_span": "P0037",
+      "foreshadow_summary": "Della prays silently: 'Please God, make him think I am still pretty,' fearing Jim's reaction to her shorn hair.",
+      "payoff_summary": "Jim explains that his shocked expression was not because she looks unattractive, but because he bought her the combs that now have no hair to adorn, saying nothing could make him like her less.",
+      "proposed_trigger": {
+        "description": "Jim enters and stares at Della with an unreadable, terrifying expression.",
+        "observable_conditions": [
+          "P0027: 'His eyes were fixed upon Della, and there was an expression in them that she could not read, and it terrified her.'"
+        ]
+      },
+      "relation_description": "Della's worry about her appearance creates a misdirection: the reader and Della initially interpret Jim's stare as displeasure, but the true reason (the useless combs) is later revealed, subverting expectations.",
+      "foreshadow_type": "red_herring",
+      "payoff_type": "misdirection",
+      "stage1_confidence": "high",
+      "stage1_rationale": "Classic misdirection: a character's fear is set up, then resolved with an unexpected but logical explanation. The gap and trigger are clearly defined in the text."
+    }
+  ]
+}

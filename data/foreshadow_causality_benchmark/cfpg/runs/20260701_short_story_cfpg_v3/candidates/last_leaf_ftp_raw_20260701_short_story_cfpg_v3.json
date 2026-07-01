@@ -1,0 +1,60 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0030-P0031",
+      "payoff_span": "P0054-P0055",
+      "foreshadow_summary": "Behrman, a failed artist, has always talked about painting a masterpiece but never started; a blank canvas has been waiting for 25 years.",
+      "payoff_summary": "After Behrman dies, Sue reveals that he painted the last leaf on the wall during the storm, calling it his masterpiece.",
+      "proposed_trigger": {
+        "description": "On the stormy night when the last real leaf falls, Behrman goes out in the rain to paint a replacement leaf, leading to his pneumonia and death; the trigger is observable the next morning when his wet clothes and painting tools are found.",
+        "observable_conditions": [
+          "P0036: 'A persistent, cold rain was falling, mingled with snow.'",
+          "P0055: 'The janitor found him... His shoes and clothing were wet through and icy cold. ... they found a lantern, still lighted, and a ladder ... and some scattered brushes, and a palette with green and yellow colors mixed on it'"
+        ]
+      },
+      "relation_description": "The blank canvas and Behrman's lifelong dream of a masterpiece are fulfilled by his selfless act of painting the leaf to save Johnsy's life.",
+      "foreshadow_type": "object",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The blank canvas and repeated mention of an unstarted masterpiece are a classic object/ promise setup, explicitly paid off when the painted leaf is called his masterpiece."
+    },
+    {
+      "foreshadow_span": "P0020-P0022",
+      "payoff_span": "P0054-P0055",
+      "foreshadow_summary": "Johnsy becomes fixated on the ivy leaves, counting them down and asserting that when the last one falls, she will die.",
+      "payoff_summary": "After Johnsy recovers, Sue reveals that the last leaf was actually a painting by Behrman, which stayed on the wall despite the wind, preventing Johnsy from giving up.",
+      "proposed_trigger": {
+        "description": "The stormy night when the last real leaf falls, and Behrman, knowing Johnsy's belief, paints a leaf to make her think it's still there; observable trigger: the next morning, the leaf is still there after the storm, and later, the discovery of the lantern and paint.",
+        "observable_conditions": [
+          "P0036: They 'peered out the window fearfully at the ivy vine' and then 'looked at each other for a moment without speaking' as the storm began.",
+          "P0040: After the storm, the leaf is still there, 'hung bravely'.",
+          "P0055: The truth about the painted leaf is revealed."
+        ]
+      },
+      "relation_description": "Johnsy's psychological dependence on the leaves creates a life-or-death situation; Behrman's intervention breaks the cycle, with the hidden truth revealed after his death.",
+      "foreshadow_type": "psychological",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "Johnsy's superstition is the central psychological driver; the payoff reveals the hidden mechanism that subverted her belief, making it a strong delayed setup."
+    },
+    {
+      "foreshadow_span": "P0040",
+      "payoff_span": "P0055",
+      "foreshadow_summary": "The last ivy leaf is described with unusual detail, appearing both fresh and decayed, and remains impervious to the storm.",
+      "payoff_summary": "Sue reveals that the leaf was painted by Behrman, explaining its strange appearance and persistence.",
+      "proposed_trigger": {
+        "description": "As the last real leaf falls during the storm, Behrman paints a fake one. The leaf's failure to move or fall in the wind is noticed when Johnsy demands the shade be raised.",
+        "observable_conditions": [
+          "P0040: 'Still dark green near its stem, but with its serrated edges tinted with the yellow of dissolution and decay, it hung bravely...'",
+          "P0046: The leaf is still there after another night.",
+          "P0055: 'Didn't you wonder why it never fluttered or moved when the wind blew?'"
+        ]
+      },
+      "relation_description": "The seemingly realistic leaf description contains clues (its color and static nature) that retroactively signal it is a painting, a clever misdirection for the reader.",
+      "foreshadow_type": "retrospective",
+      "payoff_type": "misdirection",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "The description is subtle and only clearly signals the deception in retrospect; it may be missed on first reading, but it qualifies as a planted clue."
+    }
+  ]
+}

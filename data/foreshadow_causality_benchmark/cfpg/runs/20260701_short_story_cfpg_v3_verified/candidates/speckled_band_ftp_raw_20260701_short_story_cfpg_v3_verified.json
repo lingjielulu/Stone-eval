@@ -1,0 +1,60 @@
+{
+  "candidates": [
+    {
+      "foreshadow_span": "P0051",
+      "payoff_span": "P0244-P0246",
+      "foreshadow_summary": "Julia Stoner's dying words: 'It was the band! The speckled band!' and the subsequent speculation that it might refer to a band of gypsies with spotted handkerchiefs.",
+      "payoff_summary": "Upon finding Dr. Roylott dead with the snake around his head, Holmes recognizes the 'speckled band' as the snake itself, revealing the true meaning.",
+      "proposed_trigger": {
+        "description": "Holmes's daytime inspection of the bedroom reveals the dummy bell-rope, the ventilator between rooms, and the fixed bed, casting doubt on the gypsy theory and suggesting an alternative mechanism.",
+        "observable_conditions": [
+          "Holmes points out that the bell-rope is a dummy (P0150)",
+          "He notes the ventilator opening into the next room (P0154)",
+          "He observes the bed is clamped to the floor (P0215)"
+        ]
+      },
+      "relation_description": "The phrase 'speckled band' is initially misinterpreted as referring to gypsies with spotted headgear, but is eventually revealed to denote a venomous snake with speckled markings.",
+      "foreshadow_type": "red_herring",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The phrase 'speckled band' is introduced early as a mysterious clue, explicitly linked to gypsies by Helen Stoner, and the true meaning is only revealed at the climax when Holmes sees the snake. The interval between foreshadow and payoff spans most of the story."
+    },
+    {
+      "foreshadow_span": "P0143-P0158",
+      "payoff_span": "P0237-P0238",
+      "foreshadow_summary": "Holmes discovers odd details in Julia's bedroom: a bell-rope that is a dummy, a ventilator connecting to Roylott's room, and the bed fixed in place relative to the rope and ventilator.",
+      "payoff_summary": "During the night watch, Holmes strikes at the bell-pull with a cane as a snake comes through the ventilator, revealing the rope as a bridge for the snake to reach the bed.",
+      "proposed_trigger": {
+        "description": "Holmes's examination of Roylott's bedroom reveals a safe, a saucer of milk, a chair positioned under the ventilator, and a looped whip, which together suggest the presence of a trained snake.",
+        "observable_conditions": [
+          "Holmes finds a saucer of milk on the safe (P0166)",
+          "He examines the seat of a chair near the wall (P0169)",
+          "He spots a small dog lash tied into a loop (P0170-P0171)"
+        ]
+      },
+      "relation_description": "The seemingly useless bell-rope and ventilator are later explained as part of a murder apparatus: the snake comes through the ventilator and descends the rope to the bed.",
+      "foreshadow_type": "object",
+      "payoff_type": "literal",
+      "stage1_confidence": "high",
+      "stage1_rationale": "The bell-rope and ventilator are introduced as puzzling anomalies during the inspection and are directly shown as functional murder tools during the climax, with a clear narrative debt paid off."
+    },
+    {
+      "foreshadow_span": "P0037-P0043",
+      "payoff_span": "P0249-P0250",
+      "foreshadow_summary": "Julia mentions hearing a low, clear whistle in the dead of night several nights before her death, and Helen later hears a whistle just before the fatal scream.",
+      "payoff_summary": "Holmes explains that the whistle was used by Dr. Roylott to recall the snake back through the ventilator before morning.",
+      "proposed_trigger": {
+        "description": "Helen hears the whistle again after moving into Julia's old room, confirming the pattern and prompting her visit to Holmes.",
+        "observable_conditions": [
+          "Helen states she heard the low whistle last night (P0068)",
+          "She connects it to the herald of Julia's death"
+        ]
+      },
+      "relation_description": "The mysterious nocturnal whistle, first reported as an unexplained occurrence, is later revealed as the signal Roylott used to summon his trained snake.",
+      "foreshadow_type": "rule",
+      "payoff_type": "delayed_revelation",
+      "stage1_confidence": "medium",
+      "stage1_rationale": "The whistle is an early sensory detail that recurs but is only explained in Holmes's final reconstruction; while the connection is strong, the payoff is largely expository rather than dramatic."
+    }
+  ]
+}
