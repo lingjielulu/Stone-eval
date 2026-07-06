@@ -12,12 +12,16 @@
 
 ```text
 data/foreshadow_causality_benchmark/
-  raw_texts/             # 下载的公版原始文本或 API 返回
-  normalized_texts/      # 切出单篇后的 UTF-8 段落编号文本
-  raw_texts_zh/          # 中文译文原始文本；来源授权状态在审计文件中逐条标注
-  normalized_texts_zh/   # 中文译文清洗结果；授权不明来源仅用于内部比对
-  annotations/           # 人工校正后的 YAML 标注
-  annotations/candidates/# 弱规则生成的候选事件/伏笔/因果提示
+  novels/                # 短篇小说数据
+    raw_texts/           # 下载的公版原始文本或 API 返回
+    normalized_texts/    # 切出单篇后的 UTF-8 段落编号文本
+    raw_texts_zh/        # 中文译文原始文本；来源授权状态在审计文件中逐条标注
+    normalized_texts_zh/ # 中文译文清洗结果；授权不明来源仅用于内部比对
+    annotations/         # 人工校正后的 YAML 标注
+    annotations/candidates/
+                         # 弱规则生成的候选事件/伏笔/因果提示
+    cfpg/                # 短篇小说 CFPG 抽取运行结果
+  poetry/                # 诗词数据
   schemas/               # JSON Schema
   scripts/               # 下载、清洗、候选生成、校验脚本
   evaluation/            # 后续放评测输入/输出格式
@@ -44,7 +48,7 @@ data/foreshadow_causality_benchmark/
 
 所有当前原文来源均按公版文本处理。`metadata.source_url` 记录了具体下载入口。
 
-8 篇非中文原文已补齐中文译文清洗文件，位于 `normalized_texts_zh/`。这些译文来自中文网站转载，译者和授权状态未逐篇确认；`docs/chinese_translation_audit.json` 记录了每个来源 URL、抽取格式和 `license_note`。在公开发布或引用译文正文前，需要替换为公版/授权译本或完成版权核验。
+8 篇非中文原文已补齐中文译文清洗文件，位于 `novels/normalized_texts_zh/`。这些译文来自中文网站转载，译者和授权状态未逐篇确认；`docs/chinese_translation_audit.json` 记录了每个来源 URL、抽取格式和 `license_note`。在公开发布或引用译文正文前，需要替换为公版/授权译本或完成版权核验。
 
 当前中文译文来源概览：
 
@@ -109,11 +113,11 @@ python data/foreshadow_causality_benchmark/scripts/validate_dataset.py
 
 ## 如何新增一篇小说
 
-1. 将公版或授权原文放入 `raw_texts/`，并记录来源 URL。
+1. 将公版或授权原文放入 `novels/raw_texts/`，并记录来源 URL。
 2. 在 `scripts/prepare_texts.py` 的 `STORIES` 中增加 `StorySpec`，写清 `story_id`、原文文件、起止标题和 `min_line`。
-3. 运行 `prepare_texts.py`，确认 `normalized_texts/{story_id}.txt` 段落编号正确。
+3. 运行 `prepare_texts.py`，确认 `novels/normalized_texts/{story_id}.txt` 段落编号正确。
 4. 运行 `build_candidates.py {story_id}` 生成弱候选。
-5. 复制现有 `annotations/*.yaml` 的结构，人工写入/校正事件、因果边、伏笔三元组和人物状态。
+5. 复制现有 `novels/annotations/*.yaml` 的结构，人工写入/校正事件、因果边、伏笔三元组和人物状态。
 6. 运行 `validate_dataset.py`，修复所有引用错误和必填字段缺失。
 
 ## 用于系统评测

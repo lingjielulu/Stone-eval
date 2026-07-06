@@ -1,0 +1,612 @@
+metadata:
+  story_id: hlm_qu
+  title: "紅樓夢曲十四支"
+  author: "曹雪芹"
+  language: zh
+  source_text_path: data/foreshadow_causality_benchmark/poetry/hongloumeng/normalized_texts/hongloumeng_qu.txt
+  source_url: https://zh.wikisource.org/wiki/紅樓夢/第005回
+  copyright_status: public_domain
+  genre: classical_chinese_poetry_imagery_stacking
+  length_level: short
+  structure_type: [symbolic, psychological]
+annotation_guide:
+  focus:
+    - 標注每支曲子的意象堆疊（imagery stacking）——每首曲以多重意象層層遞進揭示人物命運，意象之間存在對偶、遞進、反轉關係。
+    - 曲是判詞的音樂/抒情對應物，在判詞的簡潔意象基礎上擴展為更豐富的情感深度與畫面感。
+    - 標注從引子→十二支→收尾的因果遞進結構：引子確立「悲金悼玉」主題→十二支展開個體命運→飛鳥各投林以集體毀滅收束。
+    - 標注每曲內部意象的物性對立（如金/玉vs木/石，水中月vs鏡中花，大廈傾vs燈將盡）。
+  boundary_notes:
+    - 十四支曲均為太虛幻境中仙女所唱，賈寶玉為聽眾，曲子內容是對他及十二釵命運的預言性揭示。
+    - 每曲是一個獨立的意象堆疊單元，適合測試多層次、多物件、多感官的因果標注。
+    - 曲中人物的命運預告在小說後續章節中逐一回收，此處標注聚焦於曲子內部的意象結構與曲子之間的因果遞進。
+events:
+  - event_id: QU_E01
+    story_id: hlm_qu
+    chapter_or_section: 引子
+    text_span: P0001
+    summary: 紅樓夢引子——開闢鴻蒙（宇宙初開）→誰為情種（情感起源）→風月情濃（情感世界）→奈何天、傷懷日、寂寥時（時間意象三重堆疊：天→日→時逐級收縮）→試遣愚衷→悲金悼玉（核心主題：金=寶釵、玉=黛玉，悲悼雙關）。六層意象從宇宙混沌層層遞進至人間悲情，確立全曲基調。
+    participants: [鴻蒙, 情種, 風月, 金, 玉]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E02
+    story_id: hlm_qu
+    chapter_or_section: 終身誤
+    text_span: P0002
+    summary: 賈寶玉的終身誤——金玉良緣（世俗公認：金鎖+寶玉）↔木石前盟（靈魂契約：絳珠仙草+神瑛侍者）→山中高士晶瑩雪（薛寶釵：雪=薛諧音、晶瑩=冷美人、高士=道德完人）→世外仙姝寂寞林（林黛玉：林=姓、仙姝=超凡脫俗、寂寞=孤傲命運）→齊眉舉案（舉案齊眉典故，世俗夫妻禮儀）→意難平（情感終局）。金玉vs木石為第一層對立，雪vs林為第二層物性對立（晶瑩冷vs寂寞孤，高士vs仙姝），最終以意難平收束。
+    participants: [賈寶玉, 薛寶釵, 林黛玉, 金玉良緣, 木石前盟, 雪, 林]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E03
+    story_id: hlm_qu
+    chapter_or_section: 枉凝眉
+    text_span: P0003
+    summary: 林黛玉的枉凝眉（十四曲中意象密度最高）——閬苑仙葩（仙苑奇花→黛玉前世絳珠仙草）↔美玉無瑕（完美無瑕之玉→寶玉）→奇緣（命中注定相遇）↔心事終虛話（注定成空）→水中月（虛幻不可撈取）→鏡中花（虛幻不可觸及，月與花雙重虛幻意象層疊）→淚珠兒從秋流到冬、春流到夏（以淚為線索貫穿四季循環，暗示黛玉以淚還債的命運主線）。仙葩/美玉/水月/鏡花/淚/四季，六組意象以對照與遞進結構堆疊，密度為十四曲之冠。
+    participants: [林黛玉, 賈寶玉, 仙葩, 美玉, 水中月, 鏡中花, 淚珠兒]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E04
+    story_id: hlm_qu
+    chapter_or_section: 恨無常
+    text_span: P0004
+    summary: 賈元春的恨無常——榮華（極盛富貴）↔無常（佛教死亡概念，瞬間突變）→萬事全拋／芳魂銷耗（生命消散的雙重具象化）→路遠山高（空間隔絕，宮中與家鄉的不可跨越）→夢裡尋告（夢境虛幻與遺言實質的張力）→黃泉（死亡終點）→退步抽身早（政治勸誡，以退為保的智慧）。榮華→無常→黃泉三階段構成榮→衰→亡的意象遞進曲線。
+    participants: [賈元春, 榮華, 無常, 黃泉]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E05
+    story_id: hlm_qu
+    chapter_or_section: 分骨肉
+    text_span: P0005
+    summary: 賈探春的分骨肉——一帆風雨（漂泊意象：帆+風雨雙重逆境堆疊）→路三千（空間距離的極致誇張）→骨肉家園（骨肉=血緣之暖、家園=歸屬之暖）↔拋閃（撕裂動作，暖意象被冷動作切斷）→殘年／懸念（父母老衰與牽掛對偶）→窮通／離合（命運的雙重對偶：窮vs通、離vs合）→分兩地／保平安（分離後的平靜祈願）→奴去也／莫牽連（親口告別，聲口意象的最終收束）。空間擴展（一帆→路三千→分兩地）與情感收斂（骨肉拋閃→保平安→莫牽連）形成反向張力。
+    participants: [賈探春, 風雨, 骨肉家園]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E06
+    story_id: hlm_qu
+    chapter_or_section: 樂中悲
+    text_span: P0006
+    summary: 史湘雲的樂中悲——襁褓／父母雙亡（幼年孤苦的起點意象）→綺羅叢（榮華包裹意象）↔誰知嬌養（實則無人疼愛的反諷）→英豪闊大寬宏量（性格意象三重堆疊：英豪+闊大+寬宏）→霽月光風耀玉堂（光意象三重疊加：雨後明月+清風+玉堂輝映，以自然高潔喻人品磊落）→才貌仙郎（理想配偶）→地久天長（永恆期盼）↔雲散高唐（突變：高唐用宋玉《高唐賦》巫山雲雨典，雲散=美好破滅）→水涸湘江（湘江嵌入湘雲姓名，水涸=命運枯竭的姓名雙關）。霽月→雲散、玉堂→水涸，每一美好意象逐一被對應的反面意象破滅。
+    participants: [史湘雲, 霽月, 光風, 高唐, 湘江]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E07
+    story_id: hlm_qu
+    chapter_or_section: 世難容
+    text_span: P0007
+    summary: 妙玉的世難容——氣質美如蘭（蘭花意象：清雅孤高）→才華馥比仙（仙人意象：超塵脫俗，蘭與仙雙重高潔物象疊加）→孤癖人皆罕（社會隔離的必然結果）→啖肉食腥膻／綺羅俗厭（對世俗的生理性厭惡堆疊：肉=腥膻味覺厭惡，綺羅=視覺厭惡）→好高人愈妒／過潔世同嫌（道德困境的雙重對偶：好高→人妒，過潔→世嫌）→青燈古殿（佛門清冷空間：青燈+古殿，昏暗寂靜）↔紅粉朱樓春色闌（世俗繁華空間：紅粉+朱樓+春色，色彩熱烈卻已闌珊，兩種人生道路的空間對照）→風塵骯髒（淪落世俗的骯髒意象）→白玉遭泥陷（終極摧毀意象：白玉=純潔本體，泥陷=污染毀滅，以物象的極端反差收束全曲）。從蘭/仙→青燈→風塵→白玉泥陷，意象經歷了從高潔到毀滅的四階段遞進降級。
+    participants: [妙玉, 蘭, 仙, 青燈古殿, 白玉]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E08
+    story_id: hlm_qu
+    chapter_or_section: 喜冤家
+    text_span: P0008
+    summary: 賈迎春的喜冤家——中山狼（忘恩負義典故：東郭先生與中山狼，下山反噬恩人為核心意象）→無情獸（去人性化疊加，狼+獸雙重獸性標記）→驕奢淫蕩貪歡媾（惡行五動詞連續堆疊：驕+奢+淫+蕩+貪，惡的最大密度呈現）→侯門艷質↔蒲柳（價值反轉對照：侯門的尊貴艷質被視為蒲柳般輕賤）→公府千金↔下流（身份反轉對照：千金淪為下流）→芳魂艷魄／一載蕩悠悠（死亡意象：芳魂+艷魄以美收葬，一載蕩悠悠暗示婚後一年即死）。以狼/獸→艷質/千金→蒲柳/下流→芳魂/艷魄的物象降級鏈結構全曲。
+    participants: [賈迎春, 中山狼, 蒲柳, 芳魂]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E09
+    story_id: hlm_qu
+    chapter_or_section: 虛花悟
+    text_span: P0009
+    summary: 賈惜春的虛花悟（十四曲中意象最繁密的段落之一）——三春勘破（看破三春：春=元春探春惜春三姊妹姓名雙關，亦指青春）→桃紅柳綠（繁華表象：自然色彩堆疊）→韶華打滅（主動捨棄青春）→清淡天和（追求清淨無為）→天上夭桃／雲中杏蕊（天上+雲中=仙界虛幻繁華，夭桃+杏蕊=花期短暫）→秋捱過（凋零的必然命運）→白楊村人嗚咽／青楓林鬼吟哦（死亡空間的雙重堆疊：白楊+嗚咽以樹喻人、青楓+吟哦以聲寫鬼，墓地意象的空間疊加）→衰草遮墳墓（衰草+墳墓，荒蕪收束）→昨貧今富／春榮秋謝（貧富興衰的循環對偶）→生關死劫（終極困境的命名）→西方寶樹／長生果（佛門解脫意象：寶樹=婆娑樹、長生果=涅槃境界）。全曲經歷五重意象遞進：繁華(桃紅柳綠)→看破(韶華打滅)→死亡(白楊青楓墳墓)→輪迴(貧富春榮秋謝)→解脫(寶樹長生果)。
+    participants: [賈惜春, 三春, 桃紅柳綠, 白楊, 青楓, 衰草, 墳墓, 寶樹, 長生果]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E10
+    story_id: hlm_qu
+    chapter_or_section: 聰明累
+    text_span: P0010
+    summary: 王熙鳳的聰明累——機關算盡（計謀的極致化意象：機關=心機+算計，雙重智力堆疊）→卿卿性命（反噬：算盡他人反喪己命，從施動者變為承受者）→心碎／性空靈（內心瓦解：心碎=生理意象、性空靈=精神意象，雙層崩塌）→家富人寧→家亡人散各奔騰（命運反轉：富→亡、寧→散、奔騰=四散奔逃）→意懸懸半世心（焦慮心境）／蕩悠悠三更夢（虛幻夢境，心境與夢境雙重對照）→大廈傾（結構性崩塌意象，大廈=賈府的空間隱喻）→燈將盡（熄滅意象，燈=生命/家運的時間隱喻）→歡喜→悲辛（情感極性反轉收束）。大廈傾+燈將盡構成空間與時間的雙重毀滅意象疊加。
+    participants: [王熙鳳, 機關, 大廈, 燈]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E11
+    story_id: hlm_qu
+    chapter_or_section: 留餘慶
+    text_span: P0011
+    summary: 巧姐的留餘慶——留餘慶（因果福報的命名式疊加，重複兩次以強調）→恩人（拯救者的出現）→娘親／陰功（母愛庇護轉化為陰間功德，前世今生因果連接）→濟困扶窮（正面行為主張）↔愛銀錢忘骨肉／狠舅奸兄（反面形象堆疊：銀錢+骨肉+狠+奸，親屬關係被利益徹底扭曲的四重負面意象）→乘除加減（數學意象，因果報應的量化隱喻：善有善報如算式平衡）→上有蒼穹（天理/命運的最高裁決者，空間從人間數學上升至蒼穹天理）。
+    participants: [巧姐, 恩人, 娘親, 蒼穹]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E12
+    story_id: hlm_qu
+    chapter_or_section: 晚韶華
+    text_span: P0012
+    summary: 李紈的晚韶華——鏡裡恩情（鏡中虛幻：恩情如鏡中影不可捉摸）→夢裡功名（夢中虛幻：功名如夢一場，鏡與夢雙重虛幻意象疊加）→美韶華去之何迅（青春消逝的速度感）→繡帳鴛衾（婚床溫馨→被「再休提」否定抹除）→珠冠鳳襖（榮華穿戴的物質巔峰：珠冠+鳳襖）↔無常性命（榮華不敵死亡，物質vs虛無）→簪纓（高官冠飾）→金印（權力象徵）→爵祿高登（權力極致上升）↔黃泉路近（死亡驟然逼近，頂峰即懸崖）→虛名兒後人欽敬（終極判斷：一切功名榮譽只是虛名）。三階段意象遞進：鏡/夢的虛空→珠冠/鳳襖/簪纓/金印的極端榮華→黃泉路近/虛名的死亡解構。
+    participants: [李紈, 鏡, 夢, 珠冠, 鳳襖, 簪纓, 金印, 黃泉]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E13
+    story_id: hlm_qu
+    chapter_or_section: 好事終
+    text_span: P0013
+    summary: 秦可卿的好事終——畫梁春盡（華美空間+春意消散：畫梁=建築之美、春盡=時間終結，空間+時間雙重疊加）→落香塵（香塵=秦可卿名字嵌入，香→塵喻生命降格，從芬芳墮入塵土）→擅風情／秉月貌（美色與情欲的本源性意象：擅風情=情欲天資、秉月貌=容貌天賦，天資成為禍根）→敗家的根本（道德判斷的直接宣告）→箕裘頹墮（祖先基業崩壞：箕裘=父祖事業的物化符號）→家事消亡（家族徹底毀滅）→首罪寧（歸罪於寧國府，空間定點指認）→宿孽總因情（終極歸因：情=一切罪孽根源，將所有毀滅歸結為一個字）。全曲意象經歷：華美(畫梁春盡)→墮落(落香塵)→禍根(風情月貌)→毀滅(箕裘頹墮/家事消亡)→歸因(宿孽因情)。
+    participants: [秦可卿, 畫梁, 香塵, 箕裘]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: QU_E14
+    story_id: hlm_qu
+    chapter_or_section: 收尾
+    text_span: P0014
+    summary: 飛鳥各投林（集大成終曲）——為官的家業凋零／富貴的金銀散盡（社會階層逐一瓦解：官→凋零、富→散盡）→有恩的死裡逃生／無情的分明報應（因果報應的二元分配）→欠命的命已還／欠淚的淚已盡（債務清償意象：命債+淚債，淚已盡直指黛玉以淚還債的終結）→冤冤相報／分離聚合（命運的循環無常）→命短問前生／富貴也僥倖（人生無常的總括對偶）→看破的遁入空門／痴迷的枉送性命（終極分流：出世與沉淪的二元歸宿）→食盡鳥投林（核心意象：食物耗盡後鳥獸四散，喻賈府敗落後眾人離散）→白茫茫大地真乾淨（終極視覺意象：一片白色虛無，所有繁華、恩怨、情仇歸零，以徹底清空的視覺畫面收束全曲全書）。六層意象逐級遞進：階層瓦解→因果清算→債務清償→命運無常→終極分流→徹底歸零。
+    participants: [食盡鳥, 白茫茫大地, 為官的, 富貴的, 欠命的, 欠淚的, 看破的, 痴迷的]
+    location: 太虛幻境／命運終局
+    time: 終局時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+causal_edges:
+  - edge_id: QU_C01
+    story_id: hlm_qu
+    source_event_id: QU_E01
+    target_event_id: QU_E02
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0001-P0002
+    explanation: 引子確立「悲金悼玉」的總主題，終身誤直接將這一主題應用於賈寶玉——金玉良緣（金）與木石前盟（玉）的選擇困境是悲金悼玉的第一層展開。
+  - edge_id: QU_C02
+    story_id: hlm_qu
+    source_event_id: QU_E02
+    target_event_id: QU_E03
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0002-P0003
+    explanation: 終身誤以賈寶玉視角呈現金玉vs木石的兩難，枉凝眉以林黛玉視角呈現同一段感情的虛幻結局——水月鏡花回應意難平，構成同一愛情悲劇的雙聲部展開。
+  - edge_id: QU_C03
+    story_id: hlm_qu
+    source_event_id: QU_E03
+    target_event_id: QU_E04
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0003-P0004
+    explanation: 枉凝眉的個人愛情悲劇（淚珠兒/心事終虛話）過渡到恨無常的政治命運悲劇（榮華/無常），從閨閣到宮廷，悲劇範疇擴大。
+  - edge_id: QU_C04
+    story_id: hlm_qu
+    source_event_id: QU_E04
+    target_event_id: QU_E05
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0004-P0005
+    explanation: 恨無常以元春死亡（黃泉/退步抽身）打開家族離散的鏈條，分骨肉以探春遠嫁（一帆風雨/分兩地）延續這一離散主題，從死亡到分離構成家族瓦解的遞進。
+  - edge_id: QU_C05
+    story_id: hlm_qu
+    source_event_id: QU_E05
+    target_event_id: QU_E06
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0005-P0006
+    explanation: 分骨肉的離散之悲過渡到樂中悲的身世之痛，探春的被迫離家與湘雲自幼喪親同屬家庭缺失主題的兩個變奏。
+  - edge_id: QU_C06
+    story_id: hlm_qu
+    source_event_id: QU_E06
+    target_event_id: QU_E07
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0006-P0007
+    explanation: 湘雲的霽月光風（磊落坦蕩為人所容）對照妙玉的好高人妒/過潔世嫌（孤高為世所不容），構成被接納與被排斥的命運對照。
+  - edge_id: QU_C07
+    story_id: hlm_qu
+    source_event_id: QU_E07
+    target_event_id: QU_E08
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0007-P0008
+    explanation: 妙玉白玉遭泥陷（純潔被外部玷污）延續至迎春侯門艷質同蒲柳（高貴被外部踐踏），兩者共享「高潔物象被外力毀滅」的悲劇結構。
+  - edge_id: QU_C08
+    story_id: hlm_qu
+    source_event_id: QU_E08
+    target_event_id: QU_E09
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0008-P0009
+    explanation: 迎春婚姻慘死（芳魂艷魄一載蕩悠悠）直接構成惜春勘破三春、打滅韶華的原因——姐妹的悲劇命運促使惜春看破紅塵、選擇出家解脫。
+  - edge_id: QU_C09
+    story_id: hlm_qu
+    source_event_id: QU_E09
+    target_event_id: QU_E10
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0009-P0010
+    explanation: 惜春勘破紅塵的出世之路對照熙鳳機關算盡的入世之爭——一個以解脫逃離（西方寶樹長生果）、一個以算計投入（機關算盡太聰明），構成退與進的命運對照。
+  - edge_id: QU_C10
+    story_id: hlm_qu
+    source_event_id: QU_E10
+    target_event_id: QU_E11
+    relation_type: enables
+    strength: {value: strong}
+    evidence_text_span: P0010-P0011
+    explanation: 熙鳳生前唯一的善行（濟困扶窮）成為巧姐留餘慶的因果前提——娘親積得陰功使巧姐死裡逃生，熙鳳的毀滅（大廈傾）與巧姐的得救（遇恩人）構成正反因果鏈。
+  - edge_id: QU_C11
+    story_id: hlm_qu
+    source_event_id: QU_E11
+    target_event_id: QU_E12
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0011-P0012
+    explanation: 巧姐因娘親陰功得救（因果福報）與李紈因守節教子而獲晚韶華（道德回報）共享「善行必有善果」的因果結構，但李紈的珠冠鳳襖最終敵不過無常性命——因果的局限也被揭示。
+  - edge_id: QU_C12
+    story_id: hlm_qu
+    source_event_id: QU_E12
+    target_event_id: QU_E13
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0012-P0013
+    explanation: 李紈的外在榮耀虛名（簪纓金印/虛名兒後人欽敬）與秦可卿的內在敗壞（擅風情秉月貌/敗家的根本）構成外榮vs內朽的對照，二者從不同面向解構賈府的表面繁華。
+  - edge_id: QU_C13
+    story_id: hlm_qu
+    source_event_id: QU_E13
+    target_event_id: QU_E14
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0013-P0014
+    explanation: 好事終以秦可卿個案揭示宿孽總因情（一個情字導致一切毀滅），飛鳥各投林將這一歸因擴展為十二釵及所有人物的集體命運——食盡鳥投林、白茫茫大地真乾淨是宿孽總因情的宏大終極回收。
+  - edge_id: QU_C14
+    story_id: hlm_qu
+    source_event_id: QU_E01
+    target_event_id: QU_E14
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0001-P0014
+    explanation: 引子的「悲金悼玉」主題在飛鳥各投林的「白茫茫大地真乾淨」中得到終極回應——從開端的一悲一悼到結局的全部歸零，構成整組曲子的宏大閉環。
+foreshadowing_units:
+  - foreshadowing_id: QU_F01
+    story_id: hlm_qu
+    foreshadowing_text_span: P0001
+    foreshadowing_summary: 引子「悲金悼玉」——以悲、悼雙重哀傷動詞預告金（薛寶釵）與玉（林黛玉）及其所代表的全部薄命女兒的命運將以哀悼收場。
+    foreshadowing_type: thematic
+    trigger_event_id: QU_E01
+    payoff_event_id: QU_E14
+    payoff_text_span: P0014
+    payoff_summary: 飛鳥各投林「白茫茫大地真乾淨」——所有金玉、所有悲歡、所有恩怨歸於一片白色虛無，悲金悼玉的主題在此獲得最徹底的視覺化回收。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 引子以悲金悼玉定調，收尾以白茫茫大地歸零，首尾呼應構成宏觀伏筆-回收結構。
+  - foreshadowing_id: QU_F02
+    story_id: hlm_qu
+    foreshadowing_text_span: P0002
+    foreshadowing_summary: 終身誤——金玉良緣（世俗認定）vs木石前盟（靈魂契約）兩組對立意象堆疊，以雪（薛）的晶瑩冷與林（林）的寂寞孤預告兩位女主角的不同命運：一個被世俗接受卻心冷，一個被世俗排拒卻情深。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E02
+    payoff_event_id: QU_E02
+    payoff_text_span: P0002
+    payoff_summary: 空對著山中高士晶瑩雪，終不忘世外仙姝寂寞林——金玉與木石的衝突在「意難平」中化為永恆的遺憾。伏筆與回收在曲中即已完成：意象的對立即命運的對立。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 曲中的意象堆疊本身就是命運預言——金/玉/雪/林四重物象同時承載人物姓名雙關與命運隱喻，其伏筆-回收存在於詩內意象與小說後續情節之間。
+  - foreshadowing_id: QU_F03
+    story_id: hlm_qu
+    foreshadowing_text_span: P0003
+    foreshadowing_summary: 枉凝眉——水中月、鏡中花雙重虛幻意象堆疊：月影在水不可撈取，花影在鏡不可觸及，以兩層無法企及的視覺幻象預告黛玉與寶玉的愛情終將成空。淚珠兒從秋到冬、春到夏的四季循環暗示以淚還債將貫穿始終。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E03
+    payoff_event_id: QU_E03
+    payoff_text_span: P0003
+    payoff_summary: 心事終虛話、秋流到冬春流到夏——水月鏡花的虛幻本質與淚珠兒的無盡循環共同構成黛玉命運的雙重編碼：愛不可得，淚不可止，終至淚盡而亡。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 枉凝眉以多組虛幻意象堆疊（水月/鏡花/奇緣/虛話）預告黛玉命運，淚的四季循環意象直接呼應前世絳珠仙草以淚還債的設定。
+  - foreshadowing_id: QU_F04
+    story_id: hlm_qu
+    foreshadowing_text_span: P0004
+    foreshadowing_summary: 恨無常——榮華（極盛）↔無常（突變）↔黃泉（死亡）三重意象遞進，預告元春雖貴為皇妃、榮華至極，卻將被突如其來的死亡（無常）拖入黃泉，其死亦是賈府崩塌的預警信號。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E04
+    payoff_event_id: QU_E04
+    payoff_text_span: P0004
+    payoff_summary: 蕩悠悠芳魂銷耗、兒命已入黃泉——元春以夢中遺言的形式發出退步抽身早的警告，這警告在小說後續中將隨賈府崩塌而驗證。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 恨無常以榮華→無常→黃泉的遞進意象預告元春的早逝與賈府的政治危機，其伏筆價值在小說後續情節中逐一回收。
+  - foreshadowing_id: QU_F05
+    story_id: hlm_qu
+    foreshadowing_text_span: P0005
+    foreshadowing_summary: 分骨肉——一帆風雨路三千，骨肉家園齊拋閃，以空間的極致擴展（一帆→路三千→分兩地）與情感的被動撕裂（骨肉→拋閃→奴去也）預告探春遠嫁海疆、永別故土的命運。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E05
+    payoff_event_id: QU_E05
+    payoff_text_span: P0005
+    payoff_summary: 從今分兩地，各自保平安，奴去也莫牽連——探春以親口告別的聲口意象坐實了遠嫁海疆、從此與家人天各一方的命運結局。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 分骨肉全曲圍繞空間距離（三千、兩地）與血緣撕裂（骨肉拋閃）構建探春的命運預言，風雨與路三千的疊加暗示遠嫁之路的艱辛與不歸。
+  - foreshadowing_id: QU_F06
+    story_id: hlm_qu
+    foreshadowing_text_span: P0006
+    foreshadowing_summary: 樂中悲——以霽月光風耀玉堂（高潔光明）到雲散高唐／水涸湘江（美好破滅/命運枯竭）的正反對照，預告湘雲雖性格磊落如霽月光風，婚姻匹配才貌仙郎，最終仍逃不過雲散水涸的悲劇結局。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E06
+    payoff_event_id: QU_E06
+    payoff_text_span: P0006
+    payoff_summary: 雲散高唐（巫山雲雨消散）、水涸湘江（湘江水枯）——以兩個嵌入湘雲姓名的意象同時宣告婚姻幸福短暫（雲散）與生命枯竭（水涸），雙重姓名雙關完成命運預言。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 雲散高唐與水涸湘江是十四曲中姓名嵌入最精密的意象——高唐+湘江既指向歷史地理，又嵌入史湘雲之名，以雲散+水涸的毀滅動詞預告其最終命運。
+  - foreshadowing_id: QU_F07
+    story_id: hlm_qu
+    foreshadowing_text_span: P0007
+    foreshadowing_summary: 世難容——從氣質美如蘭／才華馥比仙（極致高潔）到白玉遭泥陷（極致玷污），經歷青燈古殿的孤守與風塵骯髒的淪落，預告妙玉雖才貌雙絕、孤高自許，最終將被世俗玷污，如白玉陷入泥中。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E07
+    payoff_event_id: QU_E07
+    payoff_text_span: P0007
+    payoff_summary: 依舊是風塵骯髒違心願、無瑕白玉遭泥陷——妙玉的最高潔（白玉無瑕）與最骯髒（泥陷）在同一句中以物象對比完成命運預言，蘭/仙/青燈/白玉的四重高潔意象最終全部被泥陷粉碎。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 世難容以蘭→仙→青燈古殿→白玉→風塵骯髒→泥陷構建了妙玉從高潔到毀滅的完整意象降級鏈，每一層高潔意象的疊加都在增強最終泥陷的悲劇衝擊力。
+  - foreshadowing_id: QU_F08
+    story_id: hlm_qu
+    foreshadowing_text_span: P0008
+    foreshadowing_summary: 喜冤家——以中山狼/無情獸的雙重獸性標記→侯門艷質/公府千金→蒲柳/下流→芳魂艷魄一載蕩悠悠的物象降級鏈，預告迎春誤嫁中山狼般的惡夫，婚後一年即被虐待致死。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E08
+    payoff_event_id: QU_E08
+    payoff_text_span: P0008
+    payoff_summary: 嘆芳魂艷魂，一載蕩悠悠——迎春以千金之軀嫁入孫家，一年後化為蕩悠悠的芳魂艷魄，中山狼的反噬與千金淪為下流的命運在這一聲嘆息中全部回收。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 中山狼作為核心典故意象承載雙重伏筆功能——既是對孫紹祖忘恩負義的性格標記，也是對迎春命運從侯門艷質到一載蕩悠悠的完整降級宣告。
+  - foreshadowing_id: QU_F09
+    story_id: hlm_qu
+    foreshadowing_text_span: P0009
+    foreshadowing_summary: 虛花悟——以三春勘破（看破三個春天/三位姐姐的命運）為起點，經歷桃紅柳綠（繁華）→白楊村嗚咽／青楓林鬼吟哦（死亡空間）→衰草遮墳墓（荒蕪終局）→西方寶樹長生果（解脫），預告惜春在三春（姐姐們）的悲劇中看破紅塵、最終遁入空門的命運路徑。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E09
+    payoff_event_id: QU_E09
+    payoff_text_span: P0009
+    payoff_summary: 三春勘破、韶華打滅、覓那清淡天和、西方寶樹喚婆娑上結著長生果——從勘破到打滅到覓天和到求長生果，惜春的出家之路在曲中以四階段的棄→求意象完整預演。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 虛花悟擁有十四曲中最密集的死亡空間意象（白楊嗚咽、青楓鬼吟、衰草墳墓），這些死亡意象堆疊的極致化必然導向唯一的解脫出口——西方寶樹長生果的佛門歸宿。
+  - foreshadowing_id: QU_F10
+    story_id: hlm_qu
+    foreshadowing_text_span: P0010
+    foreshadowing_summary: 聰明累——以機關算盡→大廈傾→燈將盡→一場歡喜忽悲辛的建築與燈火雙重毀滅意象，預告王熙鳳一生機關算盡、最終在賈府崩塌（大廈傾）與生命熄滅（燈將盡）中雙重毀滅。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E10
+    payoff_event_id: QU_E10
+    payoff_text_span: P0010
+    payoff_summary: 忽喇喇似大廈傾，昏慘慘似燈將盡——大廈傾（空間崩潰）與燈將盡（時間終止）兩個擬聲+擬態的雙重毀滅意象同時引爆，熙鳳的野心與生命在賈府的結構性崩塌中同歸於盡。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 聰明累以計算（機關）→家散（奔騰）→崩塌（大廈傾）→熄滅（燈將盡）→悲辛的完整毀滅鏈預告熙鳳命運，燈將盡的熄滅意象與大廈傾的空間崩塌形成全曲最具震懾力的毀滅雙聯畫。
+  - foreshadowing_id: QU_F11
+    story_id: hlm_qu
+    foreshadowing_text_span: P0011
+    foreshadowing_summary: 留餘慶——以娘親積得陰功→忽遇恩人的因果鏈，預告巧姐將在賈府敗落、被狠舅奸兄出賣的絕境中，因母親王熙鳳生前的偶然善舉（陰功）而意外獲救。
+    foreshadowing_type: causal
+    trigger_event_id: QU_E11
+    payoff_event_id: QU_E11
+    payoff_text_span: P0011
+    payoff_summary: 留餘慶，留餘慶，忽遇恩人；幸娘親，幸娘親，積得陰功——因果報應的算式（乘除加減）在蒼穹的裁決下得到平衡：熙鳳的惡（機關算盡）導致自身毀滅，熙鳳一閃而過的善（陰功）卻救了女兒。
+    payoff_type: positive
+    confidence: {value: high}
+    explanation: 留餘慶是十四曲中唯一以正面結局收尾的曲子，其因果鏈（陰功→恩人→得救）為整組悲劇提供了一線光明，承載著因果報應不可逃脫的道德命題。
+  - foreshadowing_id: QU_F12
+    story_id: hlm_qu
+    foreshadowing_text_span: P0012
+    foreshadowing_summary: 晚韶華——以鏡裡恩情/夢裡功名（雙重虛幻開篇）→珠冠鳳襖/簪纓金印/爵祿高登（三重榮華堆疊）→昏慘慘黃泉路近（死亡驟臨）→虛名兒後人欽敬（終極否定），預告李紈雖守節教子獲得外在榮耀，但這些榮耀在死亡面前全部化為虛名。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E12
+    payoff_event_id: QU_E12
+    payoff_text_span: P0012
+    payoff_summary: 氣昂昂頭戴簪纓，光燦燦胸懸金印，威赫赫爵祿高登——昏慘慘黃泉路近！三聲疊詞推至權力巔峰後驟然以死亡截斷，所有榮耀在黃泉路近的死亡陰影下化為一場空。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 晚韶華以鏡/夢的虛幻開端與黃泉路近的死亡收束構成環形否定結構——開始即虛幻，到頭來一切（珠冠鳳襖簪纓金印）只是虛名兒，鏡與夢的虛無被黃泉徹底坐實。
+  - foreshadowing_id: QU_F13
+    story_id: hlm_qu
+    foreshadowing_text_span: P0013
+    foreshadowing_summary: 好事終——以畫梁春盡落香塵（華美建築+春天+香味+塵土的四重疊加）→擅風情秉月貌（情慾天資→敗家的根本）→箕裘頹墮/家事消亡（家族基業崩塌）→宿孽總因情（終極歸因），預告秦可卿以風情月貌之美成為情慾的化身與犧牲，她的死是賈府從內部腐敗走向全面崩塌的開端。
+    foreshadowing_type: symbolic
+    trigger_event_id: QU_E13
+    payoff_event_id: QU_E13
+    payoff_text_span: P0013
+    payoff_summary: 畫梁春盡落香塵、擅風情秉月貌便是敗家的根本、宿孽總因情——秦可卿從美（畫梁/香塵/風情/月貌）到罪（敗家/宿孽/因情）的意象降級路徑宣告：美即禍根，情即宿孽。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 好事終以香塵的姓名嵌入（秦可卿乳名兼美字可卿，香塵→可卿）與宿孽總因情的終極歸因將秦可卿定位為全書情慾罪孽的原點，她的毀滅是飛鳥各投林集體毀滅的預演。
+  - foreshadowing_id: QU_F14
+    story_id: hlm_qu
+    foreshadowing_text_span: P0014
+    foreshadowing_summary: 飛鳥各投林——以食盡鳥投林（食物耗盡→鳥獸四散，喻賈府物資/運勢耗盡後眾人各自離散）→白茫茫大地真乾淨（終極視覺清空：一片白色虛無吞噬一切），預告全書所有人物——為官的、富貴的、有恩的、無情的、欠命的、欠淚的、看破的、痴迷的——終將在賈府崩塌後走向各自歸宿，最終一切歸零。
+    foreshadowing_type: thematic
+    trigger_event_id: QU_E14
+    payoff_event_id: QU_E14
+    payoff_text_span: P0014
+    payoff_summary: 好一似食盡鳥投林，落了片白茫茫大地真乾淨——食盡（資源耗盡）、鳥投林（各自離散）、白茫茫（視覺清空）、真乾淨（存在歸零），四層意象逐級推進至絕對虛無，這是十四曲全部伏筆的終極總回收。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 飛鳥各投林是整組紅樓夢曲的宏大收束——它將前十三曲每一個人物的命運預告以集體清算的方式匯總回收，從欠淚的淚已盡（黛玉）到遁入空門（惜春/寶玉）到枉送了性命（熙鳳等），再以白茫茫大地將一切歸零，完成從引子悲金悼玉到終曲萬事皆空的閉環。
+characters:
+  - character_id: QU_CH01
+    story_id: hlm_qu
+    name: 賈寶玉
+    role: 聽曲者／情種／通靈寶玉持有者
+    stable_traits: [多情, 痴迷, 反世俗]
+    current_motivation_by_event:
+      - event_id: QU_E01
+        motivation: 在太虛幻境中被引導聆聽紅樓夢曲，理解悲金悼玉的主題。
+        knowledge_state: 聽到曲子但當下不解其意。
+        emotional_state: 茫然、被動接受。
+        goal: 無主動目標（曲子為警幻仙姑安排，他被動接受命運的預告）。
+  - character_id: QU_CH02
+    story_id: hlm_qu
+    name: 林黛玉
+    role: 絳珠仙草轉世／木石前盟／世外仙姝
+    stable_traits: [才高, 孤傲, 善感, 薄命]
+    current_motivation_by_event:
+      - event_id: QU_E02
+        motivation: 無主動動機（曲中被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中不知自己被曲子預言。
+        emotional_state: 無直接情感描寫。
+        goal: 曲子為讀者揭示其命運：木石前盟終成意難平。
+      - event_id: QU_E03
+        motivation: 無主動動機。
+        knowledge_state: 同上。
+        emotional_state: 無直接情感描寫。
+        goal: 曲子為讀者揭示其命運：水月鏡花、淚債無盡。
+  - character_id: QU_CH03
+    story_id: hlm_qu
+    name: 薛寶釵
+    role: 金玉良緣／山中高士／冷美人
+    stable_traits: [賢德, 持重, 理性, 薄命]
+    current_motivation_by_event:
+      - event_id: QU_E02
+        motivation: 無主動動機（曲中被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中不知自己被曲子預言。
+        emotional_state: 無直接情感描寫。
+        goal: 曲子為讀者揭示其命運：金玉良緣雖成，終是空對著晶瑩雪，到底意難平。
+  - character_id: QU_CH04
+    story_id: hlm_qu
+    name: 賈元春
+    role: 皇貴妃／賈府政治支柱
+    stable_traits: [高貴, 憂患, 早逝]
+    current_motivation_by_event:
+      - event_id: QU_E04
+        motivation: 無主動動機。
+        knowledge_state: 曲子揭示她死後以夢境向父母告別、勸其退步抽身。
+        emotional_state: 死後仍掛念家人（向爹娘夢裡尋告）。
+        goal: 以黃泉遺言警告家族及早抽身。
+  - character_id: QU_CH05
+    story_id: hlm_qu
+    name: 賈探春
+    role: 三小姐／遠嫁者／庶出才女
+    stable_traits: [精明, 剛烈, 遠嫁, 薄命]
+    current_motivation_by_event:
+      - event_id: QU_E05
+        motivation: 無主動動機。
+        knowledge_state: 曲子以她的口吻預告遠嫁離別，知其必將遠行。
+        emotional_state: 悲傷但克制（奴去也莫牽連）。
+        goal: 以親口告別的方式完成與家人的命運切割。
+  - character_id: QU_CH06
+    story_id: hlm_qu
+    name: 史湘雲
+    role: 侯門孤女／霽月光風式人物
+    stable_traits: [豪爽, 磊落, 孤苦, 薄命]
+    current_motivation_by_event:
+      - event_id: QU_E06
+        motivation: 無主動動機。
+        knowledge_state: 曲子預告其自幼父母雙亡、婚姻短暫、最終孤苦。
+        emotional_state: 無直接情感描寫（曲中以何必枉悲傷作結，反寫其悲）。
+        goal: 曲子為讀者揭示其命運：霽月終將雲散，湘江終將水涸。
+  - character_id: QU_CH07
+    story_id: hlm_qu
+    name: 妙玉
+    role: 櫳翠庵尼姑／過潔世同嫌
+    stable_traits: [孤高, 潔癖, 才華, 薄命]
+    current_motivation_by_event:
+      - event_id: QU_E07
+        motivation: 無主動動機。
+        knowledge_state: 曲子預告其孤高不為世所容，終將白玉遭泥陷。
+        emotional_state: 無直接情感描寫。
+        goal: 曲子為讀者揭示其命運：越是好高人過潔，越是被世同嫌，終遭泥陷。
+  - character_id: QU_CH08
+    story_id: hlm_qu
+    name: 賈迎春
+    role: 二小姐／誤嫁中山狼
+    stable_traits: [懦弱, 溫順, 薄命]
+    current_motivation_by_event:
+      - event_id: QU_E08
+        motivation: 無主動動機。
+        knowledge_state: 曲子預告其嫁孫紹祖（中山狼）後一年內被虐待致死。
+        emotional_state: 無直接情感描寫（曲中以嘆芳魂收束，代其悲）。
+        goal: 曲子為讀者揭示其命運：侯門艷質淪為蒲柳，一載蕩悠悠。
+  - character_id: QU_CH09
+    story_id: hlm_qu
+    name: 賈惜春
+    role: 四小姐／勘破三春／出家者
+    stable_traits: [冷僻, 厭世, 決絕, 出世]
+    current_motivation_by_event:
+      - event_id: QU_E09
+        motivation: 看破三個姐姐的悲劇命運（三春），主動打滅韶華、捨棄紅塵。
+        knowledge_state: 曲子揭示她勘破繁華虛幻，選擇追求西方寶樹長生果。
+        emotional_state: 冷靜決絕（將那三春勘破，把這韶華打滅）。
+        goal: 覓那清淡天和、追求佛門解脫。
+  - character_id: QU_CH10
+    story_id: hlm_qu
+    name: 王熙鳳
+    role: 璉二奶奶／管家／機關算盡者
+    stable_traits: [精明, 狠辣, 貪權, 薄命]
+    current_motivation_by_event:
+      - event_id: QU_E10
+        motivation: 無主動動機（曲中批判對象，非行動者）。
+        knowledge_state: 曲子揭示其一生機關算盡反誤命，賈府崩塌時其生命也隨之熄滅。
+        emotional_state: 無直接情感描寫（曲中以歡喜→悲辛概括其情感軌跡）。
+        goal: 曲子為讀者揭示其命運：算盡一切的聰明最終導致一切毀滅。
+      - event_id: QU_E11
+        motivation: 生前偶然的善行（濟困扶窮）成為女兒巧姐獲救的原因。
+        knowledge_state: 曲子揭示其陰功（善行）被蒼穹記錄，轉化為巧姐的救命因果。
+        emotional_state: 無直接情感描寫。
+        goal: 其陰功非出於刻意，但因果報應使善行不滅。
+  - character_id: QU_CH11
+    story_id: hlm_qu
+    name: 巧姐
+    role: 熙鳳之女／留餘慶受益者
+    stable_traits: [幼弱, 無辜, 獲救]
+    current_motivation_by_event:
+      - event_id: QU_E11
+        motivation: 無主動動機（曲中被拯救者）。
+        knowledge_state: 曲子揭示其在賈府敗落後被狠舅奸兄出賣，因母親陰功而遇恩人獲救。
+        emotional_state: 無直接情感描寫。
+        goal: 曲子為讀者揭示其命運：善有善報的因果使她在絕境中生還。
+  - character_id: QU_CH12
+    story_id: hlm_qu
+    name: 李紈
+    role: 寡婦／守節教子／晚韶華
+    stable_traits: [貞靜, 隱忍, 寡淡, 空名]
+    current_motivation_by_event:
+      - event_id: QU_E12
+        motivation: 無主動動機。
+        knowledge_state: 曲子揭示其守節一生最終獲得外在榮耀（珠冠鳳襖、簪纓金印、爵祿高登），但一切在黃泉路近的死亡面前只是虛名。
+        emotional_state: 無直接情感描寫。
+        goal: 曲子為讀者揭示其命運：漫長等待換來的榮耀只是鏡裡恩情夢裡功名，死亡使一切歸於虛無。
+  - character_id: QU_CH13
+    story_id: hlm_qu
+    name: 秦可卿
+    role: 寧國府少奶奶／情慾象徵／敗家先兆
+    stable_traits: [美貌, 風情, 薄命, 象徵性]
+    current_motivation_by_event:
+      - event_id: QU_E13
+        motivation: 無主動動機（曲中她是情慾與敗家的象徵化人物）。
+        knowledge_state: 曲子揭示其風情月貌是敗家的根本，其死是賈府衰亡的前兆與象徵。
+        emotional_state: 無直接情感描寫。
+        goal: 曲子為讀者揭示其命運：她是宿孽總因情這一命題的人格化身，其個體的毀滅預兆家族的全面崩塌。

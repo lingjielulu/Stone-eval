@@ -1,0 +1,113 @@
+metadata:
+  story_id: ziti_jinshan
+  title: "自題金山畫像"
+  author: "蘇軾"
+  language: zh
+  source_text_path: data/foreshadow_causality_benchmark/poetry/classical/normalized_texts/ziti_jinshan.txt
+  source_url: https://zh.wikisource.org/wiki/%E8%87%AA%E9%A1%8C%E9%87%91%E5%B1%B1%E7%95%AB%E5%83%8F
+  copyright_status: public_domain
+  genre: classical_chinese_poetry_imagery_stacking
+  length_level: short
+  structure_type: [symbolic, psychological]
+annotation_guide:
+  focus:
+    - 標注兩個比喻意象（已灰之木、不繫之舟）的堆疊：心與身分別對應靜寂與漂泊。
+    - 標注三個地名（黃州、惠州、儋州）作為意象堆疊的核心——用三個貶謫地名回答平生功業。
+    - 標注「問汝平生功業」是觸發事件，三個地名是 payoff——地名堆疊取代抽象回答。
+  boundary_notes:
+    - 黃州惠州儋州三個地名在此詩中不是單純地理，而是被壓縮為意象的苦難標記，每個地名背後都有故事。
+events:
+  - event_id: ZJ_E01
+    story_id: ziti_jinshan
+    chapter_or_section: "上聯"
+    text_span: P0001
+    summary: 心似已灰之木——心境死寂如燒盡的木頭，用自然物象比喻精神狀態。
+    participants: [心, 已灰之木]
+    location: 無特定
+    time: 晚年回顧
+    event_type: internal_state
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: ZJ_E02
+    story_id: ziti_jinshan
+    chapter_or_section: "上聯"
+    text_span: P0001
+    summary: 身如不繫之舟——肉身漂泊如無所繫的小船，延續物象比喻。
+    participants: [身, 不繫之舟]
+    location: 無特定
+    time: 晚年回顧
+    event_type: internal_state
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: ZJ_E03
+    story_id: ziti_jinshan
+    chapter_or_section: "下聯"
+    text_span: P0002
+    summary: 問汝平生功業——自我提問，將抽象的「功業」懸置為待填的空位。
+    participants: [蘇軾]
+    location: 金山寺
+    time: 晚年自題畫像
+    event_type: dialogue
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: ZJ_E04
+    story_id: ziti_jinshan
+    chapter_or_section: "下聯"
+    text_span: P0002
+    summary: 黃州惠州儋州——三個貶謫地的地名堆疊，以具體的地理意象回答平生功業。
+    participants: [黃州, 惠州, 儋州]
+    location: 三州
+    time: 生命的不同階段
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+causal_edges:
+  - edge_id: ZJ_C01
+    story_id: ziti_jinshan
+    source_event_id: ZJ_E01
+    target_event_id: ZJ_E02
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0001
+    explanation: 心之死寂（已灰之木）與身之漂泊（不繫之舟）並置，共同構成貶謫生涯的精神與物理後果。
+  - edge_id: ZJ_C02
+    story_id: ziti_jinshan
+    source_event_id: ZJ_E02
+    target_event_id: ZJ_E03
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0001-P0002
+    explanation: 身心俱疲的狀態引出對平生功業的根本追問。
+  - edge_id: ZJ_C03
+    story_id: ziti_jinshan
+    source_event_id: ZJ_E03
+    target_event_id: ZJ_E04
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0002
+    explanation: 「問汝平生功業」的提問被三個貶謫地名回答，以反諷揭示「功業」真義——失敗與苦難即一生的成就。
+foreshadowing_units:
+  - foreshadowing_id: ZJ_F01
+    story_id: ziti_jinshan
+    foreshadowing_text_span: P0001
+    foreshadowing_summary: 心似已灰之木、身如不繫之舟——兩個精確的物象比喻為後文的地名堆疊建立身心基礎。
+    foreshadowing_type: symbolic
+    trigger_event_id: ZJ_E03
+    payoff_event_id: ZJ_E04
+    payoff_text_span: P0002
+    payoff_summary: 黃州惠州儋州——三個地名堆疊作為平生功業的全部答案，呼應前文的漂泊與死寂。
+    payoff_type: ironic
+    confidence: {value: high}
+    explanation: 前文的比喻越消沉，後文三個地名的答案越有反諷力量——以三個流放地作為一生功業的總結，將苦難轉化為自嘲式的榮耀。
+characters:
+  - character_id: ZJ_CH01
+    story_id: ziti_jinshan
+    name: 蘇軾
+    role: 抒情主體／貶謫文人
+    stable_traits: [豁達, 自嘲, 歷經苦難, 反諷式自尊]
+    current_motivation_by_event:
+      - event_id: ZJ_E03
+        motivation: 回顧一生的自我審視。
+        knowledge_state: 深知自己被貶數十年的經歷。
+        emotional_state: 表面平靜、內裡激盪，以自嘲掩蓋悲涼。
+        goal: 在畫像上題詩以總結一生，將苦難定義為功業。

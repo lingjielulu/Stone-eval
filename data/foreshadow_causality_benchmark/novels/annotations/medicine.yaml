@@ -1,0 +1,209 @@
+metadata:
+  story_id: medicine
+  title: "藥"
+  author: "魯迅"
+  language: zh
+  source_text_path: data/foreshadow_causality_benchmark/novels/normalized_texts/medicine.txt
+  source_url: https://zh.wikisource.org/wiki/%E8%97%A5
+  copyright_status: public_domain_wikisource_pd_1996_and_pd_china_organization
+  genre: modern_chinese_symbolic_realism
+  length_level: short
+  structure_type: [symbolic, social]
+annotation_guide:
+  focus:
+    - 標注華老栓買人血饅頭、夏瑜被處刑、小栓病情與墳場相遇之間的雙線結構。
+    - 把人血饅頭標為迷信性物件與社會誤解的交叉伏筆，不只標為普通道具。
+    - 標注花環與烏鴉作為象徵性 payoff；花環提示革命者並未完全無人理解，烏鴉則拒絕直接神蹟化解釋。
+  boundary_notes:
+    - 「人血饅頭治癆病」是人物信念，不應標為客觀有效因果。
+    - 夏瑜的革命行動多由茶客轉述呈現，事件可標為 narrated，但其被處刑和被誤解是敘事中的穩定事實。
+events:
+  - event_id: MD_E01
+    story_id: medicine
+    chapter_or_section: 一
+    text_span: P0001-P0005
+    summary: 華老栓帶錢出門，準備為小栓尋找治病的「藥」。
+    participants: [華老栓, 華大媽, 小栓]
+    location: 華家茶館
+    time: 秋天後半夜
+    event_type: decision
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: MD_E02
+    story_id: medicine
+    chapter_or_section: 一
+    text_span: P0010-P0014
+    summary: 處刑現場的人群聚集，華老栓用洋錢買到蘸血的饅頭。
+    participants: [華老栓, 康大叔, 圍觀者, 夏瑜]
+    location: 丁字街口
+    time: 清晨
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: MD_E03
+    story_id: medicine
+    chapter_or_section: 二
+    text_span: P0018-P0026
+    summary: 華家把人血饅頭烤給小栓吃，期待它治好癆病。
+    participants: [華老栓, 華大媽, 小栓]
+    location: 華家茶館
+    time: 清晨回家後
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: MD_E04
+    story_id: medicine
+    chapter_or_section: 三
+    text_span: P0036-P0052
+    summary: 康大叔和茶客談論人血饅頭、夏瑜被殺以及夏瑜在獄中勸牢頭造反。
+    participants: [康大叔, 華老栓, 華大媽, 茶客, 小栓, 夏瑜]
+    location: 華家茶館
+    time: 同日茶館營業時
+    event_type: dialogue
+    certainty: {value: certain}
+    narrative_reality_level: {value: narrated}
+  - event_id: MD_E05
+    story_id: medicine
+    chapter_or_section: 四
+    text_span: P0054-P0057
+    summary: 清明時華大媽在小栓墳前祭奠，夏四奶奶到相鄰墳前祭奠夏瑜。
+    participants: [華大媽, 夏四奶奶, 小栓, 夏瑜]
+    location: 西關外墳地
+    time: 次年清明
+    event_type: discovery
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: MD_E06
+    story_id: medicine
+    chapter_or_section: 四
+    text_span: P0060-P0062
+    summary: 夏四奶奶發現夏瑜墳上有紅白花環，將其理解為兒子顯靈或伸冤。
+    participants: [夏四奶奶, 華大媽, 夏瑜]
+    location: 夏瑜墳前
+    time: 清明
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: MD_E07
+    story_id: medicine
+    chapter_or_section: 四
+    text_span: P0062-P0067
+    summary: 夏四奶奶請烏鴉飛到墳頂作為顯靈證據，但烏鴉最後飛向遠處天空。
+    participants: [夏四奶奶, 華大媽, 烏鴉]
+    location: 墳地
+    time: 清明
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+causal_edges:
+  - edge_id: MD_C01
+    story_id: medicine
+    source_event_id: MD_E01
+    target_event_id: MD_E02
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0001-P0014
+    explanation: 華家相信人血饅頭能治病，這一信念促使華老栓帶錢去處刑現場購買。
+  - edge_id: MD_C02
+    story_id: medicine
+    source_event_id: MD_E02
+    target_event_id: MD_E03
+    relation_type: enables
+    strength: {value: strong}
+    evidence_text_span: P0012-P0026
+    explanation: 華老栓買到蘸血饅頭，使華家能將它作為「藥」給小栓吃。
+  - edge_id: MD_C03
+    story_id: medicine
+    source_event_id: MD_E04
+    target_event_id: MD_E02
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0038-P0047
+    explanation: 茶館談話揭示早晨被處刑者是夏瑜，華老栓購買的「藥」來自革命者的血。
+  - edge_id: MD_C04
+    story_id: medicine
+    source_event_id: MD_E03
+    target_event_id: MD_E05
+    relation_type: prevents
+    strength: {value: strong}
+    evidence_text_span: P0024-P0055
+    explanation: 人血饅頭沒有治好小栓；墳場祭奠反向證明迷信療法無效。
+  - edge_id: MD_C05
+    story_id: medicine
+    source_event_id: MD_E04
+    target_event_id: MD_E06
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0041-P0062
+    explanation: 茶客對夏瑜的誤解與墳上花環形成照應，後者提示夏瑜可能並非完全孤立。
+foreshadowing_units:
+  - foreshadowing_id: MD_F01
+    story_id: medicine
+    foreshadowing_text_span: P0012-P0015
+    foreshadowing_summary: 鮮紅饅頭被當作能帶回「新生命」的藥。
+    foreshadowing_type: symbolic
+    trigger_event_id: MD_E03
+    payoff_event_id: MD_E05
+    payoff_text_span: P0054-P0057
+    payoff_summary: 小栓已死，墳場場景否定人血饅頭的療效。
+    payoff_type: negative
+    confidence: {value: high}
+    explanation: 物件被人物視作救命藥，結局證明其只是迷信和暴力消費的象徵。
+  - foreshadowing_id: MD_F02
+    story_id: medicine
+    foreshadowing_text_span: P0038-P0047
+    foreshadowing_summary: 茶客把夏瑜理解為「不要命」和「發瘋」的人。
+    foreshadowing_type: social
+    trigger_event_id: MD_E05
+    payoff_event_id: MD_E06
+    payoff_text_span: P0060-P0062
+    payoff_summary: 夏瑜墳上的花環回收革命者被誤解但仍可能有人悼念的線索。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 社會誤解在墳場被象徵性打開，但不是用明確敘事答案解決。
+  - foreshadowing_id: MD_F03
+    story_id: medicine
+    foreshadowing_text_span: P0054
+    foreshadowing_summary: 墳地小路把死刑者和窮人分隔在兩邊。
+    foreshadowing_type: social
+    trigger_event_id: MD_E05
+    payoff_event_id: MD_E05
+    payoff_text_span: P0055-P0057
+    payoff_summary: 兩位母親在相鄰墳前相遇，將華家和夏家兩條敘事線並置。
+    payoff_type: symbolic
+    confidence: {value: medium}
+    explanation: 空間分界把社會分類可視化，又讓兩條悲劇線在同一場景中相互照亮。
+characters:
+  - character_id: MD_CH01
+    story_id: medicine
+    name: 華老栓
+    role: 茶館主人 / 求藥者
+    stable_traits: [順從, 迷信, 愛子心切]
+    current_motivation_by_event:
+      - event_id: MD_E02
+        motivation: 想治好小栓的癆病。
+        knowledge_state: 相信人血饅頭是有效偏方，不理解夏瑜的政治含義。
+        emotional_state: 緊張而懷有希望。
+        goal: 用錢換得能救兒子的藥。
+  - character_id: MD_CH02
+    story_id: medicine
+    name: 夏瑜
+    role: 被處刑的革命者
+    stable_traits: [反抗, 孤立, 被民眾誤解]
+    current_motivation_by_event:
+      - event_id: MD_E04
+        motivation: 勸牢頭造反，延續革命信念。
+        knowledge_state: 知道自己身處監禁和處刑危險。
+        emotional_state: 堅持。
+        goal: 喚醒他人而非求生。
+  - character_id: MD_CH03
+    story_id: medicine
+    name: 夏四奶奶
+    role: 革命者母親
+    stable_traits: [悲痛, 困惑, 仍尋求意義]
+    current_motivation_by_event:
+      - event_id: MD_E06
+        motivation: 為兒子申冤並尋找超自然或道德確認。
+        knowledge_state: 看見花環，但不知道送花者是誰。
+        emotional_state: 悲痛、震驚、期待。
+        goal: 確認兒子並非白白受冤。

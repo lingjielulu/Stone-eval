@@ -1,0 +1,153 @@
+metadata:
+  story_id: jinse
+  title: "錦瑟"
+  author: "李商隱"
+  language: zh
+  source_text_path: data/foreshadow_causality_benchmark/poetry/classical/normalized_texts/jinse.txt
+  source_url: https://zh.wikisource.org/wiki/%E9%8C%A6%E7%91%9F
+  copyright_status: public_domain
+  genre: classical_chinese_poetry_imagery_stacking
+  length_level: short
+  structure_type: [symbolic, psychological]
+annotation_guide:
+  focus:
+    - 標注中間兩聯四個典故意象的堆疊：莊生夢蝶、望帝杜鵑、滄海珠淚、藍田玉煙。
+    - 標注每個典故將歷史/神話人物轉化為當下情感的象徵物的方式。
+    - 標注首聯錦瑟起興與尾聯此情惘然的收束關係——中間四組意象是情感的唯一載體。
+    - 標注意象堆疊的遞進：夢→春心→淚→煙，從迷到悲到朦朧。
+  boundary_notes:
+    - 錦瑟無端五十弦是起興，不是純粹意象堆疊，但它設定了全詩的情感基座。
+    - 四個典故意象各自獨立但共同指向「華年已逝」的情感核心。
+events:
+  - event_id: JS_E01
+    story_id: jinse
+    chapter_or_section: "首聯"
+    text_span: P0001
+    summary: 錦瑟無端五十弦，一弦一柱思華年——錦瑟作為起興物件，五十弦對應逝去的年華，以器物意象開啟回憶。
+    participants: [錦瑟, 五十弦]
+    location: 無特定
+    time: 回顧華年
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: JS_E02
+    story_id: jinse
+    chapter_or_section: "頷聯"
+    text_span: P0002
+    summary: 莊生曉夢迷蝴蝶——用莊周夢蝶的典故，意象堆疊（曉夢＋蝴蝶），暗示人生如夢的迷離。
+    participants: [莊生, 蝴蝶, 曉夢]
+    location: 夢境
+    time: 清晨夢醒
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: JS_E03
+    story_id: jinse
+    chapter_or_section: "頷聯"
+    text_span: P0002
+    summary: 望帝春心託杜鵑——用望帝化鵑的典故，意象堆疊（春心＋杜鵑），暗示至死不渝的執念與哀鳴。
+    participants: [望帝, 杜鵑, 春心]
+    location: 蜀地
+    time: 暮春
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: JS_E04
+    story_id: jinse
+    chapter_or_section: "頸聯"
+    text_span: P0003
+    summary: 滄海月明珠有淚——用鮫人泣珠的典故，意象堆疊（滄海＋明月＋珠＋淚），冷寂月光下的悲哀。
+    participants: [滄海, 明月, 珠, 淚]
+    location: 滄海之上
+    time: 月夜
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: JS_E05
+    story_id: jinse
+    chapter_or_section: "頸聯"
+    text_span: P0003
+    summary: 藍田日暖玉生煙——用藍田產玉的典故，意象堆疊（藍田＋暖日＋玉＋煙），美好但不可觸及的朦朧。
+    participants: [藍田, 暖日, 玉, 煙]
+    location: 藍田
+    time: 暖日
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: JS_E06
+    story_id: jinse
+    chapter_or_section: "尾聯"
+    text_span: P0004
+    summary: 此情可待成追憶，只是當時已惘然——所有意象堆疊的情感在此收束為惘然。
+    participants: [抒情主體]
+    location: 無特定
+    time: 現在
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+causal_edges:
+  - edge_id: JS_C01
+    story_id: jinse
+    source_event_id: JS_E01
+    target_event_id: JS_E02
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0001-P0002
+    explanation: 錦瑟起興觸動華年之思，引出莊生夢蝶的迷離意象。
+  - edge_id: JS_C02
+    story_id: jinse
+    source_event_id: JS_E02
+    target_event_id: JS_E03
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0002
+    explanation: 夢的迷離與春心的執念構成情感張力：既有虛幻又有至死不渝。
+  - edge_id: JS_C03
+    story_id: jinse
+    source_event_id: JS_E03
+    target_event_id: JS_E04
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0002-P0003
+    explanation: 杜鵑的哀鳴轉化為滄海珠淚的冷寂悲哀，情感從熱烈走向沉靜。
+  - edge_id: JS_C04
+    story_id: jinse
+    source_event_id: JS_E04
+    target_event_id: JS_E05
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0003
+    explanation: 珠淚的冰冷被玉煙的溫暖朦朧中和，悲哀轉為悵惘。
+  - edge_id: JS_C05
+    story_id: jinse
+    source_event_id: JS_E05
+    target_event_id: JS_E06
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0003-P0004
+    explanation: 四組意象堆疊完畢後，惘然作為最終情感定義被揭示。
+foreshadowing_units:
+  - foreshadowing_id: JS_F01
+    story_id: jinse
+    foreshadowing_text_span: P0002-P0003
+    foreshadowing_summary: 中間兩聯四組典故意象堆疊——莊生夢蝶、望帝杜鵑、滄海珠淚、藍田玉煙——每組包含三個以上具象名詞（人物/物象/景物），以高度壓縮的典故將情感置入歷史神話的象徵系統中。
+    foreshadowing_type: symbolic
+    trigger_event_id: JS_E04
+    payoff_event_id: JS_E06
+    payoff_text_span: P0004
+    payoff_summary: 此情可待成追憶，只是當時已惘然——四組意象的共同指向被揭示為惘然，所有典故意象都是惘然的象徵式預演。
+    payoff_type: delayed_revelation
+    confidence: {value: high}
+    explanation: 中間兩聯的每個典故意象都是獨立的感情晶體，但它們的共同功能是為尾聯的惘然累積重量——意象越多越華美，最終的惘然越沉。
+characters:
+  - character_id: JS_CH01
+    story_id: jinse
+    name: 抒情主體（詩人）
+    role: 抒情主體／華年追憶者
+    stable_traits: [感傷, 惘然, 迷離, 執念]
+    current_motivation_by_event:
+      - event_id: JS_E01
+        motivation: 因錦瑟觸發對已逝華年的追憶。
+        knowledge_state: 知道一切已成過往，但無法清晰把握。
+        emotional_state: 迷離、感傷、惘然。
+        goal: 以意象捕捉不可言說的情感。

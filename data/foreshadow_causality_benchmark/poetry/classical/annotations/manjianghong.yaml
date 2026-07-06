@@ -1,0 +1,152 @@
+metadata:
+  story_id: manjianghong
+  title: "滿江紅·寫懷"
+  author: "岳飛"
+  language: zh
+  source_text_path: data/foreshadow_causality_benchmark/poetry/classical/normalized_texts/manjianghong.txt
+  source_url: https://zh.wikisource.org/wiki/%E6%BB%BF%E6%B1%9F%E7%B4%85
+  copyright_status: public_domain
+  genre: classical_chinese_poetry_imagery_stacking
+  length_level: short
+  structure_type: [symbolic, psychological]
+annotation_guide:
+  focus:
+    - 標注三十功名塵與土、八千里路雲和月為對偶意象堆疊的核心單元。
+    - 標注塵與土、雲和月這兩組自然意象如何將功名和征途轉化為可視的物理畫面。
+    - 標注靖康恥、胡虜肉、匈奴血等歷史意象與前文自然意象的轉換，形成情感遞進。
+    - 標注從憑欄怒髮到朝天闕的情感軌跡，前文意象堆疊為後文誓言的伏筆。
+  boundary_notes:
+    - 塵與土、雲和月是名詞並置，但不同於天淨沙的純靜物堆疊，此處有名詞轉喻（功名→塵土，征途→雲月）的修辭層次。
+events:
+  - event_id: MJ_E01
+    story_id: manjianghong
+    chapter_or_section: "上闋"
+    text_span: P0001-P0002
+    summary: 怒髮衝冠、憑欄望雨、仰天長嘯——三層情感動作建立激憤基調。
+    participants: [岳飛]
+    location: 欄杆處
+    time: 雨後
+    event_type: internal_state
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: MJ_E02
+    story_id: manjianghong
+    chapter_or_section: "上闋"
+    text_span: P0003
+    summary: 三十功名塵與土、八千里路雲和月——將一生的功業和征途化為塵土與雲月的自然意象，以物象疊加代替抽象議論。
+    participants: [功名, 征途, 塵土, 雲月]
+    location: 回顧一生
+    time: 回首往事
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: MJ_E03
+    story_id: manjianghong
+    chapter_or_section: "上闋"
+    text_span: P0004
+    summary: 莫等閒白了少年頭，空悲切——時間緊迫感從意象堆疊中湧出，化為激越的自警。
+    participants: [岳飛]
+    location: 同上
+    time: 當下
+    event_type: decision
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: MJ_E04
+    story_id: manjianghong
+    chapter_or_section: "下闋"
+    text_span: P0005
+    summary: 靖康恥猶未雪、臣子恨何時滅——國仇家恨從塵土雲月的詩意轉為具體歷史創傷。
+    participants: [岳飛, 宋人]
+    location: 宋朝疆土
+    time: 靖康之變後
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: MJ_E05
+    story_id: manjianghong
+    chapter_or_section: "下闋"
+    text_span: P0006-P0007
+    summary: 駕長車踏破賀蘭山缺，飢餐胡虜肉、渴飲匈奴血——戰爭意象從地理延伸到身體，名詞堆疊（胡虜肉、匈奴血）將復仇慾望具象化。
+    participants: [岳飛, 胡虜, 匈奴]
+    location: 賀蘭山
+    time: 未來征戰
+    event_type: decision
+    certainty: {value: certain}
+    narrative_reality_level: {value: narrated}
+  - event_id: MJ_E06
+    story_id: manjianghong
+    chapter_or_section: "下闋"
+    text_span: P0008
+    summary: 待從頭收拾舊山河，朝天闕——情感從塵土雲月、胡虜肉匈奴血全部收束為重整山河的終極誓言。
+    participants: [岳飛]
+    location: 朝廷
+    time: 未來
+    event_type: decision
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+causal_edges:
+  - edge_id: MJ_C01
+    story_id: manjianghong
+    source_event_id: MJ_E01
+    target_event_id: MJ_E02
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0001-P0003
+    explanation: 憑欄的激憤引發對一生的回顧，三十功名與八千里路是怒髮衝冠的歷史註腳。
+  - edge_id: MJ_C02
+    story_id: manjianghong
+    source_event_id: MJ_E02
+    target_event_id: MJ_E03
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0003-P0004
+    explanation: 塵與土、雲和月的虛無感催生時間焦慮，導致莫等閒的自我警示。
+  - edge_id: MJ_C03
+    story_id: manjianghong
+    source_event_id: MJ_E03
+    target_event_id: MJ_E04
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0004-P0005
+    explanation: 時間緊迫感將注意力從個人功業轉向國族創傷。
+  - edge_id: MJ_C04
+    story_id: manjianghong
+    source_event_id: MJ_E04
+    target_event_id: MJ_E05
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0005-P0007
+    explanation: 靖康恥驅動復仇慾望，將抽象的恨轉化為具象的戰爭行動。
+  - edge_id: MJ_C05
+    story_id: manjianghong
+    source_event_id: MJ_E05
+    target_event_id: MJ_E06
+    relation_type: enables
+    strength: {value: strong}
+    evidence_text_span: P0006-P0008
+    explanation: 踏破賀蘭山後才能收拾舊山河朝天闕，戰爭是復國的條件。
+foreshadowing_units:
+  - foreshadowing_id: MJ_F01
+    story_id: manjianghong
+    foreshadowing_text_span: P0001-P0003
+    foreshadowing_summary: 怒髮衝冠的激憤與三十功名塵與土、八千里路雲和月的意象化總結，為後文復仇誓言建立情感與歷史重量。
+    foreshadowing_type: psychological
+    trigger_event_id: MJ_E04
+    payoff_event_id: MJ_E06
+    payoff_text_span: P0005-P0008
+    payoff_summary: 靖康恥和收拾舊山河的誓言回收前文的激憤與虛無感，把塵土雲月歸結為必須以戰爭洗雪的國族創傷。
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: 前文的意象堆疊不是消極的虛無（如天淨沙），而是積極動員的情感儲備。塵土雲月越輕，復仇誓言越重。
+characters:
+  - character_id: MJ_CH01
+    story_id: manjianghong
+    name: 岳飛（抒情主體）
+    role: 抒情主體／抗金將領
+    stable_traits: [忠義, 激憤, 壯志未酬, 時間焦慮]
+    current_motivation_by_event:
+      - event_id: MJ_E01
+        motivation: 國土未復、恥辱未雪的激憤。
+        knowledge_state: 深知靖康之恥，憂慮時不我待。
+        emotional_state: 怒髮衝冠、壯懷激烈。
+        goal: 北伐復國、雪靖康恥。

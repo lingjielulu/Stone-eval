@@ -1,0 +1,198 @@
+metadata:
+  story_id: speckled_band
+  title: "The Adventure of the Speckled Band"
+  author: "Arthur Conan Doyle"
+  language: en
+  source_text_path: data/foreshadow_causality_benchmark/novels/normalized_texts/speckled_band.txt
+  source_url: https://www.gutenberg.org/cache/epub/1661/pg1661.txt
+  copyright_status: public_domain
+  genre: mystery
+  length_level: short
+  structure_type: [mystery]
+annotation_guide:
+  focus:
+    - Mark material clues that are first presented as odd household details and later become parts of the murder mechanism.
+    - Distinguish the gypsy "band" interpretation from the actual snake payoff as a red herring.
+    - Track Holmes's reconstruction of causality from physical traces rather than confession.
+  boundary_notes:
+    - Treat Helen's testimony as narrated but reliable unless contradicted by later deduction.
+    - Use paragraph identifiers from the normalized text for stable spans.
+events:
+  - event_id: SB_E01
+    story_id: speckled_band
+    chapter_or_section: whole_story
+    text_span: P0028-P0051
+    summary: Helen reports Julia's death after nightly whistles, a metallic sound, and the phrase "speckled band."
+    participants: [Helen Stoner, Julia Stoner, Dr. Grimesby Roylott]
+    location: Stoke Moran
+    time: two years before the investigation
+    event_type: death
+    certainty: {value: certain}
+    narrative_reality_level: {value: narrated}
+  - event_id: SB_E02
+    story_id: speckled_band
+    chapter_or_section: investigation
+    text_span: P0068
+    summary: Repairs force Helen into Julia's former bedroom, and she hears the same low whistle.
+    participants: [Helen Stoner, Dr. Grimesby Roylott]
+    location: Stoke Moran
+    time: two days before the night watch
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: narrated}
+  - event_id: SB_E03
+    story_id: speckled_band
+    chapter_or_section: investigation
+    text_span: P0143-P0158
+    summary: Holmes observes the dummy bell-rope, the ventilator between rooms, and the fixed relation of bed, rope, and wall.
+    participants: [Sherlock Holmes, Dr. Watson, Helen Stoner]
+    location: Julia's bedroom
+    time: daytime inspection
+    event_type: discovery
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: SB_E04
+    story_id: speckled_band
+    chapter_or_section: investigation
+    text_span: P0159-P0168
+    summary: Holmes finds Roylott's safe, the saucer of milk, the chair, and the lash-like stock in the adjacent room.
+    participants: [Sherlock Holmes, Dr. Watson, Dr. Grimesby Roylott]
+    location: Roylott's bedroom
+    time: daytime inspection
+    event_type: discovery
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: SB_E05
+    story_id: speckled_band
+    chapter_or_section: deduction
+    text_span: P0207-P0217
+    summary: Holmes deduces that smoke smell implied a ventilator and that the bed's fixed position matters.
+    participants: [Sherlock Holmes, Dr. Watson]
+    location: near Stoke Moran
+    time: before the night watch
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: SB_E06
+    story_id: speckled_band
+    chapter_or_section: climax
+    text_span: P0237-P0239
+    summary: During the night watch Holmes hears the signal, strikes at the bell-pull, and drives the creature back.
+    participants: [Sherlock Holmes, Dr. Watson, Dr. Grimesby Roylott]
+    location: Julia's bedroom
+    time: night watch
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: SB_E07
+    story_id: speckled_band
+    chapter_or_section: resolution
+    text_span: P0243-P0247
+    summary: Roylott is found dead with the speckled swamp adder around him, revealing the murder mechanism.
+    participants: [Sherlock Holmes, Dr. Watson, Dr. Grimesby Roylott]
+    location: Roylott's bedroom
+    time: after the snake returns
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+causal_edges:
+  - edge_id: SB_C01
+    story_id: speckled_band
+    source_event_id: SB_E02
+    target_event_id: SB_E03
+    relation_type: enables
+    strength: {value: strong}
+    evidence_text_span: P0068-P0158
+    explanation: Helen's move into the fatal room makes the room's artificial arrangement available for inspection and for a repeated attack.
+  - edge_id: SB_C02
+    story_id: speckled_band
+    source_event_id: SB_E03
+    target_event_id: SB_E05
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0207-P0217
+    explanation: The dummy bell-rope, ventilator, and fixed bed reveal that the room is configured as a delivery path rather than ordinary furniture.
+  - edge_id: SB_C03
+    story_id: speckled_band
+    source_event_id: SB_E04
+    target_event_id: SB_E05
+    relation_type: reveals
+    strength: {value: medium}
+    evidence_text_span: P0159-P0168
+    explanation: The safe, milk, chair, and lash-like object support the inference that Roylott keeps and controls an animal.
+  - edge_id: SB_C04
+    story_id: speckled_band
+    source_event_id: SB_E06
+    target_event_id: SB_E07
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0237-P0247
+    explanation: Holmes's blow sends the snake back through the ventilator, leading it to bite Roylott.
+  - edge_id: SB_C05
+    story_id: speckled_band
+    source_event_id: SB_E01
+    target_event_id: SB_E05
+    relation_type: misleads_about
+    strength: {value: medium}
+    evidence_text_span: P0051-P0091
+    explanation: Julia's "speckled band" phrase initially points toward gypsies before the phrase is reinterpreted as the snake.
+foreshadowing_units:
+  - foreshadowing_id: SB_F01
+    story_id: speckled_band
+    foreshadowing_text_span: P0143-P0158
+    foreshadowing_summary: The bell-rope and ventilator are odd because they do not serve their apparent household functions.
+    foreshadowing_type: spatial
+    trigger_event_id: SB_E06
+    payoff_event_id: SB_E07
+    payoff_text_span: P0243-P0247
+    payoff_summary: The snake's path through the ventilator and down the rope explains the fatal mechanism.
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: The clue becomes physically operative in the murder solution.
+  - foreshadowing_id: SB_F02
+    story_id: speckled_band
+    foreshadowing_text_span: P0051-P0091
+    foreshadowing_summary: The phrase "the speckled band" and the gypsy association suggest a human group.
+    foreshadowing_type: red_herring
+    trigger_event_id: SB_E05
+    payoff_event_id: SB_E07
+    payoff_text_span: P0243-P0246
+    payoff_summary: The phrase is reinterpreted as the visible pattern on the swamp adder.
+    payoff_type: misdirection
+    confidence: {value: high}
+    explanation: The same phrase supports an early false causal model and a final true model.
+  - foreshadowing_id: SB_F03
+    story_id: speckled_band
+    foreshadowing_text_span: P0159-P0168
+    foreshadowing_summary: The safe, milk saucer, chair, and lash are animal-handling clues.
+    foreshadowing_type: object
+    trigger_event_id: SB_E06
+    payoff_event_id: SB_E07
+    payoff_text_span: P0243-P0247
+    payoff_summary: The safe is the snake's den and the lash is used to handle the reptile.
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: These objects shift from peculiar props to components of Roylott's method.
+characters:
+  - character_id: SB_CH01
+    story_id: speckled_band
+    name: Sherlock Holmes
+    role: detective
+    stable_traits: [observant, analytic, risk-taking]
+    current_motivation_by_event:
+      - event_id: SB_E03
+        motivation: Identify functional anomalies in the room.
+        knowledge_state: Knows Helen's testimony and sees physical evidence.
+        emotional_state: Controlled urgency.
+        goal: Prevent a repeat of Julia's death.
+  - character_id: SB_CH02
+    story_id: speckled_band
+    name: Dr. Grimesby Roylott
+    role: antagonist
+    stable_traits: [violent, secretive, financially motivated]
+    current_motivation_by_event:
+      - event_id: SB_E02
+        motivation: Prevent Helen's marriage and preserve control of inheritance.
+        knowledge_state: Knows the prior mechanism and room arrangement.
+        emotional_state: Threatened and aggressive.
+        goal: Kill Helen without visible violence.

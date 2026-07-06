@@ -432,8 +432,8 @@ def main() -> None:
     parser.add_argument("--audit", action="store_true", help="Write Wikisource search audit JSON")
     parser.add_argument("--download", action="store_true", help="Download configured Chinese sources")
     parser.add_argument("--force", action="store_true")
-    parser.add_argument("--raw-dir", default="data/foreshadow_causality_benchmark/raw_texts_zh")
-    parser.add_argument("--out-dir", default="data/foreshadow_causality_benchmark/normalized_texts_zh")
+    parser.add_argument("--raw-dir", default="data/foreshadow_causality_benchmark/novels/raw_texts_zh")
+    parser.add_argument("--out-dir", default="data/foreshadow_causality_benchmark/novels/normalized_texts_zh")
     parser.add_argument(
         "--audit-output",
         default="data/foreshadow_causality_benchmark/docs/chinese_translation_audit.json",

@@ -384,7 +384,7 @@ python data/foreshadow_causality_benchmark/scripts/extract_short_story_ftp.py la
 该命令不调用模型，只输出渲染后的 prompt 预览：
 
 ```text
-data/foreshadow_causality_benchmark/cfpg/reviews/last_leaf_prompt_preview_smoke.md
+data/foreshadow_causality_benchmark/novels/cfpg/reviews/last_leaf_prompt_preview_smoke.md
 ```
 
 实际抽取时去掉 `--dry-run`，可按需加入 `--verify` 做候选验证：

@@ -154,7 +154,7 @@ def validate_file(path: Path) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--annotations-dir", default="data/foreshadow_causality_benchmark/annotations")
+    parser.add_argument("--annotations-dir", default="data/foreshadow_causality_benchmark/novels/annotations")
     args = parser.parse_args()
 
     files = sorted(Path(args.annotations_dir).glob("*.yaml"))

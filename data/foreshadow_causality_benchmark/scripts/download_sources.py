@@ -37,7 +37,7 @@ def download(url: str, target: Path, force: bool = False) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--raw-dir", default="data/foreshadow_causality_benchmark/raw_texts")
+    parser.add_argument("--raw-dir", default="data/foreshadow_causality_benchmark/novels/raw_texts")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 

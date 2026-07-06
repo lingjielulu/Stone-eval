@@ -218,8 +218,8 @@ def normalize(text: str, title: str, ensure_title_heading: bool = False) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--raw-dir", default="data/foreshadow_causality_benchmark/raw_texts")
-    parser.add_argument("--out-dir", default="data/foreshadow_causality_benchmark/normalized_texts")
+    parser.add_argument("--raw-dir", default="data/foreshadow_causality_benchmark/novels/raw_texts")
+    parser.add_argument("--out-dir", default="data/foreshadow_causality_benchmark/novels/normalized_texts")
     args = parser.parse_args()
 
     raw_dir = Path(args.raw_dir)

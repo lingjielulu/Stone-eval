@@ -42,8 +42,8 @@ def iter_paragraphs(path: Path):
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("story_id")
-    parser.add_argument("--normalized-dir", default="data/foreshadow_causality_benchmark/normalized_texts")
-    parser.add_argument("--out-dir", default="data/foreshadow_causality_benchmark/annotations/candidates")
+    parser.add_argument("--normalized-dir", default="data/foreshadow_causality_benchmark/novels/normalized_texts")
+    parser.add_argument("--out-dir", default="data/foreshadow_causality_benchmark/novels/annotations/candidates")
     args = parser.parse_args()
 
     story_path = Path(args.normalized_dir) / f"{args.story_id}.txt"

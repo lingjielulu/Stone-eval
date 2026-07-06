@@ -1,0 +1,277 @@
+metadata:
+  story_id: cricket
+  title: "促織"
+  author: "蒲松齡"
+  language: zh
+  source_text_path: data/foreshadow_causality_benchmark/novels/normalized_texts/cricket.txt
+  source_url: https://zh.wikisource.org/wiki/%E8%81%8A%E9%BD%8B%E5%BF%97%E7%95%B0/%E7%AC%AC04%E5%8D%B7
+  copyright_status: public_domain
+  genre: classical_chinese_fantastic_tale
+  length_level: short
+  structure_type: [social, symbolic]
+annotation_guide:
+  focus:
+    - 標注皇帝喜好、地方官奉行、里胥科斂、成名家庭破產之間的層級因果。
+    - 標注巫圖、蟲、兒子投井、魂化促織和獻蟲成功之間的奇幻回收鏈。
+    - 標注結尾「異史氏曰」對制度因果的顯性總結。
+  boundary_notes:
+    - 兒子魂化促織屬於敘事現實中的奇幻事件，可標為 symbolic 或 real-fantastic，不應強行還原為幻覺。
+    - 「皇帝偶用一物」是制度鏈的頂層原因，不是普通背景。
+events:
+  - event_id: CR_E01
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0001-P0002
+    summary: 宮中崇尚斗促織，地方官為媚上而把進貢壓力層層轉嫁給民間。
+    participants: [皇帝, 華陰令, 里正, 里胥, 民戶]
+    location: 宮中與華陰
+    time: 宣德年間
+    event_type: social_pressure
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: CR_E02
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0003
+    summary: 成名被充里正役，因無法交促織而破產受杖，妻子求巫得圖。
+    participants: [成名, 成妻, 里胥, 縣宰, 駝背巫]
+    location: 華陰
+    time: 征促織期間
+    event_type: social_pressure
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: CR_E03
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0003
+    summary: 成名依巫圖到佛閣後尋找，捕得一頭俊健促織。
+    participants: [成名, 駝背巫]
+    location: 村東大佛閣後
+    time: 受圖之後
+    event_type: discovery
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: CR_E04
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0004
+    summary: 成名九歲兒子偷看促織，失手弄死蟲，恐懼出走並被發現投井。
+    participants: [成名之子, 成妻, 成名]
+    location: 成名家
+    time: 獻蟲前
+    event_type: accident
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: CR_E05
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0005
+    summary: 兒子復蘇後癡木，成名聽見新蟲鳴，捕得一頭短小但異常敏捷的促織。
+    participants: [成名, 成名之子, 成妻]
+    location: 成名家
+    time: 兒子投井後次日
+    event_type: discovery
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: CR_E06
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0006-P0007
+    summary: 小促織在斗蟲和遭雞啄時展現異能，證明其非尋常蟲。
+    participants: [成名, 少年, 小促織, 雞]
+    location: 成名家
+    time: 獻官前試斗
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: CR_E07
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0008
+    summary: 小促織被獻給縣宰、撫軍和宮中，屢試皆勝，成名因此免役入庠並致富。
+    participants: [成名, 縣宰, 撫軍, 皇帝, 小促織]
+    location: 縣衙、撫軍、宮中
+    time: 獻蟲後
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: CR_E08
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0008
+    summary: 成名之子恢復精神，自述自己曾魂化促織。
+    participants: [成名之子, 成名]
+    location: 成名家
+    time: 獻蟲成功後一年多
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: CR_E09
+    story_id: cricket
+    chapter_or_section: whole_story
+    text_span: P0009
+    summary: 異史氏總結天子一時喜好如何經由官貪吏虐關係到民命。
+    participants: [異史氏]
+    location: narrator_commentary
+    time: 敘事結尾
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: narrated}
+causal_edges:
+  - edge_id: CR_C01
+    story_id: cricket
+    source_event_id: CR_E01
+    target_event_id: CR_E02
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0001-P0003
+    explanation: 宮中需求經地方官和胥吏傳導，直接造成成名家庭承擔促織徵收壓力。
+  - edge_id: CR_C02
+    story_id: cricket
+    source_event_id: CR_E02
+    target_event_id: CR_E03
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0003
+    explanation: 成名被逼到無法脫身，妻子求巫和成名按圖尋蟲都是危機下的求生行動。
+  - edge_id: CR_C03
+    story_id: cricket
+    source_event_id: CR_E03
+    target_event_id: CR_E04
+    relation_type: enables
+    strength: {value: medium}
+    evidence_text_span: P0003-P0004
+    explanation: 捕得佳蟲使家庭暫有解困希望，也使兒子偷看和弄死蟲成為可能。
+  - edge_id: CR_C04
+    story_id: cricket
+    source_event_id: CR_E04
+    target_event_id: CR_E05
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0004-P0005
+    explanation: 兒子投井與失蟲危機引出後續新蟲出現和兒子神氣癡木的奇幻轉折。
+  - edge_id: CR_C05
+    story_id: cricket
+    source_event_id: CR_E05
+    target_event_id: CR_E06
+    relation_type: enables
+    strength: {value: strong}
+    evidence_text_span: P0005-P0007
+    explanation: 新小促織被捕後，才有試斗和對雞反擊，揭示其超常能力。
+  - edge_id: CR_C06
+    story_id: cricket
+    source_event_id: CR_E06
+    target_event_id: CR_E07
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0006-P0008
+    explanation: 小促織屢試皆勝，使縣宰和撫軍相信其價值並層層進獻。
+  - edge_id: CR_C07
+    story_id: cricket
+    source_event_id: CR_E08
+    target_event_id: CR_E05
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0005-P0008
+    explanation: 兒子自述魂化促織，回頭解釋新蟲的出現和異能。
+  - edge_id: CR_C08
+    story_id: cricket
+    source_event_id: CR_E01
+    target_event_id: CR_E09
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0001-P0009
+    explanation: 故事末尾的評論明確揭示頂層喜好和基層苦難之間的制度因果。
+foreshadowing_units:
+  - foreshadowing_id: CR_F01
+    story_id: cricket
+    foreshadowing_text_span: P0001-P0002
+    foreshadowing_summary: 宮中斗促織和地方徵收建立全篇制度規則。
+    foreshadowing_type: social
+    trigger_event_id: CR_E02
+    payoff_event_id: CR_E09
+    payoff_text_span: P0009
+    payoff_summary: 異史氏明確回收「天子一跬步皆關民命」的制度因果。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 開篇制度壓力在結尾被概括為民命受權力任意性牽動。
+  - foreshadowing_id: CR_F02
+    story_id: cricket
+    foreshadowing_text_span: P0003
+    foreshadowing_summary: 巫圖中的殿閣、怪石、棘叢、青麻頭和蟆指向尋蟲地點。
+    foreshadowing_type: symbolic
+    trigger_event_id: CR_E03
+    payoff_event_id: CR_E03
+    payoff_text_span: P0003
+    payoff_summary: 成名按圖到佛閣後尋得促織。
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: 圖像線索被直接轉換為空間搜索路徑。
+  - foreshadowing_id: CR_F03
+    story_id: cricket
+    foreshadowing_text_span: P0004-P0005
+    foreshadowing_summary: 兒子投井後復蘇但神氣癡木，同時新小蟲出現。
+    foreshadowing_type: symbolic
+    trigger_event_id: CR_E06
+    payoff_event_id: CR_E08
+    payoff_text_span: P0008
+    payoff_summary: 兒子後來自述「身化促織」，解釋小蟲異能。
+    payoff_type: delayed_revelation
+    confidence: {value: high}
+    explanation: 兒子狀態異常和小蟲出現是奇幻回收的前置伏筆。
+  - foreshadowing_id: CR_F04
+    story_id: cricket
+    foreshadowing_text_span: P0006-P0007
+    foreshadowing_summary: 小蟲雖短小卻勝強敵、敵雞，顯示超出常物。
+    foreshadowing_type: rule
+    trigger_event_id: CR_E07
+    payoff_event_id: CR_E07
+    payoff_text_span: P0008
+    payoff_summary: 入宮後遍試無出其右，促成成名命運逆轉。
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: 試斗建立小蟲能力規則，入宮測試按同一規則放大回收。
+characters:
+  - character_id: CR_CH01
+    story_id: cricket
+    name: 成名
+    role: 被制度壓迫的里正
+    stable_traits: [迂訥, 厚道, 被動承壓]
+    current_motivation_by_event:
+      - event_id: CR_E02
+        motivation: 脫離促織徵收責罰並保住家庭。
+        knowledge_state: 知道官府限期嚴苛，沒有可交之蟲。
+        emotional_state: 絕望。
+        goal: 找到合格促織以塞官責。
+      - event_id: CR_E07
+        motivation: 以小促織完成官府要求。
+        knowledge_state: 已見小蟲異能，但仍擔心官府不信。
+        emotional_state: 惴惴不安後轉為驚喜。
+        goal: 獻蟲免禍。
+  - character_id: CR_CH02
+    story_id: cricket
+    name: 成名之子
+    role: 奇幻回收載體
+    stable_traits: [年幼, 好奇, 受父母危機牽連]
+    current_motivation_by_event:
+      - event_id: CR_E04
+        motivation: 偷看父親珍藏的促織。
+        knowledge_state: 不理解失蟲會帶來的制度性災禍。
+        emotional_state: 好奇後恐懼。
+        goal: 偷看並捕回促織。
+      - event_id: CR_E08
+        motivation: 說明自己昏迷期間的奇幻經歷。
+        knowledge_state: 自述曾身化促織。
+        emotional_state: 復蘇。
+        goal: 解釋前事。
+  - character_id: CR_CH03
+    story_id: cricket
+    name: 華陰令
+    role: 壓力傳導者
+    stable_traits: [媚上, 嚴苛, 功利]
+    current_motivation_by_event:
+      - event_id: CR_E01
+        motivation: 迎合上官和宮中需求。
+        knowledge_state: 知道促織可換取政績。
+        emotional_state: 功利。
+        goal: 將徵收壓力轉嫁給里正和民戶。
