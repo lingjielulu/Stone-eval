@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>鲁迅《药》Blade 式同时间线结构图</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f7f8;
+      color: #25313b;
+      font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      line-height: 1.5;
+    }
+    main {
+      width: min(100% - 32px, 1680px);
+      margin: 0 auto;
+      padding: 24px 0 36px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 440px;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 54px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    p { margin: 0; }
+    .subtitle {
+      max-width: 980px;
+      color: #43515d;
+      font-size: 16px;
+    }
+    .meta-card {
+      border: 1px solid #cfd8dc;
+      border-left: 5px solid #1976d2;
+      border-radius: 8px;
+      background: #fff;
+      padding: 14px 16px;
+      color: #455a64;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid #cfd8dc;
+      background: #fff;
+      color: #37474f;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .pill.main { border-color: #1976d2; color: #0d47a1; background: #e3f2fd; }
+    .pill.warn { border-color: #ffb74d; color: #8a4b00; background: #fff3e0; }
+    .pill.symbol { border-color: #80cbc4; color: #00695c; background: #e0f2f1; }
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .info-card {
+      background: #fff;
+      border: 1px solid #d8e0e5;
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 112px;
+    }
+    .info-card h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+    .info-card ul {
+      margin: 0;
+      padding-left: 1.15em;
+      color: #455a64;
+      font-size: 13px;
+    }
+    .graph-wrap {
+      position: relative;
+      width: 100%;
+      height: 900px;
+      overflow: auto;
+      border: 1px solid #cfd8dc;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .graph {
+      position: relative;
+      width: 1600px;
+      height: 860px;
+      background:
+        linear-gradient(90deg, rgba(25,118,210,.055) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(25,118,210,.045) 1px, transparent 1px),
+        #fff;
+      background-size: 40px 40px;
+    }
+    svg.edges {
+      position: absolute;
+      inset: 0;
+      width: 1600px;
+      height: 860px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .axis {
+      position: absolute;
+      left: 144px;
+      top: 34px;
+      right: 38px;
+      height: 34px;
+      border-top: 2px solid #78909c;
+      color: #607d8b;
+      font-size: 12px;
+    }
+    .axis::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -6px;
+      border-left: 10px solid #78909c;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+    .axis span {
+      position: absolute;
+      top: -24px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-weight: 700;
+    }
+    .lane {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      height: 116px;
+      border-top: 1px solid #e0e7eb;
+    }
+    .lane-label {
+      position: absolute;
+      left: 18px;
+      width: 120px;
+      padding: 8px 9px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid #d8e0e5;
+      color: #37474f;
+      font-size: 13px;
+      font-weight: 800;
+      z-index: 4;
+    }
+    .node {
+      position: absolute;
+      z-index: 3;
+      width: 146px;
+      min-height: 72px;
+      border: 2px solid #1976d2;
+      border-radius: 18px;
+      background: #e3f2fd;
+      padding: 9px 10px;
+      box-shadow: 0 4px 10px rgba(38, 50, 56, .16);
+      font-size: 12px;
+      line-height: 1.28;
+      overflow-wrap: anywhere;
+    }
+    .node .label {
+      display: block;
+      font-weight: 800;
+      color: #263238;
+      margin-bottom: 4px;
+    }
+    .node .id {
+      display: block;
+      color: #263238;
+      font-size: 11px;
+    }
+    .node .span {
+      display: block;
+      color: #607d8b;
+      font-size: 10px;
+      margin-top: 5px;
+    }
+    .node.hua { border-color: #ef6c00; background: #fff3e0; }
+    .node.xia { border-color: #c62828; background: #ffebee; }
+    .node.public { border-color: #6a1b9a; background: #f3e5f5; }
+    .node.symbol { border-color: #00796b; background: #e0f2f1; }
+    .node.shared {
+      width: 164px;
+      border-color: #263238;
+      background: #eceff1;
+      border-radius: 8px;
+    }
+    .node.gap {
+      border-style: dashed;
+      border-color: #78909c;
+      background: #fafafa;
+    }
+    .note {
+      position: absolute;
+      z-index: 5;
+      width: 250px;
+      border: 2px dashed #ff9800;
+      background: #fff8e1;
+      border-radius: 7px;
+      padding: 10px 12px;
+      color: #4e342e;
+      font-size: 12px;
+      box-shadow: 0 3px 8px rgba(38, 50, 56, .14);
+    }
+    .note b {
+      display: block;
+      margin-bottom: 4px;
+      color: #e65100;
+    }
+    .legend {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      z-index: 6;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-width: 610px;
+      padding: 8px 10px;
+      border: 1px solid #cfd8dc;
+      border-radius: 6px;
+      background: rgba(255,255,255,.94);
+      color: #455a64;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #666;
+    }
+    .dot.hua { background: #fff3e0; border-color: #ef6c00; }
+    .dot.xia { background: #ffebee; border-color: #c62828; }
+    .dot.public { background: #f3e5f5; border-color: #6a1b9a; }
+    .dot.symbol { background: #e0f2f1; border-color: #00796b; }
+    .dot.shared { background: #eceff1; border-color: #263238; border-radius: 3px; }
+    .edge-label {
+      position: absolute;
+      z-index: 2;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid #d8e0e5;
+      color: #546e7a;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+    .sync-panel {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .sync-card {
+      background: #fff;
+      border: 1px solid #d8e0e5;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .sync-card h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+    .sync-card p {
+      color: #455a64;
+      font-size: 13px;
+    }
+    @media (max-width: 980px) {
+      main { width: min(100% - 20px, 960px); }
+      header, .top-grid, .sync-panel { grid-template-columns: 1fr; }
+      .graph-wrap { height: 760px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>《药》Blade 式同时间线结构图</h1>
+      <p class="subtitle">这个版本借用 Blade 的脚本节点图表达：节点、泳道、共享节点、边、设计说明卡。但这里没有分叉路线，`mainline_count = 1`；所谓“双线”是同一历史时间中，不同空间、人物和信息可见性形成的并置。</p>
+      <div class="pill-row">
+        <span class="pill main">single_timeline_multi_lane</span>
+        <span class="pill warn">不是平行宇宙 / 不是玩家选择分支</span>
+        <span class="pill symbol">物件转移 + 延迟揭示 + 象征回收</span>
+      </div>
+    </div>
+    <aside class="meta-card">
+      <p>参考结构：ScriptGeneration/GenerationTest/schemas_extended.py 与 the_blade_v4 节点图</p>
+      <p>结构化数据：medicine_blade_structure_analysis.json</p>
+      <p>原文：data/foreshadow_causality_benchmark/novels/normalized_texts/medicine.txt</p>
+    </aside>
+  </header>
+
+  <section class="top-grid">
+    <article class="info-card">
+      <h2>Schema 对齐</h2>
+      <ul>
+        <li>保留 `story_type`、`genre_tags`、`value_axes`、`groups`、`npc`、`items`、`regions`、`relationships`、`nodes`、`edges`。</li>
+        <li>`mainline_count` 明确为 1，泳道不是路线数量。</li>
+      </ul>
+    </article>
+    <article class="info-card">
+      <h2>Blade 图形语法</h2>
+      <ul>
+        <li>圆角节点表示事件，方角共享节点表示两线交叉。</li>
+        <li>虚线节点表示叙事省略，绿色节点表示象征收束。</li>
+      </ul>
+    </article>
+    <article class="info-card">
+      <h2>阅读结论</h2>
+      <ul>
+        <li>华家线是可见明线；夏瑜线先被遮蔽，再被茶馆误读。</li>
+        <li>两线通过人血馒头发生物质连接，通过坟地发生空间并置。</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="graph-wrap" aria-label="《药》Blade 式同时间线节点图">
+    <div class="graph" id="graph">
+      <svg class="edges" viewBox="0 0 1600 860" aria-hidden="true">
+        <defs>
+          <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#43a047"></path>
+          </marker>
+          <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#c62828"></path>
+          </marker>
+          <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1976d2"></path>
+          </marker>
+        </defs>
+      </svg>
+      <div class="axis">
+        <span style="left:4%">秋夜</span>
+        <span style="left:25%">丁字街</span>
+        <span style="left:46%">茶馆</span>
+        <span style="left:69%">清明</span>
+        <span style="left:91%">开放结尾</span>
+      </div>
+      <div class="lane" style="top:92px"></div>
+      <div class="lane" style="top:248px"></div>
+      <div class="lane" style="top:404px"></div>
+      <div class="lane" style="top:560px"></div>
+      <div class="lane-label" style="top:106px">华家私域<br>病与药</div>
+      <div class="lane-label" style="top:262px">夏瑜暗线<br>刑场与革命</div>
+      <div class="lane-label" style="top:418px">公共舆论<br>茶馆误读</div>
+      <div class="lane-label" style="top:574px">坟地象征<br>并置与余响</div>
+
+      <div class="note" style="left:618px;top:258px"><b>共享节点不是路线分叉</b>人血馒头让两条人物线发生物质交叉；它不是“玩家选择之后进入 A/B 线”。</div>
+      <div class="note" style="left:1120px;top:356px"><b>叙事信息差</b>丁字街先给场面，茶馆再给身份；读者对夏瑜线的理解是延迟完成的。</div>
+      <div class="note" style="left:1038px;top:724px"><b>开放式象征</b>花环保留理解革命者的可能，乌鸦飞离拒绝神迹式闭合。</div>
+      <div class="legend">
+        <span class="legend-item"><span class="dot hua"></span>华家私域</span>
+        <span class="legend-item"><span class="dot xia"></span>夏瑜暗线</span>
+        <span class="legend-item"><span class="dot public"></span>公共舆论</span>
+        <span class="legend-item"><span class="dot symbol"></span>坟地象征</span>
+        <span class="legend-item"><span class="dot shared"></span>共享/交叉节点</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sync-panel" id="syncPanel"></section>
+</main>
+
+<script>
+const graphData = {
+  nodes: [
+    { id: "md_n01_hua_depart", label: "华老栓出门求药", cls: "hua", x: 172, y: 116, span: "P0001-P0005" },
+    { id: "md_n02_execution_setup", label: "丁字街处刑场面侧写", cls: "xia", x: 328, y: 270, span: "P0006-P0011" },
+    { id: "md_n03_blood_bun_trade", label: "共享：人血馒头交易", cls: "shared", x: 500, y: 184, span: "P0012-P0014" },
+    { id: "md_n04_feed_medicine", label: "华家烤药、给小栓吃", cls: "hua", x: 692, y: 116, span: "P0015-P0026" },
+    { id: "md_n05_teahouse_reveal", label: "茶馆回揭夏瑜身份", cls: "public", x: 842, y: 426, span: "P0027-P0041" },
+    { id: "md_n06_public_misread", label: "群众把革命语言听成疯话", cls: "public", x: 1012, y: 426, span: "P0041-P0053" },
+    { id: "md_n07_unshown_death_gap", label: "省略：小栓病死", cls: "hua gap", x: 1052, y: 116, span: "P0053-P0055" },
+    { id: "md_n08_grave_adjacency", label: "共享：两坟隔小路相邻", cls: "shared", x: 1182, y: 584, span: "P0054-P0059" },
+    { id: "md_n09_wreath", label: "夏瑜坟上红白花环", cls: "symbol", x: 1360, y: 584, span: "P0060-P0062" },
+    { id: "md_n10_crow_departure", label: "乌鸦叫后飞向远空", cls: "symbol", x: 1360, y: 728, span: "P0062-P0067" }
+  ],
+  edges: [
+    { from: "md_n01_hua_depart", to: "md_n03_blood_bun_trade", label: "求药动机", color: "#ef6c00", marker: "arrow-green" },
+    { from: "md_n02_execution_setup", to: "md_n03_blood_bun_trade", label: "同地同晨", color: "#c62828", marker: "arrow-red" },
+    { from: "md_n03_blood_bun_trade", to: "md_n04_feed_medicine", label: "物件转移", color: "#43a047", marker: "arrow-green" },
+    { from: "md_n03_blood_bun_trade", to: "md_n05_teahouse_reveal", label: "延迟揭示", color: "#1976d2", marker: "arrow-blue" },
+    { from: "md_n04_feed_medicine", to: "md_n07_unshown_death_gap", label: "药效落空", color: "#78909c", marker: "arrow-blue", dashed: true },
+    { from: "md_n05_teahouse_reveal", to: "md_n06_public_misread", label: "公共误读", color: "#6a1b9a", marker: "arrow-blue" },
+    { from: "md_n07_unshown_death_gap", to: "md_n08_grave_adjacency", label: "死亡显影", color: "#78909c", marker: "arrow-blue", dashed: true },
+    { from: "md_n06_public_misread", to: "md_n09_wreath", label: "象征反照", color: "#00796b", marker: "arrow-green" },
+    { from: "md_n08_grave_adjacency", to: "md_n09_wreath", label: "空间聚焦", color: "#00796b", marker: "arrow-green" },
+    { from: "md_n09_wreath", to: "md_n10_crow_departure", label: "拒绝神迹", color: "#00796b", marker: "arrow-green" }
+  ],
+  sync: [
+    {
+      title: "1. 丁字街交叉",
+      text: "华老栓的救命行动和夏瑜的处刑发生在同一清晨、同一地点。图中两条边汇入人血馒头交易，表示同时间线交叉，而不是选择分叉。"
+    },
+    {
+      title: "2. 茶馆回揭",
+      text: "华家服药后的希望与茶客对夏瑜的误解在同一茶馆空间叠加；康大叔把暗线信息转成谈资，完成延迟揭示。"
+    },
+    {
+      title: "3. 坟地并置",
+      text: "两条线最终不是进入不同结局，而是在清明坟地相邻显影：小栓之死证明药无效，花环与乌鸦留下夏瑜线的开放余响。"
+    }
+  ]
+};
+
+const graphEl = document.getElementById("graph");
+const svg = document.querySelector("svg.edges");
+const nodeById = Object.fromEntries(graphData.nodes.map((node) => [node.id, node]));
+
+function nodeSize(node) {
+  if (node.cls.includes("shared")) return { width: 164, height: 76 };
+  return { width: 146, height: 72 };
+}
+
+function center(node) {
+  const size = nodeSize(node);
+  return { x: node.x + size.width / 2, y: node.y + size.height / 2 };
+}
+
+function drawEdge(edge) {
+  const source = nodeById[edge.from];
+  const target = nodeById[edge.to];
+  if (!source || !target) return;
+  const a = center(source);
+  const b = center(target);
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  const midX = (a.x + b.x) / 2;
+  const bend = Math.min(120, Math.abs(b.y - a.y) * 0.42 + 24);
+  const d = `M ${a.x} ${a.y} C ${midX} ${a.y + Math.sign(b.y - a.y || 1) * bend}, ${midX} ${b.y - Math.sign(b.y - a.y || 1) * bend}, ${b.x} ${b.y}`;
+  path.setAttribute("d", d);
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", edge.color);
+  path.setAttribute("stroke-width", edge.from === "md_n03_blood_bun_trade" ? "3" : "2.4");
+  path.setAttribute("marker-end", `url(#${edge.marker})`);
+  path.setAttribute("opacity", ".78");
+  if (edge.dashed) path.setAttribute("stroke-dasharray", "7 6");
+  svg.appendChild(path);
+
+  const label = document.createElement("div");
+  label.className = "edge-label";
+  label.textContent = edge.label;
+  label.style.left = `${(a.x + b.x) / 2 - 28}px`;
+  label.style.top = `${(a.y + b.y) / 2 - 12}px`;
+  graphEl.appendChild(label);
+}
+
+for (const edge of graphData.edges) drawEdge(edge);
+
+for (const node of graphData.nodes) {
+  const el = document.createElement("div");
+  el.className = `node ${node.cls}`;
+  el.style.left = `${node.x}px`;
+  el.style.top = `${node.y}px`;
+  el.innerHTML = `<span class="label">${node.label}</span><span class="id">${node.id.replace("md_", "")}</span><span class="span">${node.span}</span>`;
+  graphEl.appendChild(el);
+}
+
+document.getElementById("syncPanel").innerHTML = graphData.sync
+  .map((item) => `<article class="sync-card"><h2>${item.title}</h2><p>${item.text}</p></article>`)
+  .join("");
+</script>
+</body>
+</html>

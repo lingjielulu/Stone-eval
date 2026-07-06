@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>鲁迅《药》 · 价值转化图</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #fafafa;
+  color: #263238;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+}
+#app { display: flex; width: 100%; height: 100%; }
+#graph-panel { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+#graph-canvas {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  background:
+    linear-gradient(90deg, rgba(96,125,139,.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(96,125,139,.05) 1px, transparent 1px),
+    #fff;
+  background-size: 36px 36px;
+}
+svg#main-svg { width: 100%; height: 100%; display: block; }
+#sidebar {
+  width: 360px;
+  min-width: 300px;
+  border-left: 1px solid #ddd;
+  overflow-y: auto;
+  padding: 16px 14px;
+  background: #fff;
+}
+#sidebar h1 { font-size: 18px; color: #263238; margin-bottom: 6px; }
+#sidebar h2 { font-size: 13px; color: #546e7a; margin: 14px 0 5px; }
+#sidebar .stat { font-size: 12px; color: #78909c; line-height: 1.7; }
+#detail {
+  margin-top: 12px;
+  padding: 11px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.58;
+  color: #37474f;
+}
+#detail .title { font-size: 15px; font-weight: 700; color: #263238; }
+#detail .group {
+  display: inline-block;
+  margin: 5px 0;
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+#detail .vt {
+  margin: 5px 0;
+  padding: 5px 7px;
+  border-left: 3px solid #ff9800;
+  font-size: 11px;
+  background: #fff8e1;
+}
+#detail .decision {
+  margin: 4px 0;
+  padding: 4px 6px;
+  border-left: 3px solid #607d8b;
+  background: #fff;
+  font-size: 11px;
+}
+#detail .ref { font-size: 11px; color: #6d4c41; margin-top: 4px; }
+#legend {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,.94);
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 11px;
+  line-height: 1.8;
+  z-index: 4;
+}
+#legend span { display: inline-block; min-width: 120px; }
+#legend .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+#legend .dot.ending { border-radius: 50%; }
+#controls {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  gap: 4px;
+  z-index: 5;
+}
+#controls button {
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+#controls button:hover { background: #f5f5f5; }
+#search { position: absolute; left: 12px; top: 12px; z-index: 5; }
+#search input {
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 220px;
+  font-size: 12px;
+}
+#panel-resizer {
+  height: 8px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: #eceff1;
+  cursor: row-resize;
+  flex: 0 0 auto;
+}
+#foreshadow-panel {
+  height: 250px;
+  min-height: 120px;
+  max-height: 70vh;
+  background: #fff;
+  padding: 10px 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+#foreshadow-panel h2 { font-size: 13px; color: #263238; margin-bottom: 6px; }
+#foreshadow-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+.foreshadow-item {
+  padding: 7px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 11px;
+  line-height: 1.55;
+  color: #37474f;
+}
+.foreshadow-item .meta { color: #78909c; font-family: Consolas, "SFMono-Regular", monospace; }
+.foreshadow-item .stage { margin-top: 2px; }
+.foreshadow-item .stage-label { display: inline-block; min-width: 48px; font-weight: 700; color: #546e7a; }
+.foreshadow-item .trigger .stage-label { color: #fb8c00; }
+.foreshadow-item .payoff .stage-label { color: #e91e63; }
+.edge-label { font-size: 10px; fill: #78909c; pointer-events: none; }
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  padding: 6px 8px;
+  background: rgba(33,33,33,.88);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 11px;
+  max-width: 260px;
+  line-height: 1.4;
+  display: none;
+  z-index: 10;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="graph-panel">
+    <div id="graph-canvas">
+      <svg id="main-svg" viewBox="0 0 1260 820" aria-label="《药》价值转化图"></svg>
+      <div id="search"><input type="text" placeholder="搜索场景、价值轴或人物..." id="search-input"></div>
+      <div id="controls">
+        <button type="button" onclick="zoomIn()">＋</button>
+        <button type="button" onclick="zoomOut()">－</button>
+        <button type="button" onclick="zoomReset()">重置</button>
+      </div>
+      <div id="legend"></div>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <div id="panel-resizer" title="拖拽调整伏笔列表高度"></div>
+    <div id="foreshadow-panel">
+      <h2>伏笔 - Trigger - 回收列表</h2>
+      <div id="foreshadow-list"></div>
+    </div>
+  </div>
+  <aside id="sidebar">
+    <h1>鲁迅《药》 · 价值转化图</h1>
+    <p class="stat">4节 | 8个场景节点 | 17个总节点</p>
+    <p class="stat">6个角色 | 4个物件 | 3条伏笔三元组</p>
+    <h2>价值轴</h2>
+    <p class="stat">生 vs 死 · 救治 vs 消费 · 理解 vs 误解 · 希望 vs 空虚 · 现实 vs 神迹 · 私域亲情 vs 公共政治</p>
+    <h2>说明</h2>
+    <p class="stat">参考 outputs/honglou_value_graph：线性 scene/transition 链条表达叙事推进，虚线表达跨场景伏笔回收，侧栏展示价值转化和角色抉择。</p>
+    <div id="detail"><em>点击节点查看详情</em></div>
+  </aside>
+</div>
+
+<script>
+const data = {
+  groups: {
+    Prologue: { fill: "#e8eaf6", stroke: "#3949ab", label: "序幕" },
+    Act1_Trade: { fill: "#ffebee", stroke: "#c62828", label: "交易" },
+    Act2_Consumption: { fill: "#fff3e0", stroke: "#ef6c00", label: "服食" },
+    Act3_Reveal: { fill: "#f3e5f5", stroke: "#7b1fa2", label: "揭示" },
+    Act4_Grave: { fill: "#e0f2f1", stroke: "#00796b", label: "坟地" },
+    Endings: { fill: "#e8f5e9", stroke: "#2e7d32", label: "结局" },
+    ForeshadowLines: { fill: "#efebe9", stroke: "#6d4c41", label: "伏笔" }
+  },
+  scenes: [
+    {
+      id: "scene_001_秋夜求药", group: "Prologue", title: "秋夜求药", range: "第一节 P0001-P0005",
+      narrative: "华老栓听见小栓咳嗽，带着洋钱和灯笼出门，准备买能治癆病的“药”。",
+      decisions: [{ decision: "华老栓决定带钱出门买偏方", tags: ["亲情", "迷信", "求生"] }],
+      vts: [
+        { axis: "希望 vs 空虚", from: "病痛焦虑", to: "救命希望", direction: "− → +", event: "华老栓带钱出门", chars: ["华老栓", "华大妈", "小栓"] },
+        { axis: "私域亲情 vs 公共政治", from: "家庭病痛", to: "走向公共刑场", direction: "private → public", event: "华老栓离开茶馆走向丁字街", chars: ["华老栓"] }
+      ],
+      foreshadow: ["medicine:ftp:000001", "medicine:ftp:000003"], payoff: []
+    },
+    {
+      id: "scene_002_刑场交易", group: "Act1_Trade", title: "刑场交易", range: "第一节 P0006-P0014",
+      narrative: "丁字街口士兵和人群聚集，康大叔把滴着鲜血的馒头塞给华老栓，一手收走洋钱。",
+      decisions: [{ decision: "康大叔把行刑后的血转手卖给华老栓", tags: ["逐利", "暴力", "消费"] }, { decision: "华老栓交钱接过血馒头", tags: ["迷信", "亲情", "盲从"] }],
+      vts: [
+        { axis: "救治 vs 消费", from: "革命者之血", to: "民间偏方商品", direction: "+ → −", event: "一手交钱一手交货", chars: ["华老栓", "康大叔", "夏瑜"] },
+        { axis: "生 vs 死", from: "刑场死亡", to: "被误认为生命来源", direction: "− → false+", event: "华老栓把血馒头抱回家", chars: ["华老栓", "小栓", "夏瑜"] }
+      ],
+      foreshadow: ["medicine:ftp:000001", "medicine:ftp:000003"], payoff: []
+    },
+    {
+      id: "scene_003_服食血馒头", group: "Act2_Consumption", title: "服食血馒头", range: "第二节 P0015-P0026",
+      narrative: "华家把血馒头烤熟，哄小栓吃下；小栓服食后仍按着胸膛咳嗽。",
+      decisions: [{ decision: "华家把人血馒头作为药喂给小栓", tags: ["亲情", "迷信", "误食"] }],
+      vts: [
+        { axis: "生 vs 死", from: "期待康复", to: "症状仍在", direction: "+ → −", event: "小栓吃下后继续咳嗽", chars: ["小栓", "华老栓", "华大妈"] },
+        { axis: "救治 vs 消费", from: "药物想象", to: "暴力被身体消费", direction: "false+ → −", event: "血馒头被烤熟吃下", chars: ["小栓", "夏瑜"] }
+      ],
+      foreshadow: [], payoff: []
+    },
+    {
+      id: "scene_004_茶馆回揭", group: "Act3_Reveal", title: "茶馆回揭", range: "第三节 P0027-P0041",
+      narrative: "康大叔吹嘘人血馒头“包好”，又透露早晨被杀的是夏四奶奶的儿子夏瑜。",
+      decisions: [{ decision: "康大叔公开讲述夏瑜被杀和人血馒头", tags: ["炫耀", "暴力", "公共误读"] }],
+      vts: [
+        { axis: "理解 vs 误解", from: "被遮蔽的死者", to: "被贬低的犯人", direction: "hidden → −", event: "康大叔揭示被杀者是夏瑜", chars: ["康大叔", "夏瑜", "茶客"] },
+        { axis: "私域亲情 vs 公共政治", from: "华家的药", to: "夏瑜的政治死亡", direction: "private → public", event: "茶馆谈话回溯解释刑场", chars: ["华家", "夏瑜", "康大叔"] }
+      ],
+      foreshadow: ["medicine:ftp:000002"], payoff: ["medicine:ftp:000003"]
+    },
+    {
+      id: "scene_005_群众误读", group: "Act3_Reveal", title: "群众误读", range: "第三节 P0041-P0053",
+      narrative: "夏瑜在牢中劝牢头造反；茶客短暂板滞后把这理解为疯话，小栓仍拼命咳嗽。",
+      decisions: [{ decision: "夏瑜在狱中仍劝牢头造反", tags: ["反抗", "公共政治", "牺牲"] }, { decision: "茶客把夏瑜的话判定为发疯", tags: ["误解", "麻木", "共谋"] }],
+      vts: [
+        { axis: "理解 vs 误解", from: "革命语言短暂显露", to: "被公众归入疯话", direction: "+ → −", event: "茶客们说夏瑜发了疯", chars: ["夏瑜", "康大叔", "茶客"] },
+        { axis: "希望 vs 空虚", from: "药效仍被宣称包好", to: "小栓咳嗽反证无效", direction: "+ → −", event: "小栓趁热闹拼命咳嗽", chars: ["小栓", "康大叔"] }
+      ],
+      foreshadow: ["medicine:ftp:000002"], payoff: []
+    },
+    {
+      id: "scene_006_清明并坟", group: "Act4_Grave", title: "清明并坟", range: "第四节 P0054-P0059",
+      narrative: "华大妈在小栓新坟前祭奠，夏四奶奶到相邻的夏瑜坟前祭奠，两位母亲隔路相遇。",
+      decisions: [{ decision: "华大妈跨过小路劝夏四奶奶回去", tags: ["同情", "局限", "丧子"] }],
+      vts: [
+        { axis: "生 vs 死", from: "服药后的康复期待", to: "小栓新坟", direction: "+ → −", event: "清明华大妈给小栓上坟", chars: ["华大妈", "小栓"] },
+        { axis: "私域亲情 vs 公共政治", from: "穷人与死刑者分隔", to: "两位母亲丧子并置", direction: "separate → adjacent", event: "两座坟一字儿排着", chars: ["华大妈", "夏四奶奶", "小栓", "夏瑜"] }
+      ],
+      foreshadow: [], payoff: ["medicine:ftp:000001"]
+    },
+    {
+      id: "scene_007_花环显影", group: "Act4_Grave", title: "花环显影", range: "第四节 P0060-P0062",
+      narrative: "夏瑜坟顶出现红白花环；夏四奶奶震惊并试图解释为儿子显灵或伸冤。",
+      decisions: [{ decision: "夏四奶奶把花环理解为儿子显灵或伸冤", tags: ["悲痛", "神迹", "伸冤"] }],
+      vts: [
+        { axis: "理解 vs 误解", from: "茶馆中的疯子判断", to: "花环暗示有人理解或悼念", direction: "− → partial+", event: "夏瑜坟上出现红白花环", chars: ["夏瑜", "夏四奶奶", "华大妈"] },
+        { axis: "希望 vs 空虚", from: "夏瑜线出现微弱余响", to: "华大妈感到小栓之死无意义", direction: "+ / −", event: "华大妈比较两座坟的花", chars: ["华大妈", "小栓", "夏瑜"] }
+      ],
+      foreshadow: [], payoff: ["medicine:ftp:000002"]
+    },
+    {
+      id: "scene_008_乌鸦飞离", group: "Act4_Grave", title: "乌鸦飞离", range: "第四节 P0062-P0067",
+      narrative: "夏四奶奶请求乌鸦飞上坟顶证明显灵；乌鸦最终叫了一声，飞向远处天空。",
+      decisions: [{ decision: "夏四奶奶向乌鸦索求神迹证明", tags: ["神迹", "悲痛", "不确定"] }],
+      vts: [
+        { axis: "现实 vs 神迹", from: "期待超自然确认", to: "乌鸦飞离，证明落空", direction: "+ → −", event: "乌鸦没有飞上坟顶而是飞向远空", chars: ["夏四奶奶", "华大妈", "乌鸦"] },
+        { axis: "理解 vs 误解", from: "花环带来的可解释希望", to: "开放的不确定", direction: "partial+ → open", event: "结尾拒绝神迹式闭合", chars: ["夏瑜", "夏四奶奶"] }
+      ],
+      foreshadow: [], payoff: []
+    }
+  ],
+  endings: [
+    { id: "ending_failed_cure", title: "救治失败", group: "Endings", narrative: "人血馒头没有带来生命，只把夏瑜之死转化为小栓死亡的反讽背景。", alignment: ["死", "空虚", "误解", "消费"] },
+    { id: "ending_unfinished_revolution", title: "未竟的理解", group: "Endings", narrative: "花环显示理解并未完全断绝；乌鸦飞离又拒绝把这种理解封闭为神迹或报应。", alignment: ["部分理解", "现实", "开放"] }
+  ],
+  foreshadowLines: [
+    { id: "medicine:ftp:000001", type: "symbolic", f: "鲜红馒头被华老栓视作能带回新生命的药。", t: "小栓吃下血馒头后仍然心跳、咳嗽。", p: "清明时小栓已成新坟，人血馒头的救命想象被彻底否定。", source: "scene_001_秋夜求药", target: "scene_006_清明并坟" },
+    { id: "medicine:ftp:000002", type: "social", f: "茶客把夏瑜视作不要命、发疯的人。", t: "茶客将夏瑜的话重新归入疯话。", p: "夏瑜坟上的红白花环反照茶馆误读。", source: "scene_004_茶馆回揭", target: "scene_007_花环显影" },
+    { id: "medicine:ftp:000003", type: "delayed_revelation", f: "丁字街口的士兵、人群和阴森气氛暗示处刑现场。", t: "华老栓买到滴血馒头，但被杀者身份尚未说明。", p: "康大叔在茶馆揭示早晨被处刑的是夏瑜。", source: "scene_002_刑场交易", target: "scene_004_茶馆回揭" }
+  ]
+};
+
+const svg = document.getElementById("main-svg");
+const graphLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+const edgeLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+const nodeLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+graphLayer.appendChild(edgeLayer);
+graphLayer.appendChild(nodeLayer);
+svg.appendChild(graphLayer);
+
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+defs.innerHTML = `
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#90a4ae"></path></marker>
+  <marker id="arrow-pink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e91e63"></path></marker>
+  <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#66a06f"></path></marker>
+`;
+svg.appendChild(defs);
+
+const nodeMap = {};
+const allNodes = [];
+const sceneY = [150, 150, 150, 330, 330, 510, 510, 510];
+data.scenes.forEach((scene, index) => {
+  scene.x = 115 + index * 135;
+  scene.y = sceneY[index];
+  scene.type = "scene_node";
+  allNodes.push(scene);
+  nodeMap[scene.id] = scene;
+});
+data.endings.forEach((ending, index) => {
+  ending.x = 920 + index * 145;
+  ending.y = 690;
+  ending.type = "ending_node";
+  allNodes.push(ending);
+  nodeMap[ending.id] = ending;
+});
+const transitionNodes = data.scenes.slice(0, -1).map((scene, index) => {
+  const next = data.scenes[index + 1];
+  const node = {
+    id: `trans_${String(index + 1).padStart(3, "0")}`,
+    type: "transition_node",
+    x: (scene.x + next.x) / 2,
+    y: (scene.y + next.y) / 2,
+    title: "",
+    group: scene.group
+  };
+  allNodes.push(node);
+  nodeMap[node.id] = node;
+  return node;
+});
+
+const linearEdges = [];
+data.scenes.slice(0, -1).forEach((scene, index) => {
+  const trans = transitionNodes[index];
+  const next = data.scenes[index + 1];
+  linearEdges.push({ source: scene.id, target: trans.id, type: "linear" });
+  linearEdges.push({ source: trans.id, target: next.id, type: "linear" });
+});
+for (const ending of data.endings) {
+  linearEdges.push({ source: "scene_008_乌鸦飞离", target: ending.id, type: "ending" });
+}
+
+function point(node) { return { x: node.x, y: node.y }; }
+
+function makePath(edge) {
+  const a = point(nodeMap[edge.source]);
+  const b = point(nodeMap[edge.target]);
+  if (edge.type === "foreshadow") {
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const dr = Math.sqrt(dx * dx + dy * dy) * 1.8;
+    return `M ${a.x} ${a.y} A ${dr} ${dr} 0 0 1 ${b.x} ${b.y}`;
+  }
+  return `M ${a.x} ${a.y} L ${b.x} ${b.y}`;
+}
+
+function svgEl(name) { return document.createElementNS("http://www.w3.org/2000/svg", name); }
+
+function drawEdges() {
+  for (const edge of linearEdges) {
+    const path = svgEl("path");
+    path.setAttribute("d", makePath(edge));
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", edge.type === "ending" ? "#66a06f" : "#bdbdbd");
+    path.setAttribute("stroke-width", edge.type === "ending" ? "2.2" : "1.8");
+    path.setAttribute("opacity", edge.type === "ending" ? ".7" : ".62");
+    path.setAttribute("marker-end", edge.type === "ending" ? "url(#arrow-green)" : "url(#arrow)");
+    edgeLayer.appendChild(path);
+  }
+  for (const row of data.foreshadowLines) {
+    const path = svgEl("path");
+    path.setAttribute("d", makePath({ source: row.source, target: row.target, type: "foreshadow" }));
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "#e91e63");
+    path.setAttribute("stroke-width", "2.5");
+    path.setAttribute("opacity", ".68");
+    path.setAttribute("stroke-dasharray", "6 4");
+    path.setAttribute("marker-end", "url(#arrow-pink)");
+    edgeLayer.appendChild(path);
+  }
+}
+
+function wrapText(text, max = 10) {
+  const out = [];
+  let line = "";
+  for (const char of text) {
+    line += char;
+    if (line.length >= max) {
+      out.push(line);
+      line = "";
+    }
+  }
+  if (line) out.push(line);
+  return out.slice(0, 2);
+}
+
+function drawScene(node) {
+  const g = svgEl("g");
+  g.setAttribute("transform", `translate(${node.x},${node.y})`);
+  g.setAttribute("cursor", "pointer");
+  g.dataset.nodeId = node.id;
+  const colors = data.groups[node.group] || data.groups.Prologue;
+  const rect = svgEl("rect");
+  rect.setAttribute("x", "-62");
+  rect.setAttribute("y", "-28");
+  rect.setAttribute("width", "124");
+  rect.setAttribute("height", "56");
+  rect.setAttribute("rx", "7");
+  rect.setAttribute("fill", colors.fill);
+  rect.setAttribute("stroke", colors.stroke);
+  rect.setAttribute("stroke-width", "2.2");
+  g.appendChild(rect);
+  wrapText(node.title, 8).forEach((line, index) => {
+    const text = svgEl("text");
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("y", index === 0 ? "-5" : "10");
+    text.setAttribute("font-size", "12");
+    text.setAttribute("font-weight", "700");
+    text.setAttribute("fill", "#263238");
+    text.textContent = line;
+    g.appendChild(text);
+  });
+  const range = svgEl("text");
+  range.setAttribute("text-anchor", "middle");
+  range.setAttribute("y", "24");
+  range.setAttribute("font-size", "9");
+  range.setAttribute("fill", "#607d8b");
+  range.textContent = node.range.split(" ")[0];
+  g.appendChild(range);
+  g.addEventListener("click", () => showDetail(node));
+  g.addEventListener("mouseenter", (event) => showTooltip(event, node));
+  g.addEventListener("mouseleave", hideTooltip);
+  nodeLayer.appendChild(g);
+  node.el = g;
+}
+
+function drawTransition(node) {
+  const g = svgEl("g");
+  g.setAttribute("transform", `translate(${node.x},${node.y})`);
+  const circle = svgEl("circle");
+  circle.setAttribute("r", "6");
+  circle.setAttribute("fill", "#bdbdbd");
+  circle.setAttribute("stroke", "#9e9e9e");
+  circle.setAttribute("stroke-width", "1.5");
+  g.appendChild(circle);
+  nodeLayer.appendChild(g);
+  node.el = g;
+}
+
+function drawEnding(node) {
+  const g = svgEl("g");
+  g.setAttribute("transform", `translate(${node.x},${node.y})`);
+  g.setAttribute("cursor", "pointer");
+  g.dataset.nodeId = node.id;
+  const colors = data.groups.Endings;
+  const circle = svgEl("circle");
+  circle.setAttribute("r", "38");
+  circle.setAttribute("fill", colors.fill);
+  circle.setAttribute("stroke", colors.stroke);
+  circle.setAttribute("stroke-width", "3");
+  circle.setAttribute("stroke-dasharray", "6 3");
+  g.appendChild(circle);
+  wrapText(node.title, 5).forEach((line, index) => {
+    const text = svgEl("text");
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("y", index === 0 ? "-2" : "13");
+    text.setAttribute("font-size", "11");
+    text.setAttribute("font-weight", "700");
+    text.setAttribute("fill", "#263238");
+    text.textContent = line;
+    g.appendChild(text);
+  });
+  g.addEventListener("click", () => showDetail(node));
+  g.addEventListener("mouseenter", (event) => showTooltip(event, node));
+  g.addEventListener("mouseleave", hideTooltip);
+  nodeLayer.appendChild(g);
+  node.el = g;
+}
+
+function drawGroupBands() {
+  const bands = [
+    { label: "秋夜 / 刑场 / 服药", x: 55, y: 76, w: 390 },
+    { label: "茶馆揭示", x: 505, y: 256, w: 250 },
+    { label: "清明坟地", x: 785, y: 436, w: 390 },
+    { label: "结局指向", x: 850, y: 622, w: 350 }
+  ];
+  for (const band of bands) {
+    const line = svgEl("line");
+    line.setAttribute("x1", band.x);
+    line.setAttribute("x2", band.x + band.w);
+    line.setAttribute("y1", band.y);
+    line.setAttribute("y2", band.y);
+    line.setAttribute("stroke", "#cfd8dc");
+    line.setAttribute("stroke-width", "2");
+    graphLayer.insertBefore(line, edgeLayer);
+    const text = svgEl("text");
+    text.setAttribute("x", band.x);
+    text.setAttribute("y", band.y - 10);
+    text.setAttribute("font-size", "12");
+    text.setAttribute("fill", "#607d8b");
+    text.setAttribute("font-weight", "700");
+    text.textContent = band.label;
+    graphLayer.insertBefore(text, edgeLayer);
+  }
+}
+
+function drawAll() {
+  drawGroupBands();
+  drawEdges();
+  for (const node of transitionNodes) drawTransition(node);
+  for (const scene of data.scenes) drawScene(scene);
+  for (const ending of data.endings) drawEnding(ending);
+}
+
+function groupBadge(group) {
+  const colors = data.groups[group] || data.groups.Prologue;
+  return `<span class="group" style="background:${colors.fill};border:1px solid ${colors.stroke};">${data.groups[group]?.label || group}</span>`;
+}
+
+function showDetail(node) {
+  if (node.type === "transition_node") return;
+  const detail = document.getElementById("detail");
+  let html = `<div class="title">${node.title}</div>${groupBadge(node.group)}`;
+  if (node.range) html += `<p class="stat">${node.range}</p>`;
+  if (node.narrative) html += `<p style="margin-top:7px;">${node.narrative}</p>`;
+  if (node.vts && node.vts.length) {
+    html += `<h2>价值转化</h2>`;
+    for (const vt of node.vts) {
+      html += `<div class="vt"><b>${vt.axis}</b>: ${vt.from} → ${vt.to} (${vt.direction})<br><small>${vt.event} · ${vt.chars.join("、")}</small></div>`;
+    }
+  }
+  if (node.decisions && node.decisions.length) {
+    html += `<h2>角色抉择</h2>`;
+    for (const decision of node.decisions) {
+      html += `<div class="decision">${decision.decision}<br><small>${decision.tags.join(" / ")}</small></div>`;
+    }
+  }
+  if (node.foreshadow && node.foreshadow.length) html += `<p class="ref">伏笔: ${node.foreshadow.join(", ")}</p>`;
+  if (node.payoff && node.payoff.length) html += `<p class="ref">回收: ${node.payoff.join(", ")}</p>`;
+  if (node.alignment) html += `<p class="ref">价值侧: ${node.alignment.join(" / ")}</p>`;
+  detail.innerHTML = html;
+}
+
+function showTooltip(event, node) {
+  if (node.type === "transition_node") return;
+  const tip = document.getElementById("tooltip");
+  tip.style.display = "block";
+  tip.style.left = `${event.pageX + 12}px`;
+  tip.style.top = `${event.pageY - 10}px`;
+  const axes = node.vts ? node.vts.map(v => v.axis).join(" | ") : (node.alignment || []).join(" | ");
+  tip.innerHTML = `<b>${node.title}</b><br>${node.range || ""}${axes ? `<br>${axes}` : ""}`;
+}
+function hideTooltip() {
+  document.getElementById("tooltip").style.display = "none";
+}
+
+function renderLegend() {
+  const legend = document.getElementById("legend");
+  const rows = Object.entries(data.groups).map(([key, colors]) => {
+    const cls = key === "Endings" ? " ending" : "";
+    return `<span><span class="dot${cls}" style="background:${colors.fill};border:2px solid ${colors.stroke}"></span>${colors.label}</span>`;
+  });
+  rows.push(`<br><span style="color:#e91e63;">--- 伏笔回收线</span>`);
+  rows.push(`<span style="color:#bdbdbd;">── 场景过渡线</span>`);
+  legend.innerHTML = rows.join("\n");
+}
+
+function shortText(value, max = 110) {
+  const text = String(value || "").trim();
+  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+}
+
+function renderForeshadowList() {
+  const list = document.getElementById("foreshadow-list");
+  list.innerHTML = data.foreshadowLines.map(row => `
+    <div class="foreshadow-item">
+      <div class="meta">${row.id} · ${row.type}</div>
+      <div class="stage foreshadow"><span class="stage-label">伏笔</span>${shortText(row.f)}</div>
+      <div class="stage trigger"><span class="stage-label">Trigger</span>${shortText(row.t)}</div>
+      <div class="stage payoff"><span class="stage-label">回收</span>${shortText(row.p)}</div>
+    </div>
+  `).join("");
+}
+
+let zoomScale = 1;
+let translateX = 0;
+let translateY = 0;
+function applyZoom() {
+  graphLayer.setAttribute("transform", `translate(${translateX},${translateY}) scale(${zoomScale})`);
+}
+function zoomIn() { zoomScale = Math.min(3, zoomScale * 1.25); applyZoom(); }
+function zoomOut() { zoomScale = Math.max(0.45, zoomScale / 1.25); applyZoom(); }
+function zoomReset() { zoomScale = 1; translateX = 0; translateY = 0; applyZoom(); }
+
+let dragging = false;
+let lastPoint = null;
+svg.addEventListener("mousedown", (event) => {
+  dragging = true;
+  lastPoint = { x: event.clientX, y: event.clientY };
+});
+window.addEventListener("mousemove", (event) => {
+  if (!dragging || !lastPoint) return;
+  translateX += event.clientX - lastPoint.x;
+  translateY += event.clientY - lastPoint.y;
+  lastPoint = { x: event.clientX, y: event.clientY };
+  applyZoom();
+});
+window.addEventListener("mouseup", () => { dragging = false; lastPoint = null; });
+
+document.getElementById("search-input").addEventListener("input", function() {
+  const q = this.value.trim().toLowerCase();
+  for (const node of allNodes) {
+    if (!node.el || node.type === "transition_node") continue;
+    const haystack = [
+      node.id, node.title, node.range, node.narrative,
+      ...(node.vts || []).flatMap(v => [v.axis, v.from, v.to, v.event, ...(v.chars || [])]),
+      ...(node.decisions || []).map(d => d.decision)
+    ].join(" ").toLowerCase();
+    node.el.setAttribute("opacity", q && !haystack.includes(q) ? "0.18" : "1");
+  }
+});
+
+function setupPanelResizer() {
+  const resizer = document.getElementById("panel-resizer");
+  const panel = document.getElementById("foreshadow-panel");
+  const graphPanel = document.getElementById("graph-panel");
+  let startY = 0;
+  let startHeight = 0;
+  let active = false;
+  resizer.addEventListener("mousedown", (event) => {
+    active = true;
+    startY = event.clientY;
+    startHeight = panel.getBoundingClientRect().height;
+    document.body.style.cursor = "row-resize";
+    document.body.style.userSelect = "none";
+  });
+  window.addEventListener("mousemove", (event) => {
+    if (!active) return;
+    const available = graphPanel.getBoundingClientRect().height;
+    const nextHeight = Math.max(120, Math.min(available * 0.7, startHeight - (event.clientY - startY)));
+    panel.style.height = `${nextHeight}px`;
+  });
+  window.addEventListener("mouseup", () => {
+    active = false;
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
+  });
+}
+
+drawAll();
+renderLegend();
+renderForeshadowList();
+setupPanelResizer();
+showDetail(data.scenes[0]);
+</script>
+</body>
+</html>

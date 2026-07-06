@@ -1,0 +1,369 @@
+{
+  "title": "药",
+  "author": "鲁迅",
+  "story_type": "satire",
+  "genre_tags": ["tragedy", "satire", "symbolic_realism", "social_critique"],
+  "version": "blade_structure_analysis_v1",
+  "version_notes": "参考 ScriptGeneration/GenerationTest schemas 与 the_blade 节点图结构，但将 mainline_count 设为 1：双线是同一时间线里的空间/人物并置，不是玩家选择分叉或平行宇宙。",
+  "source_text_path": "data/foreshadow_causality_benchmark/novels/normalized_texts/medicine.txt",
+  "framework": {
+    "name": "同一时间线多泳道叙事图",
+    "story_type_plugins": ["空间并置", "延迟揭示", "象征物转移", "公共误读矩阵"],
+    "constraints": ["癆病", "民间迷信", "处刑暴力", "茶馆舆论", "革命者被误解", "清明坟地分界"],
+    "note": "本图借用 Blade 的脚本节点图语言，但所有节点属于同一条叙事时间线；泳道表示空间、人物和信息可见性的差异。"
+  },
+  "mainline_count": 1,
+  "parallelism_type": "single_timeline_multi_lane",
+  "value_axes": [
+    "救命迷信 vs 革命牺牲",
+    "私域亲情 vs 公共政治",
+    "群众受害 vs 群众共谋",
+    "现实解释 vs 神迹安慰"
+  ],
+  "groups": ["秋夜出门", "丁字街交叉", "华家服药", "茶馆揭示", "清明坟地", "象征收束"],
+  "lanes": [
+    {
+      "lane_id": "hua_private",
+      "label": "华家私域：病与药",
+      "usage": "呈现华老栓、华大妈、小栓围绕癆病和偏方形成的求生线。"
+    },
+    {
+      "lane_id": "xia_execution",
+      "label": "夏瑜暗线：刑场与革命",
+      "usage": "呈现夏瑜被杀以及其革命意义如何先被遮蔽、后被转述。"
+    },
+    {
+      "lane_id": "public_teahouse",
+      "label": "公共舆论：茶馆误读",
+      "usage": "呈现康大叔和茶客如何把夏瑜的牺牲变成谈资、偏方和疯话。"
+    },
+    {
+      "lane_id": "grave_symbol",
+      "label": "坟地象征：并置与余响",
+      "usage": "呈现两位母亲、两座坟、花环和乌鸦对前文两线的收束。"
+    }
+  ],
+  "npc": [
+    {
+      "name": "华老栓",
+      "role": "求药者 / 茶馆主人",
+      "summary": "爱子心切但受迷信支配，把夏瑜的血当成救命药。"
+    },
+    {
+      "name": "华大妈",
+      "role": "病儿母亲 / 清明见证者",
+      "summary": "参与求药和服药，结尾在坟地中见证另一位母亲的悲痛。"
+    },
+    {
+      "name": "小栓",
+      "role": "病人 / 迷信疗法的失败结果",
+      "summary": "身体症状持续存在，死亡结果在清明坟地被揭示。"
+    },
+    {
+      "name": "夏瑜",
+      "role": "被处刑的革命者",
+      "summary": "正面行动多由转述呈现；其血被消费，其思想被茶客误解。"
+    },
+    {
+      "name": "夏四奶奶",
+      "role": "革命者母亲",
+      "summary": "在清明为夏瑜上坟，看见花环后试图寻找伸冤或显灵的解释。"
+    },
+    {
+      "name": "康大叔",
+      "role": "暴力秩序代理人 / 信息贩卖者",
+      "summary": "出售人血馒头，随后在茶馆里揭示夏瑜身份并主导公众误读。"
+    }
+  ],
+  "items": [
+    {
+      "item_id": "md_i001",
+      "name": "人血馒头",
+      "usage": "核心共享物：从夏瑜身体转移到华家灶火和小栓身体，连接革命线与求药线。"
+    },
+    {
+      "item_id": "md_i002",
+      "name": "洋钱",
+      "usage": "使革命者之血进入商品交换，暴露救命愿望与暴力市场的结合。"
+    },
+    {
+      "item_id": "md_i003",
+      "name": "灯笼 / 破灯笼罩",
+      "usage": "从出门照路到包裹血馒头，承载求药行动的遮蔽和污染。"
+    },
+    {
+      "item_id": "md_i004",
+      "name": "红白花环",
+      "usage": "回收夏瑜被误解的伏笔，提示仍有未知者悼念或理解革命者。"
+    },
+    {
+      "item_id": "md_i005",
+      "name": "乌鸦",
+      "usage": "拒绝神迹式证明，使结尾停留在现实不确定性中。"
+    }
+  ],
+  "regions": [
+    {
+      "name": "华家茶馆",
+      "usage": "私域病痛和公共舆论重叠之处；先服药，后谈论夏瑜。"
+    },
+    {
+      "name": "丁字街口",
+      "usage": "处刑与交易的交叉节点；华家线和夏瑜线在此发生物质连接。"
+    },
+    {
+      "name": "西关外坟地",
+      "usage": "以小路划分死刑者和穷人，又让两位母亲相遇。"
+    }
+  ],
+  "relationships": [
+    {
+      "from": "华老栓",
+      "to": "小栓",
+      "type": "father_son",
+      "risk": "亲情被迷信偏方导向无效救治。"
+    },
+    {
+      "from": "夏瑜",
+      "to": "华家",
+      "type": "unrecognized_sacrifice",
+      "risk": "革命者为群众而死，群众却消费其血而不理解其意义。"
+    },
+    {
+      "from": "康大叔",
+      "to": "夏瑜",
+      "type": "violence_broker",
+      "risk": "处刑暴力被转化为商品、谈资和社会规训。"
+    },
+    {
+      "from": "华大妈",
+      "to": "夏四奶奶",
+      "type": "mirrored_mothers",
+      "risk": "两位母亲共享丧子之痛，但未能真正理解彼此悲剧的社会根源。"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "md_n01_hua_depart",
+      "type": "event_node",
+      "group": "秋夜出门",
+      "lane": "hua_private",
+      "timeline_index": 1,
+      "time_label": "秋天后半夜",
+      "location": "华家茶馆",
+      "source_spans": ["P0001-P0005"],
+      "narrative": "华老栓带着洋钱和灯笼出门，为小栓寻找能治癆病的“药”。",
+      "visible_knowledge": "读者只知道华家求药，不知道药的来源。",
+      "structural_function": "明线启动；用亲情和病痛遮蔽将要出现的暴力来源。"
+    },
+    {
+      "id": "md_n02_execution_setup",
+      "type": "event_node",
+      "group": "丁字街交叉",
+      "lane": "xia_execution",
+      "timeline_index": 2,
+      "time_label": "黎明前",
+      "location": "丁字街口",
+      "source_spans": ["P0006-P0011"],
+      "narrative": "士兵、人群和阴森气氛聚集到丁字街，夏瑜的处刑被侧写而非正面说明。",
+      "visible_knowledge": "读者看见异常场面，但尚未确认被处刑者身份。",
+      "structural_function": "暗线潜伏；以空间和群众反应提前布置夏瑜线。"
+    },
+    {
+      "id": "md_n03_blood_bun_trade",
+      "type": "shared_node",
+      "group": "丁字街交叉",
+      "lane": "shared_crossing",
+      "timeline_index": 3,
+      "time_label": "清晨",
+      "location": "丁字街口",
+      "source_spans": ["P0012-P0014"],
+      "narrative": "康大叔把蘸血馒头卖给华老栓；华老栓把它当作带回家的新生命。",
+      "visible_knowledge": "读者知道药与血相连，但夏瑜身份仍需后文揭示。",
+      "structural_function": "全篇核心共享节点；同一时间线中的两条人物线在一个物件上交叉。"
+    },
+    {
+      "id": "md_n04_feed_medicine",
+      "type": "event_node",
+      "group": "华家服药",
+      "lane": "hua_private",
+      "timeline_index": 4,
+      "time_label": "早晨回家",
+      "location": "华家茶馆后厨 / 里屋",
+      "source_spans": ["P0015-P0026"],
+      "narrative": "华家把血馒头烤给小栓吃，父母用期待的眼光守着他，但小栓仍然咳嗽。",
+      "visible_knowledge": "华家相信药效；读者已能看到药效可疑。",
+      "structural_function": "血从刑场进入家庭和身体，完成误食式连接。"
+    },
+    {
+      "id": "md_n05_teahouse_reveal",
+      "type": "reveal_node",
+      "group": "茶馆揭示",
+      "lane": "public_teahouse",
+      "timeline_index": 5,
+      "time_label": "同日茶馆营业时",
+      "location": "华家茶馆店面",
+      "source_spans": ["P0027-P0041"],
+      "narrative": "康大叔吹嘘人血馒头“包好”，并揭示早晨被杀的是夏四奶奶的儿子夏瑜。",
+      "visible_knowledge": "前文刑场和血馒头被回溯解释，夏瑜线从暗线转为可见信息。",
+      "structural_function": "延迟揭示节点；把求药线重新解释为对革命者之血的消费。"
+    },
+    {
+      "id": "md_n06_public_misread",
+      "type": "event_node",
+      "group": "茶馆揭示",
+      "lane": "public_teahouse",
+      "timeline_index": 6,
+      "time_label": "同日茶馆营业时",
+      "location": "华家茶馆店面",
+      "source_spans": ["P0041-P0053"],
+      "narrative": "茶客把夏瑜“这大清的天下是我们大家的”理解成疯话，公众谈笑恢复，小栓继续咳嗽。",
+      "visible_knowledge": "群众不理解夏瑜，且小栓的身体反应继续否定偏方。",
+      "structural_function": "公共误读节点；同一群受害者也成了暴力叙事的协作者。"
+    },
+    {
+      "id": "md_n07_unshown_death_gap",
+      "type": "gap_node",
+      "group": "清明坟地",
+      "lane": "hua_private",
+      "timeline_index": 7,
+      "time_label": "秋天至次年清明之间",
+      "location": "叙事空白",
+      "source_spans": ["P0053-P0055"],
+      "narrative": "小栓病死的过程被省略，结果在清明华大妈上坟时才显现。",
+      "visible_knowledge": "读者通过坟地反推药的失败。",
+      "structural_function": "省略节点；用死亡结果而非治疗过程完成对迷信的判决。"
+    },
+    {
+      "id": "md_n08_grave_adjacency",
+      "type": "shared_node",
+      "group": "清明坟地",
+      "lane": "grave_symbol",
+      "timeline_index": 8,
+      "time_label": "次年清明",
+      "location": "西关外坟地",
+      "source_spans": ["P0054-P0059"],
+      "narrative": "华大妈在右边小栓坟前祭奠，夏四奶奶在左边夏瑜坟前祭奠；两坟只隔一条小路。",
+      "visible_knowledge": "两条人物线在同一空间并置，贫病死亡和处刑死亡被放到同一画面。",
+      "structural_function": "空间并置节点；不是分叉重逢，而是同一社会结构里的两种死亡相邻。"
+    },
+    {
+      "id": "md_n09_wreath",
+      "type": "symbol_node",
+      "group": "象征收束",
+      "lane": "grave_symbol",
+      "timeline_index": 9,
+      "time_label": "清明墓前",
+      "location": "夏瑜坟前",
+      "source_spans": ["P0060-P0062"],
+      "narrative": "夏瑜坟上出现没有根的红白花环，夏四奶奶试图把它解释为显灵或伸冤。",
+      "visible_knowledge": "花环提示夏瑜可能并非完全无人理解，但送花者不被揭示。",
+      "structural_function": "象征回收节点；反照茶馆误读，给暗线留下历史余响。"
+    },
+    {
+      "id": "md_n10_crow_departure",
+      "type": "symbol_node",
+      "group": "象征收束",
+      "lane": "grave_symbol",
+      "timeline_index": 10,
+      "time_label": "清明尾声",
+      "location": "坟地枯树与远空",
+      "source_spans": ["P0062-P0067"],
+      "narrative": "夏四奶奶请求乌鸦飞上坟顶证明显灵；乌鸦最终叫了一声，飞向远处天空。",
+      "visible_knowledge": "叙事拒绝给出神迹证明，也拒绝让悲剧被简单安慰化。",
+      "structural_function": "开放结尾节点；把花环的希望保留为现实疑问，而非超自然答案。"
+    }
+  ],
+  "edges": [
+    {
+      "from": "md_n01_hua_depart",
+      "to": "md_n03_blood_bun_trade",
+      "type": "motivates",
+      "label": "求药动机",
+      "explanation": "华家救小栓的愿望推动华老栓来到刑场交易。"
+    },
+    {
+      "from": "md_n02_execution_setup",
+      "to": "md_n03_blood_bun_trade",
+      "type": "same_time_space",
+      "label": "同地同晨",
+      "explanation": "夏瑜处刑与华老栓求药发生在同一时间和空间。"
+    },
+    {
+      "from": "md_n03_blood_bun_trade",
+      "to": "md_n04_feed_medicine",
+      "type": "object_transfer",
+      "label": "血馒头转移",
+      "explanation": "人血馒头从刑场进入华家，被作为药给小栓吃。"
+    },
+    {
+      "from": "md_n03_blood_bun_trade",
+      "to": "md_n05_teahouse_reveal",
+      "type": "delayed_reveal",
+      "label": "身份回揭",
+      "explanation": "茶馆谈话回溯解释早晨血馒头来自夏瑜。"
+    },
+    {
+      "from": "md_n04_feed_medicine",
+      "to": "md_n07_unshown_death_gap",
+      "type": "failed_cure",
+      "label": "药效落空",
+      "explanation": "持续咳嗽和清明坟地共同证明偏方无效。"
+    },
+    {
+      "from": "md_n05_teahouse_reveal",
+      "to": "md_n06_public_misread",
+      "type": "public_interpretation",
+      "label": "革命被误读",
+      "explanation": "夏瑜身份揭示后，茶客没有理解他的政治语言，而是把他归为疯子。"
+    },
+    {
+      "from": "md_n07_unshown_death_gap",
+      "to": "md_n08_grave_adjacency",
+      "type": "result_revealed",
+      "label": "死亡显影",
+      "explanation": "小栓之死在华大妈上坟时被叙事揭示。"
+    },
+    {
+      "from": "md_n06_public_misread",
+      "to": "md_n09_wreath",
+      "type": "symbolic_payoff",
+      "label": "花环反照",
+      "explanation": "花环对茶馆的疯话判断形成象征性反驳。"
+    },
+    {
+      "from": "md_n08_grave_adjacency",
+      "to": "md_n09_wreath",
+      "type": "spatial_focus",
+      "label": "从并置到差异",
+      "explanation": "两坟相邻后，夏瑜坟上的花环凸显两条死亡线的不同余响。"
+    },
+    {
+      "from": "md_n09_wreath",
+      "to": "md_n10_crow_departure",
+      "type": "anti_miracle",
+      "label": "拒绝神迹",
+      "explanation": "乌鸦飞离，使花环无法被封闭解释为显灵。"
+    }
+  ],
+  "synchronization_beats": [
+    {
+      "beat_id": "sync_01",
+      "label": "丁字街交叉",
+      "nodes": ["md_n01_hua_depart", "md_n02_execution_setup", "md_n03_blood_bun_trade"],
+      "reading": "华老栓的救命行动和夏瑜的处刑不是不同分支，而是在同一清晨、同一地点发生的互相遮蔽事件。"
+    },
+    {
+      "beat_id": "sync_02",
+      "label": "茶馆回揭",
+      "nodes": ["md_n04_feed_medicine", "md_n05_teahouse_reveal", "md_n06_public_misread"],
+      "reading": "华家服药后的希望与茶客对夏瑜的误解在同一个茶馆空间中叠加。"
+    },
+    {
+      "beat_id": "sync_03",
+      "label": "坟地并置",
+      "nodes": ["md_n07_unshown_death_gap", "md_n08_grave_adjacency", "md_n09_wreath", "md_n10_crow_departure"],
+      "reading": "两条线最终不是汇成结局选择，而是在坟地中以相邻墓位、花环和乌鸦形成开放式历史判断。"
+    }
+  ]
+}

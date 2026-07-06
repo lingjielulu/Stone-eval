@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>鲁迅《药》双线结构可视化</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f3ea;
+      --panel: #fffdf7;
+      --ink: #1f2933;
+      --muted: #667085;
+      --line: #d7c7aa;
+      --hua: #b45309;
+      --hua-soft: #fff2dc;
+      --xia: #991b1b;
+      --xia-soft: #fee2e2;
+      --symbol: #275f5a;
+      --symbol-soft: #dff4ef;
+      --shadow: 0 10px 28px rgba(54, 45, 31, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(153, 27, 27, 0.04), transparent 28%, transparent 72%, rgba(180, 83, 9, 0.05)),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+      line-height: 1.65;
+    }
+
+    main {
+      width: min(1440px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.6fr);
+      gap: 24px;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .dek {
+      max-width: 860px;
+      color: #3f3427;
+      font-size: 17px;
+    }
+
+    .meta {
+      background: rgba(255, 253, 247, 0.74);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .legend span,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      padding: 2px 10px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .legend .hua {
+      color: var(--hua);
+      background: var(--hua-soft);
+      border: 1px solid rgba(180, 83, 9, 0.25);
+    }
+
+    .legend .xia {
+      color: var(--xia);
+      background: var(--xia-soft);
+      border: 1px solid rgba(153, 27, 27, 0.24);
+    }
+
+    .legend .symbol {
+      color: var(--symbol);
+      background: var(--symbol-soft);
+      border: 1px solid rgba(39, 95, 90, 0.22);
+    }
+
+    .reading {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .reading-card {
+      min-height: 132px;
+      padding: 16px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-size: 15px;
+    }
+
+    .timeline-shell {
+      position: relative;
+      background: rgba(255, 253, 247, 0.64);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .timeline-head,
+    .row {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1fr) minmax(220px, 0.72fr);
+    }
+
+    .timeline-head {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(247, 243, 234, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .timeline-head div {
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #4b4034;
+      border-left: 1px solid rgba(215, 199, 170, 0.75);
+    }
+
+    .timeline-head div:first-child {
+      border-left: 0;
+    }
+
+    .row {
+      min-height: 240px;
+      border-bottom: 1px solid rgba(215, 199, 170, 0.7);
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .cell {
+      position: relative;
+      padding: 18px 16px;
+      border-left: 1px solid rgba(215, 199, 170, 0.7);
+    }
+
+    .cell:first-child {
+      border-left: 0;
+    }
+
+    .time-cell {
+      background: rgba(239, 232, 217, 0.38);
+    }
+
+    .time-index {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: var(--panel);
+    }
+
+    .time-label {
+      font-weight: 800;
+      font-size: 17px;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .section {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .event-card {
+      height: 100%;
+      border-radius: 8px;
+      padding: 14px 14px 12px;
+      border: 1px solid transparent;
+      background: var(--panel);
+    }
+
+    .hua-card {
+      border-color: rgba(180, 83, 9, 0.24);
+      background: linear-gradient(180deg, var(--hua-soft), var(--panel) 72%);
+    }
+
+    .xia-card {
+      border-color: rgba(153, 27, 27, 0.24);
+      background: linear-gradient(180deg, var(--xia-soft), var(--panel) 72%);
+    }
+
+    .event-card h3 {
+      margin: 0 0 9px;
+      font-size: 16px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .event-card ul {
+      margin: 0;
+      padding-left: 1.2em;
+      font-size: 14px;
+    }
+
+    .event-card li + li {
+      margin-top: 6px;
+    }
+
+    .symbol-cell {
+      background: rgba(223, 244, 239, 0.38);
+    }
+
+    .symbols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0 14px;
+    }
+
+    .tag {
+      color: var(--symbol);
+      background: rgba(223, 244, 239, 0.92);
+      border: 1px solid rgba(39, 95, 90, 0.18);
+      line-height: 1.35;
+    }
+
+    .cross {
+      padding-top: 12px;
+      border-top: 1px dashed rgba(39, 95, 90, 0.28);
+      font-size: 14px;
+      color: #28443f;
+    }
+
+    .spans {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .symbol-arcs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .arc-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .arc-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .arc-card p {
+      font-size: 14px;
+      color: #3b4a49;
+    }
+
+    .arc-steps {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 1020px) {
+      main {
+        width: min(100% - 24px, 980px);
+      }
+
+      header,
+      .reading,
+      .symbol-arcs {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-shell {
+        overflow-x: auto;
+      }
+
+      .timeline-head,
+      .row {
+        min-width: 980px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      main {
+        width: 100%;
+        padding: 0;
+      }
+
+      .timeline-head {
+        position: static;
+      }
+
+      .reading-card,
+      .arc-card,
+      .timeline-shell {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>鲁迅《药》双线结构可视化</h1>
+        <p class="dek">同一条叙事时间轴上并排梳理华家“求药、服药、病死”的明线，以及夏瑜“革命、牺牲、被误解、被悼念”的暗线。重点不是复述情节，而是看两条线如何通过人血馒头、茶馆闲谈和清明坟地三次交叉。</p>
+        <div class="legend">
+          <span class="hua">华家线</span>
+          <span class="xia">夏瑜线</span>
+          <span class="symbol">共享意象 / 结构交叉</span>
+        </div>
+      </div>
+      <div class="meta">
+        <p>文本：data/foreshadow_causality_benchmark/novels/normalized_texts/medicine.txt</p>
+        <p>段落编号沿用项目 normalized text。</p>
+        <p>配套数据：medicine_double_timeline.json</p>
+      </div>
+    </header>
+
+    <section class="reading" id="reading"></section>
+
+    <section class="timeline-shell" aria-label="《药》双线结构平行时间轴">
+      <div class="timeline-head">
+        <div>时间</div>
+        <div>华家线：求药、服药、病死</div>
+        <div>夏瑜线：革命、牺牲、被误解</div>
+        <div>意象与交叉</div>
+      </div>
+      <div id="timeline"></div>
+    </section>
+
+    <section class="symbol-arcs" id="symbolArcs" aria-label="重要意象回环"></section>
+  </main>
+
+  <script>
+    const data = {
+      structural_reading: [
+        "明线是华老栓为小栓买药、服药失败、清明上坟；暗线是夏瑜革命、被处刑、被群众误解、坟上出现花环。",
+        "两线并非轮流叙述，而是先用华家线遮蔽夏瑜线，再通过茶馆闲谈补出夏瑜身份，最后在坟地空间中并置。",
+        "核心讽刺在于：被压迫者小栓一家没有理解同样为他们而死的夏瑜，反而消费了他的血。",
+        "结尾的花环与乌鸦形成双重收束：花环留下理解革命者的可能，乌鸦飞离则拒绝把这种可能简化为神迹或现成答案。"
+      ],
+      timeline: [
+        {
+          id: "T01",
+          time_label: "秋天后半夜",
+          section: "第一节",
+          source_spans: ["P0001-P0005"],
+          hua_events: ["华老栓被小栓的咳嗽惊醒，带着华大妈给的洋钱出门买“药”。", "一家人把希望压在一个尚未出现的偏方上。"],
+          xia_events: ["夏瑜本人尚未正面登场；处刑即将发生，革命线被隐藏在华老栓的求药行动背后。"],
+          key_imagery: ["乌蓝的天", "青白灯光", "咳嗽", "洋钱", "灯笼"],
+          cross_relation: "华家线启动，夏瑜线潜伏；读者先看到“救命”的动机，还不知道药的血源。"
+        },
+        {
+          id: "T02",
+          time_label: "黎明前，去丁字街",
+          section: "第一节",
+          source_spans: ["P0005-P0011"],
+          hua_events: ["华老栓走在灰白的路上，因相信能救儿子而感到振奋。", "他在丁字街口看见兵、人群和行刑前的异常气氛。"],
+          xia_events: ["夏瑜被押赴刑场，但叙事只通过士兵、人群和恐怖氛围侧写。", "围观者已经把革命者的死亡当作热闹和可交易资源的前奏。"],
+          key_imagery: ["灰白的路", "沉默的狗", "丁字街", "白圆圈号衣", "伸长的鸭颈", "鬼似的人群"],
+          cross_relation: "同一地点被两条线共享：华老栓为“药”而来，夏瑜为革命牺牲而来。"
+        },
+        {
+          id: "T03",
+          time_label: "清晨，行刑与交易",
+          section: "第一节",
+          source_spans: ["P0012-P0014"],
+          hua_events: ["华老栓交出洋钱，买到蘸着血的馒头，把它抱回家。", "他把血馒头想象成能带来新生命的东西。"],
+          xia_events: ["夏瑜被杀；他的血立刻被康大叔转手卖给华老栓。", "革命者的牺牲被降格为民间偏方和黑市商品。"],
+          key_imagery: ["黑色的人", "刀一样的眼光", "鲜红的馒头", "往下滴的血", "古口亭口"],
+          cross_relation: "全篇最强交叉点：夏瑜的血成为华家所谓的药，救治线和革命线在暴力交易中合并。"
+        },
+        {
+          id: "T04",
+          time_label: "早晨回家，烤药服药",
+          section: "第二节",
+          source_spans: ["P0015-P0026"],
+          hua_events: ["华家用荷叶重包血馒头，把破灯笼和包裹放进灶火里烤。", "小栓吃下焦黑的馒头；父母盯着他，期待药效出现，但他仍咳嗽。"],
+          xia_events: ["夏瑜没有被作为人记忆，只以血和馒头的形式进入华家空间。", "他的政治意义被华家完全遮蔽。"],
+          key_imagery: ["老荷叶", "红白破灯笼", "红黑火焰", "奇怪的香味", "乌黑圆东西", "白气"],
+          cross_relation: "“血”从刑场转入灶火和身体；一条线的牺牲被另一条线误食为药。"
+        },
+        {
+          id: "T05",
+          time_label: "同日茶馆，公众议论",
+          section: "第三节",
+          source_spans: ["P0027-P0053"],
+          hua_events: ["茶馆恢复营业，华家在客人面前维持“药必有效”的希望。", "小栓继续咳嗽、出汗、吃饭，身体症状反证偏方无效。"],
+          xia_events: ["康大叔揭示被杀者是夏四奶奶的儿子夏瑜。", "茶客嘲笑夏瑜在狱中劝牢头造反，说“大清的天下是我们大家的”。", "夏三爷告官得银，红眼睛阿义殴打夏瑜，公众把夏瑜称作疯子。"],
+          key_imagery: ["大铜壶", "黑眼圈", "橄榄", "包好", "癆病", "雪白的银子", "发了疯了", "蒸气"],
+          cross_relation: "叙事揭开血馒头的来源：华家期待康复，茶客消费革命者的故事，二者共同构成“愚昧的群众”。"
+        },
+        {
+          id: "T06",
+          time_label: "叙事空白：从秋天到清明",
+          section: "第三节至第四节之间",
+          source_spans: ["P0053-P0055"],
+          hua_events: ["小栓病情没有好转并最终死亡；这一结果在清明上坟时才被揭示。"],
+          xia_events: ["夏瑜也从公共谈资变成坟地中的死者；他的革命意义仍未被母亲和大众充分理解。"],
+          key_imagery: ["时间跳跃", "沉默", "未叙述的死亡", "从药到坟"],
+          cross_relation: "鲁迅省略治疗失败和死亡过程，把判断留到墓地并置时完成。"
+        },
+        {
+          id: "T07",
+          time_label: "次年清明，西关外坟地",
+          section: "第四节",
+          source_spans: ["P0054-P0059"],
+          hua_events: ["华大妈在小栓坟前摆祭、哭泣、发呆。", "她看见夏四奶奶来到相邻的左边坟前祭奠。"],
+          xia_events: ["夏四奶奶为夏瑜上坟，因儿子是死刑者而羞愧、迟疑。", "两位母亲被一条小路隔开，却因丧子经验发生短暂靠近。"],
+          key_imagery: ["官地", "小路", "左边死刑者", "右边穷人", "层层叠叠的坟", "清明寒冷", "四碟菜一碗饭"],
+          cross_relation: "空间结构直接可视化双线：一边是被革命牺牲者，一边是被贫病和迷信吞没者。"
+        },
+        {
+          id: "T08",
+          time_label: "清明墓前，花环",
+          section: "第四节",
+          source_spans: ["P0060-P0062"],
+          hua_events: ["华大妈看见夏瑜坟上的红白花环，再看小栓坟上只有零星青白小花，感到不足和空虚。"],
+          xia_events: ["夏四奶奶发现夏瑜坟上有红白花环，猜测儿子显灵或有人替他伸冤。", "花环暗示革命者并非完全无人理解，但叙事不给出送花者身份。"],
+          key_imagery: ["红白花环", "青白小花", "黄土", "没有根", "显灵", "冤枉"],
+          cross_relation: "花环反转茶馆中的“疯子”话语；华大妈的空虚则反照人血馒头毫无救赎。"
+        },
+        {
+          id: "T09",
+          time_label: "清明尾声，乌鸦飞去",
+          section: "第四节",
+          source_spans: ["P0062-P0067"],
+          hua_events: ["华大妈卸下重担，劝夏四奶奶回去；她没有获得关于小栓之死的新解释。"],
+          xia_events: ["夏四奶奶请求乌鸦飞上坟顶来证明显灵，但乌鸦最后叫了一声，飞向远处天空。"],
+          key_imagery: ["无叶的树", "乌鸦", "铜丝般枯草", "死一般静", "啼叫", "远处天空"],
+          cross_relation: "结尾拒绝神迹式安慰：花环保留希望，乌鸦飞离则使希望停留在不确定和未完成的历史中。"
+        }
+      ],
+      symbol_arcs: [
+        { symbol: "人血馒头", appears_in: ["T03", "T04", "T05", "T06"], function: "把革命者之血、民间迷信、黑市交易和小栓死亡串联起来，是两条线最核心的交叉物。" },
+        { symbol: "光色：青白、灰白、红黑、红白", appears_in: ["T01", "T02", "T04", "T08"], function: "从冷色的病态和死亡气氛，转入血与火的暴力，再到花环的微弱悼念。" },
+        { symbol: "路与边界", appears_in: ["T02", "T07"], function: "丁字街把求药与处刑交会；坟地小路把死刑者和穷人分开，又让两位母亲相遇。" },
+        { symbol: "群众", appears_in: ["T02", "T05"], function: "围观行刑、谈笑议论、嘲笑革命者；群众既是受害者，也是暴力秩序的协作者。" },
+        { symbol: "花环", appears_in: ["T08"], function: "对茶馆误解的象征性回收，提示夏瑜可能有隐秘的理解者或后来者。" },
+        { symbol: "乌鸦", appears_in: ["T09"], function: "拒绝把花环解释成简单神迹；结尾把答案推向历史和现实，而非超自然报应。" }
+      ]
+    };
+
+    const makeList = (items) => `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+
+    document.getElementById("reading").innerHTML = data.structural_reading
+      .map((item, index) => `<article class="reading-card"><h2>${index + 1}. 结构判断</h2><p>${item}</p></article>`)
+      .join("");
+
+    document.getElementById("timeline").innerHTML = data.timeline
+      .map((node, index) => `
+        <article class="row" id="${node.id}">
+          <div class="cell time-cell">
+            <div class="time-index">${index + 1}</div>
+            <div class="time-label">${node.time_label}</div>
+            <div class="section">章节：${node.section}</div>
+            <div class="spans">${node.source_spans.join(" / ")}</div>
+          </div>
+          <div class="cell">
+            <div class="event-card hua-card">
+              <h3>${node.id} 华家线</h3>
+              ${makeList(node.hua_events)}
+            </div>
+          </div>
+          <div class="cell">
+            <div class="event-card xia-card">
+              <h3>${node.id} 夏瑜线</h3>
+              ${makeList(node.xia_events)}
+            </div>
+          </div>
+          <div class="cell symbol-cell">
+            <h3>关键意象</h3>
+            <div class="symbols">${node.key_imagery.map((symbol) => `<span class="tag">${symbol}</span>`).join("")}</div>
+            <div class="cross">${node.cross_relation}</div>
+          </div>
+        </article>
+      `)
+      .join("");
+
+    document.getElementById("symbolArcs").innerHTML = data.symbol_arcs
+      .map((arc) => `
+        <article class="arc-card">
+          <h3>${arc.symbol}</h3>
+          <div class="arc-steps">出现节点：${arc.appears_in.join(" → ")}</div>
+          <p>${arc.function}</p>
+        </article>
+      `)
+      .join("");
+  </script>
+</body>
+</html>

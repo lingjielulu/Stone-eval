@@ -1,0 +1,31 @@
+{
+  "title": "药",
+  "analysis_type": "value_transformation_graph",
+  "scene_nodes": 8,
+  "transition_nodes": 7,
+  "ending_nodes": 2,
+  "total_nodes": 17,
+  "npc_count": 6,
+  "item_count": 4,
+  "relationship_count": 3,
+  "region_count": 3,
+  "foreshadow_lines": 3,
+  "value_axes": [
+    "生 vs 死",
+    "救治 vs 消费",
+    "理解 vs 误解",
+    "希望 vs 空虚",
+    "现实 vs 神迹",
+    "私域亲情 vs 公共政治"
+  ],
+  "groups": [
+    "Prologue",
+    "Act1_Trade",
+    "Act2_Consumption",
+    "Act3_Reveal",
+    "Act4_Grave",
+    "Endings",
+    "ForeshadowLines"
+  ],
+  "validation_errors": []
+}
