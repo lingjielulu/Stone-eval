@@ -25,6 +25,7 @@ class StorySpec:
     min_line: int = 0
     source_format: str = "plain"
     ensure_title_heading: bool = False
+    simplify_zh: bool = False
 
 
 STORIES = [
@@ -68,6 +69,36 @@ STORIES = [
         end_pattern=r"^==柳秀才==\s*$",
         title="促織",
         source_format="wikisource_revisions_wikitext",
+    ),
+    StorySpec(
+        story_id="shiji_jingke",
+        raw_file="wikisource_shiji_juan086_parse_hans.json",
+        start_pattern=r"^久之，荆轲未有行意。秦将王翦破赵",
+        end_pattern=r"^[於于]是秦王大怒",
+        title="荆轲刺秦王",
+        source_format="wikisource_parse_html",
+        ensure_title_heading=True,
+        simplify_zh=True,
+    ),
+    StorySpec(
+        story_id="shiji_hongmenyan",
+        raw_file="wikisource_shiji_juan007_parse_hans.json",
+        start_pattern=r"^行略定秦地。函谷关有兵守关",
+        end_pattern=r"^居数日，项羽引兵西屠咸阳",
+        title="鸿门宴",
+        source_format="wikisource_parse_html",
+        ensure_title_heading=True,
+        simplify_zh=True,
+    ),
+    StorySpec(
+        story_id="shiji_wanbi_guizhao",
+        raw_file="wikisource_shiji_juan081_parse_hans.json",
+        start_pattern=r"^赵惠文王时",
+        end_pattern=r"^其[後后]秦伐赵",
+        title="完璧归赵",
+        source_format="wikisource_parse_html",
+        ensure_title_heading=True,
+        simplify_zh=True,
     ),
     StorySpec(
         story_id="red_headed_league",
@@ -129,6 +160,63 @@ def read_text(path: Path) -> str:
         except UnicodeDecodeError:
             continue
     return data.decode("utf-8", errors="replace")
+
+
+ZH_SIMPLIFIED_TRANSLATION = str.maketrans({
+    "於": "于", "與": "与", "為": "为", "後": "后", "復": "复",
+    "發": "发", "彊": "强", "強": "强", "擊": "击", "撃": "击",
+    "說": "说", "説": "说", "願": "愿", "謁": "谒", "衆": "众",
+    "眾": "众", "餘": "余", "臺": "台", "萬": "万", "國": "国",
+    "趙": "赵", "齊": "齐", "魯": "鲁", "漢": "汉", "薊": "蓟",
+    "遼": "辽", "燕": "燕", "荊": "荆", "轲": "轲", "軻": "轲",
+    "將": "将", "軍": "军", "宮": "宫", "賓": "宾", "禮": "礼",
+    "寶": "宝", "圖": "图", "書": "书", "遺": "遗", "獻": "献",
+    "歸": "归", "聞": "闻", "問": "问", "謂": "谓", "語": "语",
+    "請": "请", "諸": "诸", "謝": "谢", "謹": "谨", "詔": "诏",
+    "許": "许", "試": "试", "託": "托", "計": "计", "議": "议",
+    "謀": "谋", "誠": "诚", "識": "识", "讓": "让", "讒": "谗",
+    "讎": "仇", "豈": "岂", "豎": "竖", "貴": "贵", "賢": "贤",
+    "購": "购", "財": "财", "貨": "货", "賜": "赐", "贈": "赠",
+    "負": "负", "質": "质", "邊": "边", "遠": "远", "遲": "迟",
+    "過": "过", "還": "还", "進": "进", "選": "选", "運": "运",
+    "車": "车", "騎": "骑", "馬": "马", "駕": "驾", "駟": "驷",
+    "驚": "惊", "頭": "头", "髮": "发", "風": "风", "飛": "飞",
+    "門": "门", "閒": "闲", "間": "间", "關": "关", "開": "开",
+    "閉": "闭", "闕": "阙", "陽": "阳", "陰": "阴", "隱": "隐",
+    "險": "险", "雖": "虽", "雙": "双", "難": "难", "響": "响",
+    "顧": "顾", "項": "项", "頗": "颇", "願": "愿", "風": "风",
+    "飢": "饥", "魚": "鱼", "龍": "龙", "龜": "龟", "無": "无",
+    "舉": "举", "舊": "旧", "從": "从", "來": "来", "當": "当",
+    "時": "时", "長": "长", "數": "数", "幾": "几", "盡": "尽",
+    "內": "内", "處": "处", "變": "变", "氣": "气", "體": "体",
+    "勢": "势", "勞": "劳", "勝": "胜", "劍": "剑", "劉": "刘",
+    "則": "则", "別": "别", "動": "动", "勸": "劝", "單": "单",
+    "厲": "厉", "縣": "县", "參": "参", "號": "号", "嘗": "尝",
+    "喪": "丧", "嚮": "向", "囑": "嘱", "圍": "围", "圓": "圆",
+    "場": "场", "堅": "坚", "壞": "坏", "壯": "壮", "聲": "声",
+    "壺": "壶", "備": "备", "夠": "够", "奪": "夺", "婦": "妇",
+    "孫": "孙", "學": "学", "實": "实", "寧": "宁", "寵": "宠",
+    "對": "对", "屬": "属", "歲": "岁", "帥": "帅", "師": "师",
+    "帶": "带", "廣": "广", "廢": "废", "錄": "录", "憂": "忧",
+    "懷": "怀", "懼": "惧", "戰": "战", "戲": "戏", "戶": "户",
+    "據": "据", "擇": "择", "擁": "拥", "攜": "携", "攝": "摄",
+    "敗": "败", "斬": "斩", "斷": "断", "條": "条", "極": "极",
+    "樹": "树", "樣": "样", "樓": "楼", "機": "机", "權": "权",
+    "歡": "欢", "殘": "残", "淚": "泪", "滅": "灭", "滿": "满",
+    "濕": "湿", "營": "营", "牆": "墙", "獨": "独", "獲": "获",
+    "環": "环", "現": "现", "畫": "画", "禍": "祸", "離": "离",
+    "稱": "称", "窮": "穷", "竊": "窃", "築": "筑", "簡": "简",
+    "紀": "纪", "約": "约", "紅": "红", "終": "终", "經": "经",
+    "緊": "紧", "緣": "缘", "繼": "继", "續": "续", "罷": "罢",
+    "羅": "罗", "聖": "圣", "聯": "联", "職": "职", "臥": "卧",
+    "藝": "艺", "萬": "万", "蕭": "萧", "藥": "药", "虛": "虚",
+    "蠻": "蛮", "術": "术", "裝": "装", "裏": "里", "補": "补",
+    "覽": "览", "觀": "观", "觸": "触",
+})
+
+
+def simplify_zh_common(text: str) -> str:
+    return text.translate(ZH_SIMPLIFIED_TRANSLATION)
 
 
 def strip_html_to_text(markup: str) -> str:
@@ -229,6 +317,8 @@ def main() -> None:
     for spec in STORIES:
         raw_text = read_source(raw_dir / spec.raw_file, spec.source_format)
         story_text = extract_between(raw_text, spec.start_pattern, spec.end_pattern, spec.min_line)
+        if spec.simplify_zh:
+            story_text = simplify_zh_common(story_text)
         normalized = normalize(story_text, spec.title, spec.ensure_title_heading)
         output = out_dir / f"{spec.story_id}.txt"
         output.write_text(normalized, encoding="utf-8", newline="\n")

@@ -30,7 +30,7 @@ data/foreshadow_causality_benchmark/
 
 ## 当前样本
 
-核心 10 篇候选已全部落地。《摸彩》(The Lottery) 仍处版权保护，以 Phase 2 的《最后一片叶子》、《罗生门》补位：
+核心 10 篇候选已全部落地。《摸彩》(The Lottery) 仍处版权保护，以 Phase 2 的《最后一片叶子》、《罗生门》补位。另补 3 篇《史记》节选作为中文古典历史叙事扩展样本：
 
 | story_id | 作品 | 语言 | 来源 | 当前状态 |
 | --- | --- | --- | --- | --- |
@@ -44,6 +44,9 @@ data/foreshadow_causality_benchmark/
 | `to_build_a_fire` | To Build a Fire | EN | Project Gutenberg #2429 | 原文、规范化文本、样例标注 |
 | `medicine` | 藥 | ZH | Wikisource | 原文 API、规范化文本、样例标注 |
 | `cricket` | 促織 | ZH | Wikisource | 原文 API、规范化文本、样例标注 |
+| `shiji_jingke` | 荆轲刺秦王 | ZH | Wikisource《史记·刺客列传》 | 原文 API、简体规范化文本 |
+| `shiji_hongmenyan` | 鸿门宴 | ZH | Wikisource《史记·项羽本纪》 | 原文 API、简体规范化文本 |
+| `shiji_wanbi_guizhao` | 完璧归赵 | ZH | Wikisource《史记·廉颇蔺相如列传》 | 原文 API、简体规范化文本 |
 | `rashomon` | 羅生門 | JA | 青空文庫 (aozora.gr.jp) | 原文、规范化文本 |
 
 所有当前原文来源均按公版文本处理。`metadata.source_url` 记录了具体下载入口。

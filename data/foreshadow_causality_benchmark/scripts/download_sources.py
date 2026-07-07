@@ -16,6 +16,9 @@ SOURCES = {
     "gutenberg_2148_poe_vol2.txt": "https://www.gutenberg.org/cache/epub/2148/pg2148.txt",
     "wikisource_luxun_yao_parse.json": "https://zh.wikisource.org/w/api.php?action=parse&page=%E8%97%A5&prop=text&format=json&formatversion=2",
     "wikisource_liaozhai_vol04_api.json": "https://zh.wikisource.org/w/api.php?action=query&prop=revisions&rvprop=content&rvslots=main&format=json&titles=%E8%81%8A%E9%BD%8B%E5%BF%97%E7%95%B0/%E7%AC%AC04%E5%8D%B7",
+    "wikisource_shiji_juan007_parse_hans.json": "https://zh.wikisource.org/w/api.php?action=parse&page=%E5%8F%B2%E8%A8%98/%E5%8D%B7007&prop=text&format=json&formatversion=2&variant=zh-hans",
+    "wikisource_shiji_juan081_parse_hans.json": "https://zh.wikisource.org/w/api.php?action=parse&page=%E5%8F%B2%E8%A8%98/%E5%8D%B7081&prop=text&format=json&formatversion=2&variant=zh-hans",
+    "wikisource_shiji_juan086_parse_hans.json": "https://zh.wikisource.org/w/api.php?action=parse&page=%E5%8F%B2%E8%A8%98/%E5%8D%B7086&prop=text&format=json&formatversion=2&variant=zh-hans",
 }
 
 
