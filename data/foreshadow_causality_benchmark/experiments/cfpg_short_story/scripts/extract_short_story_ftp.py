@@ -1,6 +1,6 @@
 """Initial CFPG-style F-T-P extraction for short stories.
 
-Prompts live in ``prompts/cfpg/short_story_prompts.md``. This script only
+Prompts live in the experiment's ``prompts/short_story_prompts.md``. This script only
 loads templates and fills the explicit placeholders.
 """
 
@@ -18,7 +18,7 @@ from typing import Any
 from openai import OpenAI
 
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
+REPO_ROOT = Path(__file__).resolve().parents[5]
 SCRIPTS_DIR = REPO_ROOT / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
@@ -26,7 +26,10 @@ if str(SCRIPTS_DIR) not in sys.path:
 from cfpg_prompt_utils import PromptTemplate, load_prompt_templates, render_messages  # noqa: E402
 
 
-DEFAULT_PROMPT_FILE = Path("prompts/cfpg/short_story_prompts.md")
+EXPERIMENT_ROOT = Path(
+    "data/foreshadow_causality_benchmark/experiments/cfpg_short_story"
+)
+DEFAULT_PROMPT_FILE = EXPERIMENT_ROOT / "prompts/short_story_prompts.md"
 EXTRACTION_PROMPT_KEY = "short_story_candidate_extraction"
 VERIFICATION_PROMPT_KEY = "short_story_candidate_verification"
 PARAGRAPH_RE = re.compile(r"^\[(P\d{4})\]\s+(.*)$", re.S)
@@ -315,7 +318,9 @@ def normalize_candidates(
             "payoff_summary": raw.get("payoff_summary", ""),
             "proposed_trigger": raw.get("proposed_trigger", {}),
             "relation_description": raw.get("relation_description", ""),
-            "foreshadow_type": raw.get("foreshadow_type", "object"),
+            "primary_type": raw.get("primary_type") or raw.get("foreshadow_type", "event"),
+            "narrative_function": raw.get("narrative_function", "direct_setup"),
+            "legacy_foreshadow_type": raw.get("foreshadow_type"),
             "payoff_type": raw.get("payoff_type", "literal"),
             "distance_paragraphs": p_start - f_start,
             "stage1_confidence": raw.get("stage1_confidence", "low"),
@@ -378,7 +383,8 @@ def render_review(path: Path, candidates: list[dict[str, Any]], verified: list[d
             [
                 f"### {candidate['candidate_id']}",
                 "",
-                f"- Type: `{candidate['foreshadow_type']}` / payoff `{candidate['payoff_type']}`",
+                f"- Type: `{candidate['primary_type']}` / function "
+                f"`{candidate['narrative_function']}` / payoff `{candidate['payoff_type']}`",
                 f"- Distance: {candidate['distance_paragraphs']} paragraphs",
                 f"- F {candidate['foreshadow_span']}: {candidate['foreshadow_summary']}",
                 f"- T: {candidate.get('proposed_trigger', {}).get('description', '')}",
@@ -410,7 +416,7 @@ def main() -> None:
     parser.add_argument("--normalized-dir", default="data/foreshadow_causality_benchmark/novels/normalized_texts")
     parser.add_argument("--zh-dir", default="data/foreshadow_causality_benchmark/novels/normalized_texts_zh")
     parser.add_argument("--annotations-dir", default="data/foreshadow_causality_benchmark/novels/annotations")
-    parser.add_argument("--out-dir", default="data/foreshadow_causality_benchmark/novels/cfpg")
+    parser.add_argument("--out-dir", default=str(EXPERIMENT_ROOT / "results/extraction"))
     parser.add_argument("--prompt-file", type=Path, default=DEFAULT_PROMPT_FILE)
     parser.add_argument("--model", default=None)
     parser.add_argument("--api-base", default=None)

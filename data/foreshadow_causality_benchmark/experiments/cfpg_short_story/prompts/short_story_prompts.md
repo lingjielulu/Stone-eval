@@ -7,8 +7,12 @@
 - `short_story_candidate_extraction`: `{{story_id}}`, `{{story_title}}`, `{{language}}`, `{{max_candidates}}`, `{{paragraph_timeline}}`, `{{zh_paragraph_timeline}}`, `{{annotation_context}}`
 - `short_story_candidate_verification`: `{{candidate_id}}`, `{{story_id}}`, `{{story_title}}`, `{{foreshadow_span}}`, `{{foreshadow_text}}`, `{{payoff_span}}`, `{{payoff_text}}`, `{{proposed_trigger_json}}`, `{{relation_description}}`, `{{setup_window}}`, `{{payoff_window}}`
 - `short_story_tracking_decision`: `{{story_id}}`, `{{story_title}}`, `{{current_prefix}}`, `{{pending_pool_json}}`
+- `short_story_fap_decision`: `{{story_id}}`, `{{story_title}}`, `{{current_context}}`, `{{foreshadow_description}}`
+- `short_story_cfpg_decision`: `{{story_id}}`, `{{story_title}}`, `{{current_context}}`, `{{triple_json}}`
+- `short_story_continuation`: `{{story_id}}`, `{{story_title}}`, `{{current_context}}`, `{{guidance}}`
+- `short_story_continuation_judge`: `{{story_id}}`, `{{story_title}}`, `{{foreshadow_description}}`, `{{payoff_description}}`, `{{gold_continuation}}`, `{{generated_continuation}}`
 
-<!-- prompt:short_story_candidate_extraction version:short_story_ftp_extraction_v2 -->
+<!-- prompt:short_story_candidate_extraction version:short_story_ftp_extraction_v3 -->
 ```system
 你是短篇小说伏笔-触发-回收结构标注员。任务是在给定的全文段落时间线中，高召回抽取候选 Foreshadow-Trigger-Payoff 三元组。只能依据输入文本，不得使用外部知识或你对作品结局的先验记忆。只输出合法 JSON。
 ```
@@ -38,15 +42,25 @@
 7. 顶层 JSON 必须包含 candidates 数组，严禁输出空对象 {}。
 8. 如果没有合格候选，输出 {"candidates": []}。
 
-优先类型：
-- object: 物件早期出现，后期发挥关键功能。
-- rule: 规则/自然法则/社会规则早期建立，后文兑现。
-- psychological: 心理异常或感官执念预示后续行为。
-- spatial: 空间结构预示后续危险或行动路径。
-- social: 社会习俗/制度压力预示后续悲剧。
-- symbolic: 意象在后文形成主题性回收。
-- red_herring: 早期误导线索，后文被重释。
-- retrospective: 读到结尾后才确认前文是伏笔。
+分类必须分成两个互不混淆的维度：
+
+1. primary_type 只描述伏笔在文本中的主要承载形式，必须选最主要的一种：
+- object: 具体物件或可辨识实体。
+- event: 已发生的行动、变化或感知事件。
+- dialogue: 人物说出的信息、警告、承诺、描述或内心引语。
+- rule: 自然规律、制度约束、社会规则或人物明确奉行的原则。
+- environment_description: 空间布局、天气、地貌或环境危险描写。
+- character_state: 人物持续的心理、身体、身份、欲望或行为状态。
+- narrator_commentary: 叙述者直接给出的评论、预告或元叙事判断。
+
+2. narrative_function 描述叙事作用：
+- direct_setup: 直接建立后续行动或结果所需条件。
+- anomaly: 引入当时无法解释的反常细节。
+- misdirection: 诱导人物或读者形成后来被纠正的解释；red herring 应放在这里，不能作为 primary_type。
+- warning: 提前说明风险、后果或应遵守条件。
+- retrospective_reinterpretation: payoff 后才确认前文细节的真实意义。
+- ironic_contrast: 通过前后命运或价值反差形成讽刺回收。
+- symbolic_reframing: 后文以具体象征或评论重新界定前文意义。
 
 输出 JSON object，字段严格如下：
 {
@@ -61,7 +75,8 @@
         "observable_conditions": ["..."]
       },
       "relation_description": "...",
-      "foreshadow_type": "object|rule|psychological|spatial|social|symbolic|red_herring|retrospective",
+      "primary_type": "object|event|dialogue|rule|environment_description|character_state|narrator_commentary",
+      "narrative_function": "direct_setup|anomaly|misdirection|warning|retrospective_reinterpretation|ironic_contrast|symbolic_reframing",
       "payoff_type": "literal|ironic|symbolic|negative|misdirection|delayed_revelation",
       "stage1_confidence": "high|medium|low",
       "stage1_rationale": "..."
@@ -77,6 +92,88 @@
 
 已有人工标注上下文（可能为空；若存在，只作参考，不要机械复制）：
 {{annotation_context}}
+```
+<!-- /prompt -->
+
+<!-- prompt:short_story_fap_decision version:short_story_fap_decision_v1 -->
+```system
+你是在线叙事状态判断器。只能根据已经出现的文本判断下一句是否应当回收给定伏笔，不得假设未来情节。只输出合法 JSON。
+```
+```user
+作品：{{story_title}}（{{story_id}}）
+
+未解决的伏笔：{{foreshadow_description}}
+
+当前已读上下文：
+{{current_context}}
+
+判断下一句是否已经到了应当兑现该伏笔的时机。只有文本中出现了具体、可观察的充分条件时才触发；人物、物件或主题再次出现不算触发。
+
+输出：
+{"should_payoff": false, "confidence": 0.0, "evidence_segment_ids": [], "rationale": "..."}
+```
+<!-- /prompt -->
+
+<!-- prompt:short_story_cfpg_decision version:short_story_cfpg_decision_v1 -->
+```system
+你是 CFPG codify gate。你维护显式 Foreshadow-Trigger-Payoff 因果谓词，只能根据已经出现的文本判断 Trigger 是否满足。只输出合法 JSON。
+```
+```user
+作品：{{story_title}}（{{story_id}}）
+
+待处理的结构化谓词：
+{{triple_json}}
+
+当前已读上下文：
+{{current_context}}
+
+逐项检查 trigger.observable_conditions。只有触发条件已由当前文本支持，且 payoff 尚未发生时，下一句才 should_payoff=true。不要因词汇相似而提前触发。
+
+输出：
+{"should_payoff": false, "trigger_satisfied": false, "payoff_already_observed": false, "confidence": 0.0, "evidence_segment_ids": [], "rationale": "..."}
+```
+<!-- /prompt -->
+
+<!-- prompt:short_story_continuation version:short_story_continuation_v1 -->
+```system
+你是小说续写模型。续写一句，与原文语言、时态和叙事视角一致。不要解释任务，不要输出 JSON。
+```
+```user
+作品：{{story_title}}（{{story_id}}）
+
+当前文本：
+{{current_context}}
+
+控制信息：
+{{guidance}}
+
+只续写紧接着的一句话。如果控制信息要求兑现 payoff，应通过具体可观察事件自然完成，不要元叙事地说“伏笔得到了回收”。
+```
+<!-- /prompt -->
+
+<!-- prompt:short_story_continuation_judge version:short_story_continuation_judge_v1 -->
+```system
+你是叙事蕴含评测器。比较模型续写与真实下一句是否沿着同一因果轨迹，并判断伏笔是否被兑现。只输出合法 JSON。
+```
+```user
+作品：{{story_title}}（{{story_id}}）
+伏笔：{{foreshadow_description}}
+目标 payoff：{{payoff_description}}
+
+真实下一句：
+{{gold_continuation}}
+
+模型续写：
+{{generated_continuation}}
+
+评分严格采用论文的三档 narrative entailment：
+- 1.0：模型续写蕴含真实轨迹，关键事件、决定或揭示一致；允许措辞不同。
+- 0.5：中性或相容，但没有实现相同的关键轨迹。
+- 0.0：与真实轨迹或既有因果状态矛盾。
+
+payoff_realized 只有在模型续写具体实现目标 payoff 时为 true。
+输出：
+{"label": "entailment|neutral|contradiction", "score": 0.5, "payoff_realized": false, "rationale": "..."}
 ```
 <!-- /prompt -->
 

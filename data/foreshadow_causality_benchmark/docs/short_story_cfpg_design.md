@@ -362,19 +362,19 @@ cfpg/reviews/{story_id}_ftp_review_{run_id}.md
 第一版先把所有短篇 CFPG prompt 放在单独文件：
 
 ```text
-prompts/cfpg/short_story_prompts.md
+data/foreshadow_causality_benchmark/experiments/cfpg_short_story/prompts/short_story_prompts.md
 ```
 
 脚本只负责在固定槽位插入故事元信息、段落时间线、中文辅助译文和已有标注上下文：
 
 ```text
-data/foreshadow_causality_benchmark/scripts/extract_short_story_ftp.py
+data/foreshadow_causality_benchmark/experiments/cfpg_short_story/scripts/extract_short_story_ftp.py
 ```
 
 查看 prompt 拼接效果：
 
 ```bash
-python data/foreshadow_causality_benchmark/scripts/extract_short_story_ftp.py last_leaf \
+python data/foreshadow_causality_benchmark/experiments/cfpg_short_story/scripts/extract_short_story_ftp.py last_leaf \
   --dry-run \
   --max-paragraphs 12 \
   --include-zh \
@@ -384,13 +384,13 @@ python data/foreshadow_causality_benchmark/scripts/extract_short_story_ftp.py la
 该命令不调用模型，只输出渲染后的 prompt 预览：
 
 ```text
-data/foreshadow_causality_benchmark/novels/cfpg/reviews/last_leaf_prompt_preview_smoke.md
+data/foreshadow_causality_benchmark/experiments/cfpg_short_story/results/extraction/reviews/last_leaf_prompt_preview_smoke.md
 ```
 
 实际抽取时去掉 `--dry-run`，可按需加入 `--verify` 做候选验证：
 
 ```bash
-python data/foreshadow_causality_benchmark/scripts/extract_short_story_ftp.py last_leaf \
+python data/foreshadow_causality_benchmark/experiments/cfpg_short_story/scripts/extract_short_story_ftp.py last_leaf \
   --include-zh \
   --run-id 20260701_fulltext_zh_assisted \
   --verify

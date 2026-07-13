@@ -134,3 +134,12 @@ python data/foreshadow_causality_benchmark/scripts/validate_dataset.py
 - 长篇续写准备：追踪未回收伏笔、仍在推进的因果链，并约束续写不破坏既有结构。
 
 当前五篇标注是 seed gold，不是穷尽全量标注。建议后续每篇至少经过两轮人工复核：第一轮检查事件粒度和因果边，第二轮检查伏笔/payoff 边界和误导线索。
+
+## CFPG 论文复现
+
+短篇原文版的句级数据准备、oracle-timing 生成、在线 payoff tracking、三种方法对比和论文指标汇总见：
+
+- `experiments/cfpg_short_story/README.md`：集中式实验入口和复现命令。
+- `experiments/cfpg_short_story/reports/dashboard.html`：可筛选的静态实验前端。
+- `experiments/cfpg_short_story/reports/experiment_report.html`：完整实验报告渲染版。
+- `experiments/cfpg_short_story/data/cfpg_taxonomy_v2.json`：30 条候选的修订主类型、独立叙事功能和中文 F/T/P。

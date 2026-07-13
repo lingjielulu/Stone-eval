@@ -1,0 +1,17 @@
+{
+  "run_id": "oracle_smoke_20260713",
+  "model": "deepseek-v4-pro",
+  "judge_model": "deepseek-v4-pro",
+  "oracle": {
+    "deepseek-v4-pro/prompt": {
+      "cases": 1,
+      "should_payoff_rate": null,
+      "average_score": 1.0
+    },
+    "deepseek-v4-pro/cfpg": {
+      "cases": 1,
+      "should_payoff_rate": 1.0,
+      "average_score": 1.0
+    }
+  }
+}

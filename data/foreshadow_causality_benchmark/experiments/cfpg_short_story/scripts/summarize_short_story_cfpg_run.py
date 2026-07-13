@@ -86,8 +86,14 @@ def build_report(
     rejected: list[dict[str, Any]],
     summary: dict[str, Any],
 ) -> str:
-    candidates_by_type = Counter(row.get("foreshadow_type", "unknown") for row in candidates)
-    accepted_by_type = Counter(row["candidate"].get("foreshadow_type", "unknown") for row in accepted)
+    candidates_by_type = Counter(
+        row.get("primary_type") or row.get("foreshadow_type", "unknown") for row in candidates
+    )
+    accepted_by_type = Counter(
+        row["candidate"].get("primary_type")
+        or row["candidate"].get("foreshadow_type", "unknown")
+        for row in accepted
+    )
     accepted_by_payoff = Counter(row["candidate"].get("payoff_type", "unknown") for row in accepted)
 
     lines: list[str] = [
@@ -106,8 +112,8 @@ def build_report(
         "",
         f"- 有效 run：`{run_id}`。",
         f"- 结果集中保存于：`{run_dir}`。",
-        "- Prompt 集中维护于：`prompts/cfpg/short_story_prompts.md`。",
-        "- 抽取脚本：`data/foreshadow_causality_benchmark/scripts/extract_short_story_ftp.py`。",
+        "- Prompt 集中维护于：`experiments/cfpg_short_story/prompts/short_story_prompts.md`。",
+        "- 抽取脚本：`experiments/cfpg_short_story/scripts/extract_short_story_ftp.py`。",
         f"- 覆盖核心作品：{summary['story_count']} 篇。",
         f"- Candidate extraction 产出：{summary['candidate_count']} 条候选。",
         f"- Verifier 接受：{summary['accepted_count']} 条 verified F-T-P。",
@@ -301,11 +307,17 @@ def main() -> None:
         "rejected_count": len(rejected_all),
         "acceptance_rate": pct(len(accepted_all), len(all_verified)),
         "stories": story_rows,
-        "candidate_foreshadow_type_counts": Counter(
-            row.get("foreshadow_type", "unknown") for row in all_candidates
+        "candidate_primary_type_counts": Counter(
+            row.get("primary_type") or row.get("foreshadow_type", "unknown")
+            for row in all_candidates
         ),
-        "accepted_foreshadow_type_counts": Counter(
-            row["candidate"].get("foreshadow_type", "unknown") for row in accepted_all
+        "accepted_primary_type_counts": Counter(
+            row["candidate"].get("primary_type")
+            or row["candidate"].get("foreshadow_type", "unknown")
+            for row in accepted_all
+        ),
+        "accepted_narrative_function_counts": Counter(
+            row["candidate"].get("narrative_function", "unknown") for row in accepted_all
         ),
         "accepted_payoff_type_counts": Counter(
             row["candidate"].get("payoff_type", "unknown") for row in accepted_all
