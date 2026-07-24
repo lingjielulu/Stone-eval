@@ -1,0 +1,234 @@
+metadata:
+  story_id: to_build_a_fire
+  title: "To Build a Fire"
+  author: "Jack London"
+  language: en
+  source_text_path: foreshadow/short_stories/dataset/normalized_texts/to_build_a_fire.txt
+  source_url: https://gutenberg.pglaf.org/2/4/2/2429/2429-0.txt
+  copyright_status: public_domain
+  genre: naturalism
+  length_level: short
+  structure_type: [naturalist]
+annotation_guide:
+  focus:
+    - Mark environmental rules as causal constraints, not atmospheric description.
+    - Track the old-timer's advice as rule foreshadowing whose payoff is literal survival failure.
+    - Preserve the contrast between the man's reasoning and the dog's instinctive knowledge.
+  boundary_notes:
+    - The dog is an agent with instinctive state, but its actions are not human motivations.
+    - Most causal edges are physical or rule-based; avoid over-psychologizing them.
+events:
+  - event_id: TF_E01
+    story_id: to_build_a_fire
+    chapter_or_section: setup
+    text_span: P0003-P0007
+    summary: The man underestimates extreme cold while the dog instinctively recognizes danger.
+    participants: [the man, the dog]
+    location: Yukon trail
+    time: morning
+    event_type: internal_state
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: TF_E02
+    story_id: to_build_a_fire
+    chapter_or_section: travel
+    text_span: P0011-P0013
+    summary: The man recognizes hidden spring traps and observes the danger of wetting feet.
+    participants: [the man, the dog]
+    location: Henderson Creek
+    time: late morning
+    event_type: discovery
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: TF_E03
+    story_id: to_build_a_fire
+    chapter_or_section: first_fire
+    text_span: P0014-P0016
+    summary: The man builds a first fire for lunch, then leaves it despite the dog's desire to stay.
+    participants: [the man, the dog]
+    location: fork of Henderson Creek
+    time: noon
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: TF_E04
+    story_id: to_build_a_fire
+    chapter_or_section: accident
+    text_span: P0017-P0019
+    summary: The man breaks through hidden ice, wets himself to the knees, and must build a fire immediately.
+    participants: [the man]
+    location: left fork of Henderson Creek
+    time: afternoon
+    event_type: accident
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: TF_E05
+    story_id: to_build_a_fire
+    chapter_or_section: accident
+    text_span: P0020-P0023
+    summary: The man builds under a spruce tree, shakes loose snow from its boughs, and the snow extinguishes the fire.
+    participants: [the man]
+    location: under small spruce trees
+    time: after wetting his feet
+    event_type: accident
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: TF_E06
+    story_id: to_build_a_fire
+    chapter_or_section: failed_recovery
+    text_span: P0024-P0030
+    summary: With frozen hands, the man fails to make a sustainable second fire.
+    participants: [the man]
+    location: open snow near the creek
+    time: after the first fire is extinguished
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: TF_E07
+    story_id: to_build_a_fire
+    chapter_or_section: failed_recovery
+    text_span: P0031-P0033
+    summary: The man tries to kill the dog for warmth but cannot use his frozen hands.
+    participants: [the man, the dog]
+    location: snow near the failed fire
+    time: near death
+    event_type: action
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: TF_E08
+    story_id: to_build_a_fire
+    chapter_or_section: resolution
+    text_span: P0034-P0040
+    summary: The man panics, accepts death, freezes, and the dog leaves for camp.
+    participants: [the man, the dog]
+    location: Yukon trail
+    time: twilight
+    event_type: death
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+causal_edges:
+  - edge_id: TF_C01
+    story_id: to_build_a_fire
+    source_event_id: TF_E01
+    target_event_id: TF_E04
+    relation_type: enables
+    strength: {value: medium}
+    evidence_text_span: P0003-P0019
+    explanation: The man's lack of imagination and underestimation of cold allow him to continue alone into conditions where a foot-wetting accident becomes lethal.
+  - edge_id: TF_C02
+    story_id: to_build_a_fire
+    source_event_id: TF_E04
+    target_event_id: TF_E05
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0017-P0023
+    explanation: Wet feet in extreme cold require immediate fire-building, creating the high-stakes first attempt.
+  - edge_id: TF_C03
+    story_id: to_build_a_fire
+    source_event_id: TF_E05
+    target_event_id: TF_E06
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0023-P0030
+    explanation: Snow from the spruce destroys the successful fire, forcing a second attempt after the man's hands and feet have worsened.
+  - edge_id: TF_C04
+    story_id: to_build_a_fire
+    source_event_id: TF_E06
+    target_event_id: TF_E07
+    relation_type: motivates
+    strength: {value: strong}
+    evidence_text_span: P0030-P0031
+    explanation: The failed second fire drives the desperate idea of using the dog's body heat.
+  - edge_id: TF_C05
+    story_id: to_build_a_fire
+    source_event_id: TF_E06
+    target_event_id: TF_E08
+    relation_type: causes
+    strength: {value: strong}
+    evidence_text_span: P0030-P0040
+    explanation: Failure to restore fire removes the last available survival mechanism.
+  - edge_id: TF_C06
+    story_id: to_build_a_fire
+    source_event_id: TF_E07
+    target_event_id: TF_E08
+    relation_type: prevents
+    strength: {value: medium}
+    evidence_text_span: P0031-P0033
+    explanation: Frozen hands prevent him from killing the dog or using it as a heat source.
+foreshadowing_units:
+  - foreshadowing_id: TF_F01
+    story_id: to_build_a_fire
+    foreshadowing_text_span: P0003-P0007
+    foreshadowing_summary: The cold is framed as a rule the man does not imaginatively understand but the dog senses.
+    foreshadowing_type: rule
+    trigger_event_id: TF_E04
+    payoff_event_id: TF_E08
+    payoff_text_span: P0034-P0040
+    payoff_summary: The environment's rule is fulfilled when exposure and failed fire-building kill the man.
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: The story tests whether a system can treat physical conditions as active causal constraints.
+  - foreshadowing_id: TF_F02
+    story_id: to_build_a_fire
+    foreshadowing_text_span: P0011-P0013
+    foreshadowing_summary: Hidden spring traps and wet feet are explicitly marked as dangerous.
+    foreshadowing_type: rule
+    trigger_event_id: TF_E04
+    payoff_event_id: TF_E05
+    payoff_text_span: P0017-P0023
+    payoff_summary: The man wets his feet and must make a flawless fire to survive.
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: A local hazard becomes the initiating accident for the fatal chain.
+  - foreshadowing_id: TF_F03
+    story_id: to_build_a_fire
+    foreshadowing_text_span: P0020-P0021
+    foreshadowing_summary: The old-timer's rule says no one should travel alone after fifty below.
+    foreshadowing_type: rule
+    trigger_event_id: TF_E05
+    payoff_event_id: TF_E08
+    payoff_text_span: P0024-P0040
+    payoff_summary: The man recognizes that a trail-mate could have built the second fire and saved him.
+    payoff_type: negative
+    confidence: {value: high}
+    explanation: The payoff is the absence of help, showing a violated survival rule.
+  - foreshadowing_id: TF_F04
+    story_id: to_build_a_fire
+    foreshadowing_text_span: P0018-P0019
+    foreshadowing_summary: The man builds near spruce brush because it is easier to pull twigs directly.
+    foreshadowing_type: spatial
+    trigger_event_id: TF_E05
+    payoff_event_id: TF_E05
+    payoff_text_span: P0023
+    payoff_summary: Pulling twigs shakes the loaded tree and drops snow onto the fire.
+    payoff_type: literal
+    confidence: {value: high}
+    explanation: The spatial convenience is converted into a physical causal failure.
+characters:
+  - character_id: TF_CH01
+    story_id: to_build_a_fire
+    name: the man
+    role: protagonist
+    stable_traits: [practical, overconfident, unimaginative]
+    current_motivation_by_event:
+      - event_id: TF_E04
+        motivation: Reach camp by schedule despite the accident.
+        knowledge_state: Knows wet feet require fire but underestimates cascading risk.
+        emotional_state: Angry, then focused.
+        goal: Dry his feet and continue.
+      - event_id: TF_E07
+        motivation: Recover hand function and survive.
+        knowledge_state: Knows fire-building has failed and the dog is warm.
+        emotional_state: Desperate and fearful.
+        goal: Use the dog's body heat.
+  - character_id: TF_CH02
+    story_id: to_build_a_fire
+    name: the dog
+    role: instinctive contrast agent
+    stable_traits: [instinctive, cold-aware, self-preserving]
+    current_motivation_by_event:
+      - event_id: TF_E03
+        motivation: Stay near fire and avoid lethal cold.
+        knowledge_state: Instinctively understands that travel is unsafe.
+        emotional_state: Apprehensive.
+        goal: Remain warm.

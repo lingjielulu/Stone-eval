@@ -1,0 +1,331 @@
+metadata:
+  story_id: hlm_duilian
+  title: "紅樓夢第五回太虛幻境對聯集"
+  author: "曹雪芹"
+  language: zh
+  source_text_path: poetry_data/hongloumeng/normalized_texts/duilian.txt
+  source_url: https://zh.wikisource.org/wiki/紅樓夢/第005回
+  copyright_status: public_domain
+  genre: classical_chinese_poetry_imagery_stacking
+  length_level: short
+  structure_type: [symbolic, psychological]
+annotation_guide:
+  focus:
+    - 每副對聯作為一個意象堆疊事件，標注其平行對偶名詞短語如何以無動詞結構構成象徵密度。
+    - 標注七副對聯的空間遞進（從塵世→秦氏臥房→太虛幻境牌坊→孽海情天→薄命司→宮殿→內室）及其主題深化。
+    - 「假作真時真亦假，無為有處有還無」是整個小說的元主題，標為核心事件，其餘對聯均受其框架影響。
+    - 標注意象堆疊中的雙重編碼：每副對聯的上下聯既平行對偶又互為註解，在對比中生成象徵意涵。
+  boundary_notes:
+    - 對聯屬於太虛幻境的預言系統，其「情節」是空間的穿越與意象的漸次揭示，非人物行動推進。
+    - 讀者視角與賈寶玉的夢中視角重疊：對聯的字面意義被寶玉所見，象徵意義則為讀者所解。
+    - 此處對聯的伏筆回收跨度覆蓋《紅樓夢》全書（八十回／一百二十回），非單一章節內完成。
+    - 燃藜圖對聯出現在入夢前（秦氏帶寶玉至其屋），是塵世與幻境之間的過渡界標。
+events:
+  - event_id: DL_E01
+    story_id: hlm_duilian
+    chapter_or_section: 第五回
+    text_span: P0001
+    summary: 塵世智慧對聯——「世事洞明皆學問」以世事為學問源泉，「人情練達即文章」以人情為文章根本，上下聯以平行句法堆疊兩個近義命題，強化入世價值觀。此聯為燃藜圖配聯，燃藜典故喻勤學，整套（畫+聯）建構儒家世俗成功理想。
+    participants: [燃藜圖, 世事, 學問, 人情, 文章, 賈寶玉]
+    location: 秦氏上房（燃藜圖所在）
+    time: 入夢前
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: real}
+  - event_id: DL_E02
+    story_id: hlm_duilian
+    chapter_or_section: 第五回
+    text_span: P0002
+    summary: 感官意象對聯——「嫩寒鎖夢因春冷」以嫩寒（觸覺）鎖夢（幻覺）因春冷（溫度）堆疊三層感官；「芳氣襲人是酒香」以芳氣（嗅覺）襲人（觸覺動詞）是酒香（味覺）堆疊三層感官；上下聯構建一個多重感官交織的迷離空間，象徵從塵世價值向夢幻世界過渡的意識模糊狀態。
+    participants: [嫩寒, 夢, 春冷, 芳氣, 酒香, 賈寶玉]
+    location: 秦可卿臥房
+    time: 入夢過渡
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: DL_E03
+    story_id: hlm_duilian
+    chapter_or_section: 第五回
+    text_span: P0003-P0004
+    summary: 核心元主題對聯（太虛幻境牌坊聯）——「假作真時真亦假」將真假範疇相互轉化：假被當作真時真也淪為假；「無為有處有還無」將有無存在範疇對偶崩解：無被看作有處有也化為無。上下聯以相同句法結構（X為Y處Y亦X）進行概念堆疊，不是用動詞敘述事件，而是用平行命題宣告存在的虛實邊界徹底坍塌。此為整部《紅樓夢》的哲學基座：一切繁華皆幻，一切承諾皆空。
+    participants: [真, 假, 有, 無]
+    location: 太虛幻境牌坊
+    time: 進入幻境之始
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: DL_E04
+    story_id: hlm_duilian
+    chapter_or_section: 第五回
+    text_span: P0005-P0006
+    summary: 孽海情天宮門聯——「厚地高天，堪嘆古今情不盡」先以天地空間（厚/高）鋪陳情感的時間無盡（古今），空間→時間的意象堆疊把「情」提升為宇宙級存在；「癡男怨女，可憐風月債難酬」以癡、怨兩個人格化意象對偶堆疊於男女之上，風月為情欲意象、債為因果意象，合成「情債」不可償還的悲劇命題。「孽海情天」四字本身就是空間意象堆疊：孽（罪）如海、情如天——在一個門牌中把罪與情同時空間化為無邊無際的容器。
+    participants: [厚地, 高天, 癡男, 怨女, 古今, 風月]
+    location: 孽海情天宮門
+    time: 進入幻境後第一站
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: DL_E05
+    story_id: hlm_duilian
+    chapter_or_section: 第五回
+    text_span: P0007-P0008
+    summary: 薄命司門聯——「春恨秋悲皆自惹」以春秋（時間）與恨悲（情感）堆疊，皆自惹斷言一切情感痛苦來自人物自身；「花容月貌為誰妍」以花容月貌（青春美貌意象堆疊）為誰妍（無目的論的質問）構成存在主義式的反問：美麗本身沒有被觀看的對象，因此註定被辜負。上下聯從情感自因→容顏無主的邏輯遞進，是薄命司中所有女性悲劇命運的總綱。
+    participants: [春恨, 秋悲, 花容, 月貌]
+    location: 薄命司門
+    time: 幻境深處
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: DL_E06
+    story_id: hlm_duilian
+    chapter_or_section: 第五回
+    text_span: P0009
+    summary: 宮殿富貴意象對聯——「光搖朱戶金鋪地」以光→朱戶→金鋪地三層意象堆疊：光（視覺動態）搖（動詞）朱戶（紅色門戶，富貴色），金鋪地（金屬質感+空間鋪展）；「雪照瓊窗玉作宮」以雪→瓊窗→玉作宮堆疊：雪（純白寒冷）照（光線動詞）瓊窗（美玉窗），玉作宮（整個宮殿由玉構成）。上下聯均以光線動詞（搖/照）聯結材質意象（朱/金/瓊/玉），構建一個光輝炫目但冰冷無人的非人間空間。此為太虛幻境的物質性巔峰展示，同時暗示其一切輝煌皆為玉石金雪的堆疊——既華美又寒冷，沒有人的溫度。
+    participants: [光, 朱戶, 金, 雪, 瓊窗, 玉]
+    location: 太虛幻境宮殿內部
+    time: 隨警幻仙子深入
+    event_type: symbolic
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: DL_E07
+    story_id: hlm_duilian
+    chapter_or_section: 第五回
+    text_span: P0010-P0011
+    summary: 終點內室對聯——「幽微靈秀地」以幽微（不可見深處）+靈秀（精神靈氣）+地（空間）堆疊，命名一個不可抵達的精神空間；「無可奈何天」以無可奈何（存在主義絕望）+天（空間對偶）堆疊，把無力感推至宇宙尺度。上下聯形成空間對比：一個是地上的靈秀聚集（可嚮往但不可進入），一個是天命的不可抗拒（不可改變），地與天的對偶之中夾著人類的渴望與無力。此聯是賈寶玉幻境之旅的終點——他在這個句式中看到了一切美好之物的真實位置（幽微靈秀地）和自己對命運的終極無力（無可奈何天）。
+    participants: [幽微, 靈秀, 地, 無可奈何, 天]
+    location: 太虛幻境內室（最深處）
+    time: 幻境終點
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+causal_edges:
+  - edge_id: DL_C01
+    story_id: hlm_duilian
+    source_event_id: DL_E01
+    target_event_id: DL_E02
+    relation_type: contrasts
+    strength: {value: medium}
+    evidence_text_span: P0001-P0002
+    explanation: 燃藜圖對聯（世俗入世價值，以知性語言建構）過渡至秦氏臥房對聯（感官迷離，以觸覺嗅覺堆疊），空間從儒家規訓的上房移入香豔私密的臥房，主題從學問文章轉向夢與酒香。此過渡標誌寶玉從現實價值體系（他不喜）滑入夢境入口。
+  - edge_id: DL_C02
+    story_id: hlm_duilian
+    source_event_id: DL_E02
+    target_event_id: DL_E03
+    relation_type: spatial_progression
+    strength: {value: strong}
+    evidence_text_span: P0002-P0004
+    explanation: 秦氏臥房感官意象的迷離（芳氣、鎖夢、春冷）為進入太虛幻境鋪墊意識模糊狀態，緊接牌坊聯的真假有無宣告，空間從臥房進入夢中牌坊之下。感官堆疊溶解了現實邊界，使真假命題的提出成為必然。
+  - edge_id: DL_C03
+    story_id: hlm_duilian
+    source_event_id: DL_E03
+    target_event_id: DL_E04
+    relation_type: thematically_frames
+    strength: {value: strong}
+    evidence_text_span: P0003-P0006
+    explanation: 牌坊聯的「真假/有無」本體論框架為孽海情天聯提供解讀前提：正因為真假虛實已坍塌，古今之情才盡是虛妄，風月之債才永難償還。若真即假、有即無，則情不盡即情的虛無本質。
+  - edge_id: DL_C04
+    story_id: hlm_duilian
+    source_event_id: DL_E03
+    target_event_id: DL_E05
+    relation_type: thematically_frames
+    strength: {value: strong}
+    evidence_text_span: P0003-P0008
+    explanation: 牌坊聯的存在虛實崩解直接為薄命司聯的「春恨秋悲皆自惹」提供哲學依據：若萬物真假已然無別，恨悲何必外求其因？皆自惹是對真假有無元命題的情感化推論，花容月貌的「為誰妍」之問是「有還無」的美學翻版。
+  - edge_id: DL_C05
+    story_id: hlm_duilian
+    source_event_id: DL_E04
+    target_event_id: DL_E05
+    relation_type: thematic_specification
+    strength: {value: strong}
+    evidence_text_span: P0005-P0008
+    explanation: 孽海情天以普遍人性論述（古今情不盡、癡男怨女）鋪陳情感困境的全稱命題，薄命司則收窄為個體命運（春恨秋悲、花容月貌），從天地的宏大→個人的無奈，是抽象情感命題向具體女性命運的收縮與深化。
+  - edge_id: DL_C06
+    story_id: hlm_duilian
+    source_event_id: DL_E05
+    target_event_id: DL_E06
+    relation_type: spatial_progression
+    strength: {value: medium}
+    evidence_text_span: P0007-P0009
+    explanation: 薄命司門聯之後，空間繼續深入至太虛幻境宮殿內部。薄命司揭示命運框架（一切美貌終將無用），宮殿意象（金鋪地、玉作宮）則直接將此框架物質化為一個華美而冰冷的空間——命運的審判已過，進入命運的展廳。
+  - edge_id: DL_C07
+    story_id: hlm_duilian
+    source_event_id: DL_E06
+    target_event_id: DL_E07
+    relation_type: spatial_culmination
+    strength: {value: strong}
+    evidence_text_span: P0009-P0011
+    explanation: 宮殿的金玉輝煌（光搖朱戶、雪照瓊窗）一路遞進至最深處的內室——「幽微靈秀地，無可奈何天」。從金玉的炫目堆疊退入一聯僅十字的極簡對偶，空間從外到內、從繁到簡、從感官洪流到哲學靜默，標誌幻境之旅的終點：一切物質輝煌終歸於面對命運的無言。
+  - edge_id: DL_C08
+    story_id: hlm_duilian
+    source_event_id: DL_E01
+    target_event_id: DL_E03
+    relation_type: contrasts
+    strength: {value: medium}
+    evidence_text_span: P0001-P0004
+    explanation: 燃藜圖對聯的「學問/文章」以知識建構世界（真），牌坊聯的「真假/有無」以悖論解構世界。前者是塵世價值體系的最強表述（世事即真理），後者是超驗否定（真理即虛幻）。塵世的「真」在太虛幻境牌坊下被宣告為「亦假」。
+  - edge_id: DL_C09
+    story_id: hlm_duilian
+    source_event_id: DL_E04
+    target_event_id: DL_E07
+    relation_type: thematically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0005-P0011
+    explanation: 孽海情天的「古今情不盡」和「風月債難酬」的宇宙級無力感，在內室聯的「無可奈何天」中得到終極濃縮——從天地之間的深情之嘆收束為地上靈秀才俊面對天空的無言。情的困境始於孽海情天的宣告，終結於無可奈何天的承認。
+foreshadowing_units:
+  - foreshadowing_id: DL_F01
+    story_id: hlm_duilian
+    foreshadowing_text_span: P0001
+    foreshadowing_summary: 世事洞明皆學問，人情練達即文章——燃藜圖對聯以塵世價值體系（學問來自世故、文章出於圓滑）作為全書伏筆的起點，是寶玉所拒絕的世界。此聯暗示小說核心衝突：寶玉一生抗拒的正是此類「世事人情」的馴化，而小說最終的悲劇恰因世故人情體系壓倒了天真靈秀。
+    foreshadowing_type: thematic
+    trigger_event_id: DL_E01
+    payoff_event_id: DL_E03
+    payoff_text_span: P0003-P0004
+    payoff_summary: 真假有無牌坊聯宣告此世俗價值的徹底虛幻——若一切為假，世事洞明又有何學問可言？燃藜圖的勤學訓誡在幻境入口被哲學性地廢除。
+    payoff_type: thematic
+    confidence: {value: high}
+    explanation: 燃藜圖及其對聯是寶玉在現實中厭惡的價值觀的濃縮表徵，太虛幻境則以真假有無之悖論全面解構此價值觀。兩聯構成「塵世執著→超驗解構」的伏筆-回收結構。
+  - foreshadowing_id: DL_F02
+    story_id: hlm_duilian
+    foreshadowing_text_span: P0002
+    foreshadowing_summary: 嫩寒鎖夢因春冷，芳氣襲人是酒香——秦可卿臥房對聯以多重感官堆疊（寒→冷→鎖夢／芳→襲→酒香）編碼秦可卿的雙重命運：她作為「情」的化身出現在寶玉的性啟蒙夢中（芳氣酒香為情慾意象），同時她的年輕死亡（嫩寒春冷為夭亡意象）已在感官迷霧中預告。
+    foreshadowing_type: symbolic
+    trigger_event_id: DL_E02
+    payoff_event_id: DL_E04
+    payoff_text_span: P0005-P0006
+    payoff_summary: 孽海情天聯將秦可卿個人命運擴展為人類普遍命題——「情不盡」與「債難酬」回扣嫩寒鎖夢的未完成，芳氣酒香的迷醉終歸於風月之債的無法償還。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 秦可卿的臥房空間意象（香豔/寒冷/鎖夢）為其後續命運（年輕早逝、情慾糾葛）提供感官層面的伏筆，而孽海情天的宏大命題將此個人悲劇升華為人類處境。
+  - foreshadowing_id: DL_F03
+    story_id: hlm_duilian
+    foreshadowing_text_span: P0003-P0004
+    foreshadowing_summary: 假作真時真亦假，無為有處有還無——太虛幻境牌坊聯是全書最核心的伏筆。它宣告了《紅樓夢》的終極敘事策略：整部小說是「將真事隱去，用假語村言」，即故意在虛構（假）中藏匿真實（真）。此聯預告讀者將閱讀的一切繁華情節（大觀園、詩社、愛情、家族榮辱）最終都將證偽自身——最美的時刻也是最假的時候，最真的情感也是最先消散的。
+    foreshadowing_type: thematic
+    trigger_event_id: DL_E03
+    payoff_event_id: DL_E07
+    payoff_text_span: P0010-P0011
+    payoff_summary: 幽微靈秀地，無可奈何天——幻境之終點的終極認定：靈秀之地不可久居（真→假），天意令人無可奈何（有→無）。真假有無的哲學宣告在終點被經驗為無力感，理論框架在內室中被感受為命運。
+    payoff_type: thematic
+    confidence: {value: high}
+    explanation: 此伏筆是最本質的——它不是預告某個具體情節，而是預告整部小說的閱讀方式與終極意義。牌坊聯是小說的元注釋，告知讀者一切敘事皆處於真假有無的雙重狀態。
+  - foreshadowing_id: DL_F04
+    story_id: hlm_duilian
+    foreshadowing_text_span: P0005-P0006
+    foreshadowing_summary: 厚地高天，堪嘆古今情不盡；癡男怨女，可憐風月債難酬——孽海情天聯將情感描繪為一種宇宙性債務（風月債），將人類角色定義為情債的債務人（癡男怨女）。上下聯的意象堆疊（天地→古今，男女→風月）把情的無盡和被情所困的必然性並列，預告小說中所有愛情故事均不可圓滿——因為情本身被定義為不可償還的債。
+    foreshadowing_type: thematic
+    trigger_event_id: DL_E04
+    payoff_event_id: DL_E05
+    payoff_text_span: P0007-P0008
+    payoff_summary: 薄命司聯以「春恨秋悲皆自惹」回應情的責任歸屬（自惹＝自取其債），以「花容月貌為誰妍」回應情的終極虛無（無人可觀＝債無償付對象）。孽海情天的普通命題在此被個體化為每個薄命女子的命運判決。
+    payoff_type: thematic
+    confidence: {value: high}
+    explanation: 孽海情天建立的「情＝債」隱喻系統在薄命司得到具體化：情的宏觀結構（債難酬）→情的微觀後果（自惹、為誰妍），構成從宇宙到個人的因果鏈。
+  - foreshadowing_id: DL_F05
+    story_id: hlm_duilian
+    foreshadowing_text_span: P0007-P0008
+    foreshadowing_summary: 春恨秋悲皆自惹，花容月貌為誰妍——薄命司門聯以四季情感（春恨秋悲）與美貌意象（花容月貌）堆疊，上下聯構成一個閉環論證：一切痛苦源自自身（皆自惹），一切美好沒有接受者（為誰妍）。此聯預告了全部金陵十二釵的命運結構：她們的美貌與才華注定無人有資格欣賞或回應，她們的痛苦亦無法歸咎於任何外在原因，是純粹的存在悲劇。
+    foreshadowing_type: symbolic
+    trigger_event_id: DL_E05
+    payoff_event_id: DL_E07
+    payoff_text_span: P0010-P0011
+    payoff_summary: 內室聯以「幽微靈秀地」命名美貌與才華的真正歸宿（一個不可抵達的靈秀空間），以「無可奈何天」確認一切自惹之恨悲的終極不可解。薄命司的判決在終點被體驗為無可奈何——沒有解決方案，只有面對。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 薄命司聯以「為誰妍」投出存在主義質問，內室聯以「無可奈何天」給出非答案的答案：沒有誰，一切都是天意的不可解。
+  - foreshadowing_id: DL_F06
+    story_id: hlm_duilian
+    foreshadowing_text_span: P0009
+    foreshadowing_summary: 光搖朱戶金鋪地，雪照瓊窗玉作宮——宮殿對聯以金/玉/朱/瓊四種貴重材質進行意象堆疊（金鋪地、玉作宮、朱戶、瓊窗），上下聯均以光線動詞（搖/照）激活材質的炫目光澤。此聯以極致奢華意象建構太虛幻境的物質外殼，預告大觀園及整個賈府的繁華本質：一切金碧輝煌皆如夢中宮殿——由意象堆疊而成，沒有真實物質基礎。金與玉既是榮耀，也是冰冷的死亡隱喻（金釧、黛玉之「玉」皆非吉兆）。
+    foreshadowing_type: symbolic
+    trigger_event_id: DL_E06
+    payoff_event_id: DL_E07
+    payoff_text_span: P0010-P0011
+    payoff_summary: 金玉輝煌的宮殿意象在內室聯中被解構為「幽微靈秀地，無可奈何天」——空間從金鋪地玉作宮的炫目華美收縮為只剩下兩個名詞短語（地、天）的極簡對偶。金玉的堆疊是幻，靈秀與無奈才是真。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 金的鋪展與玉的構建創造了幻境最華美的視覺巔峰，但此巔峰之後立即進入終點內室的簡約——物質繁華的不可持續性被空間遞進本身所證明。
+  - foreshadowing_id: DL_F07
+    story_id: hlm_duilian
+    foreshadowing_text_span: P0010-P0011
+    foreshadowing_summary: 幽微靈秀地，無可奈何天——內室終點聯以「幽微靈秀」與「無可奈何」兩個四字短語進行終極意象堆疊：前者是理想（精神的聚集地），後者是現實（天命不予）。上下聯的地天對偶將人類的嚮往與天意的拒絕壓縮為一個空間意象。此聯是整部《紅樓夢》的終點伏筆：一切美好的歸處（幽微靈秀）無法抵達，一切悲傷的原因（無可奈何）無法追問——小說到最後，除了「白茫茫大地真乾淨」，沒有別的餘地。
+    foreshadowing_type: thematic
+    trigger_event_id: DL_E07
+    payoff_event_id: DL_E07
+    payoff_text_span: P0010-P0011
+    payoff_summary: 幽微靈秀地，無可奈何天——自身即回收：此聯同時是伏筆、揭示與結語，它在對偶的形式中完成了小說最核心的情感陳述：有如此美好之物存在（靈秀），而任何個體對此均完全無能為力（無可奈何）。
+    payoff_type: thematic
+    confidence: {value: high}
+    explanation: 作為幻境之旅的終點對聯，它不需要後續情節來回收——它的回收存在於整部小說的總體悲劇體驗中。此聯是「以意象宣告命運」的極致範例。
+characters:
+  - character_id: DL_CH01
+    story_id: hlm_duilian
+    name: 賈寶玉
+    role: 夢中遊歷者／對聯觀看者
+    stable_traits: [反世俗, 重情, 天真, 對仕途經濟厭惡]
+    current_motivation_by_event:
+      - event_id: DL_E01
+        motivation: 對燃藜圖及世俗價值感到厭煩排斥，斷言不在這樣的地方。
+        knowledge_state: 能讀懂對聯字面意義，但未反思其與自身命運的關係。
+        emotional_state: 厭惡、不耐煩。
+        goal: 逃離此世俗說教空間。
+      - event_id: DL_E02
+        motivation: 被秦可卿引至臥房，感官環境誘發睡意。
+        knowledge_state: 感受芳氣酒香的感官刺激，意識開始模糊。
+        emotional_state: 迷離、睡意漸濃。
+        goal: 即將入夢，無明確意識目標。
+      - event_id: DL_E03
+        motivation: 在夢中隨警幻仙子初入太虛幻境，見到牌坊而心生疑惑。
+        knowledge_state: 看到真假有無之聯但不解其深意，仍屬夢中旁觀者。
+        emotional_state: 好奇、初入幻境的茫然。
+        goal: 跟隨警幻仙子，探看幻境。
+      - event_id: DL_E04
+        motivation: 看到孽海情天的宏大表述，開始意識到情是幻境的核心命題。
+        knowledge_state: 理解情為幻境主題，但不知與自身命運關聯。
+        emotional_state: 震動、漸有敬畏。
+        goal: 繼續深入，欲知更多。
+      - event_id: DL_E05
+        motivation: 看到薄命司，開始意識到這些判詞與身邊女性有關。
+        knowledge_state: 看到薄命司門聯，隱約感知女性命運的悲劇框架。
+        emotional_state: 不安、疑慮加深。
+        goal: 進入薄命司觀看判詞。
+      - event_id: DL_E06
+        motivation: 隨警幻仙子深入宮殿，被金玉輝煌炫目。
+        knowledge_state: 感受宮殿的華美，但仍不理解其象徵意義。
+        emotional_state: 驚嘆、沉醉。
+        goal: 繼續隨警幻仙子而行。
+      - event_id: DL_E07
+        motivation: 到達幻境最深處，面對終極對聯，感受到無力。
+        knowledge_state: 看到幽微靈秀與無可奈何的對比，但仍在夢中未能領悟其等於自身命運判詞。
+        emotional_state: 困惑、隱約恐懼。
+        goal: 警幻仙子將引其觀看判詞與聆聽紅樓夢曲。
+  - character_id: DL_CH02
+    story_id: hlm_duilian
+    name: 警幻仙子
+    role: 太虛幻境引導者／命運揭示者
+    stable_traits: [超驗, 知命, 引導, 居於真假邊界]
+    current_motivation_by_event:
+      - event_id: DL_E03
+        motivation: 受寧榮二公之託，帶領寶玉遍歷幻境以悟其情慾之虛幻，引其入正路。
+        knowledge_state: 全知，知曉寶玉及所有金陵女子的命運。
+        emotional_state: 平靜、按預定計劃引導。
+        goal: 引寶玉遍歷幻境各處，使其以情悟道。
+      - event_id: DL_E04
+        motivation: 帶寶玉至孽海情天，使其看到情為人類普遍困境。
+        knowledge_state: 知曉情債系統的全貌。
+        emotional_state: 冷靜敘述者。
+        goal: 讓寶玉理解情的宇宙性框架。
+      - event_id: DL_E05
+        motivation: 帶寶玉至薄命司，使其看到普天下女子命運皆登錄在此。
+        knowledge_state: 掌握全部判詞內容。
+        emotional_state: 有節制的憐憫。
+        goal: 讓寶玉窺見女性命運的預定結構。
+      - event_id: DL_E06
+        motivation: 引寶玉深入宮殿內部，展示幻境的物質壯麗以誘其醒悟。
+        knowledge_state: 知曉金玉輝煌的虛幻本質。
+        emotional_state: 不動心的展示者。
+        goal: 以極致繁華反證一切皆空。
+      - event_id: DL_E07
+        motivation: 引寶玉至最深處，展示終極對聯，為判詞與仙曲鋪墊。
+        knowledge_state: 知曉寶玉終將不解而返，但履行引導職責。
+        emotional_state: 莊嚴、預知失敗但仍進行。
+        goal: 完成引導，使寶玉至少留下潛意識印記（夢醒後遺忘但影響其一生）。

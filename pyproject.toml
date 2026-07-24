@@ -1,7 +1,7 @@
 [project]
 name = "stone-eval"
 version = "0.1.0"
-description = "Evaluation suite for long-form Chinese classical novel continuation, inspired by ConStory-Bench, NovelCritique, LLM Story Social Network, and Emotion Arcs"
+description = "Chinese long-form narrative evaluation, literary analysis, and foreshadowing research tools"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

@@ -1,0 +1,629 @@
+metadata:
+  story_id: hlm_panci
+  title: "金陵十二釵判詞全集（含又副冊、副冊）"
+  author: "曹雪芹"
+  language: zh
+  source_text_path: poetry_data/hongloumeng/normalized_texts/panci.txt
+  source_url: https://zh.wikisource.org/wiki/紅樓夢/第005回
+  copyright_status: public_domain
+  genre: classical_chinese_poetry_imagery_stacking
+  length_level: short
+  structure_type: [symbolic, psychological]
+annotation_guide:
+  focus:
+    - 標注全部十四首判詞的意象堆疊——每首判詞將物件、自然意象、典故、諧音雙關堆疊為命運密碼。
+    - 每首判詞至少包含一層姓名嵌入：玉帶林→林黛玉、金簪雪→薛寶釵、凡鳥→鳳、兩地孤木→桂、湘江楚雲→湘雲等。
+    - 標注又副冊→副冊→正冊的層級結構：丫鬟（晴雯、襲人）→半主半僕（香菱）→主子小姐（十二釵正冊），命運預告的遞進關係。
+    - 標注三春意象鏈：元春→迎春→探春→惜春，以春的意象建立四姐妹命運的互文網絡。
+    - 標注意象堆疊的四種機制：(1) 物件+空間（玉帶+林中、金簪+雪裡）；(2) 自然意象+情感（榴花+宮闈、湘江+楚雲）；(3) 典故轉化（中山狼、停機德、詠絮才）；(4) 字謎拆解（凡鳥=鳳、一從二令三人木=休、兩地孤木=桂）。
+  boundary_notes:
+    - 判詞是《紅樓夢》全書最核心的伏筆裝置，所有十四首判詞均以意象隱喻預告人物命運。
+    - 每首判詞中的意象堆疊既是當下閱讀的詩意體驗，也是對小說後續數十回情節的壓縮式預告。
+    - 判詞中的人物不是行動者而是被預言者，動機與情感狀態在標注中需以「判詞揭示」而非「人物行為」的角度標注。
+events:
+  - event_id: PC_E01
+    story_id: hlm_panci
+    chapter_or_section: "又副冊"
+    text_span: P0001
+    summary: 晴雯判詞——意象堆疊：霽月（雨後明月）與彩雲（絢麗雲彩）構成「難逢」與「易散」的雙重短暫性隱喻，以天象之物預告晴雯美好的本質與夭亡的命運。風流靈巧（性格才華）與壽夭誹謗（社會迫害）形成因果對撞——珍貴之物必遭摧折。多情公子（寶玉）的牽念落空，點明晴雯與寶玉之間有緣無終的悲劇結構。
+    participants: [霽月, 彩雲, 晴雯, 寶玉, 誹謗]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E02
+    story_id: hlm_panci
+    chapter_or_section: "又副冊"
+    text_span: P0002-P0003
+    summary: 襲人判詞——意象堆疊：桂與蘭均為香草，暗嵌襲人本姓「花」，以花香比附其溫柔品性。溫柔的品性（枉自）與公子的無緣（空雲）形成虛詞對——「枉自」「空雲」「誰知」三層否定將美好品質推向徒勞。優伶（蔣玉菡）有福承接了本屬公子（寶玉）的姻緣，以人物置換完成襲人改嫁的命運預告。
+    participants: [襲人, 優伶, 公子, 桂, 蘭, 寶玉, 蔣玉菡]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E03
+    story_id: hlm_panci
+    chapter_or_section: "副冊"
+    text_span: P0004-P0005
+    summary: 香菱（甄英蓮）判詞——雙重意象堆疊：(1) 荷花意象——根並荷花一莖香，香菱原名甄英蓮（蓮即荷花），以荷花的清潔本質與一莖同根暗示她與其他薄命女子的命運相連。(2) 字謎意象——兩地（兩個土字疊為「圭」）生孤木（木旁），合為「桂」，預告夏金桂的出現是香菱命運的終點。香魂返故鄉以魂魄歸鄉的意象完成悲劇回收——從荷花到孤木，從芬芳到消逝，物件意象的變化即命運的軌跡。
+    participants: [荷花, 香菱, 孤木, 香魂, 夏金桂]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E04
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0006-P0007
+    summary: 黛玉寶釵合詠判詞——全書最核心的意象堆疊示範。第一層：典故對偶——停機德（樂羊子妻斷織勸學，喻寶釵之賢德）與詠絮才（謝道韞詠雪，喻黛玉之詩才），以歷史典故建立德與才的二元對照框架。第二層：物件+空間的命運編碼——玉帶林中掛（玉帶作為高潔之物被棄置林間，玉帶林→林黛玉，姓名嵌入式雙關，掛=懸置、無用、被遺忘的命運）；金簪雪裡埋（金簪作為貴重之物被深埋雪下，金簪雪→薛寶釵，埋=深藏、冷落、被掩埋的命運）。一掛一埋，以空間動詞構成對稱的悲劇命運。
+    participants: [黛玉, 寶釵, 玉帶, 金簪, 林, 雪, 停機德, 詠絮才]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E05
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0008-P0009
+    summary: 元春判詞——宮廷意象與時間隱喻的堆疊。(1) 二十年來辨是非——以時間長度標定元春在宮廷中積累的政治判斷。(2) 榴花開處照宮闈——榴花（石榴花）既為富貴燦爛之物，又含多子（石榴多籽）之意，照=光照宮廷，暗示元春的榮耀與生育。榴花是短暫而豔麗的，預告榮耀的不可持續。(3) 三春爭及初春景——三春（迎春、探春、惜春）不及初春（元春），以春的等級建立姐妹命運的差序。(4) 虎兔相逢大夢歸——虎年與兔年交替之際，大夢（人生如夢）歸去，虎兔兩種動物的相遇即死亡時刻的密碼，將時間與死亡編碼為動物意象的碰撞。
+    participants: [元春, 榴花, 宮闈, 虎, 兔, 三春, 初春]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E06
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0010-P0011
+    summary: 探春判詞——清明、江邊、東風、夢的四重意象堆疊。(1) 才自清明志自高——以清明（節氣）的澄澈比附才華，暗示探春的清明之才。(2) 生於末世運偏消——末世（賈府衰落期）作為時代背景壓制個人命運。(3) 清明涕泣江邊望——清明節在江邊哭泣遠望，節氣+空間+情感的疊加：清明本為祭祖團聚之日，探春卻在江邊遠望，暗示遠嫁海疆、骨肉分離。(4) 千里東風一夢遙——東風送船遠行千里，夢=遠嫁如夢、歸鄉無期。東風意象的溫暖與夢的縹渺並置，構成遠嫁命運的詩意編碼。
+    participants: [探春, 清明, 江邊, 東風, 夢]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E07
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0012
+    summary: 史湘雲判詞——富貴、襁褓、斜輝、湘江、楚雲的五重意象堆疊。(1) 富貴又何為——以反問解構富貴的價值。(2) 襁褓之間父母違——襁褓（嬰兒包裹）作為物件意象，嵌入孤兒身世：父母雙亡於其嬰兒時期，襁褓即命運的起點。(3) 展眼吊斜輝——斜輝（夕陽）的短暫光輝，吊=憑弔，以落日意象預告盛年之後的衰微。(4) 湘江水逝楚雲飛——湘江之水逝去、楚雲飛散，雙重自然意象的消逝構成命運的終結：湘江之水不可留、楚雲之飛不可追。湘+雲=史湘雲，姓名以山川雲水的消散之物嵌入，預告其「雲散高唐、水涸湘江」的結局。
+    participants: [史湘雲, 襁褓, 斜輝, 湘江, 楚雲]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E08
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0013-P0014
+    summary: 妙玉判詞——潔與空的反向意象堆疊。(1) 欲潔何曾潔——潔（清潔/高潔）是妙玉的自我期許，何曾=從未真正實現，以否定副詞拆解「潔」的命題。(2) 雲空未必空——空（佛教空觀）是妙玉身為尼姑的信仰，未必=不確定，否定空觀的真實性。(3) 可憐金玉質——金玉（貴重之物）作為身分隱喻，金玉質=高潔的材質/出身。(4) 終陷淖泥中——淖泥（污泥）與金玉構成二元對立：最高潔的材質落入最污濁的空間。金玉→淖泥的空間轉移即妙玉被劫受辱的命運預告，以材質與空間的反差建立悲劇的終極張力。
+    participants: [妙玉, 金玉, 淖泥]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E09
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0015-P0016
+    summary: 迎春判詞——動物意象與植物意象的暴力碰撞。(1) 子係中山狼——子+係=孫（字謎嵌入孫紹祖），中山狼（典故：東郭先生的中山狼，忘恩負義之物），以動物典故將丈夫姓名與品性一併編碼。(2) 得志便猖狂——中山狼的動作展開，猖狂=暴虐。(3) 金閨花柳質——花柳（嬌嫩的植物意象）作為迎春的身體/身分隱喻：金閨（富貴閨閣）+花柳（柔弱之美），構成女性的脆弱本質。(4) 一載赴黃粱——黃粱（黃粱一夢，典故），以夢的短暫性暗示婚後一年即被虐待致死。中山狼（暴虐的動物）摧毀花柳（柔弱的植物），以物種間的暴力關係編碼婚姻中的虐待與死亡。
+    participants: [迎春, 中山狼, 花柳, 黃粱, 孫紹祖]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E10
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0017-P0018
+    summary: 惜春判詞——春的勘破與宗教物件的替代。(1) 勘破三春景不長——三春（元春、迎春、探春三位姐姐）的美好光景不長久，勘破=看透，以三春的凋零為惜春的覺悟鋪墊。(2) 緇衣頓改昔年妝——緇衣（黑色僧袍）作為宗教物件替換昔年妝（貴族少女的華服），物件替換即人生道路的轉折：從侯門繡戶到佛門青燈。(3) 可憐繡戶侯門女——繡戶+侯門，雙重富貴空間的堆疊確認惜春的出身。(4) 獨臥青燈古佛旁——青燈+古佛，雙重宗教物件的堆疊構成歸宿：青燈的孤冷與古佛的寂滅替代了繡戶的華麗與侯門的繁盛。從三春之景到古佛之旁，空間與物件的逐步替換完成惜春從貴族小姐到出家尼姑的命運編碼。
+    participants: [惜春, 三春, 緇衣, 青燈, 古佛]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E11
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0019-P0020
+    summary: 王熙鳳判詞——字謎拆解與空間移動的命運編碼。(1) 凡鳥偏從末世來——凡+鳥=鳳（字謎拆解嵌入王熙鳳之名），鳳凰本為祥瑞之物，卻偏在末世降臨，吉祥之物與衰敗時代的錯位構成悲劇前提。(2) 都知愛慕此生才——才幹被眾人認可，為鳳姐的強勢形象定調。(3) 一從二令三人木——全書最著名的字謎：一從（順從丈夫）、二令（命令丈夫）、三人木（人+木=休，被休棄），三個階段壓縮為三個字謎，以拆字法編碼鳳姐婚姻從順從到掌權到被休的三段式命運。(4) 哭向金陵事更哀——金陵（賈府老家）的方向性移動+哭泣的情感+更哀的遞進，暗示鳳姐最終在返回金陵途中或之後悲慘死去。末世→凡鳥→才→休→哭→哀，形成從盛世到末路的漸降鏈條。
+    participants: [王熙鳳, 凡鳥, 末世, 金陵]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E12
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0021-P0022
+    summary: 巧姐判詞——勢敗家亡背景下的恩情因果。(1) 勢敗休雲貴——權勢衰敗後不再談貴賤，勢敗=賈府抄家後的狀態。(2) 家亡莫論親——家族滅亡後親戚不可依靠（暗示巧姐被狠舅奸兄所賣）。(3) 偶因濟村婦——偶然因為曾經接濟過一位村婦（劉姥姥），濟村婦=因果的起點，強調偶然性（偶因）而非必然。(4) 巧得遇恩人——巧（既指巧姐之名又指機緣巧合）+恩人（劉姥姥），以名字的巧合與恩情的回收構成完整因果鏈：從鳳姐濟助劉姥姥的偶然善舉，到巧姐被劉姥姥搭救的命運轉折。村婦與恩人的意象轉化，將底層人物的樸素善意編碼為貴族小姐的唯一救贖。
+    participants: [巧姐, 村婦, 恩人, 劉姥姥]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E13
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0023-P0024
+    summary: 李紈判詞——植物意象與生命週期的命運編碼。(1) 桃李春風結子完——桃李（李紈之姓嵌入，桃李並舉更顯繁盛）在春風中結子（生子賈蘭），但結子之際即「完」結之時，生命的完成與終結同步。(2) 到頭誰似一盆蘭——蘭（賈蘭之名嵌入），蘭花為君子之花，暗示賈蘭最終功成名就、成為一盆獨秀之蘭。(3) 如冰水好空相妒——冰與水同質而形態不同，喻世人對李紈母子成功的嫉妒是虛妄的。(4) 枉與他人作笑談——即便兒子成功，李紈自己已老死，徒然成為他人談資。桃李→結子→蘭→冰水→笑談，從繁盛到成功到虛無，以植物意象的盛衰循環編碼李紈「有功無命」的悲劇：她用青春守寡換來兒子的功名，但功名到來時她自己已成虛妄的笑談。
+    participants: [李紈, 桃李, 蘭, 冰水, 賈蘭]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+  - event_id: PC_E14
+    story_id: hlm_panci
+    chapter_or_section: "正冊"
+    text_span: P0025-P0026
+    summary: 秦可卿判詞——情字的堆疊與空間歸因。(1) 情天情海幻情深——連續三個「情」字疊加：天+海+深，以空間的廣度（天、海）和維度（深）度量情的規模，情即秦可卿之「秦」的諧音嵌入。(2) 情既相逢必主淫——兩個「情」相遇必然導向淫，將情與淫的因果關係編碼為必然性。(3) 漫言不肖皆榮出——不要說不肖子孫都出自榮國府，將輿論歸因指向榮府。(4) 造釁開端實在寧——罪孽的真正開端在寧國府，以空間歸因將賈府衰敗的源頭指向寧府（秦可卿與賈珍的亂倫）。情→淫→榮出→寧開，從情感泛濫到道德崩潰的因果鏈，最終以寧國府作為一切罪孽的地理起點。秦可卿之死是小說敘事的真正開端（第十三回），判詞因此成為全書結構的基因密碼。
+    participants: [秦可卿, 情天, 情海, 榮府, 寧府]
+    location: 太虛幻境
+    time: 預言時刻
+    event_type: revelation
+    certainty: {value: certain}
+    narrative_reality_level: {value: symbolic}
+causal_edges:
+  - edge_id: PC_C01
+    story_id: hlm_panci
+    source_event_id: PC_E01
+    target_event_id: PC_E02
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0001-P0003
+    explanation: 晴雯與襲人同列又副冊，均為寶玉身邊的丫鬟。晴雯以「霽月彩雲」的短暫天象比附夭亡，襲人以「桂蘭」的香草比附改嫁；一個因誹謗早逝，一個與公子無緣，二人在又副冊中構成丫鬟命運的正反兩面——夭亡與改嫁、忠貞與徒勞。
+  - edge_id: PC_C02
+    story_id: hlm_panci
+    source_event_id: PC_E03
+    target_event_id: PC_E04
+    relation_type: reveals
+    strength: {value: medium}
+    evidence_text_span: P0004-P0007
+    explanation: 香菱（副冊）從荷花到孤木的命運軌跡預演了正冊的意象堆疊邏輯——以植物意象（荷花→桃李、花柳）和字謎（兩地孤木=桂→凡鳥=鳳）編碼命運，副冊是正冊的技法預演與命運序章。
+  - edge_id: PC_C03
+    story_id: hlm_panci
+    source_event_id: PC_E04
+    target_event_id: PC_E05
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0006-P0009
+    explanation: 黛玉寶釵合詠以「可嘆」「堪憐」建立十二釵正冊的悲劇基調，元春判詞緊接其後，從黛玉寶釵的「德才—掛埋」二元對立過渡到元春的「宮闈—大夢」宮廷悲劇。德才的天亡為宮廷的榮枯奠定相同的悲劇結構。
+  - edge_id: PC_C04
+    story_id: hlm_panci
+    source_event_id: PC_E05
+    target_event_id: PC_E06
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0008-P0011
+    explanation: 元春以「三春爭及初春景」嵌入三春姐妹的比較框架，探春作為三春之一緊接其後。元春的榴花照宮闈與探春的清明望江邊，一個在宮廷頂端被動物（虎兔）終結，一個在江邊被東風送遠——姐妹二人的命運從空間（宮闈→江邊）和意象（榴花→清明）上構成對稱的離散悲劇。
+  - edge_id: PC_C05
+    story_id: hlm_panci
+    source_event_id: PC_E05
+    target_event_id: PC_E07
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0008-P0012
+    explanation: 元春的「大夢歸」與湘雲的「展眼吊斜輝」共享時光短暫的隱喻——榴花之燦爛、斜輝之餘光均為美好事物的最後閃耀。從宮廷（榴花）到自然（斜輝），不同空間中相同的光輝→消逝結構。
+  - edge_id: PC_C06
+    story_id: hlm_panci
+    source_event_id: PC_E05
+    target_event_id: PC_E10
+    relation_type: reveals
+    strength: {value: strong}
+    evidence_text_span: P0008-P0018
+    explanation: 元春判詞中的「三春爭及初春景」為惜春判詞中「勘破三春景不長」埋下伏線。元春作為初春的光輝是三春命運的對照，惜春作為最幼者「勘破」三位姐姐的命運後出家，三春意象從元春的比較框架轉化為惜春的覺悟前提。
+  - edge_id: PC_C07
+    story_id: hlm_panci
+    source_event_id: PC_E06
+    target_event_id: PC_E09
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0010-P0016
+    explanation: 探春的「清明涕泣江邊望」與迎春的「金閨花柳質」構成三春姐妹中的離散與受虐兩種命運模式。探春以清明節氣+遠望空間編碼遠嫁，迎春以動植物碰撞（中山狼+花柳）編碼家暴，兩種空間（江邊→金閨）的命運形成對比。
+  - edge_id: PC_C08
+    story_id: hlm_panci
+    source_event_id: PC_E08
+    target_event_id: PC_E10
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0013-P0018
+    explanation: 妙玉的「雲空未必空」與惜春的「獨臥青燈古佛旁」構成宗教歸宿的真偽對照。妙玉身在佛門卻心陷淖泥（偽空），惜春勘破紅塵後真心向佛（真空）。金玉質→淖泥與侯門女→古佛，均為空間的極端轉移，但轉移的動機與結局相反。
+  - edge_id: PC_C09
+    story_id: hlm_panci
+    source_event_id: PC_E09
+    target_event_id: PC_E10
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0015-P0018
+    explanation: 迎春的「一載赴黃粱」與惜春的「勘破三春景不長」直接構成因果——迎春婚後一年即被虐待致死的命運，正是惜春「勘破」三位姐姐悲劇的關鍵證據之一。中山狼對花柳的暴力，成為惜春選擇緇衣古佛的直接推力。
+  - edge_id: PC_C10
+    story_id: hlm_panci
+    source_event_id: PC_E11
+    target_event_id: PC_E12
+    relation_type: enables
+    strength: {value: strong}
+    evidence_text_span: P0019-P0022
+    explanation: 王熙鳳與巧姐是母女關係，鳳姐的「末世」命運（一從二令三人木、哭向金陵）直接為巧姐的「勢敗家亡」搭建背景。鳳姐偶然濟助劉姥姥的善舉（隱含於鳳姐故事線中），在巧姐判詞中回收為「偶因濟村婦，巧得遇恩人」——母女二人的命運以劉姥姥為節點構成因果鏈：末世鳳姐→家亡巧姐→鳳姐之善因→巧姐之善果。
+  - edge_id: PC_C11
+    story_id: hlm_panci
+    source_event_id: PC_E12
+    target_event_id: PC_E13
+    relation_type: symbolically_echoes
+    strength: {value: medium}
+    evidence_text_span: P0021-P0024
+    explanation: 巧姐的「偶因濟村婦」與李紈的「到頭誰似一盆蘭」構成家族延續的兩種模式對照。巧姐靠外姓底層人物（劉姥姥）的恩情報答得以生存，李紈靠自身教子（賈蘭）的內在努力實現家族中興。恩人與蘭花，一個來自外部、一個來自內部，同為家族衰敗後的兩種延續路徑。
+  - edge_id: PC_C12
+    story_id: hlm_panci
+    source_event_id: PC_E13
+    target_event_id: PC_E14
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0023-P0026
+    explanation: 李紈的「桃李春風結子完」與秦可卿的「造釁開端實在寧」構成結尾與開頭的鏡像結構。李紈代表賈府正統的結局（兒子成功但母親已老死），秦可卿代表賈府衰敗的開端（淫亂的起點）。結子完→造釁開端，一完一開，以空間歸因（榮府→寧府）和時間向度（終→始）形成正冊十四首判詞的閉環結構。
+  - edge_id: PC_C13
+    story_id: hlm_panci
+    source_event_id: PC_E04
+    target_event_id: PC_E14
+    relation_type: symbolically_echoes
+    strength: {value: strong}
+    evidence_text_span: P0006-P0026
+    explanation: 黛玉寶釵合詠（正冊之首）與秦可卿判詞（正冊之末）構成情與淫的遠程對照。黛玉寶釵的「玉帶林中掛，金簪雪裡埋」以物件+空間編碼德才的埋沒，秦可卿的「情天情海幻情深」以情字的堆疊編碼淫亂的根源。命運的起點（黛玉寶釵之德才）與終點（秦可卿之情淫）構成十二釵從理想（德才）到崩潰（淫亂）的完整墮落弧線。
+foreshadowing_units:
+  - foreshadowing_id: PC_F01
+    story_id: hlm_panci
+    foreshadowing_text_span: P0001
+    foreshadowing_summary: 霽月難逢、彩雲易散——以天象意象（霽月、彩雲）的短暫性預告晴雯的夭亡。霽月本為罕見美景，彩雲本為絢爛奇觀，但難逢+易散的修辭將美好本質與消亡必然並置，風流靈巧→誹謗→夭壽的因果鏈以意象堆疊的方式壓縮為詩句。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E01
+    payoff_event_id: PC_E01
+    payoff_text_span: P0001
+    payoff_summary: 壽夭多因誹謗生，多情公子空牽念——霽月彩雲的短暫意象在「誹謗生」與「空牽念」中完成回收：美好事物被社會（誹謗）摧毀，有情者（寶玉）的牽念化為空無。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 晴雯判詞以天象意象（霽月、彩雲）的存續時間隱喻人物命運的長短，意象的呈現即命運的預告，伏筆與回收共存於同一詩句中。
+  - foreshadowing_id: PC_F02
+    story_id: hlm_panci
+    foreshadowing_text_span: P0002-P0003
+    foreshadowing_summary: 似桂如蘭——以植物香草意象（桂花、蘭花）比附襲人的品性之美，桂與蘭均為高潔之花，暗示襲人本姓「花」。溫柔的品性與優伶的福分、公子的無緣構成置換關係——桂蘭的香氣本應歸於公子（寶玉），最終卻被優伶（蔣玉菡）享有。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E02
+    payoff_event_id: PC_E02
+    payoff_text_span: P0002-P0003
+    payoff_summary: 堪羨優伶有福，誰知公子無緣——桂蘭的香氣意象在人物的歸屬置換中回收：襲人的品性（桂蘭）從公子之手轉入優伶之手，植物（香草）→人物（優伶/公子）的歸屬鏈完成命運預告。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 桂蘭意象的雙重性在於：既是香氣（品性之美），又是歸屬（誰人之福）。襲人改嫁的命運以植物意象的歸屬轉移編碼。
+  - foreshadowing_id: PC_F03
+    story_id: hlm_panci
+    foreshadowing_text_span: P0004-P0005
+    foreshadowing_summary: 根並荷花一莖香——荷花意象預告香菱的本質（甄英蓮即蓮花），一莖香暗示她與其他薄命女子命運相連。兩地生孤木（桂字字謎）預告夏金桂的出現導致香魂返故鄉（死亡）。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E03
+    payoff_event_id: PC_E03
+    payoff_text_span: P0005
+    payoff_summary: 致使香魂返故鄉——荷花從一莖香的芬芳到香魂返鄉的消散，植物意象（荷花→孤木→香魂）的轉換即命運軌跡的完成。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 香菱判詞以雙重意象堆疊（荷花+字謎）完成從本質到命運的預告，荷花是身世，孤木（桂）是禍源，香魂是結局。
+  - foreshadowing_id: PC_F04
+    story_id: hlm_panci
+    foreshadowing_text_span: P0007
+    foreshadowing_summary: 玉帶林中掛——玉帶（高潔之物）+林中（棄置空間）+掛（懸空狀態），三重意象堆疊預告林黛玉的命運：高才如美玉之帶，被棄置於幽林之中，無人取用、懸空無依，姓名（玉帶林→林黛玉）嵌入在意象之中。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E04
+    payoff_event_id: PC_E04
+    payoff_text_span: P0007
+    payoff_summary: 玉帶林中掛——意象的呈現即命運的預告。玉帶的價值與林中的荒蕪構成反比，掛的狀態是懸置的、無用的、被遺忘的——黛玉之才最終如這林中玉帶，既未被世界所用，也未被世界所毀，只是被棄置、被懸空、被遺忘。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 玉帶林中掛是《紅樓夢》全書最經典的意象堆疊示範——物件+空間+動詞三層編碼同時包含人物姓名與命運結局。
+  - foreshadowing_id: PC_F05
+    story_id: hlm_panci
+    foreshadowing_text_span: P0007
+    foreshadowing_summary: 金簪雪裡埋——金簪（貴重之物）+雪（寒冷空間）+埋（深藏狀態），三重意象堆疊預告薛寶釵的命運：賢德如金簪之貴，被深埋於冰雪之中，無人知曉、冷落終生，姓名（金簪雪→薛寶釵）嵌入在意象之中。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E04
+    payoff_event_id: PC_E04
+    payoff_text_span: P0007
+    payoff_summary: 金簪雪裡埋——金簪的貴重與雪的寒冷構成溫度反差，埋的狀態是深藏的、無望的、被冰封的——寶釵之賢最終如這雪中金簪，既未被世人所識，也未因賢德而得福，只是被埋沒、被冷凍、被遺棄。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 金簪雪裡埋與玉帶林中掛構成對稱的命運預告：掛是懸置（天/林），埋是掩埋（地/雪）；玉帶是才，金簪是德。一上一下、一懸一埋，完成德才雙姝的鏡像悲劇。
+  - foreshadowing_id: PC_F06
+    story_id: hlm_panci
+    foreshadowing_text_span: P0008-P0009
+    foreshadowing_summary: 榴花開處照宮闈，虎兔相逢大夢歸——榴花（短暫燦爛之物）照宮闈（宮廷空間）預告元春的榮耀，虎兔（時間密碼：虎年兔年交替）相逢大夢歸（死亡隱喻）預告榮耀後的終結。榴花的燦爛→宮闈的榮耀→虎兔的時間→大夢的虛無，四層意象堆疊構成從輝煌到死亡的完整弧線。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E05
+    payoff_event_id: PC_E05
+    payoff_text_span: P0009
+    payoff_summary: 虎兔相逢大夢歸——榴花的燦爛在虎兔的相遇中被終結。燦爛之物（榴花）的短暫性在時間密碼（虎兔）的到來中完成回收——元春的榮耀如榴花一現，在特定的時間節點歸於大夢的虛無。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 元春判詞以自然意象（榴花）+動物意象（虎兔）+夢隱喻（大夢）構成三重命運編碼——榴花的燦爛是生之榮耀，虎兔的相遇是死之時刻，大夢歸是終之虛無。
+  - foreshadowing_id: PC_F07
+    story_id: hlm_panci
+    foreshadowing_text_span: P0010-P0011
+    foreshadowing_summary: 清明涕泣江邊望，千里東風一夢遙——清明（節氣，祭祖歸聚之日）+江邊（離別空間）+東風（遠行之風）+夢（歸期虛無），四重意象堆疊預告探春遠嫁海疆的命運：本該歸聚的節日成為離別之時，東風送她去千里之外，歸期如夢般遙不可及。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E06
+    payoff_event_id: PC_E06
+    payoff_text_span: P0011
+    payoff_summary: 千里東風一夢遙——清明的涕泣在東風中被放大為千里遠行的距離，夢的遙遠回收了探春的全部抱負（才自清明志自高）——清明之才終被東風吹散為千里之夢。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 探春判詞以節氣（清明）的歸聚之義與江邊的離別之實構成反諷——本該清明歸家的日子，探春卻在江邊遠望離去，節氣與空間的對撞編碼了遠嫁+思歸的雙重命運。
+  - foreshadowing_id: PC_F08
+    story_id: hlm_panci
+    foreshadowing_text_span: P0012
+    foreshadowing_summary: 襁褓之間父母違，展眼吊斜輝，湘江水逝楚雲飛——三組意象堆疊預告史湘雲的命運：(1) 襁褓（嬰兒物件）→父母雙亡的起點；(2) 斜輝（夕陽）→盛年短暫、光輝易逝；(3) 湘江楚雲（山川雲水）→姓名嵌入+消逝隱喻，水逝雲飛是不可挽留的命運。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E07
+    payoff_event_id: PC_E07
+    payoff_text_span: P0012
+    payoff_summary: 湘江水逝楚雲飛——湘雲之名以消散的自然意象（水逝、雲飛）回收。襁褓的孤獨起點→斜輝的短暫光輝→水逝雲飛的終極消散，三層意象形成從出生到死亡的完整命運鏈。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 湘雲判詞是全書中最密集的自然意象堆疊——從人造物件（襁褓）到自然光線（斜輝）到山川雲水（湘江、楚雲），逐步從人間走向自然、從存在走向消散。
+  - foreshadowing_id: PC_F09
+    story_id: hlm_panci
+    foreshadowing_text_span: P0013-P0014
+    foreshadowing_summary: 可憐金玉質，終陷淖泥中——金玉（最純潔高貴之物）+淖泥（最污穢低下之物）的二元對立預告妙玉的命運：以最高潔的材質落入最骯髒的空間，欲潔與何曾潔的矛盾在材質與空間的極端反差中得以回收。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E08
+    payoff_event_id: PC_E08
+    payoff_text_span: P0014
+    payoff_summary: 終陷淖泥中——金玉質的潔身宣言在淖泥的污穢中徹底崩塌。妙玉越是追求清潔（欲潔），命運越是將她推入污濁（淖泥），金玉→淖泥的空間轉移構成最殘酷的反諷回收。
+    payoff_type: ironic
+    confidence: {value: high}
+    explanation: 妙玉判詞以材質（金玉）與空間（淖泥）的二元對立編碼悲劇——清潔的價值在被污染的空間中被完全否定，金玉墜入淖泥即妙玉被劫受辱的命運預告。
+  - foreshadowing_id: PC_F10
+    story_id: hlm_panci
+    foreshadowing_text_span: P0015-P0016
+    foreshadowing_summary: 子係中山狼，金閨花柳質，一載赴黃粱——中山狼（忘恩負義的動物典故）+花柳（柔弱植物）+黃粱（短暫夢境），三組意象預告迎春的命運：中山狼（孫紹祖）的暴虐將摧毀花柳（迎春）的嬌弱，在一年之內（一載）使一切化為夢幻（黃粱）。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E09
+    payoff_event_id: PC_E09
+    payoff_text_span: P0016
+    payoff_summary: 一載赴黃粱——中山狼對花柳的暴力在黃粱一夢的典故中完成最終回收。花柳的嬌弱被中山狼的猙獰吞噬，夢的短暫性回收了迎春婚後一年的生命——從金閨到黃粱，從花柳到死亡，以動植物暴力和夢的虛無雙重編碼婚姻悲劇。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 迎春判詞以動物（中山狼）+植物（花柳）+夢（黃粱）構成跨物種的暴力鏈——中山狼是施暴者，花柳是被害者，黃粱是結局，是全部判詞中唯一的動植物暴力隱喻。
+  - foreshadowing_id: PC_F11
+    story_id: hlm_panci
+    foreshadowing_text_span: P0017-P0018
+    foreshadowing_summary: 緇衣頓改昔年妝，獨臥青燈古佛旁——緇衣（黑色僧袍）+青燈+古佛，三組宗教物件堆疊預告惜春的出家命運。從昔年妝（貴族華服）到緇衣（僧袍）、從繡戶侯門（富貴空間）到青燈古佛（宗教空間），物件的替換即人生道路的轉折。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E10
+    payoff_event_id: PC_E10
+    payoff_text_span: P0018
+    payoff_summary: 獨臥青燈古佛旁——緇衣的替換在青燈古佛的孤獨中完成回收。勘破三春後，昔年妝被緇衣取代、繡戶被青燈取代、侯門被古佛取代，空間與物件的一一替換完成從貴族小姐到佛門尼姑的命運變換。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 惜春判詞以物件的替換（昔年妝→緇衣）和空間的遷移（侯門→古佛）編碼出家命運，物件的宗教化即人物命運的聖化。
+  - foreshadowing_id: PC_F12
+    story_id: hlm_panci
+    foreshadowing_text_span: P0019-P0020
+    foreshadowing_summary: 凡鳥偏從末世來，一從二令三人木，哭向金陵事更哀——凡鳥（字謎=鳳）+末世（時代背景）+一從二令三人木（字謎婚姻三段式）+金陵（死亡空間），四重意象堆疊預告王熙鳳的命運：鳳凰降臨於衰世，婚姻經歷順從→命令→休棄的三段式崩潰，最終哭向金陵悲慘死去。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E11
+    payoff_event_id: PC_E11
+    payoff_text_span: P0020
+    payoff_summary: 哭向金陵事更哀——凡鳥在末世的才幹被一從二令三人木的婚姻悲劇瓦解，最終以哭向金陵的空間移動完成命運回收。凡鳥（鳳）本應翱翔於盛世，卻在末世被休棄、在金陵以淚終結，字謎的逐步拆解即命運的漸次崩潰。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 王熙鳳判詞以字謎為核心意象堆疊手段——凡鳥=鳳（嵌入姓名）、一從二令三人木=休（嵌入婚姻命運），拆字法是將語言本身轉化為命運密碼的終極意象堆疊。
+  - foreshadowing_id: PC_F13
+    story_id: hlm_panci
+    foreshadowing_text_span: P0021-P0022
+    foreshadowing_summary: 偶因濟村婦，巧得遇恩人——村婦（劉姥姥，底層人物）→恩人（救命者），人物意象的轉化預告巧姐的命運：偶然的善舉（鳳姐濟助劉姥姥）在家族崩潰後回收為恩情報答（劉姥姥救巧姐），村婦的樸素善意是貴族小姐的唯一救贖。
+    foreshadowing_type: social
+    trigger_event_id: PC_E12
+    payoff_event_id: PC_E12
+    payoff_text_span: P0022
+    payoff_summary: 巧得遇恩人——村婦從被濟助者轉化為恩人，人物的功能翻轉回收了「偶因」的伏筆。勢敗家亡的絕境中，村婦成為恩人——底層人物的善意完成了對上層貴族的逆向救贖，以人物身份的翻轉編碼命運的意外轉折。
+    payoff_type: positive
+    confidence: {value: high}
+    explanation: 巧姐判詞是全部十四首中唯一以正向回收結尾的判詞——村婦→恩人的身份翻轉、偶因→巧得的因果回收，在悲劇的十二釵中開闢了一條救贖路徑。
+  - foreshadowing_id: PC_F14
+    story_id: hlm_panci
+    foreshadowing_text_span: P0023-P0024
+    foreshadowing_summary: 桃李春風結子完，到頭誰似一盆蘭——桃李（李紈之姓+李花）+結子（生子賈蘭）+完（終結）+蘭（賈蘭之名+君子之花），植物意象的序列預告李紈的命運。結子的完成即意義的終結——兒子的成功（蘭花）是她的全部，但成功到來時她已成他人笑談。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E13
+    payoff_event_id: PC_E13
+    payoff_text_span: P0024
+    payoff_summary: 枉與他人作笑談——桃李的結子→蘭花的盛開→冰水的虛妒→笑談的虛無，四層植物與自然意象的序列構成從生到死的完整循環。桃李結子完成了生命的傳遞（賈蘭的成功），但傳遞完成之際即自己意義的消解（完、笑談），植物的繁盛→凋零回收了李紈守寡育兒卻無命享福的悲劇。
+    payoff_type: ironic
+    confidence: {value: high}
+    explanation: 李紈判詞以植物生命週期（桃李結子→蘭花盛開）編碼人物命運——結子是成功（兒子功名），但結子完的「完」字將成功與終結並置，蘭花的盛開與母親的凋零同步。
+  - foreshadowing_id: PC_F15
+    story_id: hlm_panci
+    foreshadowing_text_span: P0025-P0026
+    foreshadowing_summary: 情天情海幻情深，情既相逢必主淫，造釁開端實在寧——三「情」疊加（天+海+深）預告秦可卿的命運：情字的泛濫→淫亂的必然→寧府的罪責，空間隱喻（天、海、寧府）的逐步收縮從宏大的情天到具體的寧府，將賈府衰敗的源頭地理編碼為寧國府的淫亂。
+    foreshadowing_type: symbolic
+    trigger_event_id: PC_E14
+    payoff_event_id: PC_E14
+    payoff_text_span: P0026
+    payoff_summary: 造釁開端實在寧——情天情海的鋪陳在寧府的空間定點中回收。情的泛濫從天與海的無限廣度收縮為寧府的具體罪責，秦可卿之名（情可輕？情可傾？）的情字遊戲，在淫亂中被徹底坐實——情即秦，秦即罪，寧府即罪的空間起點。
+    payoff_type: symbolic
+    confidence: {value: high}
+    explanation: 秦可卿判詞以「情」字的重複堆疊為核心手段——連續三個情字從天→海→深層層遞進，將抽象情感物化為可量度的空間（天、海、深），再以寧府的具體空間回收所有抽象隱喻，是全書中最精密的意象堆疊→空間回收結構。
+characters:
+  - character_id: PC_CH01
+    story_id: hlm_panci
+    name: 晴雯
+    role: 又副冊丫鬟／薄命司
+    stable_traits: [風流靈巧, 心高氣傲, 命薄]
+    current_motivation_by_event:
+      - event_id: PC_E01
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞中以「風流靈巧」「心比天高」暗示性格，但無當下情感。
+        goal: 判詞為讀者揭示命運——霽月彩雲決定夭亡，誹謗為死因，寶玉牽念為餘波。
+  - character_id: PC_CH02
+    story_id: hlm_panci
+    name: 襲人
+    role: 又副冊丫鬟／薄命司
+    stable_traits: [溫柔和順, 似桂如蘭, 命運轉折]
+    current_motivation_by_event:
+      - event_id: PC_E02
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞中以「溫柔和順」暗示品性，無直接情感描寫。
+        goal: 判詞為讀者揭示命運——桂蘭之香歸優伶而非公子，改嫁蔣玉菡。
+  - character_id: PC_CH03
+    story_id: hlm_panci
+    name: 香菱（甄英蓮）
+    role: 副冊／半主半僕／薄命司
+    stable_traits: [純潔如荷, 命途多舛, 無辜受難]
+    current_motivation_by_event:
+      - event_id: PC_E03
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞中以「根並荷花」暗示清潔本質，以「遭際堪傷」暗示苦難。
+        goal: 判詞為讀者揭示命運——荷花之香→兩地孤木（夏金桂）→香魂返鄉（死亡）。
+  - character_id: PC_CH04
+    story_id: hlm_panci
+    name: 林黛玉
+    role: 正冊之首／詠絮才女／薄命司
+    stable_traits: [詩才絕代, 孤高自許, 淚盡而亡]
+    current_motivation_by_event:
+      - event_id: PC_E04
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意（「玉帶林中掛」嵌入其名）。
+        emotional_state: 判詞中以「詠絮才」暗示才華之高，以「玉帶林中掛」暗示命運之懸。
+        goal: 判詞為讀者揭示命運——玉帶懸掛林間，高才終被棄置，無人取用。
+  - character_id: PC_CH05
+    story_id: hlm_panci
+    name: 薛寶釵
+    role: 正冊／停機德婦／薄命司
+    stable_traits: [賢德持重, 冷靜理性, 命運冷寂]
+    current_motivation_by_event:
+      - event_id: PC_E04
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意（「金簪雪裡埋」嵌入其姓）。
+        emotional_state: 判詞中以「停機德」暗示婦德之高，以「金簪雪裡埋」暗示命運之冷。
+        goal: 判詞為讀者揭示命運——金簪深埋雪中，賢德終被冷落，無人知曉。
+  - character_id: PC_CH06
+    story_id: hlm_panci
+    name: 賈元春
+    role: 正冊／皇妃／薄命司
+    stable_traits: [賢德端莊, 榮耀短暫, 宮廷犧牲]
+    current_motivation_by_event:
+      - event_id: PC_E05
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞中以「榴花」「宮闈」暗示榮耀，以「大夢歸」暗示虛無。
+        goal: 判詞為讀者揭示命運——榴花之燦爛在虎兔相遇時歸於大夢，榮耀與死亡並存。
+  - character_id: PC_CH07
+    story_id: hlm_panci
+    name: 賈探春
+    role: 正冊／三春之三／薄命司
+    stable_traits: [才志清明, 精明果斷, 遠嫁海疆]
+    current_motivation_by_event:
+      - event_id: PC_E06
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞中以「清明涕泣」暗示離別之痛，以「一夢遙」暗示歸期虛無。
+        goal: 判詞為讀者揭示命運——清明遠望江邊、東風送夢千里，遠嫁+思歸的雙重悲劇。
+  - character_id: PC_CH08
+    story_id: hlm_panci
+    name: 史湘雲
+    role: 正冊／侯門孤女／薄命司
+    stable_traits: [豪爽灑脫, 襁褓孤苦, 雲散水逝]
+    current_motivation_by_event:
+      - event_id: PC_E07
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞中以「吊斜輝」暗示對光輝短暫的憑弔，無直接情感描寫。
+        goal: 判詞為讀者揭示命運——從襁褓孤獨到斜輝短暫到湘江水逝楚雲飛，命運逐步消散。
+  - character_id: PC_CH09
+    story_id: hlm_panci
+    name: 妙玉
+    role: 正冊／帶髮修行尼姑／薄命司
+    stable_traits: [孤高自許, 金玉之質, 陷於淖泥]
+    current_motivation_by_event:
+      - event_id: PC_E08
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞以「欲潔」「雲空」暗示其對清潔與空寂的追求，以「終陷淖泥」暗示追求落空。
+        goal: 判詞為讀者揭示命運——金玉質的最高潔落入淖泥的最污穢，潔與空的追求被命運徹底否定。
+  - character_id: PC_CH10
+    story_id: hlm_panci
+    name: 賈迎春
+    role: 正冊／三春之二／薄命司
+    stable_traits: [懦弱溫順, 花柳之質, 遇人不淑]
+    current_motivation_by_event:
+      - event_id: PC_E09
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞以「花柳質」暗示嬌弱，以「赴黃粱」暗示短命。
+        goal: 判詞為讀者揭示命運——中山狼（孫紹祖）的暴虐摧毀花柳（迎春），一年內死於家暴。
+  - character_id: PC_CH11
+    story_id: hlm_panci
+    name: 賈惜春
+    role: 正冊／三春之四／薄命司
+    stable_traits: [冷靜疏離, 勘破紅塵, 皈依佛門]
+    current_motivation_by_event:
+      - event_id: PC_E10
+        motivation: 勘破三春命運後，選擇出家為尼。
+        knowledge_state: 在太虛幻境中看到判詞，命運已定。
+        emotional_state: 判詞以「勘破」暗示覺悟，以「可憐」暗示旁觀者的嘆息。
+        goal: 判詞為讀者揭示命運——透過三位姐姐的悲劇勘破紅塵，緇衣青燈古佛為最後歸宿。
+  - character_id: PC_CH12
+    story_id: hlm_panci
+    name: 王熙鳳
+    role: 正冊／榮府管家人／薄命司
+    stable_traits: [精明強幹, 心狠手辣, 末世凡鳥]
+    current_motivation_by_event:
+      - event_id: PC_E11
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞以「末世」暗示時代背景，以「哭向金陵」暗示結局的悲慘。
+        goal: 判詞為讀者揭示命運——凡鳥（鳳）降臨末世，婚姻從順從到掌權到被休棄，最終哭向金陵而死。
+  - character_id: PC_CH13
+    story_id: hlm_panci
+    name: 巧姐
+    role: 正冊／王熙鳳之女／薄命司
+    stable_traits: [命途轉折, 因善得救, 歸於田園]
+    current_motivation_by_event:
+      - event_id: PC_E12
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞以「勢敗」「家亡」暗示背景的變故，以「巧得遇恩人」暗示命運轉折。
+        goal: 判詞為讀者揭示命運——家族崩潰後被劉姥姥搭救，從貴族小姐淪為村婦為妻但得以存活。
+  - character_id: PC_CH14
+    story_id: hlm_panci
+    name: 李紈
+    role: 正冊／賈珠遺孀／薄命司
+    stable_traits: [守節教子, 心如枯井, 有功無命]
+    current_motivation_by_event:
+      - event_id: PC_E13
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞以「結子完」暗示生命意義的終結，以「作笑談」暗示命運的荒謬。
+        goal: 判詞為讀者揭示命運——桃李結子（生子賈蘭）完成使命，蘭花盛開（兒子功名）時她已成他人笑談，有功無命的悲劇。
+  - character_id: PC_CH15
+    story_id: hlm_panci
+    name: 秦可卿
+    role: 正冊之末／寧府媳婦／薄命司
+    stable_traits: [情慾化身, 美麗短命, 罪孽源頭]
+    current_motivation_by_event:
+      - event_id: PC_E14
+        motivation: 無主動動機（判詞是被預言者，非行動者）。
+        knowledge_state: 在太虛幻境中看到判詞但當下不解其意。
+        emotional_state: 判詞以三「情」疊加暗示其與情慾的本質關聯，以「必主淫」暗示命運的必然性。
+        goal: 判詞為讀者揭示命運——情的泛濫導向淫亂（與賈珍的亂倫），寧國府為罪孽的地理起點，其死亡是小說敘事的真正開端。

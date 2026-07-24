@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CFPG 短篇小说原文复现实验报告</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,%3Aroot%20%7B%0A%2D%2Dink%3A%20%2317231f%3B%0A%2D%2Dmuted%3A%20%2366726d%3B%0A%2D%2Dpaper%3A%20%23f4f0e7%3B%0A%2D%2Dpanel%3A%20%23fffdf8%3B%0A%2D%2Dline%3A%20%23d8d1c3%3B%0A%2D%2Dgreen%3A%20%231f6b53%3B%0A%2D%2Dgold%3A%20%23b97b28%3B%0A%2D%2Dred%3A%20%239f433b%3B%0A%7D%0Ahtml%20%7B%20scroll%2Dbehavior%3A%20smooth%3B%20%7D%0Abody%20%7B%0Amax%2Dwidth%3A%201080px%3B%0Amargin%3A%200%20auto%3B%0Apadding%3A%2044px%2030px%2080px%3B%0Acolor%3A%20var%28%2D%2Dink%29%3B%0Abackground%3A%20var%28%2D%2Dpaper%29%3B%0Afont%3A%2016px%2F1%2E75%20Inter%2C%20%22Noto%20Sans%20SC%22%2C%20%22PingFang%20SC%22%2C%20sans%2Dserif%3B%0A%7D%0Aheader%23title%2Dblock%2Dheader%20%7B%0Amargin%2Dbottom%3A%2028px%3B%0Apadding%3A%2038px%2042px%3B%0Acolor%3A%20white%3B%0Abackground%3A%20linear%2Dgradient%28135deg%2C%20%23153e32%2C%20%2328604c%2070%25%2C%20%238b7135%29%3B%0Aborder%2Dradius%3A%2022px%3B%0A%7D%0Ah1%2Etitle%20%7B%20margin%3A%200%3B%20font%2Dsize%3A%2042px%3B%20%7D%0Aheader%23title%2Dblock%2Dheader%20h1%2Etitle%20%7B%20color%3A%20white%3B%20%7D%0Anav%23TOC%20%2B%20h1%20%7B%20display%3A%20none%3B%20%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%20%7B%0Afont%2Dfamily%3A%20Georgia%2C%20%22Noto%20Serif%20SC%22%2C%20serif%3B%0Aline%2Dheight%3A%201%2E3%3B%0Acolor%3A%20%23102a22%3B%0A%7D%0Ah1%20%7B%20font%2Dsize%3A%2038px%3B%20%7D%0Ah2%20%7B%0Amargin%2Dtop%3A%2052px%3B%0Apadding%2Dbottom%3A%209px%3B%0Aborder%2Dbottom%3A%202px%20solid%20var%28%2D%2Dgreen%29%3B%0Afont%2Dsize%3A%2029px%3B%0A%7D%0Ah3%20%7B%20margin%2Dtop%3A%2034px%3B%20font%2Dsize%3A%2022px%3B%20%7D%0Ah4%20%7B%20font%2Dsize%3A%2018px%3B%20%7D%0Anav%23TOC%20%7B%0Apadding%3A%2020px%2025px%3B%0Abackground%3A%20var%28%2D%2Dpanel%29%3B%0Aborder%3A%201px%20solid%20var%28%2D%2Dline%29%3B%0Aborder%2Dradius%3A%2016px%3B%0Acolumns%3A%202%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20%7B%20margin%3A%200%3B%20padding%2Dleft%3A%2020px%3B%20%7D%0Anav%23TOC%20li%20%7B%20break%2Dinside%3A%20avoid%3B%20margin%3A%204px%200%3B%20%7D%0Aa%20%7B%20color%3A%20var%28%2D%2Dgreen%29%3B%20text%2Ddecoration%3A%20none%3B%20%7D%0Aa%3Ahover%20%7B%20text%2Ddecoration%3A%20underline%3B%20%7D%0Ap%2C%20li%20%7B%20max%2Dwidth%3A%2092ch%3B%20%7D%0Ablockquote%20%7B%0Amargin%3A%2020px%200%3B%0Apadding%3A%2014px%2020px%3B%0Acolor%3A%20%234b3c1e%3B%0Abackground%3A%20%23fff4d8%3B%0Aborder%2Dleft%3A%204px%20solid%20var%28%2D%2Dgold%29%3B%0Aborder%2Dradius%3A%200%2012px%2012px%200%3B%0A%7D%0Atable%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20100%25%3B%0Amargin%3A%2018px%200%2026px%3B%0Aoverflow%2Dx%3A%20auto%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Abackground%3A%20var%28%2D%2Dpanel%29%3B%0Aborder%3A%201px%20solid%20var%28%2D%2Dline%29%3B%0Aborder%2Dradius%3A%2012px%3B%0A%7D%0Ath%2C%20td%20%7B%0Amin%2Dwidth%3A%2090px%3B%0Apadding%3A%2010px%2012px%3B%0Atext%2Dalign%3A%20left%3B%0Avertical%2Dalign%3A%20top%3B%0Aborder%2Dbottom%3A%201px%20solid%20var%28%2D%2Dline%29%3B%0A%7D%0Ath%20%7B%20color%3A%20white%3B%20background%3A%20var%28%2D%2Dgreen%29%3B%20%7D%0Atr%3Alast%2Dchild%20td%20%7B%20border%2Dbottom%3A%200%3B%20%7D%0Atr%3Anth%2Dchild%28even%29%20td%20%7B%20background%3A%20%23f8f5ed%3B%20%7D%0Acode%20%7B%0Apadding%3A%202px%206px%3B%0Acolor%3A%20%2328533f%3B%0Abackground%3A%20%23e7eee9%3B%0Aborder%2Dradius%3A%205px%3B%0Afont%2Dfamily%3A%20ui%2Dmonospace%2C%20SFMono%2DRegular%2C%20Consolas%2C%20monospace%3B%0A%7D%0Apre%20%7B%0Apadding%3A%2018px%3B%0Aoverflow%2Dx%3A%20auto%3B%0Acolor%3A%20%23eef7f1%3B%0Abackground%3A%20%23182b24%3B%0Aborder%2Dradius%3A%2013px%3B%0A%7D%0Apre%20code%20%7B%20padding%3A%200%3B%20color%3A%20inherit%3B%20background%3A%20transparent%3B%20%7D%0Ahr%20%7B%20border%3A%200%3B%20border%2Dtop%3A%201px%20solid%20var%28%2D%2Dline%29%3B%20%7D%0A%40media%20%28max%2Dwidth%3A%20720px%29%20%7B%0Abody%20%7B%20padding%3A%2018px%2014px%2050px%3B%20font%2Dsize%3A%2015px%3B%20%7D%0Aheader%23title%2Dblock%2Dheader%20%7B%20padding%3A%2027px%2022px%3B%20%7D%0Ah1%2Etitle%20%7B%20font%2Dsize%3A%2030px%3B%20%7D%0Anav%23TOC%20%7B%20columns%3A%201%3B%20%7D%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CFPG 短篇小说原文复现实验报告</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#cfpg-短篇小说原文复现实验报告">CFPG 短篇小说原文复现实验报告</a>
+<ul>
+<li><a href="#实验概览">1. 实验概览</a></li>
+<li><a href="#结果存储位置">2. 结果存储位置</a></li>
+<li><a href="#数据与方法">3. 数据与方法</a>
+<ul>
+<li><a href="#数据">3.1 数据</a></li>
+<li><a href="#ftp-定义">3.2 F–T–P 定义</a></li>
+<li><a href="#生成实验">3.3 生成实验</a></li>
+<li><a href="#指标">3.4 指标</a></li>
+<li><a href="#实际流程提示词和各阶段产物">3.5 实际流程、提示词和各阶段产物</a></li>
+</ul></li>
+<li><a href="#ftp-抽取结果">4. F–T–P 抽取结果</a>
+<ul>
+<li><a href="#总体结果">4.1 总体结果</a></li>
+<li><a href="#分作品结果">4.2 分作品结果</a></li>
+<li><a href="#重新组织后的类型分布">4.3 重新组织后的类型分布</a></li>
+<li><a href="#伏笔跨度分布">4.4 伏笔跨度分布</a></li>
+<li><a href="#典型通过案例">4.5 典型通过案例</a></li>
+<li><a href="#典型拒绝案例">4.6 典型拒绝案例</a></li>
+</ul></li>
+<li><a href="#oracle-timing-smoke-test">5. Oracle Timing Smoke Test</a>
+<ul>
+<li><a href="#配置">5.1 配置</a></li>
+<li><a href="#结果">5.2 结果</a></li>
+<li><a href="#两种方法的实际输出示例">5.3 两种方法的实际输出示例</a></li>
+</ul></li>
+<li><a href="#与原论文的结果比较">6. 与原论文的结果比较</a>
+<ul>
+<li><a href="#数据规模与跨度">6.1 数据规模与跨度</a></li>
+<li><a href="#oracle-timing-效果">6.2 Oracle Timing 效果</a></li>
+<li><a href="#grounded-tracking-效果">6.3 Grounded Tracking 效果</a></li>
+<li><a href="#是否已经完全复现论文">6.4 是否已经完全复现论文</a></li>
+<li><a href="#为什么-oracle-显示当前-1-25">6.5 为什么 Oracle 显示“当前 1 / 25”</a></li>
+</ul></li>
+<li><a href="#当前结论">7. 当前结论</a></li>
+<li><a href="#有效性威胁">8. 有效性威胁</a></li>
+<li><a href="#后续实验">9. 后续实验</a></li>
+<li><a href="#可视化前端">10. 可视化前端</a></li>
+<li><a href="#全部-30-条候选的分类修订审计">11. 全部 30 条候选的分类修订审计</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="cfpg-短篇小说原文复现实验报告">CFPG 短篇小说原文复现实验报告</h1>
+<h2 id="实验概览">1. 实验概览</h2>
+<p>本实验在 <code>foreshadow/short_stories/dataset</code> 的短篇小说数据上复现 <em>Codified Foreshadowing-Payoff Text Generation</em>（CFPG）。与论文使用 BookSum 长篇小说摘要不同，本实验不生成摘要，直接以带段落编号的短篇原文作为输入。</p>
+<p>截至 2026-07-13，已完成：</p>
+<ol type="1">
+<li>核心 10 篇短篇的 F–T–P 候选抽取与单模型 verifier；</li>
+<li>25 条 accepted triples 的句级实验数据转换；</li>
+<li>Oracle Timing 的单案例 API smoke test；</li>
+<li>完整 Oracle Timing 与 Grounded Tracking 实验代码、prompt 和指标实现。</li>
+</ol>
+<p>尚未完成全量 25 案例的生成实验和逐句在线追踪，因此本报告不会将 smoke test 外推为完整性能结论。</p>
+<blockquote>
+<p><strong>复现状态结论：尚未完全复现论文。</strong> 当前已经复现数据结构、候选抽取、单 verifier、句级适配、Oracle/Tracking 代码和论文指标；只实际运行了全量抽取与 1 个 Oracle 案例。双独立 verifier、全量 Oracle、全量逐句 Tracking、人工评测和 attention saliency 尚未完成。</p>
+</blockquote>
+<p>可视化浏览入口：<a href="dashboard.html">打开 CFPG 实验前端</a>。</p>
+<p>网页渲染版：<a href="experiment_report.html">阅读排版后的 HTML 报告</a>；源文件：<a href="experiment_report.md">查看原始 Markdown</a>。</p>
+<h2 id="结果存储位置">2. 结果存储位置</h2>
+<table>
+<thead>
+<tr class="header">
+<th>内容</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>抽取汇总</td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/summary.json">summary.json</a></td>
+</tr>
+<tr class="even">
+<td>Accepted triples</td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/accepted_triples_20260701_short_story_cfpg_v3_verified.jsonl">accepted triples JSONL</a></td>
+</tr>
+<tr class="odd">
+<td>Rejected candidates</td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/rejected_candidates_20260701_short_story_cfpg_v3_verified.jsonl">rejected candidates JSONL</a></td>
+</tr>
+<tr class="even">
+<td>原抽取报告</td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/short_story_cfpg_report.md">short_story_cfpg_report.md</a></td>
+</tr>
+<tr class="odd">
+<td>句级复现实验集</td>
+<td><a href="../data/cfpg_cases.jsonl">cfpg_cases.jsonl</a></td>
+</tr>
+<tr class="even">
+<td>Oracle smoke 原始结果</td>
+<td><a href="../results/oracle_smoke_20260713/oracle.jsonl">oracle.jsonl</a></td>
+</tr>
+<tr class="odd">
+<td>Oracle smoke 汇总</td>
+<td><a href="../results/oracle_smoke_20260713/summary.json">summary.json</a></td>
+</tr>
+<tr class="even">
+<td>权威 Prompt 文件</td>
+<td><a href="../prompts/short_story_prompts.md">short_story_prompts.md</a></td>
+</tr>
+<tr class="odd">
+<td>新分类与中文说明</td>
+<td><a href="../data/cfpg_taxonomy_v2.json">cfpg_taxonomy_v2.json</a></td>
+</tr>
+<tr class="even">
+<td>可视化前端</td>
+<td><a href="dashboard.html">dashboard.html</a></td>
+</tr>
+<tr class="odd">
+<td>Markdown 渲染页</td>
+<td><a href="experiment_report.html">experiment_report.html</a></td>
+</tr>
+<tr class="even">
+<td>前端生成脚本</td>
+<td><a href="../scripts/render_cfpg_report_frontend.py">render_cfpg_report_frontend.py</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据与方法">3. 数据与方法</h2>
+<h3 id="数据">3.1 数据</h3>
+<p>实验覆盖以下 10 篇核心作品：</p>
+<table>
+<thead>
+<tr class="header">
+<th>story_id</th>
+<th>作品</th>
+<th>原文</th>
+<th>结果审阅</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>speckled_band</code></td>
+<td>The Adventure of the Speckled Band / 斑点带子案</td>
+<td><a href="../../dataset/normalized_texts/speckled_band.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/speckled_band_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="even">
+<td><code>red_headed_league</code></td>
+<td>The Red-Headed League / 红发会</td>
+<td><a href="../../dataset/normalized_texts/red_headed_league.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/red_headed_league_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="odd">
+<td><code>necklace</code></td>
+<td>The Diamond Necklace / 项链</td>
+<td><a href="../../dataset/normalized_texts/necklace.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/necklace_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="even">
+<td><code>gift_of_the_magi</code></td>
+<td>The Gift of the Magi / 麦琪的礼物</td>
+<td><a href="../../dataset/normalized_texts/gift_of_the_magi.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/gift_of_the_magi_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="odd">
+<td><code>last_leaf</code></td>
+<td>The Last Leaf / 最后一片叶子</td>
+<td><a href="../../dataset/normalized_texts/last_leaf.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/last_leaf_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="even">
+<td><code>tell_tale_heart</code></td>
+<td>The Tell-Tale Heart / 泄密的心</td>
+<td><a href="../../dataset/normalized_texts/tell_tale_heart.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/tell_tale_heart_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="odd">
+<td><code>cask_of_amontillado</code></td>
+<td>The Cask of Amontillado / 一桶白葡萄酒</td>
+<td><a href="../../dataset/normalized_texts/cask_of_amontillado.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/cask_of_amontillado_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="even">
+<td><code>to_build_a_fire</code></td>
+<td>To Build a Fire / 生火</td>
+<td><a href="../../dataset/normalized_texts/to_build_a_fire.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/to_build_a_fire_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="odd">
+<td><code>medicine</code></td>
+<td>鲁迅《药》</td>
+<td><a href="../../dataset/normalized_texts/medicine.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/medicine_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+<tr class="even">
+<td><code>cricket</code></td>
+<td>蒲松龄《促织》</td>
+<td><a href="../../dataset/normalized_texts/cricket.txt">source</a></td>
+<td><a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/cricket_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></td>
+</tr>
+</tbody>
+</table>
+<p>输入使用 <code>dataset/normalized_texts/*.txt</code>。每个原文段落具有 <code>P####</code> ID；句级转换进一步生成 <code>P####S###</code> ID，既满足论文的逐句实验设定，也保留回溯原文证据的能力。</p>
+<p>中文覆盖已经核对完毕：8 篇英译中文本位于 <code>dataset/normalized_texts_zh</code>，《药》和《促织》本身使用中文原文，因此核心 10 篇均有中文版本。历史抽取 JSON 保留原始语言，<code>cfpg_taxonomy_v2.json</code> 为全部 30 条候选提供中文 F/T/P 说明；本报告和前端的统计、分类和案例说明以中文层为准。</p>
+<h3 id="ftp-定义">3.2 F–T–P 定义</h3>
+<ul>
+<li>Foreshadow（F）：较早出现、当时尚未完全解释或解决的具体叙事元素。</li>
+<li>Trigger（T）：使伏笔进入可回收状态的可观察条件。</li>
+<li>Payoff（P）：在后文履行、解释、反转或重新解释 F 的具体事件。</li>
+</ul>
+<h3 id="生成实验">3.3 生成实验</h3>
+<p>Oracle Timing 在 gold payoff 句之前截断原文：</p>
+<ul>
+<li><code>prompt</code>：不加入显式因果控制，直接续写一句；</li>
+<li><code>cfpg</code>：先运行 codify gate 判断 trigger，再将结构化 F–T–P 作为控制条件续写一句。</li>
+</ul>
+<p>Grounded Tracking 逐句暴露原文前缀：</p>
+<ul>
+<li><code>fap</code>：提供自然语言形式的未解决伏笔；</li>
+<li><code>fscr</code>：检索与伏笔词汇相似的旧句，并与最近上下文拼接；</li>
+<li><code>cfpg</code>：维护显式 F–T–P 状态，通过 trigger gate 决定何时回收。</li>
+</ul>
+<h3 id="指标">3.4 指标</h3>
+<ul>
+<li>Should-Payoff Rate：Oracle 位置上 CFPG gate 的激活率；普通 Prompt 不适用。</li>
+<li>Average Score：生成句相对真实轨迹的 narrative entailment 得分，取值为 1.0、0.5 或 0.0。</li>
+<li>Correct Detection Rate：在线预测位置位于 gold payoff 的 ±3 句内的比例。</li>
+<li>Early/Late Triggers：早于或晚于容忍窗口的触发数量。</li>
+<li>Localization Error：预测位置与 gold payoff 位置的平均绝对句距。</li>
+<li>Continuation Fidelity：正确触发后，生成续写与真实叙事轨迹的一致性。</li>
+</ul>
+<h3 id="实际流程提示词和各阶段产物">3.5 实际流程、提示词和各阶段产物</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>流程</th>
+<th>Prompt key / version</th>
+<th>给模型的核心要求</th>
+<th>当前结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stage 1 候选抽取</td>
+<td>历史结果：<code>short_story_ftp_extraction_v2</code>；当前模板：<code>short_story_ftp_extraction_v3</code></td>
+<td>阅读全文段落时间线；输出 F/P span、可观察 Trigger、互斥主类型、独立叙事功能、置信度和理由；只输出 JSON</td>
+<td>历史 run 为 10 篇各 3 条，共 30 条；已用 taxonomy v2 重新归类</td>
+</tr>
+<tr class="even">
+<td>Stage 2/3 严格验证</td>
+<td><code>short_story_candidate_verification</code> / <code>short_story_ftp_verification_v1</code></td>
+<td>按 setup、payoff、时间间隔、伏笔合理性、trigger、连接有效性六项 rubric 判断；任一关键项失败即拒绝</td>
+<td>接受 25，拒绝 5</td>
+</tr>
+<tr class="odd">
+<td>句级适配</td>
+<td>无 Prompt</td>
+<td>确定性切句为 <code>P####S###</code>，在 F/P 段落范围内用词汇重合选择 anchor</td>
+<td>25 条句级案例</td>
+</tr>
+<tr class="even">
+<td>FAP 在线决策</td>
+<td><code>short_story_fap_decision</code> / <code>short_story_fap_decision_v1</code></td>
+<td>只给自然语言未解决伏笔和当前前缀，判断下一句是否应 payoff</td>
+<td>代码完成，全量未运行</td>
+</tr>
+<tr class="odd">
+<td>FSCR 在线决策</td>
+<td>同 FAP prompt</td>
+<td>先以 Jaccard 相似度检索旧句，再加最近窗口；不提供显式 T/P</td>
+<td>代码完成，全量未运行</td>
+</tr>
+<tr class="even">
+<td>CFPG Gate</td>
+<td><code>short_story_cfpg_decision</code> / <code>short_story_cfpg_decision_v1</code></td>
+<td>输入结构化 F/T/P，逐项检查可观察 trigger 条件，输出 <code>should_payoff</code></td>
+<td>1 个 Oracle 案例已运行并正确触发</td>
+</tr>
+<tr class="odd">
+<td>条件续写</td>
+<td><code>short_story_continuation</code> / <code>short_story_continuation_v1</code></td>
+<td>维持原文语言、时态、视角，只续写一句；CFPG 激活时必须自然实现 payoff</td>
+<td>Prompt 与 CFPG 各生成 1 条</td>
+</tr>
+<tr class="even">
+<td>轨迹评判</td>
+<td><code>short_story_continuation_judge</code> / <code>short_story_continuation_judge_v1</code></td>
+<td>将生成句和 gold 下一句判为 entailment / neutral / contradiction，对应 1/0.5/0</td>
+<td>两条 smoke 续写均为 1.0</td>
+</tr>
+</tbody>
+</table>
+<p>实际 Prompt 全文可在 <a href="../prompts/short_story_prompts.md">short_story_prompts.md</a> 或<a href="dashboard.html">可视化前端的“提示词”区域</a>展开查看。核心差异如下：</p>
+<pre class="text"><code>FAP:  未解决的伏笔 + 当前前缀 → “下一句是否已经到了应当兑现该伏笔的时机？”
+FSCR: 与 FAP 相同，但当前上下文 = 相似旧句 + 最近窗口
+CFPG: {Foreshadow, Trigger.observable_conditions, Payoff, status} + 当前前缀
+      → 逐项检查 trigger，并显式输出 should_payoff</code></pre>
+<p>Candidate extraction 的关键限制是“F/P 必须有非平凡间隔、Trigger 必须可观察、不能只是主题呼应”；verifier 的拒绝原则是“任一关键 rubric 失败即 <code>accepted=false</code>”。这两条提示词直接决定了下文 25/5 的筛选结果。</p>
+<h2 id="ftp-抽取结果">4. F–T–P 抽取结果</h2>
+<h3 id="总体结果">4.1 总体结果</h3>
+<table>
+<thead>
+<tr class="header">
+<th>阶段</th>
+<th style="text-align: right;">输入</th>
+<th style="text-align: right;">输出</th>
+<th style="text-align: right;">比例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>短篇作品</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="even">
+<td>Candidate extraction</td>
+<td style="text-align: right;">10 篇全文</td>
+<td style="text-align: right;">30 条候选</td>
+<td style="text-align: right;">每篇 3 条</td>
+</tr>
+<tr class="odd">
+<td>Verifier</td>
+<td style="text-align: right;">30 条候选</td>
+<td style="text-align: right;">25 条接受</td>
+<td style="text-align: right;">83.33%</td>
+</tr>
+<tr class="even">
+<td>Rejected</td>
+<td style="text-align: right;">30 条候选</td>
+<td style="text-align: right;">5 条拒绝</td>
+<td style="text-align: right;">16.67%</td>
+</tr>
+</tbody>
+</table>
+<p>25 条 accepted triples 的 F–P 平均距离为 43.08 个段落，中位数为 25，最小值为 4，最大值为 174。这说明该数据确实包含跨较长文本区间的叙事依赖，而不只是相邻段落中的普通因果关系。</p>
+<h3 id="分作品结果">4.2 分作品结果</h3>
+<table>
+<thead>
+<tr class="header">
+<th>story_id</th>
+<th style="text-align: right;">candidates</th>
+<th style="text-align: right;">accepted</th>
+<th style="text-align: right;">rejected</th>
+<th style="text-align: right;">接受率</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>speckled_band</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">33.33%</td>
+</tr>
+<tr class="even">
+<td><code>red_headed_league</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="odd">
+<td><code>necklace</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">66.67%</td>
+</tr>
+<tr class="even">
+<td><code>gift_of_the_magi</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">66.67%</td>
+</tr>
+<tr class="odd">
+<td><code>last_leaf</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="even">
+<td><code>tell_tale_heart</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="odd">
+<td><code>cask_of_amontillado</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="even">
+<td><code>to_build_a_fire</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="odd">
+<td><code>medicine</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">66.67%</td>
+</tr>
+<tr class="even">
+<td><code>cricket</code></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="odd">
+<td><strong>合计</strong></td>
+<td style="text-align: right;"><strong>30</strong></td>
+<td style="text-align: right;"><strong>25</strong></td>
+<td style="text-align: right;"><strong>5</strong></td>
+<td style="text-align: right;"><strong>83.33%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="重新组织后的类型分布">4.3 重新组织后的类型分布</h3>
+<p>旧版把 <code>object / psychological / spatial / red_herring / retrospective</code> 放在同一字段，混淆了文本承载形式、语义领域和叙事功能。新版先按“伏笔是什么形式的文本证据”确定互斥主类型，再单独标记叙事功能。逐条复核结果保存在 <a href="../data/cfpg_taxonomy_v2.json">cfpg_taxonomy_v2.json</a>。</p>
+<table>
+<thead>
+<tr class="header">
+<th>伏笔主类型</th>
+<th>定义</th>
+<th style="text-align: right;">accepted</th>
+<th style="text-align: right;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>character_state</code> 人物状态</td>
+<td>持续的心理、身体、身份、欲望或行为状态</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">24%</td>
+</tr>
+<tr class="even">
+<td><code>dialogue</code> 对话/言语</td>
+<td>人物说出的描述、警告、承诺或内心引语</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">24%</td>
+</tr>
+<tr class="odd">
+<td><code>object</code> 物件</td>
+<td>具体物件或可辨识实体</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">16%</td>
+</tr>
+<tr class="even">
+<td><code>rule</code> 规则</td>
+<td>自然、社会、制度或人物奉行的明确原则</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12%</td>
+</tr>
+<tr class="odd">
+<td><code>environment_description</code> 环境描写</td>
+<td>空间、天气、地貌或环境危险</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12%</td>
+</tr>
+<tr class="even">
+<td><code>event</code> 事件</td>
+<td>已发生的行动、变化或感知事件</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">8%</td>
+</tr>
+<tr class="odd">
+<td><code>narrator_commentary</code> 叙述者评论</td>
+<td>叙述者直接给出的预告或元叙事判断</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4%</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>独立叙事功能</th>
+<th style="text-align: right;">accepted</th>
+<th style="text-align: right;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>retrospective_reinterpretation</code> 回顾性重释</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">24%</td>
+</tr>
+<tr class="even">
+<td><code>direct_setup</code> 直接铺垫</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">20%</td>
+</tr>
+<tr class="odd">
+<td><code>misdirection</code> 误导</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">16%</td>
+</tr>
+<tr class="even">
+<td><code>ironic_contrast</code> 反讽对照</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12%</td>
+</tr>
+<tr class="odd">
+<td><code>warning</code> 警告</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12%</td>
+</tr>
+<tr class="even">
+<td><code>anomaly</code> 反常细节</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">8%</td>
+</tr>
+<tr class="odd">
+<td><code>symbolic_reframing</code> 象征性重构</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">8%</td>
+</tr>
+</tbody>
+</table>
+<p><code>red_herring</code> 已被删除为主类型，原来两条相关候选现在分别归类为：</p>
+<ul>
+<li>《斑点带子案》遗言：主类型 <code>dialogue</code>，叙事功能 <code>misdirection</code>；</li>
+<li>《麦琪的礼物》德拉的祈祷：主类型 <code>dialogue</code>，叙事功能 <code>misdirection</code>。</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Payoff 类型</th>
+<th style="text-align: right;">accepted</th>
+<th style="text-align: right;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>literal</code> 直接兑现</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">40%</td>
+</tr>
+<tr class="even">
+<td><code>delayed_revelation</code> 延迟揭示</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">20%</td>
+</tr>
+<tr class="odd">
+<td><code>ironic</code> 反讽回收</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">20%</td>
+</tr>
+<tr class="even">
+<td><code>symbolic</code> 象征回收</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">16%</td>
+</tr>
+<tr class="odd">
+<td><code>misdirection</code> 误导揭示</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4%</td>
+</tr>
+</tbody>
+</table>
+<p>对话/言语与人物状态各占 24%，说明短篇原文中的伏笔经常依附人物话语和持续状态，而不只是具体物件。环境描写被单列为 12%，对应《最后一片叶子》的砖墙与藤蔓、《生火》的暗泉雪地和《药》的丁字街刑场。literal payoff 占 40%；象征性 payoff 仍只占 16%。</p>
+<h3 id="伏笔跨度分布">4.4 伏笔跨度分布</h3>
+<table>
+<thead>
+<tr class="header">
+<th>F–P 距离</th>
+<th style="text-align: right;">数量</th>
+<th style="text-align: right;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4–10 段</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">28%</td>
+</tr>
+<tr class="even">
+<td>11–25 段</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">24%</td>
+</tr>
+<tr class="odd">
+<td>26–50 段</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">20%</td>
+</tr>
+<tr class="even">
+<td>51–100 段</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">20%</td>
+</tr>
+<tr class="odd">
+<td>101–174 段</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">8%</td>
+</tr>
+</tbody>
+</table>
+<p>13/25（52%）的伏笔在 25 段以内回收，7/25（28%）跨越超过 50 段。最长两条都来自《红发会》：严格到岗规则到骗局解释跨 129 段；助手低薪、钻地窖到隧道阴谋解释跨 174 段。因不同作品的段落粒度不同，这里的“段落距离”适合在本数据内部排序，不宜直接等价于论文的句子距离。</p>
+<h3 id="典型通过案例">4.5 典型通过案例</h3>
+<h4 id="a.-斑点带子案假铃绳与通风口-蛇的杀人通道">A. 《斑点带子案》：假铃绳与通风口 → 蛇的杀人通道</h4>
+<ul>
+<li>ID：<code>speckled_band:ftp_candidate:000002</code></li>
+<li>F：<code>P0143-P0158</code>，Holmes 发现铃绳没有连接电线，通风口也反常地通向隔壁房间。</li>
+<li>T：隔壁房间出现保险箱、牛奶碟、通风口下的椅子和打成圈的鞭子，构成“存在受训动物”的可观察条件。</li>
+<li>P：<code>P0237-P0238</code>，蛇经通风口和铃绳下到床边，Holmes 用手杖击打铃绳。</li>
+<li>跨度：94 段。</li>
+<li>通过原因：P 直接解释了 F 中两个反常物件的功能，是明确的因果清偿，而非物件再次出现。</li>
+<li>原始文件：<a href="../../dataset/normalized_texts/speckled_band.txt">原文</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/candidates/speckled_band_ftp_candidates_20260701_short_story_cfpg_v3_verified.jsonl">候选 JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/verified/speckled_band_ftp_verified_20260701_short_story_cfpg_v3_verified.jsonl">verifier JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/speckled_band_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></li>
+</ul>
+<h4 id="b.-项链被当作钻石的项链-赝品揭示">B. 《项链》：被当作钻石的项链 → 赝品揭示</h4>
+<ul>
+<li>ID：<code>necklace:ftp_candidate:000001</code></li>
+<li>F：<code>P0046-P0048</code>，Mathilde 看到项链时把它当成昂贵钻石，并产生强烈欲望。</li>
+<li>T：舞会后项链丢失，夫妻借债购买真钻石项链归还。</li>
+<li>P：<code>P0122</code>，Forestier 说明原项链只是价值五百法郎的赝品。</li>
+<li>跨度：76 段。</li>
+<li>通过原因：结尾提供新信息，反向改写前文对物件价值的理解，并解释十年债务为何成为讽刺性悲剧。</li>
+<li>原始文件：<a href="../../dataset/normalized_texts/necklace.txt">原文</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/candidates/necklace_ftp_candidates_20260701_short_story_cfpg_v3_verified.jsonl">候选 JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/verified/necklace_ftp_verified_20260701_short_story_cfpg_v3_verified.jsonl">verifier JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/necklace_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></li>
+</ul>
+<h4 id="c.-药夏瑜被当作疯子-坟上花圈">C. 《药》：夏瑜被当作“疯子” → 坟上花圈</h4>
+<ul>
+<li>ID：<code>medicine:ftp_candidate:000002</code></li>
+<li>F：茶馆谈论夏瑜被处决、劝牢头造反却被众人误解。</li>
+<li>T：清明时夏四奶奶来到夏瑜坟前，并发现红白花圈。</li>
+<li>P：花圈表明仍有人纪念夏瑜，回收其是否完全被社会遗忘的悬置。</li>
+<li>跨度：22 段；类型为 <code>symbolic</code>。</li>
+<li>通过原因：花圈是可观察物件，并非抽象主题判断；它对前文“被所有人误解”的状态提供了具体反证。</li>
+<li>原始文件：<a href="../../dataset/normalized_texts/medicine.txt">原文</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/candidates/medicine_ftp_candidates_20260701_short_story_cfpg_v3_verified.jsonl">候选 JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/verified/medicine_ftp_verified_20260701_short_story_cfpg_v3_verified.jsonl">verifier JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/medicine_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></li>
+</ul>
+<h4 id="d.-促织儿子失魂与异虫-身化促织">D. 《促织》：儿子失魂与异虫 → “身化促织”</h4>
+<ul>
+<li>ID：<code>cricket:ftp_candidate:000002</code></li>
+<li>F：<code>P0004-P0005</code>，儿子投井后复苏但神气痴木，同时出现异常小促织。</li>
+<li>T：小促织先后斗败强虫和鸡，表现出超常行为。</li>
+<li>P：<code>P0008</code>，儿子恢复后自述“身化促织，轻捷善斗”。</li>
+<li>跨度：4 段。</li>
+<li>通过原因：最终自述直接解释“失魂”和异虫的超常表现，是最紧凑的延迟揭示案例。</li>
+<li>原始文件：<a href="../../dataset/normalized_texts/cricket.txt">原文</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/candidates/cricket_ftp_candidates_20260701_short_story_cfpg_v3_verified.jsonl">候选 JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/verified/cricket_ftp_verified_20260701_short_story_cfpg_v3_verified.jsonl">verifier JSONL</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/cricket_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></li>
+</ul>
+<h3 id="典型拒绝案例">4.6 典型拒绝案例</h3>
+<h4 id="a.-斑点带子案speckled-band遗言-蛇">A. 《斑点带子案》：“speckled band”遗言 → 蛇</h4>
+<ul>
+<li>ID：<code>speckled_band:ftp_candidate:000001</code>。</li>
+<li>表面上是合理伏笔：Julia 的遗言最终由斑点蛇解释。</li>
+<li>拒绝原因：候选给出的 Trigger 证据不在 verifier 接收到的 setup/payoff 窗口中，<code>trigger_validity=false</code>。</li>
+<li>分析：这是典型的 <strong>span/window 假阴性</strong>，并不意味着文学关系不存在，而是当前证据窗口不足。这说明 verifier 结果尚不能直接当作人工 gold。</li>
+<li>原始文件：<a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/rejected_candidates_20260701_short_story_cfpg_v3_verified.jsonl">rejected aggregate</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/verified/speckled_band_ftp_verified_20260701_short_story_cfpg_v3_verified.jsonl">作品 verifier</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/speckled_band_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></li>
+</ul>
+<h4 id="b.-麦琪的礼物两件珍宝-两份失效礼物">B. 《麦琪的礼物》：两件珍宝 → 两份失效礼物</h4>
+<ul>
+<li>ID：<code>gift_of_the_magi:ftp_candidate:000001</code>。</li>
+<li>F 是 Jim 的金表和 Della 的长发；P 应是两人分别卖掉珍宝购买表链和发梳。</li>
+<li>拒绝原因：候选 payoff window 没有覆盖“Jim 卖掉手表”这一关键事实，无法在给定证据内验证完整互换结构。</li>
+<li>分析：同样属于证据 span 不完整造成的拒绝，提示后续应允许 verifier 请求扩窗或修正 span，而不是立即删除候选。</li>
+<li>原始文件：<a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/candidates/gift_of_the_magi_ftp_candidates_20260701_short_story_cfpg_v3_verified.jsonl">作品候选</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/verified/gift_of_the_magi_ftp_verified_20260701_short_story_cfpg_v3_verified.jsonl">作品 verifier</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/gift_of_the_magi_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></li>
+</ul>
+<h4 id="c.-药人血馒头能治病-小栓之墓">C. 《药》：人血馒头能治病 → 小栓之墓</h4>
+<ul>
+<li>ID：<code>medicine:ftp_candidate:000001</code>。</li>
+<li>F 是把人血馒头视作治病“药”；P 是清明墓地场景证明小栓已经死亡。</li>
+<li>拒绝原因：候选 Trigger 只描述小栓继续咳嗽，不能充分解释为什么此时进入墓地 payoff，<code>trigger_validity=false</code>。</li>
+<li>分析：这里暴露了论文 F–T–P 定义在既定文学文本上的难点：读者能确认 F/P，但“触发 payoff 时机”的最小可观察条件未必在原文中显式存在。</li>
+<li>原始文件：<a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/candidates/medicine_ftp_candidates_20260701_short_story_cfpg_v3_verified.jsonl">作品候选</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/verified/medicine_ftp_verified_20260701_short_story_cfpg_v3_verified.jsonl">作品 verifier</a> · <a href="../results/extraction/runs/20260701_short_story_cfpg_v3_verified/reviews/medicine_ftp_review_20260701_short_story_cfpg_v3_verified.md">review</a></li>
+</ul>
+<h2 id="oracle-timing-smoke-test">5. Oracle Timing Smoke Test</h2>
+<h3 id="配置">5.1 配置</h3>
+<table>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>run_id</td>
+<td><code>oracle_smoke_20260713</code></td>
+</tr>
+<tr class="even">
+<td>作品</td>
+<td><code>cricket</code>（《促织》）</td>
+</tr>
+<tr class="odd">
+<td>case</td>
+<td><code>cricket:ftp_candidate:000001</code></td>
+</tr>
+<tr class="even">
+<td>生成模型</td>
+<td><code>deepseek-v4-pro</code></td>
+</tr>
+<tr class="odd">
+<td>judge 模型</td>
+<td><code>deepseek-v4-pro</code></td>
+</tr>
+<tr class="even">
+<td>方法</td>
+<td><code>prompt</code>, <code>cfpg</code></td>
+</tr>
+<tr class="odd">
+<td>gold anchor</td>
+<td><code>P0009S001</code></td>
+</tr>
+</tbody>
+</table>
+<p>该案例的 F 是宫廷喜好促织造成地方层层压榨，T 是成名献上异虫后获得奖赏并改变命运，P 是“异史氏曰”对制度传导和个人命运荒谬性的总结。</p>
+<h3 id="结果">5.2 结果</h3>
+<table>
+<thead>
+<tr class="header">
+<th>方法</th>
+<th style="text-align: right;">Should-Payoff Rate</th>
+<th style="text-align: right;">Average Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>prompt</code></td>
+<td style="text-align: right;">不适用</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td><code>cfpg</code></td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+</tbody>
+</table>
+<p>CFPG gate 判断 trigger 已满足，置信度为 1.0，并正确指出 P0008 中赏成、进上、入邑庠和家道暴富等证据。Prompt 与 CFPG 均生成了与真实下一句同轨迹的内容，因此 entailment 得分都是 1.0。</p>
+<p>这个结果只能说明端到端链路能够运行，不能证明 CFPG 优于 Prompt。该作品是经典公版文本，两个方法都几乎复现了原句，存在明显的模型训练数据记忆风险。此外，生成模型和 judge 相同，会带来 self-judge 偏差。</p>
+<h3 id="两种方法的实际输出示例">5.3 两种方法的实际输出示例</h3>
+<p>Gold anchor <code>P0009S001</code>：</p>
+<blockquote>
+<p>異史氏曰：「天子偶用一物，未必不過此已忘；而奉行者即為定例。」</p>
+</blockquote>
+<p>无控制 Prompt 生成：</p>
+<blockquote>
+<p>異史氏曰：「天子偶用一物，未必不過此已忘；而奉行者即為定例，加以官貪吏虐，民日貼婦賣兒，更無休止。」</p>
+</blockquote>
+<p>CFPG 先输出 gate 决策：<code>should_payoff=true</code>、<code>trigger_satisfied=true</code>、<code>confidence=1.0</code>。随后生成的一句是：</p>
+<blockquote>
+<p>异史氏曰：“天子偶用一物，未必不过此已忘；而奉行者即为定例。</p>
+</blockquote>
+<p>两者都蕴含 gold 句的关键轨迹，judge 因此均给 1.0。CFPG 的原始模型响应实际继续生成了后续评论，但实验代码按论文“一句 continuation”口径截取第一句进行评判。完整响应、gate evidence 和 judge rationale 见 <a href="../results/oracle_smoke_20260713/oracle.jsonl">oracle.jsonl</a>。</p>
+<h2 id="与原论文的结果比较">6. 与原论文的结果比较</h2>
+<h3 id="数据规模与跨度">6.1 数据规模与跨度</h3>
+<table>
+<thead>
+<tr class="header">
+<th>项目</th>
+<th style="text-align: right;">原论文</th>
+<th style="text-align: right;">本实验</th>
+<th>是否可直接比较</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>输入</td>
+<td style="text-align: right;">BookSum 长篇摘要</td>
+<td style="text-align: right;">短篇小说原文</td>
+<td>否，原文噪声和文体信息更多</td>
+</tr>
+<tr class="even">
+<td>作品数</td>
+<td style="text-align: right;">148 books</td>
+<td style="text-align: right;">10 stories</td>
+<td>可比较规模，不可比较质量</td>
+</tr>
+<tr class="odd">
+<td>Validated F–P</td>
+<td style="text-align: right;">629</td>
+<td style="text-align: right;">25</td>
+<td>本实验还是单 verifier bootstrap</td>
+</tr>
+<tr class="even">
+<td>平均跨度</td>
+<td style="text-align: right;">20.9 句</td>
+<td style="text-align: right;">43.08 段</td>
+<td>否，单位和段落粒度不同</td>
+</tr>
+<tr class="odd">
+<td>中位跨度</td>
+<td style="text-align: right;">13 句</td>
+<td style="text-align: right;">25 段</td>
+<td>否</td>
+</tr>
+<tr class="even">
+<td>最大跨度</td>
+<td style="text-align: right;">230 句</td>
+<td style="text-align: right;">174 段</td>
+<td>否</td>
+</tr>
+<tr class="odd">
+<td>Object foreshadow</td>
+<td style="text-align: right;">48.2%</td>
+<td style="text-align: right;">16%</td>
+<td>类型体系不同；本实验从原文中另分人物状态、环境描写和叙述者评论</td>
+</tr>
+</tbody>
+</table>
+<p>本实验的 25 条不是论文 629 条数据的等价子集。最明显的变化是：摘要将事件压缩成少量句子，而原文中的同一伏笔可能跨过大量对话和描写段落。因此 43.08 段不能被解释为“比论文 20.9 句更长一倍”，只能说明短篇原文版确实形成了长距离测试案例。</p>
+<h3 id="oracle-timing-效果">6.2 Oracle Timing 效果</h3>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>数据 / Base model</th>
+<th style="text-align: right;">Prompt Avg. Score</th>
+<th style="text-align: right;">CFPG Should-Payoff</th>
+<th style="text-align: right;">CFPG Avg. Score</th>
+<th style="text-align: right;">CFPG 相对 Prompt 增量</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paper / GPT-4.1-mini</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.911</td>
+<td style="text-align: right;">+0.342</td>
+</tr>
+<tr class="even">
+<td>Paper / Claude-Haiku-4.5</td>
+<td style="text-align: right;">0.657</td>
+<td style="text-align: right;">0.965</td>
+<td style="text-align: right;">0.940</td>
+<td style="text-align: right;">+0.283</td>
+</tr>
+<tr class="odd">
+<td>Paper / Qwen2.5-3B</td>
+<td style="text-align: right;">0.481</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">0.781</td>
+<td style="text-align: right;">+0.300</td>
+</tr>
+<tr class="even">
+<td>Paper / Qwen2.5-7B</td>
+<td style="text-align: right;">0.517</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.797</td>
+<td style="text-align: right;">+0.280</td>
+</tr>
+<tr class="odd">
+<td>Paper / Qwen2.5-14B</td>
+<td style="text-align: right;">0.583</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.898</td>
+<td style="text-align: right;">+0.315</td>
+</tr>
+<tr class="even">
+<td>Paper / Llama-3.1-8B</td>
+<td style="text-align: right;">0.530</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.802</td>
+<td style="text-align: right;">+0.272</td>
+</tr>
+<tr class="odd">
+<td><strong>本实验 / DeepSeek V4 Pro / 1 case</strong></td>
+<td style="text-align: right;"><strong>1.000</strong></td>
+<td style="text-align: right;"><strong>1.000</strong></td>
+<td style="text-align: right;"><strong>1.000</strong></td>
+<td style="text-align: right;"><strong>0.000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>论文在六个模型上都观察到 CFPG 相对 Prompt 提升 0.272–0.342。本实验 smoke case 没有观察到提升，因为 Prompt 已经准确续写经典原文，形成 ceiling effect。样本数只有 1，置信区间和统计显著性都没有意义。因此当前结果既不能复现论文的提升幅度，也不能反驳论文结论。</p>
+<h3 id="grounded-tracking-效果">6.3 Grounded Tracking 效果</h3>
+<p>论文 GPT-4.1-mini 的核心结果如下；本实验对应流程尚未实际运行：</p>
+<table>
+<thead>
+<tr class="header">
+<th>方法</th>
+<th style="text-align: right;">Correct Detection</th>
+<th style="text-align: right;">Early</th>
+<th style="text-align: right;">Late</th>
+<th style="text-align: right;">Localization Error</th>
+<th style="text-align: right;">Fidelity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paper FAP</td>
+<td style="text-align: right;">58.0%</td>
+<td style="text-align: right;">235</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">8.85</td>
+<td style="text-align: right;">0.453</td>
+</tr>
+<tr class="even">
+<td>Paper FSCR</td>
+<td style="text-align: right;">48.6%</td>
+<td style="text-align: right;">306</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13.05</td>
+<td style="text-align: right;">0.382</td>
+</tr>
+<tr class="odd">
+<td>Paper CFPG</td>
+<td style="text-align: right;">69.8%</td>
+<td style="text-align: right;">166</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">5.76</td>
+<td style="text-align: right;">0.647</td>
+</tr>
+<tr class="even">
+<td>本实验 FAP</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+</tr>
+<tr class="odd">
+<td>本实验 FSCR</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+</tr>
+<tr class="even">
+<td>本实验 CFPG</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+<td style="text-align: right;">未运行</td>
+</tr>
+</tbody>
+</table>
+<p>论文中 CFPG 相对 FAP 的主要改善是检测率 +11.8 个百分点、Early Trigger 减少 69、Localization Error 降低 3.09、Fidelity 提升约 0.194（论文表格标注为 +0.221，与表中显示值的直接相减不一致）。本实验只有在跑完约 10,098 次逐句 decision 后才能检查短篇原文上是否保留这些趋势。</p>
+<h3 id="是否已经完全复现论文">6.4 是否已经完全复现论文</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>论文组成</th>
+<th>当前状态</th>
+<th>证据或缺口</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>F–T–P 表示</td>
+<td>已复现</td>
+<td>25 条句级案例保留 F/T/P 和证据 span</td>
+</tr>
+<tr class="even">
+<td>从文本抽取候选</td>
+<td>已复现但有改动</td>
+<td>直接读原文；30 条候选</td>
+</tr>
+<tr class="odd">
+<td>Payoff alignment verification</td>
+<td>部分复现</td>
+<td>单 verifier；论文是 symbolic gate + 两个独立 rubric verifier</td>
+</tr>
+<tr class="even">
+<td>Oracle Timing 代码</td>
+<td>已复现</td>
+<td>Prompt/CFPG/gate/generation/judge 均已实现</td>
+</tr>
+<tr class="odd">
+<td>Oracle Timing 全量结果</td>
+<td><strong>未复现</strong></td>
+<td>仅 1/25 案例</td>
+</tr>
+<tr class="even">
+<td>FAP / FSCR / CFPG Tracking 代码</td>
+<td>已复现</td>
+<td>三种方法和论文指标均已实现</td>
+</tr>
+<tr class="odd">
+<td>Grounded Tracking 全量结果</td>
+<td><strong>未复现</strong></td>
+<td>尚未运行</td>
+</tr>
+<tr class="even">
+<td>Error attribution taxonomy</td>
+<td><strong>未复现</strong></td>
+<td>需要先获得全量错误案例</td>
+</tr>
+<tr class="odd">
+<td>Attention causal saliency</td>
+<td><strong>未复现</strong></td>
+<td>API 模型不提供内部 attention</td>
+</tr>
+<tr class="even">
+<td>双人质量检查</td>
+<td><strong>未复现</strong></td>
+<td>当前没有 100 条双人标注</td>
+</tr>
+</tbody>
+</table>
+<p>所以准确说法是：<strong>已经完成论文方法的工程适配和 F–T–P 数据抽取，尚未完成论文实验结果的全量复现。</strong></p>
+<h3 id="为什么-oracle-显示当前-1-25">6.5 为什么 Oracle 显示“当前 1 / 25”</h3>
+<p>这里的“未完成”指的是 <strong>全量结果尚未执行</strong>，不是 Oracle 代码没有实现。需要区分四个层次：</p>
+<table>
+<thead>
+<tr class="header">
+<th>层次</th>
+<th>Oracle 当前状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>方法设计</td>
+<td>已完成</td>
+<td>已实现论文的 payoff 前截断、Prompt baseline、CFPG gate 和显式 payoff 控制</td>
+</tr>
+<tr class="even">
+<td>程序实现</td>
+<td>已完成</td>
+<td><code>run_short_story_cfpg.py --experiment oracle</code> 可以遍历全部案例并断点续跑</td>
+</tr>
+<tr class="odd">
+<td>小规模验证</td>
+<td>已完成</td>
+<td>《促织》1 条案例已真实调用 API，生成、judge 和汇总均成功</td>
+</tr>
+<tr class="even">
+<td>全量实验结果</td>
+<td><strong>未完成</strong></td>
+<td>25 条中只运行 1 条，另外 24 条没有生成结果</td>
+</tr>
+</tbody>
+</table>
+<p>25 条 F–T–P 案例已经全部准备在 <a href="../data/cfpg_cases.jsonl">cfpg_cases.jsonl</a>。每个案例需要运行：</p>
+<ol type="1">
+<li>Prompt baseline 生成一次；</li>
+<li>Prompt continuation judge 一次；</li>
+<li>CFPG gate 判断一次；</li>
+<li>CFPG 条件生成一次；</li>
+<li>CFPG continuation judge 一次。</li>
+</ol>
+<p>因此完整 Oracle 是 <code>25 × 5 = 125</code> 次模型调用，最终 <code>oracle.jsonl</code> 应包含 <code>25 × 2 = 50</code> 条方法结果。目前 <a href="../results/oracle_smoke_20260713/oracle.jsonl">oracle.jsonl</a> 只有 2 行，即同一条《促织》案例的 Prompt 和 CFPG 结果；所以前端显示 <code>1 / 25</code>。</p>
+<p>当时没有直接启动剩余 24 条，原因是：</p>
+<ul>
+<li>先用 1 条案例检查 API 兼容性和 token 配置；第一次 smoke 确实发现无控制生成正文为空，需要提高 completion budget；</li>
+<li>全量调用会产生实际 API 成本，应在模型、judge 和预算确定后运行；</li>
+<li>现有经典小说存在模型背诵风险，且旧抽取分类和 annotation leakage 尚需先修正；</li>
+<li>单案例已经足够验证工程链路，但不足以形成论文效果结论。</li>
+</ul>
+<p>全量 Oracle 的完成标准是：Prompt 和 CFPG 各有 25 条结果、CFPG 有 25 次 gate 决策、所有 50 条 continuation 都有 judge 输出，汇总表中两种方法的 <code>cases</code> 都等于 25。修正分类不会改变 F/P anchor，因此可以在当前 <code>taxonomy_v2</code> 和中文统计更新后继续执行。</p>
+<p>Grounded Tracking 的情况不同：代码也已实现，但逐句扫描的最坏上限约为 10,098 次 decision，再加触发后的生成和 judge，运行成本远高于 Oracle。因此它当前属于“代码完成、全量结果未执行”。</p>
+<h2 id="当前结论">7. 当前结论</h2>
+<ol type="1">
+<li>短篇原文可以直接用于 CFPG，不需要先压缩为摘要；稳定的段落和句级 ID 足以支持 F–T–P 证据定位。</li>
+<li>已抽取的 25 条结构平均跨越 43.08 个段落，能够测试长距离伏笔回收。</li>
+<li>Oracle gate、条件生成、LLM judge 和指标汇总链路已在真实 API 上跑通。</li>
+<li>单个《促织》案例中 CFPG 正确激活 payoff，但 Prompt 同样生成正确轨迹，暂时不能形成方法优劣结论。</li>
+<li>必须完成全量 Oracle 和 Grounded Tracking 后，才能与论文表 1、表 2 做方法级比较。</li>
+</ol>
+<h2 id="有效性威胁">8. 有效性威胁</h2>
+<ul>
+<li>抽取 run <code>v3_verified</code> 曾为英文作品插入中文辅助译文，并为部分作品提供 seed YAML 上下文；它适合流程验证，但存在 annotation leakage，不应作为最终无泄漏结果。</li>
+<li>当前 verifier 只有单模型判定，而论文使用两个独立 verifier 对四项 rubric 共同过滤。</li>
+<li>段落级 F/P span 通过确定性词汇重合转换为句级 anchor，仍属于 weak alignment，需要人工复核。</li>
+<li>经典作品可能被生成模型记忆，尤其会使 Oracle Timing 结果虚高。</li>
+<li>当前 smoke test 使用同一个模型生成和评判，正式实验应指定独立 judge，并抽样进行人工评测。</li>
+<li>8 篇英文作品的现有中文译文可以用于内部中文统计与阅读，但来源授权状态尚未逐篇确认；公开发布中文全文前仍需按 <code>docs/chinese_translation_audit.json</code> 完成版权核验或更换授权译本。</li>
+</ul>
+<h2 id="后续实验">9. 后续实验</h2>
+<p>完整实验预计包含约 125 次 Oracle API 调用，以及最多 10,098 次在线 decision 调用，另加触发后的生成和 judge 调用。</p>
+<p>检查调用规模：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> foreshadow/short_stories/cfpg/scripts/run_short_story_cfpg.py <span class="at">--dry-run</span></span></code></pre></div>
+<p>运行完整 Oracle：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> foreshadow/short_stories/cfpg/scripts/run_short_story_cfpg.py <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--experiment</span> oracle <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--run-id</span> oracle_full</span></code></pre></div>
+<p>运行论文口径的逐句在线实验：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> foreshadow/short_stories/cfpg/scripts/run_short_story_cfpg.py <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--experiment</span> tracking <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--stride</span> 1 <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--run-id</span> tracking_full</span></code></pre></div>
+<p>建议正式运行前先进行 clean-source F–T–P 重抽取，并使用独立的 <code>--judge-model</code>。完整操作说明见实验根目录的 <a href="../README.md">README</a>。</p>
+<h2 id="可视化前端">10. 可视化前端</h2>
+<p>静态前端已经生成：<a href="dashboard.html">打开 dashboard.html</a>。它不依赖后端或外部 JavaScript 库，可以直接打开，包含：</p>
+<ul>
+<li>10/30/25、接受率和跨度 KPI；</li>
+<li>从原文、候选抽取、verifier、句级适配到生成评测的流程及完成状态；</li>
+<li>逐作品接受/拒绝条形图；</li>
+<li>F–P 跨度分布、Foreshadow 类型和 Payoff 类型分布；</li>
+<li>7 份实际 Prompt 模板及版本号，可展开查看 system/user 全文；</li>
+<li>Prompt 与 CFPG 的 Oracle 原始输出和论文结果对照；</li>
+<li>30 条候选的作品、状态、类型和关键词筛选；</li>
+<li>每条候选到原文、candidate JSONL、verifier JSONL 和 review 的链接；</li>
+<li>完全复现审计清单与已知限制。</li>
+</ul>
+<p>前端由结构化结果重新生成，而不是手工维护。数据更新后运行：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> foreshadow/short_stories/cfpg/scripts/render_cfpg_report_frontend.py</span></code></pre></div>
+<p>生成器：<a href="../scripts/render_cfpg_report_frontend.py">render_cfpg_report_frontend.py</a>。</p>
+<h2 id="全部-30-条候选的分类修订审计">11. 全部 30 条候选的分类修订审计</h2>
+<p>下表展示历史模型标签、人工复核后的互斥主类型和独立叙事功能。历史标签只用于追踪旧结果，不再参与新版统计。</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>candidate_id</th>
+<th>状态</th>
+<th>历史标签</th>
+<th>新主类型</th>
+<th>叙事功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cask_of_amontillado:ftp_candidate:000001</code></td>
+<td>通过</td>
+<td><code>object</code></td>
+<td><code>object</code></td>
+<td><code>retrospective_reinterpretation</code></td>
+</tr>
+<tr class="even">
+<td><code>cask_of_amontillado:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>rule</code></td>
+<td><code>rule</code></td>
+<td><code>direct_setup</code></td>
+</tr>
+<tr class="odd">
+<td><code>cask_of_amontillado:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>object</code></td>
+<td><code>dialogue</code></td>
+<td><code>misdirection</code></td>
+</tr>
+<tr class="even">
+<td><code>cricket:ftp_candidate:000001</code></td>
+<td>通过</td>
+<td><code>social</code></td>
+<td><code>rule</code></td>
+<td><code>ironic_contrast</code></td>
+</tr>
+<tr class="odd">
+<td><code>cricket:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>psychological</code></td>
+<td><code>event</code></td>
+<td><code>retrospective_reinterpretation</code></td>
+</tr>
+<tr class="even">
+<td><code>cricket:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>social</code></td>
+<td><code>character_state</code></td>
+<td><code>ironic_contrast</code></td>
+</tr>
+<tr class="odd">
+<td><code>gift_of_the_magi:ftp_candidate:000001</code></td>
+<td>拒绝</td>
+<td><code>object</code></td>
+<td><code>object</code></td>
+<td><code>ironic_contrast</code></td>
+</tr>
+<tr class="even">
+<td><code>gift_of_the_magi:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>symbolic</code></td>
+<td><code>narrator_commentary</code></td>
+<td><code>symbolic_reframing</code></td>
+</tr>
+<tr class="odd">
+<td><code>gift_of_the_magi:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>red_herring</code></td>
+<td><code>dialogue</code></td>
+<td><code>misdirection</code></td>
+</tr>
+<tr class="even">
+<td><code>last_leaf:ftp_candidate:000001</code></td>
+<td>通过</td>
+<td><code>object</code></td>
+<td><code>character_state</code></td>
+<td><code>direct_setup</code></td>
+</tr>
+<tr class="odd">
+<td><code>last_leaf:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>symbolic</code></td>
+<td><code>dialogue</code></td>
+<td><code>retrospective_reinterpretation</code></td>
+</tr>
+<tr class="even">
+<td><code>last_leaf:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>spatial</code></td>
+<td><code>environment_description</code></td>
+<td><code>direct_setup</code></td>
+</tr>
+<tr class="odd">
+<td><code>medicine:ftp_candidate:000001</code></td>
+<td>拒绝</td>
+<td><code>symbolic</code></td>
+<td><code>object</code></td>
+<td><code>ironic_contrast</code></td>
+</tr>
+<tr class="even">
+<td><code>medicine:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>social</code></td>
+<td><code>dialogue</code></td>
+<td><code>symbolic_reframing</code></td>
+</tr>
+<tr class="odd">
+<td><code>medicine:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>spatial</code></td>
+<td><code>environment_description</code></td>
+<td><code>retrospective_reinterpretation</code></td>
+</tr>
+<tr class="even">
+<td><code>necklace:ftp_candidate:000001</code></td>
+<td>通过</td>
+<td><code>object</code></td>
+<td><code>object</code></td>
+<td><code>misdirection</code></td>
+</tr>
+<tr class="odd">
+<td><code>necklace:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>psychological</code></td>
+<td><code>character_state</code></td>
+<td><code>ironic_contrast</code></td>
+</tr>
+<tr class="even">
+<td><code>necklace:ftp_candidate:000003</code></td>
+<td>拒绝</td>
+<td><code>retrospective</code></td>
+<td><code>object</code></td>
+<td><code>misdirection</code></td>
+</tr>
+<tr class="odd">
+<td><code>red_headed_league:ftp_candidate:000001</code></td>
+<td>通过</td>
+<td><code>psychological</code></td>
+<td><code>character_state</code></td>
+<td><code>anomaly</code></td>
+</tr>
+<tr class="even">
+<td><code>red_headed_league:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>rule</code></td>
+<td><code>rule</code></td>
+<td><code>misdirection</code></td>
+</tr>
+<tr class="odd">
+<td><code>red_headed_league:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>retrospective</code></td>
+<td><code>dialogue</code></td>
+<td><code>retrospective_reinterpretation</code></td>
+</tr>
+<tr class="even">
+<td><code>speckled_band:ftp_candidate:000001</code></td>
+<td>拒绝</td>
+<td><code>red_herring</code></td>
+<td><code>dialogue</code></td>
+<td><code>misdirection</code></td>
+</tr>
+<tr class="odd">
+<td><code>speckled_band:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>object</code></td>
+<td><code>object</code></td>
+<td><code>anomaly</code></td>
+</tr>
+<tr class="even">
+<td><code>speckled_band:ftp_candidate:000003</code></td>
+<td>拒绝</td>
+<td><code>rule</code></td>
+<td><code>event</code></td>
+<td><code>retrospective_reinterpretation</code></td>
+</tr>
+<tr class="odd">
+<td><code>tell_tale_heart:ftp_candidate:000001</code></td>
+<td>通过</td>
+<td><code>psychological</code></td>
+<td><code>character_state</code></td>
+<td><code>direct_setup</code></td>
+</tr>
+<tr class="even">
+<td><code>tell_tale_heart:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>psychological</code></td>
+<td><code>event</code></td>
+<td><code>retrospective_reinterpretation</code></td>
+</tr>
+<tr class="odd">
+<td><code>tell_tale_heart:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>object</code></td>
+<td><code>object</code></td>
+<td><code>direct_setup</code></td>
+</tr>
+<tr class="even">
+<td><code>to_build_a_fire:ftp_candidate:000001</code></td>
+<td>通过</td>
+<td><code>rule</code></td>
+<td><code>dialogue</code></td>
+<td><code>warning</code></td>
+</tr>
+<tr class="odd">
+<td><code>to_build_a_fire:ftp_candidate:000002</code></td>
+<td>通过</td>
+<td><code>spatial</code></td>
+<td><code>environment_description</code></td>
+<td><code>warning</code></td>
+</tr>
+<tr class="even">
+<td><code>to_build_a_fire:ftp_candidate:000003</code></td>
+<td>通过</td>
+<td><code>psychological</code></td>
+<td><code>character_state</code></td>
+<td><code>warning</code></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

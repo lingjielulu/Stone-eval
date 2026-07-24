@@ -29,7 +29,7 @@ from stone_eval.longstory import (
 @click.group()
 @click.version_option(__version__)
 def main():
-    """Stone-eval: HongLou Meng continuation evaluation suite."""
+    """Stone-eval: Chinese long-form narrative evaluation and analysis."""
 
 
 def _load_dotenv(path: Path = Path(".env")) -> None:
@@ -44,16 +44,21 @@ def _load_dotenv(path: Path = Path(".env")) -> None:
 
 
 @main.command("prepare-corpus")
-@click.option("--original", default="红楼梦.txt", show_default=True, help="Original text file")
+@click.option(
+    "--original",
+    default="resources/corpora/hongloumeng/红楼梦.txt",
+    show_default=True,
+    help="Original text file",
+)
 @click.option(
     "--continuations",
-    default="红楼梦续作文本",
+    default="resources/corpora/hongloumeng/continuations",
     show_default=True,
     help="Directory containing continuation .txt files",
 )
 @click.option(
     "--output-dir",
-    default="data/processed",
+    default="resources/corpora/hongloumeng/prepared",
     show_default=True,
     help="Directory for prepared evaluation inputs",
 )
@@ -90,11 +95,15 @@ def prepare_corpus(original, continuations, output_dir, original_chapters):
 @main.command("validate-corpus")
 @click.option(
     "--processed-dir",
-    default="data/processed",
+    default="resources/corpora/hongloumeng/prepared",
     show_default=True,
     help="Prepared corpus directory",
 )
-@click.option("--output", default="outputs/corpus_validation.json", show_default=True)
+@click.option(
+    "--output",
+    default="resources/corpora/hongloumeng/prepared/reports/corpus_validation.json",
+    show_default=True,
+)
 def validate_corpus(processed_dir, output):
     """Validate prepared ConStory and LongStoryEval inputs."""
     import pandas as pd
@@ -195,7 +204,11 @@ def validate_corpus(processed_dir, output):
     required=True,
     type=click.Path(path_type=Path),
 )
-@click.option("--output-dir", default="outputs/longstoryeval/summaries", show_default=True)
+@click.option(
+    "--output-dir",
+    default="experiments/hongloumeng_longstoryeval/runs/summaries",
+    show_default=True,
+)
 @click.option("--model", default=None, help="Default: $JUDGE_MODEL or gpt-4o")
 @click.option("--api-base", default=None, help="Default: $OPENAI_BASE_URL")
 @click.option("--api-key", default=None, help="Default: $OPENAI_API_KEY")
@@ -253,7 +266,11 @@ def longstory_summarize(
     required=True,
     type=click.Path(path_type=Path),
 )
-@click.option("--output-dir", default="outputs/longstoryeval/evaluations", show_default=True)
+@click.option(
+    "--output-dir",
+    default="experiments/hongloumeng_longstoryeval/runs/evaluations",
+    show_default=True,
+)
 @click.option("--model", default=None, help="Default: $JUDGE_MODEL or gpt-4o")
 @click.option("--api-base", default=None, help="Default: $OPENAI_BASE_URL")
 @click.option("--api-key", default=None, help="Default: $OPENAI_API_KEY")
@@ -305,7 +322,11 @@ def longstory_evaluate(
 @main.command("constory-judge")
 @click.option("--input", "input_path", required=True, help="Prepared ConStory parquet path")
 @click.option("--model-name", required=True, help="Name used in ConStory output filename")
-@click.option("--output-dir", default="outputs/constory", show_default=True)
+@click.option(
+    "--output-dir",
+    default="experiments/hongloumeng_constory_smoke/runs",
+    show_default=True,
+)
 @click.option(
     "--output-file",
     default=None,
@@ -341,7 +362,7 @@ def constory_judge(
         raise click.ClickException("Missing API key. Set OPENAI_API_KEY or pass --api-key.")
 
     repo_root = Path(__file__).resolve().parent.parent
-    constory_root = repo_root / "lib" / "ConStory-Bench"
+    constory_root = repo_root / "third_party" / "ConStory-Bench"
     prompts_dir = constory_root / "prompts"
     env = os.environ.copy()
     env["PYTHONPATH"] = (
@@ -430,21 +451,27 @@ def emotion(text, reference, output):
 @main.command("emotion-happiness")
 @click.option(
     "--book-json",
-    default="data/processed/longstoryeval/original/books_json/红楼梦前80回.json",
+    default=(
+        "resources/corpora/hongloumeng/prepared/longstoryeval/"
+        "original/books_json/红楼梦前80回.json"
+    ),
     show_default=True,
     type=click.Path(path_type=Path),
     help="LongStoryEval book JSON to score",
 )
 @click.option(
     "--output",
-    default="outputs/emotion/original_80_happiness.json",
+    default="experiments/hongloumeng_emotion_arc/runs/current/original_80_happiness.json",
     show_default=True,
     type=click.Path(path_type=Path),
     help="JSON array output path",
 )
 @click.option(
     "--summary-output",
-    default="outputs/emotion/original_80_happiness_summary.json",
+    default=(
+        "experiments/hongloumeng_emotion_arc/runs/current/"
+        "original_80_happiness_summary.json"
+    ),
     show_default=True,
     type=click.Path(path_type=Path),
     help="Companion summary with chapter-level curve",
@@ -463,14 +490,17 @@ def emotion_happiness(book_json, output, summary_output):
 @main.command("emotion-arc")
 @click.option(
     "--book-json",
-    default="data/processed/longstoryeval/original/books_json/红楼梦前80回.json",
+    default=(
+        "resources/corpora/hongloumeng/prepared/longstoryeval/"
+        "original/books_json/红楼梦前80回.json"
+    ),
     show_default=True,
     type=click.Path(path_type=Path),
     help="LongStoryEval book JSON to score",
 )
 @click.option(
     "--output",
-    default="outputs/emotion/original_80_emotion_arc.json",
+    default="experiments/hongloumeng_emotion_arc/runs/current/original_80_emotion_arc.json",
     show_default=True,
     type=click.Path(path_type=Path),
 )
@@ -509,14 +539,20 @@ def emotion_arc(book_json, output, points, window_size, lexicon, positive_lexico
 @main.command("emotion-arc-model")
 @click.option(
     "--book-json",
-    default="data/processed/longstoryeval/original/books_json/红楼梦前80回.json",
+    default=(
+        "resources/corpora/hongloumeng/prepared/longstoryeval/"
+        "original/books_json/红楼梦前80回.json"
+    ),
     show_default=True,
     type=click.Path(path_type=Path),
     help="LongStoryEval book JSON to score",
 )
 @click.option(
     "--output",
-    default="outputs/emotion/model_score/original_80_llm_arc.json",
+    default=(
+        "experiments/hongloumeng_emotion_arc/runs/current/"
+        "model_score/original_80_llm_arc.json"
+    ),
     show_default=True,
     type=click.Path(path_type=Path),
 )

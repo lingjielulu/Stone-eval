@@ -14,7 +14,7 @@ from typing import Any, Iterable
 from openai import OpenAI
 
 
-DEFAULT_PROMPT_ROOT = Path("lib/LongStoryEval")
+DEFAULT_PROMPT_ROOT = Path("third_party/LongStoryEval")
 DEFAULT_SUMMARY_PROMPTS = DEFAULT_PROMPT_ROOT / "summarize_book" / "prompts"
 DEFAULT_EVAL_PROMPT = (
     DEFAULT_PROMPT_ROOT / "evaluation_codes" / "prompt_template" / "no_criteria.txt"
@@ -364,4 +364,3 @@ def env_config(model: str | None, api_base: str | None, api_key: str | None) -> 
         api_base=api_base or os.environ.get("OPENAI_BASE_URL"),
         api_key=resolved_key,
     )
-

@@ -1,6 +1,6 @@
 [submodule "lib/ConStory-Bench"]
-	path = lib/ConStory-Bench
+	path = third_party/ConStory-Bench
 	url = https://github.com/Picrew/ConStory-Bench.git
 [submodule "lib/LongStoryEval"]
-	path = lib/LongStoryEval
+	path = third_party/LongStoryEval
 	url = https://github.com/DingyiYang/LongStoryEval.git

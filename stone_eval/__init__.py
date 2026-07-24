@@ -1,3 +1,3 @@
-"""Stone-eval: Evaluation suite for HongLou Meng continuation quality."""
+"""Stone-eval: Chinese long-form narrative evaluation and analysis tools."""
 
 __version__ = "0.1.0"

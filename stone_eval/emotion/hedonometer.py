@@ -188,7 +188,7 @@ def resolve_lexicon(
     if name == "builtin":
         return "builtin_weighted_terms", term_happiness_scores()
     if name == "ntusd":
-        root = Path("data/lexicons/ntusd")
+        root = Path("resources/lexicons/ntusd")
         lexicon = load_polarity_lexicon(root / "positive_utf8.txt", root / "negative_utf8.txt")
         return "ntusd_polarity", lexicon
     raise ValueError(f"Unknown lexicon: {name}")
