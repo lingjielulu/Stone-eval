@@ -27,7 +27,7 @@ python -m stone_eval.cli emotion-arc-model \
   --model-backend llm \
   --points 80 \
   --window-size 5000 \
-  --output experiments/hongloumeng_emotion_arc/runs/baselines_202606/model_score/original_80_deepseek_arc.json \
+  --output stone_eval/emotion/results/hongloumeng_baselines_202606/model_score/original_80_deepseek_arc.json \
   --concurrent 1
 ```
 
@@ -38,7 +38,7 @@ python -m stone_eval.cli emotion-arc-model \
   --model-backend llm \
   --points 160 \
   --window-size 5000 \
-  --output experiments/hongloumeng_emotion_arc/runs/baselines_202606/model_score/original_80_deepseek_arc_160p.json \
+  --output stone_eval/emotion/results/hongloumeng_baselines_202606/model_score/original_80_deepseek_arc_160p.json \
   --concurrent 1
 ```
 
@@ -49,7 +49,7 @@ python -m stone_eval.cli emotion-arc-model \
   --model-backend snownlp \
   --points 100 \
   --window-size 10000 \
-  --output experiments/hongloumeng_emotion_arc/runs/baselines_202606/model_score/original_80_snownlp_arc.json
+  --output stone_eval/emotion/results/hongloumeng_baselines_202606/model_score/original_80_snownlp_arc.json
 ```
 
 ## 开源替代方案定位
@@ -60,7 +60,7 @@ python -m stone_eval.cli emotion-arc-model \
 
 ## 隔离原则
 
-- 词典方案输出保留在 `experiments/hongloumeng_emotion_arc/runs/baselines_202606/` 或 `experiments/hongloumeng_emotion_arc/runs/baselines_202606/lexicon/`。
-- 模型方案输出保留在 `experiments/hongloumeng_emotion_arc/runs/baselines_202606/model_score/`。
+- 词典方案输出保留在 `stone_eval/emotion/results/hongloumeng_baselines_202606/` 或 `stone_eval/emotion/results/hongloumeng_baselines_202606/lexicon/`。
+- 模型方案输出保留在 `stone_eval/emotion/results/hongloumeng_baselines_202606/model_score/`。
 - 每个输出必须记录 `scheme`、`scorer_type`、`model` 或 `lexicon`、`points`、`window_size`、`prompt_version`。
 - 不把 NTUSD、SnowNLP、DeepSeek 的分数直接混合平均；只能并列画图或做相关性/稳健性比较。

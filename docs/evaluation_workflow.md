@@ -33,7 +33,7 @@ Original chapters:
 stone-eval constory-judge \
   --input resources/corpora/hongloumeng/prepared/constory/original_chapters.parquet \
   --model-name original_80 \
-  --output-dir experiments/hongloumeng_constory_smoke/runs/20260608_original80_smoke/original
+  --output-dir stone_eval/consistency/results/hongloumeng_original80_smoke_20260608/original
 ```
 
 Continuation chapters:
@@ -42,7 +42,7 @@ Continuation chapters:
 stone-eval constory-judge \
   --input resources/corpora/hongloumeng/prepared/constory/continuation_chapters.parquet \
   --model-name continuations \
-  --output-dir experiments/hongloumeng_constory_smoke/runs/continuations
+  --output-dir stone_eval/consistency/results/continuations
 ```
 
 The command reads `OPENAI_API_KEY`, `OPENAI_BASE_URL`, and `JUDGE_MODEL` from

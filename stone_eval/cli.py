@@ -206,7 +206,7 @@ def validate_corpus(processed_dir, output):
 )
 @click.option(
     "--output-dir",
-    default="experiments/hongloumeng_longstoryeval/runs/summaries",
+    default="stone_eval/quality/results/longstoryeval/summaries",
     show_default=True,
 )
 @click.option("--model", default=None, help="Default: $JUDGE_MODEL or gpt-4o")
@@ -268,7 +268,7 @@ def longstory_summarize(
 )
 @click.option(
     "--output-dir",
-    default="experiments/hongloumeng_longstoryeval/runs/evaluations",
+    default="stone_eval/quality/results/longstoryeval/evaluations",
     show_default=True,
 )
 @click.option("--model", default=None, help="Default: $JUDGE_MODEL or gpt-4o")
@@ -324,7 +324,7 @@ def longstory_evaluate(
 @click.option("--model-name", required=True, help="Name used in ConStory output filename")
 @click.option(
     "--output-dir",
-    default="experiments/hongloumeng_constory_smoke/runs",
+    default="stone_eval/consistency/results",
     show_default=True,
 )
 @click.option(
@@ -461,7 +461,7 @@ def emotion(text, reference, output):
 )
 @click.option(
     "--output",
-    default="experiments/hongloumeng_emotion_arc/runs/current/original_80_happiness.json",
+    default="stone_eval/emotion/results/current/original_80_happiness.json",
     show_default=True,
     type=click.Path(path_type=Path),
     help="JSON array output path",
@@ -469,7 +469,7 @@ def emotion(text, reference, output):
 @click.option(
     "--summary-output",
     default=(
-        "experiments/hongloumeng_emotion_arc/runs/current/"
+        "stone_eval/emotion/results/current/"
         "original_80_happiness_summary.json"
     ),
     show_default=True,
@@ -500,7 +500,7 @@ def emotion_happiness(book_json, output, summary_output):
 )
 @click.option(
     "--output",
-    default="experiments/hongloumeng_emotion_arc/runs/current/original_80_emotion_arc.json",
+    default="stone_eval/emotion/results/current/original_80_emotion_arc.json",
     show_default=True,
     type=click.Path(path_type=Path),
 )
@@ -550,7 +550,7 @@ def emotion_arc(book_json, output, points, window_size, lexicon, positive_lexico
 @click.option(
     "--output",
     default=(
-        "experiments/hongloumeng_emotion_arc/runs/current/"
+        "stone_eval/emotion/results/current/"
         "model_score/original_80_llm_arc.json"
     ),
     show_default=True,

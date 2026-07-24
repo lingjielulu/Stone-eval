@@ -6,7 +6,7 @@ ConStory-Bench 复现实验，也不代表续写生成实验。
 ## 内容
 
 - 输入：`resources/corpora/hongloumeng/prepared/constory/`
-- 历史运行：`runs/20260608_original80_smoke/`
+- 历史运行：`results/hongloumeng_original80_smoke_20260608/`
 - 外部实现：`third_party/ConStory-Bench/`
 
-`scripts/run_consistency.sh` 是早期命令提示脚本，不是完整批处理器。
+运行入口为 `stone-eval constory-judge`。旧的命令提示脚本已删除。

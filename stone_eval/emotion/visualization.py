@@ -313,7 +313,7 @@ def main() -> None:
     parser.add_argument(
         "--arc-json",
         default=(
-            "experiments/hongloumeng_emotion_arc/runs/baselines_202606/"
+            "stone_eval/emotion/results/hongloumeng_baselines_202606/"
             "original_80_emotion_arc_ntusd_recommended.json"
         ),
     )
@@ -327,21 +327,21 @@ def main() -> None:
     parser.add_argument(
         "--output-png",
         default=(
-            "experiments/hongloumeng_emotion_arc/runs/current/"
+            "stone_eval/emotion/results/current/"
             "original_80_ntusd_emotion_arc_smoothed.png"
         ),
     )
     parser.add_argument(
         "--output-json",
         default=(
-            "experiments/hongloumeng_emotion_arc/runs/current/"
+            "stone_eval/emotion/results/current/"
             "original_80_ntusd_smoothed_peaks_valleys.json"
         ),
     )
     parser.add_argument(
         "--output-csv",
         default=(
-            "experiments/hongloumeng_emotion_arc/runs/current/"
+            "stone_eval/emotion/results/current/"
             "original_80_ntusd_smoothed_peaks_valleys.csv"
         ),
     )

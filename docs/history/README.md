@@ -10,5 +10,5 @@ Current checkpoints:
 - [Processed data checkpoint](2026-06-11_processed_data_checkpoint.md)
 - [Output checkpoint](2026-06-11_outputs_checkpoint.md)
 
-These files retain historical context. Current paths and experiment status are
-documented in the corresponding directory under `experiments/`.
+These files retain historical context. Current paths and evaluation status are
+documented in the corresponding module under `stone_eval/`.

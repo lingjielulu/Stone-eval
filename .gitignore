@@ -9,10 +9,10 @@ venv/
 .env.*
 !.env.example
 
-# Experiment outputs are local by default
-experiments/hongloumeng_emotion_arc/runs/**
-experiments/hongloumeng_constory_smoke/runs/**
-experiments/hongloumeng_longstoryeval/runs/**
+# Generated evaluation results are local by default
+stone_eval/emotion/results/**
+stone_eval/consistency/results/**
+stone_eval/quality/results/**
 foreshadow/honglou/results/value_graph/*
 !foreshadow/honglou/results/value_graph/
 !foreshadow/honglou/results/value_graph/README.md
