@@ -17,6 +17,17 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const getActive = () => state.annotations.find((item) => item.annotation_id === state.activeId);
 
+function tripleLabel(item, index = state.annotations.indexOf(item)) {
+  return item?.display_id || `FTP-${String(index + 1).padStart(2, "0")}`;
+}
+
+function nextTripleLabel() {
+  const used = new Set(state.annotations.map((item, index) => tripleLabel(item, index)));
+  let number = 1;
+  while (used.has(`FTP-${String(number).padStart(2, "0")}`)) number += 1;
+  return `FTP-${String(number).padStart(2, "0")}`;
+}
+
 function escapeHtml(value = "") {
   return String(value).replace(/[&<>"']/g, (char) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;",
@@ -119,19 +130,29 @@ function selectionFor(part, lang) {
   return part?.[`selection_${lang}`] || null;
 }
 
-function renderAnnotatedText(text, paragraphId, lang, active) {
-  if (!active) return escapeHtml(text);
+function renderAnnotatedText(text, paragraphId, lang) {
   const intervals = [];
-  ["f", "t", "p"].forEach((role) => {
-    const selection = selectionFor(active[role], lang);
-    if (!selection) return;
-    const startNo = paragraphNumber(selection.start_paragraph);
-    const endNo = paragraphNumber(selection.end_paragraph);
-    const currentNo = paragraphNumber(paragraphId);
-    if (currentNo < startNo || currentNo > endNo) return;
-    const start = currentNo === startNo ? selection.start_offset : 0;
-    const end = currentNo === endNo ? selection.end_offset : text.length;
-    if (end > start) intervals.push({ start, end, role });
+  state.annotations.forEach((annotation, tripleIndex) => {
+    ["f", "t", "p"].forEach((role) => {
+      const selection = selectionFor(annotation[role], lang);
+      if (!selection) return;
+      const startNo = paragraphNumber(selection.start_paragraph);
+      const endNo = paragraphNumber(selection.end_paragraph);
+      const currentNo = paragraphNumber(paragraphId);
+      if (currentNo < startNo || currentNo > endNo) return;
+      const start = currentNo === startNo ? selection.start_offset : 0;
+      const end = currentNo === endNo ? selection.end_offset : text.length;
+      if (end > start) intervals.push({
+        start,
+        end,
+        role,
+        tripleIndex,
+        annotationId: annotation.annotation_id,
+        label: tripleLabel(annotation, tripleIndex),
+        isStart: paragraphId === selection.start_paragraph,
+        active: annotation.annotation_id === state.activeId,
+      });
+    });
   });
   if (!intervals.length) return escapeHtml(text);
   const boundaries = new Set([0, text.length]);
@@ -142,12 +163,14 @@ function renderAnnotatedText(text, paragraphId, lang, active) {
   const points = [...boundaries].sort((a, b) => a - b);
   return points.slice(0, -1).map((start, index) => {
     const end = points[index + 1];
-    const roles = intervals
-      .filter((interval) => interval.start < end && interval.end > start)
-      .map((interval) => `exact-${interval.role}`)
-      .join(" ");
+    const covering = intervals.filter((interval) => interval.start < end && interval.end > start);
+    const roles = [...new Set(covering.map((interval) => `exact-${interval.role}`))].join(" ");
     const content = escapeHtml(text.slice(start, end));
-    return roles ? `<mark class="${roles}">${content}</mark>` : content;
+    if (!roles) return content;
+    const primary = covering.find((interval) => interval.active) || covering[0];
+    const begins = covering.find((interval) => interval.isStart && interval.start === start);
+    const labelAttribute = begins ? ` data-label="${escapeHtml(`${begins.label}·${begins.role.toUpperCase()}`)}"` : "";
+    return `<mark class="human-mark ${roles} ${primary.active ? "active-human" : ""}" data-human-id="${escapeHtml(primary.annotationId)}"${labelAttribute}>${content}</mark>`;
   }).join("");
 }
 
@@ -202,15 +225,15 @@ function renderText() {
     const aiClasses = [...new Set(aiItems.map((item) => `ai-${item.role}`))].join(" ");
     const aiBadges = aiItems.length
       ? `<span class="ai-badges">${[...new Map(aiItems.map((item) => [`${item.seedIndex}-${item.role}`, item])).values()]
-          .map((item) => `<i class="ai-badge ${item.role}">AI${item.seedIndex}·${item.role.toUpperCase()}</i>`).join("")}</span>`
+          .map((item) => `<i class="ai-badge ${item.role}">AI-${String(item.seedIndex).padStart(2, "0")}·${item.role.toUpperCase()}</i>`).join("")}</span>`
       : "";
     if (state.language === "parallel") {
       const enText = paragraphMap("en").get(id) || "";
       const zhText = paragraphMap("zh").get(id) || "";
       return `<article class="paragraph parallel-row ${roleClasses} ${aiClasses}" data-id="${id}">
         <button class="paragraph-id" title="选择整段 ${id}">${id}</button>
-        <div class="text-column" data-id="${id}" data-lang="en" lang="en">${enText ? renderAnnotatedText(enText, id, "en", active) : "—"}</div>
-        <div class="text-column" data-id="${id}" data-lang="zh" lang="zh-CN">${zhText ? renderAnnotatedText(zhText, id, "zh", active) : "—"}</div>
+        <div class="text-column" data-id="${id}" data-lang="en" lang="en">${enText ? renderAnnotatedText(enText, id, "en") : "—"}</div>
+        <div class="text-column" data-id="${id}" data-lang="zh" lang="zh-CN">${zhText ? renderAnnotatedText(zhText, id, "zh") : "—"}</div>
         ${aiBadges}
       </article>`;
     }
@@ -218,7 +241,7 @@ function renderText() {
     if (!text) return "";
     return `<article class="paragraph ${roleClasses} ${aiClasses}" data-id="${id}">
       <button class="paragraph-id" title="选择整段 ${id}">${id}</button>
-      <div class="text-column" data-id="${id}" data-lang="${state.language}" lang="${state.language}">${renderAnnotatedText(text, id, state.language, active)}</div>
+      <div class="text-column" data-id="${id}" data-lang="${state.language}" lang="${state.language}">${renderAnnotatedText(text, id, state.language)}</div>
       ${aiBadges}
     </article>`;
   }).join("");
@@ -307,6 +330,7 @@ function newAnnotation(seed = null) {
   const suffix = String(Date.now()).slice(-8);
   const item = {
     annotation_id: `${state.story.story_id}_ftp_${suffix}`,
+    display_id: nextTripleLabel(),
     story_id: state.story.story_id,
     status: "draft",
     annotator: "",
@@ -373,7 +397,7 @@ function renderList() {
     <button class="annotation-item ${item.annotation_id === state.activeId ? "active" : ""}" data-id="${escapeHtml(item.annotation_id)}">
       <span class="item-index">${String(index + 1).padStart(2, "0")}</span>
       <span class="item-main">
-        <strong>${escapeHtml(item.f?.summary_zh || item.f?.summary_en || "未命名伏笔")}</strong>
+        <strong><span class="triple-id">${escapeHtml(tripleLabel(item, index))}</span>${escapeHtml(item.f?.summary_zh || item.f?.summary_en || "未命名伏笔")}</strong>
         <small>${escapeHtml(item.f?.span || item.f?.span_en || item.f?.span_zh || "F?")} → ${escapeHtml(item.t?.span || item.t?.span_en || item.t?.span_zh || "T?")} → ${escapeHtml(item.p?.span || item.p?.span_en || item.p?.span_zh || "P?")}</small>
       </span>
       <i class="status-dot ${item.status}" title="${escapeHtml(state.taxonomy.status[item.status] || item.status)}"></i>
@@ -403,6 +427,7 @@ function renderEditor() {
   $("#emptyEditor").classList.toggle("hidden", Boolean(item));
   $("#editorForm").classList.toggle("hidden", !item);
   if (!item) return;
+  $("#currentTripleLabel").textContent = tripleLabel(item);
   $("#annotationId").value = item.annotation_id;
   $$("[data-field]", $("#editorForm")).forEach((field) => {
     field.value = getPath(item, field.dataset.field) ?? "";
@@ -451,6 +476,9 @@ async function loadStory(storyId, force = false) {
   state.story = storyData.story;
   state.texts = storyData.texts;
   state.annotations = annotationData.annotations || [];
+  state.annotations.forEach((item, index) => {
+    if (!item.display_id) item.display_id = `FTP-${String(index + 1).padStart(2, "0")}`;
+  });
   state.seeds = seedData.seeds || [];
   state.activeId = state.annotations[0]?.annotation_id || null;
   state.activeSeedId = null;
@@ -499,6 +527,12 @@ function bindEvents() {
     window.setTimeout(captureBrowserSelection, 0);
   });
   $("#textPane").addEventListener("click", (event) => {
+    const humanMark = event.target.closest("[data-human-id]");
+    if (humanMark && window.getSelection()?.isCollapsed) {
+      state.activeId = humanMark.dataset.humanId;
+      renderAll();
+      return;
+    }
     const paragraphButton = event.target.closest(".paragraph-id");
     if (paragraphButton) selectWholeParagraph(paragraphButton.closest(".paragraph").dataset.id);
   });

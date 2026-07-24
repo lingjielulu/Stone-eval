@@ -127,6 +127,10 @@ kbd { margin-left: 8px; padding: 2px 5px; border: 1px solid rgba(255,255,255,.25
 .item-main { min-width: 0; }
 .item-main strong, .item-main small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .item-main strong { font-size: 12px; font-weight: 600; }
+.triple-id {
+  display: inline-block; margin-right: 6px; padding: 2px 5px; border-radius: 3px;
+  color: white; background: var(--ink); font: 8px/1.2 ui-monospace, monospace; vertical-align: 1px;
+}
 .item-main small { margin-top: 5px; color: var(--muted); font: 9px ui-monospace, monospace; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #c8c1b5; }
 .status-dot.reviewed { background: var(--green); }
@@ -188,9 +192,17 @@ kbd { margin-left: 8px; padding: 2px 5px; border: 1px solid rgba(255,255,255,.25
 .ai-badge { padding: 2px 5px; border-radius: 3px; color: white; font: 8px/1.2 ui-monospace, monospace; font-style: normal; box-shadow: 0 2px 5px rgba(0,0,0,.08); }
 .ai-badge.f { background: var(--red); } .ai-badge.t { background: var(--blue); } .ai-badge.p { background: var(--green); }
 .text-column mark { padding: .08em 0; color: inherit; border-radius: 2px; }
-.text-column mark.exact-f { background: rgba(161, 62, 50, .22); box-shadow: inset 0 -2px var(--red); }
-.text-column mark.exact-t { background: rgba(45, 102, 129, .2); box-shadow: inset 0 -2px var(--blue); }
-.text-column mark.exact-p { background: rgba(57, 113, 90, .2); box-shadow: inset 0 -2px var(--green); }
+.text-column mark.human-mark { position: relative; cursor: pointer; }
+.text-column mark.human-mark:not(.active-human) { opacity: .7; }
+.text-column mark.human-mark.active-human { outline: 1px solid var(--role-color); outline-offset: 1px; }
+.text-column mark.human-mark[data-label]::before {
+  content: attr(data-label); display: inline-block; margin: 0 4px 0 1px; padding: 2px 4px;
+  border-radius: 3px; color: white; background: var(--role-color);
+  font: 8px/1.2 ui-monospace, monospace; vertical-align: 2px; white-space: nowrap;
+}
+.text-column mark.exact-f { --role-color: var(--red); background: rgba(161, 62, 50, .22); box-shadow: inset 0 -2px var(--red); }
+.text-column mark.exact-t { --role-color: var(--blue); background: rgba(45, 102, 129, .2); box-shadow: inset 0 -2px var(--blue); }
+.text-column mark.exact-p { --role-color: var(--green); background: rgba(57, 113, 90, .2); box-shadow: inset 0 -2px var(--green); }
 .text-column mark.exact-f.exact-t,
 .text-column mark.exact-f.exact-p,
 .text-column mark.exact-t.exact-p { background: rgba(178, 130, 55, .22); }
