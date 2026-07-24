@@ -3,7 +3,7 @@ metadata:
   title: "天淨沙·秋思"
   author: "馬致遠"
   language: zh
-  source_text_path: poetry_data/classical/normalized_texts/tianjingsha_qiuxi.txt
+  source_text_path: resources/corpora/poetry/classical/normalized_texts/tianjingsha_qiuxi.txt
   source_url: https://zh.wikisource.org/wiki/%E5%A4%A9%E6%B7%A8%E6%B2%99%C2%B7%E7%A7%8B%E6%80%9D
   copyright_status: public_domain
   genre: classical_chinese_poetry_imagery_stacking

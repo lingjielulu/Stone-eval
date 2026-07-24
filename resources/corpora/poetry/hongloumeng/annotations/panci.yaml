@@ -3,7 +3,7 @@ metadata:
   title: "金陵十二釵判詞全集（含又副冊、副冊）"
   author: "曹雪芹"
   language: zh
-  source_text_path: poetry_data/hongloumeng/normalized_texts/panci.txt
+  source_text_path: resources/corpora/poetry/hongloumeng/normalized_texts/panci.txt
   source_url: https://zh.wikisource.org/wiki/紅樓夢/第005回
   copyright_status: public_domain
   genre: classical_chinese_poetry_imagery_stacking

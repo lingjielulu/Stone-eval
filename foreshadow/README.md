@@ -1,7 +1,7 @@
 # Foreshadow 研究工作区
 
 伏笔识别、Foreshadow–Trigger–Payoff（F–T–P）抽取和 CFPG 复现按研究对象分为
-三组。小说语料随对应实验组保存；顶层 [`poetry_data/`](../poetry_data/) 只保留诗歌数据。
+三组。小说语料随对应实验组保存；顶层 [`resources/corpora/poetry/`](../resources/corpora/poetry/) 只保留诗歌数据。
 
 ```text
 foreshadow/
@@ -29,6 +29,6 @@ foreshadow/
 - [短篇小说组](short_stories/README.md)
 - [《红楼梦》组](honglou/README.md)
 - [契诃夫组](chekhov/README.md)
-- [诗歌数据](../poetry_data/README.md)
+- [诗歌数据](../resources/corpora/poetry/README.md)
 
 所有命令均从仓库根目录执行。

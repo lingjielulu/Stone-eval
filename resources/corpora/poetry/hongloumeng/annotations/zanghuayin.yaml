@@ -3,7 +3,7 @@ metadata:
   title: "葬花吟"
   author: "曹雪芹"
   language: zh
-  source_text_path: poetry_data/hongloumeng/normalized_texts/zanghuayin.txt
+  source_text_path: resources/corpora/poetry/hongloumeng/normalized_texts/zanghuayin.txt
   source_url: https://zh.wikisource.org/wiki/紅樓夢/第027回
   copyright_status: public_domain
   genre: classical_chinese_poetry_imagery_stack

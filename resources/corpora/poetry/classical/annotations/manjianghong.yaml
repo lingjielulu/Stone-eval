@@ -3,7 +3,7 @@ metadata:
   title: "滿江紅·寫懷"
   author: "岳飛"
   language: zh
-  source_text_path: poetry_data/classical/normalized_texts/manjianghong.txt
+  source_text_path: resources/corpora/poetry/classical/normalized_texts/manjianghong.txt
   source_url: https://zh.wikisource.org/wiki/%E6%BB%BF%E6%B1%9F%E7%B4%85
   copyright_status: public_domain
   genre: classical_chinese_poetry_imagery_stacking

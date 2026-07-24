@@ -8,8 +8,8 @@
 ```text
 stone_eval/       可复用的评测与语料处理代码
 foreshadow/       伏笔研究：短篇小说、红楼梦、契诃夫
-poetry_data/      诗歌数据
 resources/        公共语料库与情感分析词典
+  └── corpora/    红楼梦、诗歌等文本语料
 third_party/      外部 Git 子模块
 docs/             项目级说明与历史归档
 ```
@@ -30,6 +30,7 @@ docs/             项目级说明与历史归档
 
 - `stone_eval/`：按评测功能组织的 Python 实现、方法说明与运行记录。
 - `resources/corpora/hongloumeng/`：红楼梦原作、外部导入文本及派生格式。
+- `resources/corpora/poetry/`：古典诗词与红楼梦诗词数据。
 - `resources/lexicons/ntusd/`：情感分析使用的公共 NTUSD 词表。
 - `third_party/`：ConStory-Bench 与 LongStoryEval。
 
@@ -49,7 +50,7 @@ cp .env.example .env
 - ConStory smoke：`stone_eval/consistency/README.md`
 - LongStoryEval：`stone_eval/quality/README.md`
 - 伏笔工作区：`foreshadow/README.md`
-- 诗歌数据：`poetry_data/README.md`
+- 诗歌数据：`resources/corpora/poetry/README.md`
 
 ## License
 

@@ -3,7 +3,7 @@ metadata:
   title: "錦瑟"
   author: "李商隱"
   language: zh
-  source_text_path: poetry_data/classical/normalized_texts/jinse.txt
+  source_text_path: resources/corpora/poetry/classical/normalized_texts/jinse.txt
   source_url: https://zh.wikisource.org/wiki/%E9%8C%A6%E7%91%9F
   copyright_status: public_domain
   genre: classical_chinese_poetry_imagery_stacking

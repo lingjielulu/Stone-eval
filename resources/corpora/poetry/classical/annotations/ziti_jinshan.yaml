@@ -3,7 +3,7 @@ metadata:
   title: "自題金山畫像"
   author: "蘇軾"
   language: zh
-  source_text_path: poetry_data/classical/normalized_texts/ziti_jinshan.txt
+  source_text_path: resources/corpora/poetry/classical/normalized_texts/ziti_jinshan.txt
   source_url: https://zh.wikisource.org/wiki/%E8%87%AA%E9%A1%8C%E9%87%91%E5%B1%B1%E7%95%AB%E5%83%8F
   copyright_status: public_domain
   genre: classical_chinese_poetry_imagery_stacking

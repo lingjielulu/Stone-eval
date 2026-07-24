@@ -3,7 +3,7 @@ metadata:
   title: "商山早行"
   author: "溫庭筠"
   language: zh
-  source_text_path: poetry_data/classical/normalized_texts/shangshan_zaoxing.txt
+  source_text_path: resources/corpora/poetry/classical/normalized_texts/shangshan_zaoxing.txt
   source_url: https://zh.wikisource.org/wiki/%E5%95%86%E5%B1%B1%E6%97%A9%E8%A1%8C
   copyright_status: public_domain
   genre: classical_chinese_poetry_imagery_stacking
