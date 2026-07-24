@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>伏笔 F–T–P 人工标注台</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">伏</span>
+        <div>
+          <h1>F–T–P 标注台</h1>
+          <p>Foreshadow · Trigger · Payoff</p>
+        </div>
+      </div>
+      <div class="story-controls">
+        <label>
+          <span>小说</span>
+          <select id="storySelect" aria-label="切换小说"></select>
+        </label>
+        <div class="language-switch" role="group" aria-label="文本语言">
+          <button data-lang="en">EN</button>
+          <button data-lang="zh">中文</button>
+          <button data-lang="parallel">对照</button>
+        </div>
+      </div>
+      <div class="save-area">
+        <span id="saveState" class="save-state">已保存</span>
+        <button id="saveButton" class="primary">保存标注 <kbd>⌘S</kbd></button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="annotation-rail">
+        <div class="rail-head">
+          <div>
+            <span class="eyebrow">ANNOTATIONS</span>
+            <strong><span id="annotationCount">0</span> 条三元组</strong>
+          </div>
+          <button id="newButton" class="icon-button" title="新建三元组">＋</button>
+        </div>
+        <div class="progress"><i id="progressBar"></i></div>
+        <p id="progressText" class="muted">尚无已复核标注</p>
+        <div id="annotationList" class="annotation-list"></div>
+        <section class="seed-section">
+          <button id="seedToggle" class="seed-toggle">
+            <span>参考候选</span><span id="seedCount" class="pill">0</span>
+          </button>
+          <div id="seedList" class="seed-list hidden"></div>
+        </section>
+      </aside>
+
+      <section class="reader">
+        <div class="reader-head">
+          <div>
+            <span id="storyKicker" class="eyebrow">SHORT STORY</span>
+            <h2 id="storyTitle">载入中…</h2>
+            <p id="storyMeta"></p>
+          </div>
+          <div class="selection-tools">
+            <span id="selectionLabel">在正文中拖选任意文字</span>
+            <button id="aiToggle" class="ai-toggle"><i></i>显示 AI 结果 <b id="aiCount">0</b></button>
+            <button data-assign="f" class="assign f">设为 F</button>
+            <button data-assign="t" class="assign t">设为 T</button>
+            <button data-assign="p" class="assign p">设为 P</button>
+          </div>
+        </div>
+        <div id="textPane" class="text-pane" tabindex="0"></div>
+      </section>
+
+      <aside class="editor">
+        <div id="emptyEditor" class="empty-editor">
+          <span>F · T · P</span>
+          <h2>选择或新建一条三元组</h2>
+          <p>在正文中自由拖选任意文字，再分别设为伏笔、触发与兑现。</p>
+          <button class="primary" data-action="new">新建第一条标注</button>
+        </div>
+        <form id="editorForm" class="hidden">
+          <div class="editor-head">
+            <div>
+              <span class="eyebrow">CURRENT TRIPLE</span>
+              <input id="annotationId" class="id-input" aria-label="标注 ID">
+            </div>
+            <button id="deleteButton" type="button" class="danger-text">删除</button>
+          </div>
+
+          <div class="triple-flow">
+            <section class="triple-card f-card">
+              <header><b>F</b><span>Foreshadow · 伏笔</span></header>
+              <button type="button" class="span-jump" data-jump="f">尚未选择段落</button>
+              <textarea data-field="f.summary_zh" placeholder="中文概括"></textarea>
+              <textarea data-field="f.summary_en" placeholder="English summary"></textarea>
+            </section>
+            <div class="flow-arrow">→</div>
+            <section class="triple-card t-card">
+              <header><b>T</b><span>Trigger · 触发</span></header>
+              <button type="button" class="span-jump" data-jump="t">尚未选择段落</button>
+              <textarea data-field="t.summary_zh" placeholder="中文概括"></textarea>
+              <textarea data-field="t.summary_en" placeholder="English summary"></textarea>
+            </section>
+            <div class="flow-arrow">→</div>
+            <section class="triple-card p-card">
+              <header><b>P</b><span>Payoff · 兑现</span></header>
+              <button type="button" class="span-jump" data-jump="p">尚未选择段落</button>
+              <textarea data-field="p.summary_zh" placeholder="中文概括"></textarea>
+              <textarea data-field="p.summary_en" placeholder="English summary"></textarea>
+            </section>
+          </div>
+
+          <section class="form-section">
+            <h3>分类</h3>
+            <div class="form-grid">
+              <label>伏笔类型<select data-field="primary_type" id="primaryType"></select></label>
+              <label>叙事功能<select data-field="narrative_function" id="narrativeFunction"></select></label>
+              <label>兑现类型<select data-field="payoff_type" id="payoffType"></select></label>
+              <label>置信度<select data-field="confidence" id="confidence"></select></label>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <label class="wide-label">
+              <span>原因解释 <em>已复核时必填</em></span>
+              <textarea class="rationale" data-field="rationale" placeholder="解释为什么 F 在 T 的作用下指向 P；不要只复述时间顺序。"></textarea>
+            </label>
+            <label class="wide-label">
+              <span>备注</span>
+              <textarea data-field="notes" placeholder="边界争议、替代解释、待讨论问题…"></textarea>
+            </label>
+          </section>
+
+          <section class="form-section footer-fields">
+            <label>标注者<input data-field="annotator" placeholder="姓名或代号"></label>
+            <label>状态<select data-field="status" id="status"></select></label>
+            <label>判断语言<select data-field="language_basis">
+              <option value="bilingual">中英对照</option>
+              <option value="zh">中文</option>
+              <option value="en">English</option>
+              <option value="source">原文</option>
+            </select></label>
+          </section>
+        </form>
+      </aside>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -22,9 +22,26 @@ foreshadow/short_stories/dataset/
   docs/                  # 标注规范、数据集设计和来源审计
 
 foreshadow/short_stories/
+  annotation_app/          # 双语 F–T–P 人工标注前端与本地保存服务
   scripts/               # 下载、清洗、候选生成、校验脚本
   cfpg/                  # CFPG 实验与结果
 ```
+
+## F–T–P 人工标注
+
+启动双语人工标注台：
+
+```bash
+python foreshadow/short_stories/annotation_app/server.py
+```
+
+然后打开 <http://127.0.0.1:8765>。界面支持切换小说、英文/中文/对照阅读，
+从正文中自由选择文字并分别指定 F（伏笔）、T（触发）和 P（兑现），记录伏笔类型、
+叙事功能、兑现类型、原因解释、置信度与复核状态。
+
+新标注独立保存到 `annotations/manual/{story_id}.json`；不会覆盖本目录已有的
+YAML seed gold，也不会把 CFPG 参考候选自动视为人工金标。详细操作见
+`../annotation_app/README.md`。
 
 ## 当前样本
 
